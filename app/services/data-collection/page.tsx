@@ -12,7 +12,7 @@ import { dataCollectionFAQs } from "@/content/faqs";
 import * as LucideIcons from "lucide-react";
 
 export const metadata = generatePageMetadata({
-  title: "Data Collection Services | NovaMind AI",
+  title: "Data Collection Services | Loopernode",
   description: "Global, diverse, and ethically sourced data collection services for training robust AI models.",
   path: "/services/data-collection",
 });

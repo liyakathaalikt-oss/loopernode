@@ -25,13 +25,13 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://novamind-ai.com"),
+  metadataBase: new URL("https://loopernode.com"),
   title: {
-    default: "NovaMind AI — Enterprise AI Data Services",
-    template: "%s | NovaMind AI",
+    default: "Loopernode — Enterprise AI Data Services",
+    template: "%s | Loopernode",
   },
   description:
-    "NovaMind AI provides enterprise-grade AI data services including data collection, annotation, labeling, and processing for machine learning teams worldwide.",
+    "Loopernode provides enterprise-grade AI data services including data collection, annotation, labeling, and processing for machine learning teams worldwide.",
   keywords: [
     "AI data services",
     "data annotation",
@@ -43,14 +43,14 @@ export const metadata: Metadata = {
     "NLP",
     "enterprise AI",
   ],
-  authors: [{ name: "NovaMind AI" }],
-  creator: "NovaMind AI",
+  authors: [{ name: "Loopernode" }],
+  creator: "Loopernode",
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://novamind-ai.com",
-    siteName: "NovaMind AI",
-    title: "NovaMind AI — Enterprise AI Data Services",
+    url: "https://loopernode.com",
+    siteName: "Loopernode",
+    title: "Loopernode — Enterprise AI Data Services",
     description:
       "Enterprise-grade AI data services including data collection, annotation, labeling, and processing.",
     images: [
@@ -58,13 +58,13 @@ export const metadata: Metadata = {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "NovaMind AI",
+        alt: "Loopernode",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "NovaMind AI — Enterprise AI Data Services",
+    title: "Loopernode — Enterprise AI Data Services",
     description:
       "Enterprise-grade AI data services including data collection, annotation, labeling, and processing.",
     images: ["/og-image.png"],

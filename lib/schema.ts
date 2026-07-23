@@ -2,13 +2,13 @@ export function generateOrganizationSchema() {
   return {
     "@context": "https://schema.org",
     "@type": "Organization",
-    "name": "NovaMind AI",
-    "url": "https://novamind-ai.com",
-    "logo": "https://novamind-ai.com/logo.png",
+    "name": "Loopernode",
+    "url": "https://loopernode.com",
+    "logo": "https://loopernode.com/logo.png",
     "description": "Enterprise AI data services company providing data collection, labeling, and processing.",
     "sameAs": [
-      "https://twitter.com/novamindai",
-      "https://linkedin.com/company/novamindai"
+      "https://twitter.com/loopernode",
+      "https://linkedin.com/company/loopernode"
     ],
     "contactPoint": {
       "@type": "ContactPoint",
@@ -26,7 +26,7 @@ export function generateBreadcrumbSchema(items: { name: string; url: string }[])
       "@type": "ListItem",
       "position": index + 1,
       "name": item.name,
-      "item": `https://novamind-ai.com${item.url}`
+      "item": `https://loopernode.com${item.url}`
     }))
   };
 }
@@ -59,7 +59,7 @@ export function generateBlogPostSchema(post: {
     "@type": "BlogPosting",
     "headline": post.title,
     "description": post.description,
-    "image": `https://novamind-ai.com${post.image}`,
+    "image": `https://loopernode.com${post.image}`,
     "datePublished": post.datePublished,
     "dateModified": post.datePublished,
     "author": {
@@ -68,15 +68,15 @@ export function generateBlogPostSchema(post: {
     },
     "publisher": {
       "@type": "Organization",
-      "name": "NovaMind AI",
+      "name": "Loopernode",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://novamind-ai.com/logo.png"
+        "url": "https://loopernode.com/logo.png"
       }
     },
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": `https://novamind-ai.com${post.url}`
+      "@id": `https://loopernode.com${post.url}`
     }
   };
 }
@@ -93,8 +93,8 @@ export function generateServiceSchema(service: {
     "description": service.description,
     "provider": {
       "@type": "Organization",
-      "name": "NovaMind AI"
+      "name": "Loopernode"
     },
-    "url": `https://novamind-ai.com${service.url}`
+    "url": `https://loopernode.com${service.url}`
   };
 }

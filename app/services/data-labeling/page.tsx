@@ -12,7 +12,7 @@ import { dataLabelingFAQs } from "@/content/faqs";
 import * as LucideIcons from "lucide-react";
 
 export const metadata = generatePageMetadata({
-  title: "Data Labeling Services | NovaMind AI",
+  title: "Data Labeling Services | Loopernode",
   description: "High-precision data labeling and annotation for computer vision, NLP, and generative AI models.",
   path: "/services/data-labeling",
 });

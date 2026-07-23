@@ -8,7 +8,7 @@ import { generatePageMetadata } from "@/lib/metadata";
 import { Database, Image as ImageIcon, Workflow, Search, Code, CheckCircle, BarChart, Layers } from "lucide-react";
 
 export const metadata = generatePageMetadata({
-  title: "AI Data Services | NovaMind AI",
+  title: "AI Data Services | Loopernode",
   description: "Comprehensive AI data services including data collection, labeling, and processing for enterprise models.",
   path: "/services",
 });
@@ -36,7 +36,7 @@ export default function ServicesPage() {
           <div className="max-w-3xl mx-auto text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold font-heading mb-6">Our Core Pillars</h2>
             <p className="text-lg text-slate-400">
-              NovaMind AI delivers across three critical phases of the data lifecycle. We collect diverse datasets, annotate them with expert precision, and process them into structured formats ready for machine learning.
+              Loopernode delivers across three critical phases of the data lifecycle. We collect diverse datasets, annotate them with expert precision, and process them into structured formats ready for machine learning.
             </p>
           </div>
         </FadeUp>

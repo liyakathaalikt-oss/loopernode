@@ -85,7 +85,7 @@ export function MobileNav({ isOpen, onClose }: MobileNavProps) {
           <div className="flex items-center justify-between p-6 border-b border-white/10">
             <Link href="/" onClick={onClose}>
               <span className="text-2xl font-bold tracking-tight text-white">
-                NovaMind <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 to-cyan-500">AI</span>
+                Looper<span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 to-cyan-500">node</span>
               </span>
             </Link>
             <button

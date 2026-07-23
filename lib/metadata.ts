@@ -7,8 +7,8 @@ interface MetadataProps {
   image?: string;
 }
 
-const siteName = 'NovaMind AI';
-const baseUrl = 'https://novamind-ai.com';
+const siteName = 'Loopernode';
+const baseUrl = 'https://loopernode.com';
 
 export function generatePageMetadata({
   title,
@@ -44,7 +44,7 @@ export function generatePageMetadata({
       title,
       description,
       images: [image],
-      creator: '@novamindai',
+      creator: '@loopernode',
     },
     robots: {
       index: true,

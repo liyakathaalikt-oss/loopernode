@@ -12,7 +12,7 @@ import { dataProcessingFAQs } from "@/content/faqs";
 import * as LucideIcons from "lucide-react";
 
 export const metadata = generatePageMetadata({
-  title: "Data Processing Services | NovaMind AI",
+  title: "Data Processing Services | Loopernode",
   description: "Advanced data cleansing, structuring, and enrichment services for machine learning pipelines.",
   path: "/services/data-processing",
 });

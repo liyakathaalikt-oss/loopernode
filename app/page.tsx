@@ -105,13 +105,13 @@ export default function HomePage() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <FadeUp>
             <SectionTitle 
-              eyebrow="About NovaMind AI" 
+              eyebrow="About Loopernode" 
               title="Architecting the Future of AI with" 
               highlightedWord="Precision" 
               align="left" 
             />
             <p className="text-lg text-slate-300 leading-relaxed mt-6 mb-8">
-              At NovaMind AI, we understand that the intelligence of your AI system is directly proportional to the quality of its training data. For over a decade, we have been at the forefront of the AI revolution, providing meticulous data services that form the foundational layer of state-of-the-art machine learning models. Our global workforce and proprietary infrastructure ensure that your models learn from the best data possible.
+              At Loopernode, we understand that the intelligence of your AI system is directly proportional to the quality of its training data. For over a decade, we have been at the forefront of the AI revolution, providing meticulous data services that form the foundational layer of state-of-the-art machine learning models. Our global workforce and proprietary infrastructure ensure that your models learn from the best data possible.
             </p>
             <Link href="/about" className="inline-flex items-center text-indigo-400 hover:text-indigo-300 font-semibold transition-colors">
               Learn more about our mission <ArrowRight className="ml-2 w-5 h-5" />
@@ -232,7 +232,7 @@ export default function HomePage() {
       <section className="py-20 md:py-28 container mx-auto px-4 border-b border-white/5">
         <FadeUp>
           <SectionTitle 
-            eyebrow="The NovaMind Advantage" 
+            eyebrow="The Loopernode Advantage" 
             title="Why Choose" 
             highlightedWord="Us" 
             align="center" 
@@ -386,7 +386,7 @@ export default function HomePage() {
         <ScaleIn>
           <CTABanner 
             headline="Ready to Accelerate Your AI Development?" 
-            description="Join 200+ companies that trust NovaMind AI for their data needs. Get started with a free consultation today."
+            description="Join 200+ companies that trust Loopernode for their data needs. Get started with a free consultation today."
             primaryCTA={{ label: 'Start Your Project', href: '/contact' }}
             secondaryCTA={{ label: 'View Our Services', href: '/services' }}
           />

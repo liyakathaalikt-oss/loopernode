@@ -20,7 +20,7 @@ export function Breadcrumb({ items, className }: BreadcrumbProps) {
       "@type": "ListItem",
       "position": index + 1,
       "name": item.label,
-      "item": `https://novamind.ai${item.href}`
+      "item": `https://loopernode.com${item.href}`
     }))
   };
 

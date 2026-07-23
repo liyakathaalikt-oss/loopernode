@@ -34,7 +34,7 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
   }
 
   return {
-    title: `${post.title} | NovaMind AI Blog`,
+    title: `${post.title} | Loopernode Blog`,
     description: post.excerpt,
     openGraph: {
       title: post.title,

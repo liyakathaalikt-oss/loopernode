@@ -50,7 +50,7 @@ export function Header() {
             {/* Logo */}
             <Link href="/" className="flex-shrink-0 z-50">
               <span className="text-2xl font-bold tracking-tight text-white">
-                NovaMind <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 to-cyan-500">AI</span>
+                Looper<span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 to-cyan-500">node</span>
               </span>
             </Link>
 

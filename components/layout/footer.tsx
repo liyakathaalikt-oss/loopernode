@@ -37,7 +37,7 @@ export function Footer() {
           <div className="space-y-6">
             <Link href="/" className="inline-block">
               <span className="text-2xl font-bold tracking-tight text-white">
-                NovaMind <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 to-cyan-500">AI</span>
+                Looper<span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 to-cyan-500">node</span>
               </span>
             </Link>
             <p className="text-slate-400 leading-relaxed text-sm">
@@ -99,7 +99,7 @@ export function Footer() {
         {/* Bottom Bar */}
         <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-slate-500 text-sm">
-            © {new Date().getFullYear()} NovaMind AI, Inc. All rights reserved.
+            © {new Date().getFullYear()} Loopernode, Inc. All rights reserved.
           </p>
           <div className="flex items-center gap-6 text-sm">
             <Link href="/terms" className="text-slate-500 hover:text-white transition-colors">Terms of Service</Link>

@@ -5,7 +5,7 @@ import { dataProcessingServices } from '@/content/services/data-processing';
 import { blogPosts } from '@/content/blog-posts';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://novamind-ai.com';
+  const baseUrl = 'https://loopernode.com';
   
   const staticRoutes = [
     '',

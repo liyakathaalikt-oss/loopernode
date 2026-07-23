@@ -11,8 +11,8 @@ import { generatePageMetadata } from "@/lib/metadata";
 import { contactFAQs } from "@/content/faqs";
 
 export const metadata: Metadata = generatePageMetadata({
-  title: "Contact Us | NovaMind AI",
-  description: "Get in touch with NovaMind AI. We have global offices in San Francisco, London, and Singapore ready to help you with your AI data needs.",
+  title: "Contact Us | Loopernode",
+  description: "Get in touch with Loopernode. We have global offices in San Francisco, London, and Singapore ready to help you with your AI data needs.",
   path: "/contact",
 });
 
@@ -21,21 +21,21 @@ const offices = [
     city: "San Francisco, USA",
     address: "100 Market Street, Suite 400",
     phone: "+1 (415) 555-0142",
-    email: "sf@novamind-ai.com",
+    email: "sf@loopernode.com",
     timezone: "PST",
   },
   {
     city: "London, UK",
     address: "30 Fenchurch Street, Level 20",
     phone: "+44 20 7946 0958",
-    email: "london@novamind-ai.com",
+    email: "london@loopernode.com",
     timezone: "GMT",
   },
   {
     city: "Singapore",
     address: "1 Raffles Place, Tower 2",
     phone: "+65 6123 4567",
-    email: "singapore@novamind-ai.com",
+    email: "singapore@loopernode.com",
     timezone: "SGT",
   },
 ];
@@ -111,11 +111,11 @@ export default function ContactPage() {
                   <div className="mt-6 pt-6 border-t border-white/[0.08] grid grid-cols-1 sm:grid-cols-2 gap-4">
                      <div>
                        <p className="text-sm text-slate-400 mb-1">General Inquiries</p>
-                       <a href="mailto:hello@novamind-ai.com" className="text-slate-50 font-medium hover:text-primary-400 transition-colors">hello@novamind-ai.com</a>
+                       <a href="mailto:hello@loopernode.com" className="text-slate-50 font-medium hover:text-primary-400 transition-colors">hello@loopernode.com</a>
                      </div>
                      <div>
                        <p className="text-sm text-slate-400 mb-1">Support</p>
-                       <a href="mailto:support@novamind-ai.com" className="text-slate-50 font-medium hover:text-primary-400 transition-colors">support@novamind-ai.com</a>
+                       <a href="mailto:support@loopernode.com" className="text-slate-50 font-medium hover:text-primary-400 transition-colors">support@loopernode.com</a>
                      </div>
                   </div>
                 </div>
@@ -173,7 +173,7 @@ export default function ContactPage() {
         <div className="container-custom max-w-3xl mx-auto px-6">
           <SectionTitle
             title="Frequently Asked Questions"
-            description="Find quick answers to common questions about working with NovaMind AI."
+            description="Find quick answers to common questions about working with Loopernode."
           />
           <div className="mt-12">
              <FAQAccordion faqs={contactFAQs} />
@@ -183,7 +183,7 @@ export default function ContactPage() {
 
       <CTABanner 
         headline="Ready to build better AI?" 
-        description="Join companies that trust NovaMind AI for their data needs."
+        description="Join companies that trust Loopernode for their data needs."
         primaryCTA={{ label: 'Start Your Project', href: '/services' }}
       />
     </main>

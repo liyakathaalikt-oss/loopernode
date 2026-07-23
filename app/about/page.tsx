@@ -18,14 +18,14 @@ import { FadeUp, StaggerContainer, StaggerItem, FadeIn } from '@/components/anim
 import { teamMembers } from '@/content/team';
 
 export const metadata = generatePageMetadata({ 
-  title: 'About Us | NovaMind AI', 
-  description: 'Learn about NovaMind AI, our mission, vision, and the global team dedicated to providing high-quality AI training data for intelligent systems.', 
+  title: 'About Us | Loopernode', 
+  description: 'Learn about Loopernode, our mission, vision, and the global team dedicated to providing high-quality AI training data for intelligent systems.', 
   path: '/about' 
 });
 
 export default function AboutPage() {
   const milestones = [
-    { year: '2014', title: 'The Beginning', description: 'NovaMind AI was founded in a small university lab by researchers frustrated with the lack of quality training data.' },
+    { year: '2014', title: 'The Beginning', description: 'Loopernode was founded in a small university lab by researchers frustrated with the lack of quality training data.' },
     { year: '2016', title: 'First Enterprise Client', description: 'Secured our first Fortune 500 client, expanding our team to 50 dedicated data specialists.' },
     { year: '2018', title: 'Global Expansion', description: 'Opened offices in Europe and Asia to provide 24/7 localized support and multilingual datasets.' },
     { year: '2020', title: 'Proprietary Platform', description: 'Launched our proprietary annotation platform with automated QA and ML-assisted labeling tools.' },
@@ -75,7 +75,7 @@ export default function AboutPage() {
             />
             <div className="mt-8 space-y-6 text-slate-300 text-lg leading-relaxed">
               <p>
-                Founded in 2014, NovaMind AI began with a singular realization: the biggest bottleneck in machine learning wasn't algorithms or computing power, but the scarcity of high-quality, ethically sourced training data. What started in a cramped university research lab has rapidly grown into a global enterprise.
+                Founded in 2014, Loopernode began with a singular realization: the biggest bottleneck in machine learning wasn't algorithms or computing power, but the scarcity of high-quality, ethically sourced training data. What started in a cramped university research lab has rapidly grown into a global enterprise.
               </p>
               <p>
                 Today, we partner with the world's most innovative technology companies, providing the critical data infrastructure necessary to train tomorrow's intelligent systems. We combine an expert global workforce with proprietary, secure annotation platforms to deliver unprecedented accuracy at massive scale.
@@ -168,7 +168,7 @@ export default function AboutPage() {
                 </div>
                 <h4 className="text-xl font-bold text-white mb-1">{member.name}</h4>
                 <p className="text-indigo-400 font-medium text-sm mb-4">{member.role}</p>
-                <p className="text-slate-400 text-sm">{member.bio || 'Driving innovation and strategic growth at NovaMind AI with over a decade of industry experience.'}</p>
+                <p className="text-slate-400 text-sm">{member.bio || 'Driving innovation and strategic growth at Loopernode with over a decade of industry experience.'}</p>
               </div>
             </StaggerItem>
           ))}
@@ -231,7 +231,7 @@ export default function AboutPage() {
       <section className="py-20 md:py-28 container mx-auto px-4 border-b border-white/5">
         <FadeUp>
           <SectionTitle 
-            eyebrow="Life at NovaMind" 
+            eyebrow="Life at Loopernode" 
             title="Our Corporate" 
             highlightedWord="Culture" 
             align="center" 
@@ -267,7 +267,7 @@ export default function AboutPage() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <FadeUp>
             <SectionTitle 
-              eyebrow="The NovaMind Standard" 
+              eyebrow="The Loopernode Standard" 
               title="Why Industry Leaders" 
               highlightedWord="Trust Us" 
               align="left" 
@@ -332,7 +332,7 @@ export default function AboutPage() {
       <section className="py-20 md:py-28 container mx-auto px-4">
         <FadeIn>
           <CTABanner 
-            headline="Partner with NovaMind AI" 
+            headline="Partner with Loopernode" 
             description="Ready to build the next generation of intelligent systems? Let's discuss how our data solutions can accelerate your AI roadmap."
             primaryCTA={{ label: 'Contact Sales', href: '/contact' }}
             secondaryCTA={{ label: 'Explore Careers', href: '/careers' }}

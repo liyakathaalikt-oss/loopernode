@@ -1,6 +1,6 @@
 export const homeFAQs = [
   {
-    question: "What types of data can NovaMind collect and label?",
+    question: "What types of data can Loopernode collect and label?",
     answer: "We handle almost all data modalities, including images, video, text, audio, 3D point clouds (LiDAR), and sensor data. Our services span basic bounding boxes to complex semantic segmentation, RLHF for language models, and synthetic data generation."
   },
   {

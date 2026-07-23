@@ -12,7 +12,7 @@ import { generatePageMetadata } from "@/lib/metadata";
 import { blogPosts } from "@/content/blog-posts";
 
 export const metadata: Metadata = generatePageMetadata({
-  title: "Insights & Resources | NovaMind AI",
+  title: "Insights & Resources | Loopernode",
   description: "Explore the latest insights, best practices, and trends in AI data services, computer vision, and machine learning.",
   path: '/blog'
 });

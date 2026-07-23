@@ -22,7 +22,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   if (!service) return {};
 
   return generatePageMetadata({
-    title: `${service.title} | Data Processing | NovaMind AI`,
+    title: `${service.title} | Data Processing | Loopernode`,
     description: service.description,
     path: `/services/data-processing/${slug}`,
   });

@@ -8,7 +8,7 @@ export function CookieConsent() {
   const [show, setShow] = useState(false);
 
   useEffect(() => {
-    const consent = localStorage.getItem('novamind-cookie-consent');
+    const consent = localStorage.getItem('loopernode-cookie-consent');
     if (!consent) {
       // Small delay so it doesn't pop up instantly on initial load
       const timer = setTimeout(() => setShow(true), 1500);
@@ -17,12 +17,12 @@ export function CookieConsent() {
   }, []);
 
   const handleAccept = () => {
-    localStorage.setItem('novamind-cookie-consent', 'accepted');
+    localStorage.setItem('loopernode-cookie-consent', 'accepted');
     setShow(false);
   };
 
   const handleDecline = () => {
-    localStorage.setItem('novamind-cookie-consent', 'declined');
+    localStorage.setItem('loopernode-cookie-consent', 'declined');
     setShow(false);
   };
 
