@@ -21,21 +21,21 @@ const offices = [
     city: "San Francisco, USA",
     address: "100 Market Street, Suite 400",
     phone: "+1 (415) 555-0142",
-    email: "sf@loopernode.com",
+    email: "sf@loopernode.in",
     timezone: "PST",
   },
   {
     city: "London, UK",
     address: "30 Fenchurch Street, Level 20",
     phone: "+44 20 7946 0958",
-    email: "london@loopernode.com",
+    email: "london@loopernode.in",
     timezone: "GMT",
   },
   {
     city: "Singapore",
     address: "1 Raffles Place, Tower 2",
     phone: "+65 6123 4567",
-    email: "singapore@loopernode.com",
+    email: "singapore@loopernode.in",
     timezone: "SGT",
   },
 ];
@@ -111,11 +111,11 @@ export default function ContactPage() {
                   <div className="mt-6 pt-6 border-t border-white/[0.08] grid grid-cols-1 sm:grid-cols-2 gap-4">
                      <div>
                        <p className="text-sm text-slate-400 mb-1">General Inquiries</p>
-                       <a href="mailto:hello@loopernode.com" className="text-slate-50 font-medium hover:text-primary-400 transition-colors">hello@loopernode.com</a>
+                       <a href="mailto:info@loopernode.in" className="text-slate-50 font-medium hover:text-primary-400 transition-colors">info@loopernode.in</a>
                      </div>
                      <div>
                        <p className="text-sm text-slate-400 mb-1">Support</p>
-                       <a href="mailto:support@loopernode.com" className="text-slate-50 font-medium hover:text-primary-400 transition-colors">support@loopernode.com</a>
+                       <a href="mailto:liya@loopernode.in" className="text-slate-50 font-medium hover:text-primary-400 transition-colors">liya@loopernode.in</a>
                      </div>
                   </div>
                 </div>

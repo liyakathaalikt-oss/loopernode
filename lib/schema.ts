@@ -3,8 +3,8 @@ export function generateOrganizationSchema() {
     "@context": "https://schema.org",
     "@type": "Organization",
     "name": "Loopernode",
-    "url": "https://loopernode.com",
-    "logo": "https://loopernode.com/logo.png",
+    "url": "https://loopernode.in",
+    "logo": "https://loopernode.in/logo.png",
     "description": "Enterprise AI data services company providing data collection, labeling, and processing.",
     "sameAs": [
       "https://twitter.com/loopernode",
@@ -26,7 +26,7 @@ export function generateBreadcrumbSchema(items: { name: string; url: string }[])
       "@type": "ListItem",
       "position": index + 1,
       "name": item.name,
-      "item": `https://loopernode.com${item.url}`
+      "item": `https://loopernode.in${item.url}`
     }))
   };
 }
@@ -59,7 +59,7 @@ export function generateBlogPostSchema(post: {
     "@type": "BlogPosting",
     "headline": post.title,
     "description": post.description,
-    "image": `https://loopernode.com${post.image}`,
+    "image": `https://loopernode.in${post.image}`,
     "datePublished": post.datePublished,
     "dateModified": post.datePublished,
     "author": {
@@ -71,12 +71,12 @@ export function generateBlogPostSchema(post: {
       "name": "Loopernode",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://loopernode.com/logo.png"
+        "url": "https://loopernode.in/logo.png"
       }
     },
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": `https://loopernode.com${post.url}`
+      "@id": `https://loopernode.in${post.url}`
     }
   };
 }
@@ -95,6 +95,6 @@ export function generateServiceSchema(service: {
       "@type": "Organization",
       "name": "Loopernode"
     },
-    "url": `https://loopernode.com${service.url}`
+    "url": `https://loopernode.in${service.url}`
   };
 }

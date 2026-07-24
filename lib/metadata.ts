@@ -8,7 +8,7 @@ interface MetadataProps {
 }
 
 const siteName = 'Loopernode';
-const baseUrl = 'https://loopernode.com';
+const baseUrl = 'https://loopernode.in';
 
 export function generatePageMetadata({
   title,

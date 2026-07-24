@@ -25,7 +25,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://loopernode.com"),
+  metadataBase: new URL("https://loopernode.in"),
   title: {
     default: "Loopernode — Enterprise AI Data Services",
     template: "%s | Loopernode",
@@ -48,7 +48,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://loopernode.com",
+    url: "https://loopernode.in",
     siteName: "Loopernode",
     title: "Loopernode — Enterprise AI Data Services",
     description:
