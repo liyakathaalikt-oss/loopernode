@@ -24,6 +24,7 @@ export function Header() {
 
   // Close menus on route change
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setActiveMenu(null);
     setIsMobileNavOpen(false);
   }, [pathname]);

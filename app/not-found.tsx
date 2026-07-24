@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 "use client";
 
 import Link from "next/link";
@@ -26,7 +27,7 @@ export default function NotFound() {
           </h2>
           
           <p className="text-lg text-slate-400 max-w-xl mx-auto mb-10">
-            The page you're looking for doesn't exist, has been moved, or is temporarily unavailable. Let's get you back on track.
+            The page you&apos;re looking for doesn&apos;t exist, has been moved, or is temporarily unavailable. Let's get you back on track.
           </p>
           
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">

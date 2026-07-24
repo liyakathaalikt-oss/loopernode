@@ -39,7 +39,7 @@ export function CookieConsent() {
           <div className="max-w-5xl mx-auto backdrop-blur-xl bg-[#0A0A1B]/80 border border-white/10 rounded-2xl p-6 shadow-2xl flex flex-col sm:flex-row items-center justify-between gap-4">
             <div className="text-sm text-slate-300 flex-grow">
               We use cookies to enhance your browsing experience, serve personalized ads or content, and analyze our traffic. 
-              By clicking "Accept All", you consent to our use of cookies.
+              By clicking &quot;Accept All&quot;, you consent to our use of cookies.
             </div>
             
             <div className="flex items-center gap-3 shrink-0">

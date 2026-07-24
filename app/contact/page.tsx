@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import { Metadata } from "next";
 import { Mail, MapPin, Phone, Clock, MessageSquare, Zap } from "lucide-react";
 

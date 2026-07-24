@@ -58,7 +58,7 @@ export function TestimonialCard({ testimonials, className }: TestimonialCardProp
             </div>
 
             <p className="text-xl md:text-2xl text-slate-200 font-medium leading-relaxed mb-8">
-              "{testimonials[currentIndex].quote}"
+              &quot;{testimonials[currentIndex].quote}&quot;
             </p>
 
             <div className="flex items-center gap-4">
