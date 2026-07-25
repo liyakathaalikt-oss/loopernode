@@ -1,0 +1,10 @@
+<svg width="450" height="120" viewBox="0 0 450 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <g transform="translate(10, 10)">
+    <path d="M 25 15 L 50 40 L 75 15" stroke="white" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+    <path d="M 85 25 L 60 50 L 85 75" stroke="white" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+    <path d="M 75 85 L 50 60 L 25 85" stroke="white" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+    <path d="M 15 75 L 40 50 L 15 25" stroke="white" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+  </g>
+  <text x="120" y="62" font-family="system-ui, -apple-system, sans-serif" font-weight="800" font-size="48" fill="white" letter-spacing="-1.5">looper<tspan fill="#0EA5E9">node</tspan></text>
+  <text x="123" y="90" font-family="system-ui, -apple-system, sans-serif" font-weight="400" font-size="16" fill="#e2e8f0" letter-spacing="0.5">Innovate. Illuminate. Inspire.</text>
+</svg>
