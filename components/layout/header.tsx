@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import NextImage from 'next/image';
 import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, ChevronDown, ChevronRight, Database, Tag, Settings, Brain, Image, Video, Mic, FileText, Activity, Stethoscope, Satellite, Globe, Cpu, Scissors, CheckCircle, Sliders, Layers, Sparkles, BarChart, HardHat, FileSearch, ShieldOff, Lightbulb, ShieldCheck, Box, Users } from 'lucide-react';
@@ -50,9 +51,7 @@ export function Header() {
           <div className="flex items-center justify-between">
             {/* Logo */}
             <Link href="/" className="flex-shrink-0 z-50">
-              <span className="text-2xl font-bold tracking-tight text-white">
-                Looper<span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 to-cyan-500">node</span>
-              </span>
+              <NextImage src="/logo.png" alt="Loopernode" width={200} height={57} priority className="h-10 sm:h-12 w-auto object-contain" />
             </Link>
 
             {/* Desktop Navigation */}

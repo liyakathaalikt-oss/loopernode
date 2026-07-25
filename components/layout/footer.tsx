@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import NextImage from 'next/image';
 import { Globe, Mail, MessageCircle, Rss, ArrowRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -36,9 +37,7 @@ export function Footer() {
           {/* Column 1: Brand */}
           <div className="space-y-6">
             <Link href="/" className="inline-block">
-              <span className="text-2xl font-bold tracking-tight text-white">
-                Looper<span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 to-cyan-500">node</span>
-              </span>
+              <NextImage src="/logo.png" alt="Loopernode" width={200} height={57} priority className="h-10 sm:h-12 w-auto object-contain" />
             </Link>
             <p className="text-slate-400 leading-relaxed text-sm">
               Global leader in AI data services, providing high-quality datasets, precise annotation, and comprehensive data processing for enterprise AI models.
