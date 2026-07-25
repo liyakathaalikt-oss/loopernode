@@ -85,7 +85,7 @@ export function MobileNav({ isOpen, onClose }: MobileNavProps) {
           {/* Header */}
           <div className="flex items-center justify-between p-6 border-b border-white/10">
             <Link href="/" onClick={onClose}>
-              <NextImage src="/logo.png" alt="Loopernode" width={200} height={57} priority className="h-10 w-auto object-contain" />
+              <NextImage src="/logo.png" alt="Loopernode" width={240} height={68} priority className="h-12 w-auto object-contain" />
             </Link>
             <button
               onClick={onClose}

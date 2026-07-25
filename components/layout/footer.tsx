@@ -37,7 +37,7 @@ export function Footer() {
           {/* Column 1: Brand */}
           <div className="space-y-6">
             <Link href="/" className="inline-block">
-              <NextImage src="/logo.png" alt="Loopernode" width={200} height={57} priority className="h-10 sm:h-12 w-auto object-contain" />
+              <NextImage src="/logo.png" alt="Loopernode" width={240} height={68} priority className="h-12 sm:h-14 w-auto object-contain" />
             </Link>
             <p className="text-slate-400 leading-relaxed text-sm">
               Global leader in AI data services, providing high-quality datasets, precise annotation, and comprehensive data processing for enterprise AI models.

@@ -51,7 +51,7 @@ export function Header() {
           <div className="flex items-center justify-between">
             {/* Logo */}
             <Link href="/" className="flex-shrink-0 z-50">
-              <NextImage src="/logo.png" alt="Loopernode" width={200} height={57} priority className="h-10 sm:h-12 w-auto object-contain" />
+              <NextImage src="/logo.png" alt="Loopernode" width={240} height={68} priority className="h-12 sm:h-14 w-auto object-contain" />
             </Link>
 
             {/* Desktop Navigation */}
