@@ -18,7 +18,7 @@ export const metadata = generatePageMetadata({
 });
 
 function getIcon(iconName: string) {
-  const IconComponent = (LucideIcons as unknown)[iconName] || LucideIcons.PenTool;
+  const IconComponent = (LucideIcons as any)[iconName] || LucideIcons.PenTool;
   return <IconComponent className="w-8 h-8 text-cyan-500" />;
 }
 
