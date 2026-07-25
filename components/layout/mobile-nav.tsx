@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import NextImage from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ChevronDown, Database, Tag, Settings } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -85,7 +84,9 @@ export function MobileNav({ isOpen, onClose }: MobileNavProps) {
           {/* Header */}
           <div className="flex items-center justify-between p-6 border-b border-white/10">
             <Link href="/" onClick={onClose}>
-              <NextImage src="/logo.svg" alt="Loopernode" width={180} height={48} priority className="h-8 w-auto" />
+              <span className="text-2xl font-bold tracking-tight text-white">
+                Looper<span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 to-cyan-500">node</span>
+              </span>
             </Link>
             <button
               onClick={onClose}
