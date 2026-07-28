@@ -19,25 +19,11 @@ export const metadata: Metadata = generatePageMetadata({
 
 const offices = [
   {
-    city: "San Francisco, USA",
-    address: "100 Market Street, Suite 400",
-    phone: "+1 (415) 555-0142",
-    email: "sf@loopernode.in",
-    timezone: "PST",
-  },
-  {
-    city: "London, UK",
-    address: "30 Fenchurch Street, Level 20",
-    phone: "+44 20 7946 0958",
-    email: "london@loopernode.in",
-    timezone: "GMT",
-  },
-  {
-    city: "Singapore",
-    address: "1 Raffles Place, Tower 2",
-    phone: "+65 6123 4567",
-    email: "singapore@loopernode.in",
-    timezone: "SGT",
+    city: "Bengaluru, India",
+    address: "Bengaluru, Karnataka, India",
+    phone: "+91 7975265394",
+    email: "info@loopernode.in",
+    timezone: "IST",
   },
 ];
 

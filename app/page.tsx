@@ -244,7 +244,7 @@ export default function HomePage() {
           <FeatureCard 
             icon={<Shield className="w-6 h-6 text-indigo-400" />} 
             title="Enterprise Security" 
-            description="SOC 2 Type II, ISO 27001, and GDPR compliant. Your proprietary data is protected by bank-grade security protocols." 
+            description="Your data is protected through secure infrastructure, encryption, and strict access controls following industry best practices." 
           />
           <FeatureCard 
             icon={<Users className="w-6 h-6 text-indigo-400" />} 

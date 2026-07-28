@@ -57,14 +57,16 @@ export default function AboutPage() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <FadeUp>
             <div className="relative rounded-3xl overflow-hidden aspect-[4/3] border border-white/10 bg-slate-800/50">
-              {/* Image Placeholder */}
-              <div className="absolute inset-0 bg-gradient-to-br from-indigo-900/40 to-slate-900 flex items-center justify-center">
-                <BrainCircuit className="w-32 h-32 text-indigo-500/20" />
-                <div className="absolute inset-0 bg-white/5 backdrop-blur-sm" />
-              </div>
-              <div className="absolute bottom-6 left-6 right-6 p-6 rounded-2xl bg-black/40 backdrop-blur-md border border-white/10">
-                <p className="text-white font-medium italic">"Great AI starts with great data. It's that simple, and that difficult."</p>
-                <p className="text-cyan-400 text-sm mt-2 font-bold">— The Founding Team</p>
+              {/* Team Image */}
+              <div className="absolute inset-0 bg-slate-900">
+                <Image
+                  src="/images/about-team-latest.png"
+                  alt="Loopernode Founding Team"
+                  fill
+                  style={{ objectFit: 'cover', objectPosition: 'center' }}
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  priority
+                />
               </div>
             </div>
           </FadeUp>

@@ -18,6 +18,7 @@ export const metadata = generatePageMetadata({
 });
 
 function getIcon(iconName: string) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const IconComponent = (LucideIcons as any)[iconName] || LucideIcons.Workflow;
   return <IconComponent className="w-8 h-8 text-violet-500" />;
 }
