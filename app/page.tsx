@@ -83,7 +83,7 @@ export default function HomePage() {
       {/* SECTION 2: Trusted By */}
       <section className="py-12 border-b border-white/5 overflow-hidden bg-white/5 backdrop-blur-sm">
         <FadeIn>
-          <div className="container mx-auto px-4 mb-6 text-center text-sm font-semibold tracking-wider text-slate-400 uppercase">
+          <div className="container mx-auto px-4 mb-6 text-center text-[34px] font-semibold tracking-wider text-slate-400 uppercase">
             Trusted by innovative companies worldwide
           </div>
           <div className="relative flex overflow-x-hidden group">

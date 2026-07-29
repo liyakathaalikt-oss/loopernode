@@ -10,6 +10,23 @@ import {
   Globe2, Building2, Languages, ArrowRight, Heart
 } from 'lucide-react';
 
+const LinkedinIcon = ({ className }: { className?: string }) => (
+  <svg 
+    xmlns="http://www.w3.org/2000/svg" 
+    viewBox="0 0 24 24" 
+    fill="none" 
+    stroke="currentColor" 
+    strokeWidth="2" 
+    strokeLinecap="round" 
+    strokeLinejoin="round" 
+    className={className}
+  >
+    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+    <rect width="4" height="12" x="2" y="9" />
+    <circle cx="4" cy="4" r="2" />
+  </svg>
+);
+
 import { Hero } from '@/components/sections/hero';
 import { SectionTitle } from '@/components/sections/section-title';
 import { FeatureCard } from '@/components/sections/feature-card';
@@ -165,14 +182,38 @@ export default function AboutPage() {
           {teamMembers.slice(0, 6).map((member: any, idx: number) => (
             <StaggerItem key={idx}>
               <div className="p-8 rounded-3xl bg-white/5 backdrop-blur-md border border-white/10 hover:bg-white/10 transition-all text-center group">
-                <div className="w-24 h-24 mx-auto rounded-full bg-gradient-to-br from-indigo-500 to-cyan-500 p-1 mb-6">
-                  <div className="w-full h-full rounded-full bg-slate-900 flex items-center justify-center text-2xl font-bold text-white group-hover:bg-transparent transition-colors">
-                    {member.name.split(' ').map((n: string) => n[0]).join('')}
-                  </div>
+                <div className="w-28 h-28 sm:w-32 sm:h-32 md:w-40 md:h-40 mx-auto rounded-full bg-gradient-to-br from-indigo-500 to-cyan-500 p-1 mb-6 md:mb-8 transition-all duration-300">
+                  {member.image ? (
+                    <div className="w-full h-full rounded-full overflow-hidden relative">
+                      <Image 
+                        src={member.image} 
+                        alt={member.name} 
+                        fill 
+                        style={{ objectFit: 'cover', objectPosition: 'center' }} 
+                        sizes="(max-width: 640px) 112px, (max-width: 768px) 128px, 160px"
+                      />
+                    </div>
+                  ) : (
+                    <div className="w-full h-full rounded-full bg-slate-900 flex items-center justify-center text-3xl md:text-4xl font-bold text-white group-hover:bg-transparent transition-colors">
+                      {member.name.split(' ').map((n: string) => n[0]).join('')}
+                    </div>
+                  )}
                 </div>
-                <h4 className="text-xl font-bold text-white mb-1">{member.name}</h4>
-                <p className="text-indigo-400 font-medium text-sm mb-4">{member.role}</p>
-                <p className="text-slate-400 text-sm">{member.bio || 'Driving innovation and strategic growth at Loopernode with over a decade of industry experience.'}</p>
+                <div className="relative pt-2">
+                  <h4 className="text-xl font-bold text-white mb-1 px-8">{member.name}</h4>
+                  <p className="text-indigo-400 font-medium text-sm mb-5">{member.role}</p>
+                  <p className="text-slate-400 text-sm">{member.bio || 'Driving innovation and strategic growth at Loopernode with over a decade of industry experience.'}</p>
+                  {/* LinkedIn Icon */}
+                  <a 
+                    href={member.linkedin || "#"} 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="absolute top-0 right-0 z-10 flex items-center justify-center w-8 h-8 md:w-10 md:h-10 rounded-full bg-white/5 border border-white/10 text-slate-400 hover:bg-[#0A66C2] hover:text-white hover:border-[#0A66C2] hover:-translate-y-1 transition-all duration-300 shadow-sm"
+                    aria-label={`LinkedIn profile of ${member.name}`}
+                  >
+                    <LinkedinIcon className="w-4 h-4 md:w-5 md:h-5" />
+                  </a>
+                </div>
               </div>
             </StaggerItem>
           ))}

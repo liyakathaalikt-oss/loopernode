@@ -24,27 +24,27 @@ export const teamMembers = [
     twitter: "https://twitter.com"
   },
   {
-    name: "James Okonjo",
-    role: "VP of Operations",
-    bio: "James is a global operations leader who has successfully scaled and managed networks of over 5,000 annotators worldwide. He ensures quality, compliance, and efficiency across all human-in-the-loop processes.",
-    image: "",
+    name: "Erickah V. Munez",
+    role: "Data Specialist",
+    bio: "Erickah V. Munez is a Data Specialist with expertise in AI data annotation, quality assurance, and dataset management. She supports high-quality data preparation for machine learning and generative AI projects, ensuring accuracy, consistency, and efficient project delivery.",
+    image: "/images/erickah.jpg",
     linkedin: "https://linkedin.com",
     twitter: "https://twitter.com"
   },
   {
-    name: "Dr. Priya Sharma",
-    role: "Head of AI Research",
-    bio: "With a PhD in Computer Vision from Stanford and over 40 published papers, Dr. Sharma leads Loopernode's R&D. She focuses on innovative techniques for synthetic data generation and automated quality assurance.",
-    image: "",
-    linkedin: "https://linkedin.com",
+    name: "Kira Mae P. Munez",
+    role: "Project Manager",
+    bio: "Kira Mae P. Munez specializes in AI data annotation and quality assurance. She contributes to building accurate, high-quality datasets that support machine learning and generative AI development.",
+    image: "/images/kira2.jpg",
+    linkedin: "https://www.linkedin.com/in/kira-mae-munez-85bb80253/",
     twitter: "https://twitter.com"
   },
   {
-    name: "Alexander Volkov",
-    role: "VP of Business Development",
-    bio: "Alexander is an enterprise sales leader who has driven over $100M in revenue in the B2B SaaS and AI sectors. He partners with Fortune 500 companies to align Loopernode's solutions with their strategic AI goals.",
-    image: "",
-    linkedin: "https://linkedin.com",
+    name: "Megan E. Rendal",
+    role: "Business Development Manager",
+    bio: "Megan E. Rendal is a Business Development Manager specializing in client relations, strategic partnerships, and delivering tailored AI data solutions that drive long-term business growth.",
+    image: "/images/megan.jpg",
+    linkedin: "https://www.linkedin.com/in/megan-rendal-1257b8228/?skipRedirect=true",
     twitter: "https://twitter.com"
   }
 ];
