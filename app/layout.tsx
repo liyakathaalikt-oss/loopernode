@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Plus_Jakarta_Sans, JetBrains_Mono } from "next/font/google";
+import { Inter, Plus_Jakarta_Sans, JetBrains_Mono, Gabarito } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
@@ -20,6 +20,12 @@ const plusJakarta = Plus_Jakarta_Sans({
 
 const jetbrainsMono = JetBrains_Mono({
   variable: "--font-mono",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+const gabarito = Gabarito({
+  variable: "--font-gabarito",
   subsets: ["latin"],
   display: "swap",
 });
@@ -90,7 +96,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${plusJakarta.variable} ${jetbrainsMono.variable}`}
+      className={`${inter.variable} ${plusJakarta.variable} ${jetbrainsMono.variable} ${gabarito.variable}`}
       data-scroll-behavior="smooth"
     >
       <body className="min-h-screen flex flex-col bg-dark-950 text-slate-50 font-sans antialiased">

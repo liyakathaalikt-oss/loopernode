@@ -4,7 +4,7 @@ export function generateOrganizationSchema() {
     "@type": "Organization",
     "name": "Loopernode",
     "url": "https://loopernode.in",
-    "logo": "https://loopernode.in/logo.png",
+    "logo": "https://loopernode.in/images/logo-new.png",
     "description": "Enterprise AI data services company providing data collection, labeling, and processing.",
     "sameAs": [
       "https://twitter.com/loopernode",
@@ -71,7 +71,7 @@ export function generateBlogPostSchema(post: {
       "name": "Loopernode",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://loopernode.in/logo.png"
+        "url": "https://loopernode.in/images/logo-new.png"
       }
     },
     "mainEntityOfPage": {

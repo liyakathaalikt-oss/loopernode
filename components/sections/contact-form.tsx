@@ -22,6 +22,7 @@ type ContactFormValues = z.infer<typeof contactSchema>;
 export function ContactForm({ className }: { className?: string }) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const {
     register,
@@ -34,16 +35,34 @@ export function ContactForm({ className }: { className?: string }) {
 
   const onSubmit = async (data: ContactFormValues) => {
     setIsSubmitting(true);
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-    console.log('Form submitted:', data);
-    setIsSubmitting(false);
-    setIsSuccess(true);
-    reset();
+    setErrorMessage(null);
 
-    setTimeout(() => {
-      setIsSuccess(false);
-    }, 5000);
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.error || 'Something went wrong. Please try again.');
+      }
+
+      setIsSuccess(true);
+      reset();
+
+      setTimeout(() => {
+        setIsSuccess(false);
+      }, 5000);
+    } catch (err) {
+      setErrorMessage(
+        err instanceof Error ? err.message : 'Failed to send message. Please try again.'
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -165,6 +184,23 @@ export function ContactForm({ className }: { className?: string }) {
               />
               {errors.message && <p className="text-red-400 text-xs mt-1">{errors.message.message}</p>}
             </div>
+
+            {/* Honeypot – hidden from users, catches bots */}
+            <input
+              type="text"
+              {...register('honeypot' as never)}
+              className="hidden"
+              tabIndex={-1}
+              autoComplete="off"
+              aria-hidden="true"
+            />
+
+            {/* Error message */}
+            {errorMessage && (
+              <div className="p-4 rounded-lg bg-red-500/10 border border-red-500/20 text-red-400 text-sm">
+                {errorMessage}
+              </div>
+            )}
 
             <button
               type="submit"

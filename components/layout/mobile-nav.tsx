@@ -84,8 +84,16 @@ export function MobileNav({ isOpen, onClose }: MobileNavProps) {
         >
           {/* Header */}
           <div className="flex items-center justify-between p-6 border-b border-white/10">
-            <Link href="/" onClick={onClose}>
-              <NextImage src="/logo.png" alt="Loopernode" width={240} height={68} priority className="h-12 w-auto object-contain" />
+            <Link href="/" onClick={onClose} className="inline-flex items-center gap-3">
+              <NextImage src="/images/logo-new.png" alt="Loopernode Icon" width={45} height={45} priority className="w-[45px] h-[45px] object-contain" />
+              <div className="flex flex-col justify-center text-left">
+                <span className="font-gabarito font-bold text-xl tracking-tight leading-none">
+                  <span className="text-[#FEF8F8]">looper</span><span className="text-[#1389DE]">node</span>
+                </span>
+                <span className="font-gabarito font-medium text-[8px] text-slate-300 tracking-[0.15em] leading-tight mt-0">
+                  Innovate. Illuminate. Inspire.
+                </span>
+              </div>
             </Link>
             <button
               onClick={onClose}

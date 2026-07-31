@@ -36,8 +36,16 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           {/* Column 1: Brand */}
           <div className="space-y-6">
-            <Link href="/" className="inline-block">
-              <NextImage src="/logo.png" alt="Loopernode" width={240} height={68} priority className="h-12 sm:h-14 w-auto object-contain" />
+            <Link href="/" className="inline-flex items-center gap-3">
+              <NextImage src="/images/logo-new.png" alt="Loopernode Icon" width={55} height={55} priority className="w-[55px] h-[55px] object-contain" />
+              <div className="flex flex-col justify-center text-left">
+                <span className="font-gabarito font-bold text-2xl sm:text-3xl tracking-tight leading-none">
+                  <span className="text-[#FEF8F8]">looper</span><span className="text-[#1389DE]">node</span>
+                </span>
+                <span className="font-gabarito font-medium text-[9px] text-slate-300 tracking-[0.15em] leading-tight mt-0">
+                  Innovate. Illuminate. Inspire.
+                </span>
+              </div>
             </Link>
             <p className="text-slate-400 leading-relaxed text-sm">
               Global leader in AI data services, providing high-quality datasets, precise annotation, and comprehensive data processing for enterprise AI models.
