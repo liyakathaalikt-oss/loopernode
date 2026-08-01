@@ -59,11 +59,6 @@ export function Header() {
                 priority 
                 className="h-[32px] w-auto sm:h-[45px] object-contain" 
               />
-              <div className="flex flex-col justify-center hidden sm:flex">
-                <span className="font-gabarito font-medium text-[7px] sm:text-[9px] text-slate-400 tracking-[0.15em] leading-tight mt-1 whitespace-nowrap">
-                  Innovate. Illuminate. Inspire.
-                </span>
-              </div>
             </Link>
 
             {/* Desktop Navigation */}

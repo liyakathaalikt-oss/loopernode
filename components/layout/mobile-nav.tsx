@@ -93,11 +93,6 @@ export function MobileNav({ isOpen, onClose }: MobileNavProps) {
                 priority 
                 className="h-[28px] w-auto sm:h-[36px] object-contain" 
               />
-              <div className="flex flex-col justify-center text-left hidden sm:flex">
-                <span className="font-gabarito font-medium text-[7px] sm:text-[8px] text-slate-400 tracking-[0.15em] leading-tight mt-1 whitespace-nowrap">
-                  Innovate. Illuminate. Inspire.
-                </span>
-              </div>
             </Link>
             <button
               onClick={onClose}

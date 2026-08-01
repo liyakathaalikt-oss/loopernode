@@ -45,11 +45,6 @@ export function Footer() {
                 priority 
                 className="h-[36px] w-auto sm:h-[48px] object-contain" 
               />
-              <div className="flex flex-col justify-center text-left hidden sm:flex">
-                <span className="font-gabarito font-medium text-[7px] sm:text-[9px] text-slate-400 tracking-[0.15em] leading-tight mt-1 whitespace-nowrap">
-                  Innovate. Illuminate. Inspire.
-                </span>
-              </div>
             </Link>
             <p className="text-slate-400 leading-relaxed text-sm">
               Global leader in AI data services, providing high-quality datasets, precise annotation, and comprehensive data processing for enterprise AI models.
