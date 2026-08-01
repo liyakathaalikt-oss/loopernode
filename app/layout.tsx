@@ -88,6 +88,8 @@ export const metadata: Metadata = {
   },
 };
 
+import { SmoothScroll } from "@/components/animations/smooth-scroll";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -97,19 +99,20 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${inter.variable} ${plusJakarta.variable} ${jetbrainsMono.variable} ${gabarito.variable}`}
-      data-scroll-behavior="smooth"
     >
       <body className="min-h-screen flex flex-col bg-dark-950 text-slate-50 font-sans antialiased">
-        <a href="#main-content" className="skip-to-content">
-          Skip to main content
-        </a>
-        <Header />
-        <main id="main-content" className="flex-1">
-          {children}
-        </main>
-        <Footer />
-        <BackToTop />
-        <CookieConsent />
+        <SmoothScroll>
+          <a href="#main-content" className="skip-to-content">
+            Skip to main content
+          </a>
+          <Header />
+          <main id="main-content" className="flex-1">
+            {children}
+          </main>
+          <Footer />
+          <BackToTop />
+          <CookieConsent />
+        </SmoothScroll>
       </body>
     </html>
   );
