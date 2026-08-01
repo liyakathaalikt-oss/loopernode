@@ -68,9 +68,9 @@ export async function POST(request: Request) {
     const resumeFile = resumeEntry as File;
     console.log(`[Careers API] Resume: ${resumeFile.name} (${(resumeFile.size / 1024).toFixed(1)} KB)`);
 
-    if (resumeFile.size > 10 * 1024 * 1024) {
+    if (resumeFile.size > 5 * 1024 * 1024) {
       return NextResponse.json(
-        { success: false, message: 'Resume must be under 10 MB.' },
+        { success: false, message: 'Resume must be under 5 MB.' },
         { status: 400 }
       );
     }

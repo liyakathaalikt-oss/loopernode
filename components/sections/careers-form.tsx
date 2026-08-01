@@ -72,9 +72,9 @@ export function CareersForm({ defaultPosition }: CareersFormProps) {
     if (e.target.files && e.target.files[0]) {
       const selectedFile = e.target.files[0];
       
-      // Limit size to 10 MB
-      if (selectedFile.size > 10 * 1024 * 1024) {
-        setErrorMessage('File size must be less than 10MB');
+      // Limit size to 5 MB
+      if (selectedFile.size > 5 * 1024 * 1024) {
+        setErrorMessage('File size must be less than 5MB');
         setStatus('error');
         e.target.value = '';
         return;
