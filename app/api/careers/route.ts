@@ -3,6 +3,7 @@ import nodemailer from 'nodemailer';
 import * as z from 'zod';
 import fs from 'fs/promises';
 import path from 'path';
+import { randomUUID } from 'crypto';
 
 const formSchema = z.object({
   fullName: z.string().min(2),
@@ -55,7 +56,7 @@ export async function POST(request: Request) {
     try {
       const dbPath = path.join(process.cwd(), 'applications.json');
       const newEntry = {
-        id: crypto.randomUUID(),
+        id: randomUUID(),
         date: new Date().toISOString(),
         ...validatedData,
         fileName: resumeFile.name

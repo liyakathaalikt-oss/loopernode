@@ -1,28 +1,8 @@
 "use client";
 
-import React, { useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import * as z from 'zod';
+import React, { useState, useRef } from 'react';
 import { UploadCloud, CheckCircle, AlertCircle, Loader2 } from 'lucide-react';
 import { jobs } from '@/content/jobs';
-
-const formSchema = z.object({
-  fullName: z.string().min(2, 'Full Name is required'),
-  email: z.string().email('Invalid email address'),
-  phone: z.string().min(5, 'Phone number is required'),
-  country: z.string().min(2, 'Country is required'),
-  currentLocation: z.string().min(2, 'Current Location is required'),
-  linkedin: z.string().optional(),
-  portfolio: z.string().optional(),
-  experience: z.string().min(1, 'Please select your experience'),
-  position: z.string().min(1, 'Position is required'),
-  coverLetter: z.string().optional(),
-  message: z.string().optional(),
-  resume: z.any() // Handled manually due to FileList
-});
-
-type FormData = z.infer<typeof formSchema>;
 
 interface CareersFormProps {
   defaultPosition?: string;
@@ -32,25 +12,12 @@ export function CareersForm({ defaultPosition }: CareersFormProps) {
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error' | 'partial_success'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
   const [file, setFile] = useState<File | null>(null);
+  
+  const formRef = useRef<HTMLFormElement>(null);
 
-  const { register, handleSubmit, formState: { errors }, reset } = useForm<FormData>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      fullName: '',
-      email: '',
-      phone: '',
-      country: '',
-      currentLocation: '',
-      linkedin: '',
-      portfolio: '',
-      experience: '',
-      position: defaultPosition || '',
-      coverLetter: '',
-      message: '',
-    }
-  });
-
-  const onSubmit = async (data: FormData) => {
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    
     if (!file) {
       setErrorMessage('Please upload your resume (PDF/DOCX).');
       setStatus('error');
@@ -58,13 +25,11 @@ export function CareersForm({ defaultPosition }: CareersFormProps) {
     }
 
     setStatus('submitting');
+    setErrorMessage('');
     
     try {
-      const formData = new FormData();
-      Object.entries(data).forEach(([key, value]) => {
-        if (value) formData.append(key, value as string);
-      });
-      formData.append('resume', file);
+      const formData = new FormData(e.currentTarget);
+      formData.append('resume', file); // Append our file state
 
       const response = await fetch('/api/careers', {
         method: 'POST',
@@ -83,7 +48,7 @@ export function CareersForm({ defaultPosition }: CareersFormProps) {
         setStatus('success');
       }
       
-      reset();
+      formRef.current?.reset();
       setFile(null);
     } catch (err: any) {
       setStatus('error');
@@ -103,7 +68,7 @@ export function CareersForm({ defaultPosition }: CareersFormProps) {
         return;
       }
       
-      // Validate file type by extension or mime type
+      // Validate file type
       const validTypes = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
       const validExtensions = ['.pdf', '.doc', '.docx'];
       const fileExtension = selectedFile.name.toLowerCase().substring(selectedFile.name.lastIndexOf('.'));
@@ -117,6 +82,7 @@ export function CareersForm({ defaultPosition }: CareersFormProps) {
 
       setFile(selectedFile);
       setStatus('idle');
+      setErrorMessage('');
     }
   };
 
@@ -150,16 +116,6 @@ export function CareersForm({ defaultPosition }: CareersFormProps) {
     );
   }
 
-  // Global error handler for Zod field validation failures
-  const onError = (errors: any) => {
-    const errorMessages = Object.values(errors)
-      .map((err: any) => err.message)
-      .filter(Boolean)
-      .join(' | ');
-    setErrorMessage(errorMessages ? `Please fix: ${errorMessages}` : 'Please fill out all required fields correctly before submitting.');
-    setStatus('error');
-  };
-
   return (
     <div className="p-6 md:p-10 rounded-3xl backdrop-blur-xl bg-white/[0.02] border border-white/[0.08] max-w-4xl mx-auto relative overflow-hidden">
       <div className="absolute top-0 right-0 w-96 h-96 bg-indigo-600/10 rounded-full blur-[100px] -z-10" />
@@ -169,59 +125,68 @@ export function CareersForm({ defaultPosition }: CareersFormProps) {
         <p className="text-slate-400">Join our mission to build the future of AI data infrastructure.</p>
       </div>
 
-      <form onSubmit={handleSubmit(onSubmit, onError)} className="space-y-6">
+      {/* Rebuilt Form from Scratch using native HTML5 Validation */}
+      <form ref={formRef} onSubmit={onSubmit} className="space-y-6">
         
         {/* Personal Details */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="space-y-2">
             <label className="text-sm font-medium text-slate-300">Full Name *</label>
             <input 
-              {...register('fullName')}
+              name="fullName"
+              type="text"
+              required
+              minLength={2}
               className="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all"
               placeholder="Jane Doe"
             />
-            {errors.fullName && <p className="text-red-400 text-xs">{errors.fullName.message}</p>}
           </div>
 
           <div className="space-y-2">
             <label className="text-sm font-medium text-slate-300">Email Address *</label>
             <input 
-              {...register('email')}
+              name="email"
               type="email"
+              required
               className="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all"
               placeholder="jane@example.com"
             />
-            {errors.email && <p className="text-red-400 text-xs">{errors.email.message}</p>}
           </div>
 
           <div className="space-y-2">
             <label className="text-sm font-medium text-slate-300">Phone Number *</label>
             <input 
-              {...register('phone')}
+              name="phone"
+              type="tel"
+              required
+              minLength={5}
               className="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all"
               placeholder="+1 (555) 000-0000"
             />
-            {errors.phone && <p className="text-red-400 text-xs">{errors.phone.message}</p>}
           </div>
 
           <div className="space-y-2">
             <label className="text-sm font-medium text-slate-300">Country *</label>
             <input 
-              {...register('country')}
+              name="country"
+              type="text"
+              required
+              minLength={2}
               className="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all"
               placeholder="United States"
             />
-            {errors.country && <p className="text-red-400 text-xs">{errors.country.message}</p>}
           </div>
           
           <div className="space-y-2 md:col-span-2">
             <label className="text-sm font-medium text-slate-300">Current Location *</label>
             <input 
-              {...register('currentLocation')}
+              name="currentLocation"
+              type="text"
+              required
+              minLength={2}
               className="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all"
               placeholder="City, State"
             />
-            {errors.currentLocation && <p className="text-red-400 text-xs">{errors.currentLocation.message}</p>}
           </div>
         </div>
 
@@ -232,7 +197,9 @@ export function CareersForm({ defaultPosition }: CareersFormProps) {
           <div className="space-y-2 md:col-span-2">
             <label className="text-sm font-medium text-slate-300">Position Applying For *</label>
             <select 
-              {...register('position')}
+              name="position"
+              required
+              defaultValue={defaultPosition || ""}
               className="w-full bg-[#0d0d21] border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all appearance-none"
             >
               <option value="" disabled>Select a position</option>
@@ -241,13 +208,14 @@ export function CareersForm({ defaultPosition }: CareersFormProps) {
               ))}
               <option value="Open Application">Open Application (Other)</option>
             </select>
-            {errors.position && <p className="text-red-400 text-xs">{errors.position.message}</p>}
           </div>
 
           <div className="space-y-2 md:col-span-2">
             <label className="text-sm font-medium text-slate-300">Years of Experience *</label>
             <select 
-              {...register('experience')}
+              name="experience"
+              required
+              defaultValue=""
               className="w-full bg-[#0d0d21] border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all appearance-none"
             >
               <option value="" disabled>Select experience level</option>
@@ -256,13 +224,13 @@ export function CareersForm({ defaultPosition }: CareersFormProps) {
               <option value="Senior Level (5-8 years)">Senior Level (5-8 years)</option>
               <option value="Lead / Executive (8+ years)">Lead / Executive (8+ years)</option>
             </select>
-            {errors.experience && <p className="text-red-400 text-xs">{errors.experience.message}</p>}
           </div>
 
           <div className="space-y-2">
             <label className="text-sm font-medium text-slate-300">LinkedIn Profile (Optional)</label>
             <input 
-              {...register('linkedin')}
+              name="linkedin"
+              type="url"
               className="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all"
               placeholder="https://linkedin.com/in/..."
             />
@@ -271,7 +239,8 @@ export function CareersForm({ defaultPosition }: CareersFormProps) {
           <div className="space-y-2">
             <label className="text-sm font-medium text-slate-300">Portfolio / Website (Optional)</label>
             <input 
-              {...register('portfolio')}
+              name="portfolio"
+              type="url"
               className="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all"
               placeholder="https://github.com/..."
             />
@@ -311,7 +280,7 @@ export function CareersForm({ defaultPosition }: CareersFormProps) {
         <div className="space-y-2">
           <label className="text-sm font-medium text-slate-300">Cover Letter (Optional)</label>
           <textarea 
-            {...register('coverLetter')}
+            name="coverLetter"
             rows={4}
             className="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all resize-none"
             placeholder="Tell us why you are a great fit..."
@@ -321,7 +290,7 @@ export function CareersForm({ defaultPosition }: CareersFormProps) {
         <div className="space-y-2">
           <label className="text-sm font-medium text-slate-300">Message (Optional)</label>
           <textarea 
-            {...register('message')}
+            name="message"
             rows={3}
             className="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all resize-none"
             placeholder="Any additional information..."
