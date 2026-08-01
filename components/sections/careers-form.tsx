@@ -114,8 +114,12 @@ export function CareersForm({ defaultPosition }: CareersFormProps) {
     );
   }
 
-  const onError = () => {
-    setErrorMessage('Please fill out all required fields correctly before submitting.');
+  const onError = (errors: any) => {
+    const errorMessages = Object.values(errors)
+      .map((err: any) => err.message)
+      .filter(Boolean)
+      .join(' | ');
+    setErrorMessage(errorMessages ? `Please fix: ${errorMessages}` : 'Please fill out all required fields correctly before submitting.');
     setStatus('error');
   };
 
