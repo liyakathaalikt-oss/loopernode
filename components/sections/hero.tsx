@@ -6,6 +6,7 @@ import { FadeUp, ScaleIn } from '@/components/animations/motion-wrapper';
 import { AnimatedGradientBg } from '@/components/ui/animated-gradient-bg';
 import { FloatingBadge } from '@/components/ui/floating-badge';
 import { FloatingRectangles } from '@/components/animations/floating-rectangles';
+import { TextReveal } from '@/components/animations/text-reveal';
 import { cn } from '@/lib/utils';
 
 export interface HeroProps {
@@ -55,14 +56,14 @@ export function Hero({
 
       {/* Content Layer */}
       <div className="relative z-20 container mx-auto px-6 py-20 text-center max-w-5xl">
-        <ScaleIn>
-          <h1 className="font-heading text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6 text-[#F8FAFC]">
-            {headline}{' '}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#6366F1] via-[#8B5CF6] to-[#06B6D4]">
-              {highlightedText}
-            </span>
-          </h1>
-        </ScaleIn>
+        <h1 className="font-heading text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6 text-[#F8FAFC] flex flex-wrap justify-center gap-x-3 gap-y-2">
+          <TextReveal text={headline} />
+          <TextReveal 
+            text={highlightedText} 
+            delay={0.5} 
+            className="text-transparent bg-clip-text bg-gradient-to-r from-[#6366F1] via-[#8B5CF6] to-[#06B6D4] pb-2" 
+          />
+        </h1>
         
         <FadeUp delay={0.2}>
           <p className="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto mb-10 leading-relaxed">
