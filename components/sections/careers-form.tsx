@@ -34,7 +34,15 @@ export function CareersForm({ defaultPosition }: CareersFormProps) {
   const { register, handleSubmit, formState: { errors }, reset } = useForm<FormData>({
     resolver: zodResolver(formSchema),
     defaultValues: {
+      fullName: '',
+      email: '',
+      phone: '',
+      country: '',
+      linkedin: '',
+      portfolio: '',
+      experience: '',
       position: defaultPosition || '',
+      coverLetter: '',
     }
   });
 

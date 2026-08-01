@@ -55,6 +55,14 @@ export async function POST(request: Request) {
       },
     });
 
+    // Mock email if credentials aren't provided (for local testing)
+    if (!process.env.SMTP_USER) {
+      console.log('No SMTP credentials found, mocking email send.');
+      console.log(`Would have sent email to info@loopernode.in from ${validatedData.email}`);
+      console.log(`Would have sent auto-responder to ${validatedData.email}`);
+      return NextResponse.json({ success: true, mocked: true });
+    }
+
     // 1. Send Application to Loopernode HR
     await transporter.sendMail({
       from: `"Loopernode Careers" <${process.env.SMTP_USER}>`,
