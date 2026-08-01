@@ -103,9 +103,12 @@ export function CareersForm({ defaultPosition }: CareersFormProps) {
         return;
       }
       
-      // Validate file type
+      // Validate file type by extension or mime type
       const validTypes = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
-      if (!validTypes.includes(selectedFile.type)) {
+      const validExtensions = ['.pdf', '.doc', '.docx'];
+      const fileExtension = selectedFile.name.toLowerCase().substring(selectedFile.name.lastIndexOf('.'));
+      
+      if (!validTypes.includes(selectedFile.type) && !validExtensions.includes(fileExtension)) {
         setErrorMessage('Please upload a valid PDF or DOCX file.');
         setStatus('error');
         e.target.value = '';
@@ -147,9 +150,15 @@ export function CareersForm({ defaultPosition }: CareersFormProps) {
     );
   }
 
-  // Intentionally don't display a global generic error if we have field errors, 
-  // rely on inline field errors. But if there's a custom error (e.g. file size), show it.
-  const hasFieldErrors = Object.keys(errors).length > 0;
+  // Global error handler for Zod field validation failures
+  const onError = (errors: any) => {
+    const errorMessages = Object.values(errors)
+      .map((err: any) => err.message)
+      .filter(Boolean)
+      .join(' | ');
+    setErrorMessage(errorMessages ? `Please fix: ${errorMessages}` : 'Please fill out all required fields correctly before submitting.');
+    setStatus('error');
+  };
 
   return (
     <div className="p-6 md:p-10 rounded-3xl backdrop-blur-xl bg-white/[0.02] border border-white/[0.08] max-w-4xl mx-auto relative overflow-hidden">
@@ -160,7 +169,7 @@ export function CareersForm({ defaultPosition }: CareersFormProps) {
         <p className="text-slate-400">Join our mission to build the future of AI data infrastructure.</p>
       </div>
 
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+      <form onSubmit={handleSubmit(onSubmit, onError)} className="space-y-6">
         
         {/* Personal Details */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -321,7 +330,7 @@ export function CareersForm({ defaultPosition }: CareersFormProps) {
 
         {/* Submit Button & Error Message */}
         <div className="pt-4 space-y-4">
-          {status === 'error' && errorMessage && !hasFieldErrors && (
+          {status === 'error' && errorMessage && (
             <div className="p-4 rounded-xl bg-red-500/10 border border-red-500/20 flex items-start gap-3 text-red-400 animate-in fade-in slide-in-from-bottom-2">
               <AlertCircle className="w-5 h-5 flex-shrink-0 mt-0.5" />
               <p>{errorMessage}</p>
