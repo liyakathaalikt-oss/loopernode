@@ -5,7 +5,6 @@ import Link from 'next/link';
 import { FadeUp, ScaleIn } from '@/components/animations/motion-wrapper';
 import { AnimatedGradientBg } from '@/components/ui/animated-gradient-bg';
 import { FloatingBadge } from '@/components/ui/floating-badge';
-import { FloatingRectangles } from '@/components/animations/floating-rectangles';
 import { TextReveal } from '@/components/animations/text-reveal';
 import { cn } from '@/lib/utils';
 
@@ -32,8 +31,7 @@ export function Hero({
     <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-[#0A0A1B] text-slate-200">
       {/* Background Layer */}
       {showGradientBg && <AnimatedGradientBg />}
-      <div className="absolute inset-0 z-0 bg-[url('/grid-pattern.svg')] opacity-5" style={{ backgroundSize: '40px 40px' }} />
-      <FloatingRectangles />
+      <div className="absolute inset-0 z-0 bg-[url('/grid-pattern.svg')] opacity-10" style={{ backgroundSize: '40px 40px' }} />
 
       {/* Floating Badges */}
       {stats && stats.length > 0 && (
