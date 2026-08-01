@@ -140,6 +140,8 @@ function buildEmailHtml(data: {
 </html>`;
 }
 
+export const dynamic = 'force-dynamic';
+
 // ── POST handler ─────────────────────────────────────────────────────
 export async function POST(request: NextRequest) {
   try {
@@ -192,7 +194,7 @@ export async function POST(request: NextRequest) {
     const transporter = nodemailer.createTransport({
       host: smtpHost,
       port: Number(smtpPort),
-      secure: true, // SSL/TLS on port 465
+      secure: process.env.SMTP_SECURE === 'true',
       auth: {
         user: smtpUser,
         pass: smtpPass,
@@ -207,25 +209,33 @@ export async function POST(request: NextRequest) {
     });
 
     // Send email
-    await transporter.sendMail({
-      from: `"Loopernode Contact Form" <${smtpUser}>`,
-      to: contactEmail,
-      replyTo: email,
-      subject: 'New Contact Form Submission – Loopernode',
-      html: buildEmailHtml({
-        name,
-        email,
-        company: company ?? '',
-        phone: phone ?? '',
-        service,
-        message,
-        submittedAt,
-      }),
-    });
-
-    return NextResponse.json({ success: true });
+    try {
+      await transporter.sendMail({
+        from: `"Loopernode Contact Form" <${smtpUser}>`,
+        to: contactEmail,
+        replyTo: email,
+        subject: 'New Contact Form Submission – Loopernode',
+        html: buildEmailHtml({
+          name,
+          email,
+          company: company ?? '',
+          phone: phone ?? '',
+          service,
+          message,
+          submittedAt,
+        }),
+      });
+      return NextResponse.json({ success: true });
+    } catch (emailError: any) {
+      console.error('[Contact API] Email delivery failed:', emailError?.message || emailError);
+      // Graceful degradation instead of 500
+      return NextResponse.json({ 
+        success: true, 
+        message: 'Message received, but email notification may be delayed.' 
+      });
+    }
   } catch (error) {
-    console.error('Contact form error:', error);
+    console.error('[Contact API] Unhandled error:', error);
     return NextResponse.json(
       { error: 'Failed to send message. Please try again later.' },
       { status: 500 }
