@@ -226,16 +226,18 @@ export async function POST(request: NextRequest) {
         }),
       });
       return NextResponse.json({ success: true });
-    } catch (emailError: any) {
-      console.error('[Contact API] Email delivery failed:', emailError?.message || emailError);
+    } catch (emailError: unknown) {
+      const msg = emailError instanceof Error ? emailError.message : String(emailError);
+      console.error('[Contact API] Email delivery failed:', msg);
       // Graceful degradation instead of 500
       return NextResponse.json({ 
         success: true, 
         message: 'Message received, but email notification may be delayed.' 
       });
     }
-  } catch (error) {
-    console.error('[Contact API] Unhandled error:', error);
+  } catch (error: unknown) {
+    const msg = error instanceof Error ? error.message : String(error);
+    console.error('[Contact API] Unhandled error:', msg);
     return NextResponse.json(
       { error: 'Failed to send message. Please try again later.' },
       { status: 500 }

@@ -61,9 +61,10 @@ export function CareersForm({ defaultPosition }: CareersFormProps) {
       
       formRef.current?.reset();
       setFile(null);
-    } catch (err: any) {
+    } catch (err: unknown) {
       setStatus('error');
-      setErrorMessage(err.message || 'An unexpected error occurred. Please try again later.');
+      const msg = err instanceof Error ? err.message : String(err);
+      setErrorMessage(msg || 'An unexpected error occurred. Please try again later.');
     }
   };
 
@@ -109,7 +110,7 @@ export function CareersForm({ defaultPosition }: CareersFormProps) {
         
         {status === 'partial_success' ? (
           <p className="text-amber-300 text-lg mb-8">
-            Your application has been received, but we couldn't send the notification email. Our team will still review your application.
+            Your application has been received, but we couldn&apos;t send the notification email. Our team will still review your application.
           </p>
         ) : (
           <p className="text-slate-300 text-lg mb-8">

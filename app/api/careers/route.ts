@@ -81,8 +81,9 @@ export async function POST(request: Request) {
       const arrayBuf = await resumeFile.arrayBuffer();
       resumeBuffer = Buffer.from(arrayBuf);
       console.log(`[Careers API] Resume buffered: ${resumeBuffer.length} bytes`);
-    } catch (err) {
-      console.error('[Careers API] Failed to buffer resume:', err);
+    } catch (error: unknown) {
+      const msg = error instanceof Error ? error.message : String(error);
+      console.error('[Careers API] Unhandled error:', msg);
       return NextResponse.json(
         { success: false, message: 'Could not process your resume. Please try a different file.' },
         { status: 400 }
@@ -171,22 +172,20 @@ export async function POST(request: Request) {
         message: 'Application submitted successfully.',
       });
 
-    } catch (emailErr: any) {
-      // Email failed — but the application data was received.
-      // Return success so the user isn't stuck, but log the real error.
-      console.error('[Careers API] Email delivery failed:', emailErr?.message || emailErr);
-      if (emailErr?.stack) console.error('[Careers API] Stack:', emailErr.stack);
-
+    } catch (emailError) {
+      const msg = emailError instanceof Error ? emailError.message : String(emailError);
+      console.error('[Careers API] Email delivery failed:', msg);
+      
       return NextResponse.json({
         success: true,
         message: 'Application received. Email confirmation may be delayed.',
       });
     }
 
-  } catch (fatalErr: any) {
+  } catch (fatalErr: unknown) {
     // Absolute last resort — should never reach here.
-    console.error('[Careers API] FATAL unhandled error:', fatalErr?.message || fatalErr);
-    if (fatalErr?.stack) console.error('[Careers API] Stack:', fatalErr.stack);
+    const msg = fatalErr instanceof Error ? fatalErr.message : String(fatalErr);
+    console.error('[Careers API] FATAL unhandled error:', msg);
 
     return NextResponse.json(
       { success: false, message: 'Something went wrong. Please try again.' },
