@@ -12,8 +12,8 @@ const formSchema = z.object({
   email: z.string().email('Invalid email address'),
   phone: z.string().min(5, 'Phone number is required'),
   country: z.string().min(2, 'Country is required'),
-  linkedin: z.string().url('Must be a valid URL').or(z.literal('')),
-  portfolio: z.string().url('Must be a valid URL').or(z.literal('')),
+  linkedin: z.string().optional(),
+  portfolio: z.string().optional(),
   experience: z.string().min(1, 'Please select your experience'),
   position: z.string().min(1, 'Position is required'),
   coverLetter: z.string().min(10, 'Cover letter should be at least 10 characters'),
@@ -114,6 +114,11 @@ export function CareersForm({ defaultPosition }: CareersFormProps) {
     );
   }
 
+  const onError = () => {
+    setErrorMessage('Please fill out all required fields correctly before submitting.');
+    setStatus('error');
+  };
+
   return (
     <div className="p-6 md:p-10 rounded-3xl backdrop-blur-xl bg-white/[0.02] border border-white/[0.08] max-w-4xl mx-auto relative overflow-hidden">
       <div className="absolute top-0 right-0 w-96 h-96 bg-indigo-600/10 rounded-full blur-[100px] -z-10" />
@@ -123,14 +128,7 @@ export function CareersForm({ defaultPosition }: CareersFormProps) {
         <p className="text-slate-400">Join our mission to build the future of AI data infrastructure.</p>
       </div>
 
-      {status === 'error' && (
-        <div className="mb-8 p-4 rounded-xl bg-red-500/10 border border-red-500/20 flex items-start gap-3 text-red-400">
-          <AlertCircle className="w-5 h-5 flex-shrink-0 mt-0.5" />
-          <p>{errorMessage}</p>
-        </div>
-      )}
-
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+      <form onSubmit={handleSubmit(onSubmit, onError)} className="space-y-6">
         
         {/* Personal Details */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -271,8 +269,15 @@ export function CareersForm({ defaultPosition }: CareersFormProps) {
           {errors.coverLetter && <p className="text-red-400 text-xs">{errors.coverLetter.message}</p>}
         </div>
 
-        {/* Submit Button */}
-        <div className="pt-4">
+        {/* Submit Button & Error Message */}
+        <div className="pt-4 space-y-4">
+          {status === 'error' && (
+            <div className="p-4 rounded-xl bg-red-500/10 border border-red-500/20 flex items-start gap-3 text-red-400 animate-in fade-in slide-in-from-bottom-2">
+              <AlertCircle className="w-5 h-5 flex-shrink-0 mt-0.5" />
+              <p>{errorMessage}</p>
+            </div>
+          )}
+          
           <button
             type="submit"
             disabled={status === 'submitting'}
