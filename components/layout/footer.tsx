@@ -43,7 +43,7 @@ export function Footer() {
                 width={500} 
                 height={169} 
                 priority 
-                className="w-auto h-[60px] sm:w-[500px] sm:h-[169px] object-contain" 
+                className="h-[56px] w-auto sm:h-[72px] object-contain" 
               />
             </Link>
             <p className="text-slate-400 leading-relaxed text-sm">
