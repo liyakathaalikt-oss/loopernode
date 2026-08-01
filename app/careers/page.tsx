@@ -31,14 +31,7 @@ export const metadata = generatePageMetadata({
   path: '/careers',
 });
 
-interface JobListing {
-  title: string;
-  department: string;
-  location: string;
-  type: string;
-  icon: React.ReactNode;
-  description: string;
-}
+import { jobs } from '@/content/jobs';
 
 export default function CareersPage() {
   const whyUsItems = [
@@ -92,56 +85,13 @@ export default function CareersPage() {
     }
   ];
 
-  const jobListings: JobListing[] = [
-    {
-      title: 'Senior ML Engineer',
-      department: 'Engineering',
-      location: 'Remote (US / EU)',
-      type: 'Full-time',
-      icon: <Code className="w-5 h-5 text-indigo-400" />,
-      description: 'Architect scalable machine learning pipelines for automated data labeling and model validation across vision and NLP domains.'
-    },
-    {
-      title: 'Data Annotation Lead',
-      department: 'Operations',
-      location: 'Remote (Global)',
-      type: 'Full-time',
-      icon: <Briefcase className="w-5 h-5 text-cyan-400" />,
-      description: 'Lead specialized annotator teams, design strict quality assurance protocols, and optimize dataset throughput.'
-    },
-    {
-      title: 'Full-Stack Developer',
-      department: 'Engineering',
-      location: 'Remote (US / CA)',
-      type: 'Full-time',
-      icon: <Code className="w-5 h-5 text-violet-400" />,
-      description: 'Build responsive web platforms, real-time analytics dashboards, and developer API portals using Next.js and TypeScript.'
-    },
-    {
-      title: 'Project Manager',
-      department: 'Product & Ops',
-      location: 'Remote (EU / UK)',
-      type: 'Full-time',
-      icon: <Award className="w-5 h-5 text-emerald-400" />,
-      description: 'Coordinate enterprise dataset delivery timelines, manage client feedback loops, and align technical roadmap priorities.'
-    },
-    {
-      title: 'QA Specialist',
-      department: 'Quality Assurance',
-      location: 'Remote (Global)',
-      type: 'Contract',
-      icon: <Clock className="w-5 h-5 text-amber-400" />,
-      description: 'Audit annotated datasets, enforce precision guidelines, and build automated verification scripts for edge cases.'
-    },
-    {
-      title: 'Business Development Manager',
-      department: 'Growth',
-      location: 'Remote (US)',
-      type: 'Full-time',
-      icon: <DollarSign className="w-5 h-5 text-pink-400" />,
-      description: 'Drive enterprise partner acquisitions, develop strategic sales channels, and expand our market presence in autonomous tech.'
-    }
-  ];
+  const getJobIcon = (title: string) => {
+    if (title.includes('Engineer') || title.includes('Developer')) return <Code className="w-5 h-5 text-indigo-400" />;
+    if (title.includes('Manager') || title.includes('Lead')) return <Award className="w-5 h-5 text-emerald-400" />;
+    if (title.includes('QA')) return <Clock className="w-5 h-5 text-amber-400" />;
+    if (title.includes('Business')) return <DollarSign className="w-5 h-5 text-pink-400" />;
+    return <Briefcase className="w-5 h-5 text-cyan-400" />;
+  };
 
   const cultureHighlights = [
     {
@@ -252,8 +202,8 @@ export default function CareersPage() {
         </FadeUp>
 
         <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
-          {jobListings.map((job, idx) => (
-            <StaggerItem key={idx}>
+          {jobs.map((job, idx) => (
+            <StaggerItem key={job.slug}>
               <div className="h-full p-8 rounded-2xl backdrop-blur-xl bg-white/[0.03] border border-white/[0.08] hover:border-indigo-500/40 hover:bg-white/[0.05] transition-all duration-300 flex flex-col justify-between group">
                 <div>
                   <div className="flex items-center justify-between mb-4">
@@ -280,10 +230,10 @@ export default function CareersPage() {
                 </div>
 
                 <Link
-                  href="/contact"
+                  href={`/careers/${job.slug}`}
                   className="inline-flex items-center justify-between w-full pt-4 border-t border-white/10 text-sm font-semibold text-indigo-400 group-hover:text-indigo-300 transition-colors"
                 >
-                  <span>Apply Now</span>
+                  <span>View Details & Apply</span>
                   <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                 </Link>
               </div>
