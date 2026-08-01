@@ -153,7 +153,7 @@ export function MobileNav({ isOpen, onClose }: MobileNavProps) {
                                 key={item.name}
                                 href={item.href}
                                 onClick={onClose}
-                                className="text-slate-400 hover:text-indigo-400 text-sm py-1 transition-colors block"
+                                className="text-slate-400 hover:text-indigo-400 text-sm py-2.5 transition-colors block"
                               >
                                 {item.name}
                               </Link>

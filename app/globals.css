@@ -121,6 +121,7 @@
 /* Base Styles */
 html {
   color-scheme: dark;
+  scroll-padding-top: 100px;
 }
 
 body {
