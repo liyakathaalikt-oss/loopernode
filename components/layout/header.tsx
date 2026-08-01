@@ -54,10 +54,10 @@ export function Header() {
               <NextImage 
                 src="/images/logo-full.png" 
                 alt="Loopernode Logo" 
-                width={220} 
-                height={60} 
+                width={300} 
+                height={80} 
                 priority 
-                className="h-[40px] w-auto sm:h-[56px] object-contain" 
+                className="h-[56px] w-auto sm:h-[72px] object-contain" 
               />
             </Link>
 

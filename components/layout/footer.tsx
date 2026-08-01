@@ -40,10 +40,10 @@ export function Footer() {
               <NextImage 
                 src="/images/logo-full.png" 
                 alt="Loopernode Logo" 
-                width={220} 
-                height={60} 
+                width={300} 
+                height={80} 
                 priority 
-                className="h-[44px] w-auto sm:h-[60px] object-contain" 
+                className="h-[60px] w-auto sm:h-[80px] object-contain" 
               />
             </Link>
             <p className="text-slate-400 leading-relaxed text-sm">
