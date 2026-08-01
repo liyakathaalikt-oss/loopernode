@@ -91,7 +91,7 @@ export function MobileNav({ isOpen, onClose }: MobileNavProps) {
                 width={500} 
                 height={169} 
                 priority 
-                className="h-[40px] w-auto sm:h-[48px] object-contain" 
+                className="h-[48px] w-auto sm:h-[64px] object-contain" 
               />
             </Link>
             <button
