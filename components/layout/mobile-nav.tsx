@@ -88,10 +88,10 @@ export function MobileNav({ isOpen, onClose }: MobileNavProps) {
               <NextImage 
                 src="/images/logo-full.png" 
                 alt="Loopernode Logo" 
-                width={150} 
-                height={40} 
+                width={180} 
+                height={50} 
                 priority 
-                className="h-[28px] w-auto sm:h-[36px] object-contain" 
+                className="h-[36px] w-auto sm:h-[44px] object-contain" 
               />
             </Link>
             <button
