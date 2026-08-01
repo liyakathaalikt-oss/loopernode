@@ -36,13 +36,17 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           {/* Column 1: Brand */}
           <div className="space-y-6">
-            <Link href="/" className="inline-flex items-center gap-2 sm:gap-3">
-              <NextImage src="/images/logo-new.png" alt="Loopernode Icon" width={55} height={55} priority className="w-[40px] h-[40px] sm:w-[55px] sm:h-[55px] object-contain" />
-              <div className="flex flex-col justify-center text-left">
-                <span className="font-gabarito font-bold text-2xl sm:text-3xl tracking-tight leading-none">
-                  <span className="text-[#FEF8F8]">looper</span><span className="text-[#1389DE]">node</span>
-                </span>
-                <span className="font-gabarito font-medium text-[7px] sm:text-[9px] text-slate-300 tracking-[0.15em] leading-tight mt-0 whitespace-nowrap">
+            <Link href="/" className="inline-flex items-center gap-3">
+              <NextImage 
+                src="/images/logo-full.png" 
+                alt="Loopernode Logo" 
+                width={180} 
+                height={50} 
+                priority 
+                className="h-[36px] w-auto sm:h-[48px] object-contain" 
+              />
+              <div className="flex flex-col justify-center text-left hidden sm:flex">
+                <span className="font-gabarito font-medium text-[7px] sm:text-[9px] text-slate-400 tracking-[0.15em] leading-tight mt-1 whitespace-nowrap">
                   Innovate. Illuminate. Inspire.
                 </span>
               </div>
