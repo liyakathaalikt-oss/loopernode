@@ -303,7 +303,7 @@ export default function HomePage() {
             <StatCounter value={500} suffix="M+" label="Data Points Processed" />
           </StaggerItem>
           <StaggerItem>
-            <StatCounter value={10} suffix="K+" label="Projects Completed" />
+            <StatCounter value={150} suffix="+" label="Projects Completed" />
           </StaggerItem>
           <StaggerItem>
             <StatCounter value={99.7} suffix="%" label="Accuracy Rate" />
