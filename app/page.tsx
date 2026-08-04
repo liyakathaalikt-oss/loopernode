@@ -144,8 +144,9 @@ export default function HomePage() {
           <SectionTitle 
             eyebrow="Our Services" 
             title="Comprehensive AI Data" 
-            highlightedWord="Solutions" 
+            highlightedWord="Services" 
             align="center" 
+            className="max-w-4xl lg:max-w-5xl mx-auto"
           />
         </FadeUp>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16 relative z-10">
