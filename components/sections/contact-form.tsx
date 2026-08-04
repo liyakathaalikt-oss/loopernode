@@ -19,7 +19,7 @@ const contactSchema = z.object({
 
 type ContactFormValues = z.infer<typeof contactSchema>;
 
-export function ContactForm({ className }: { className?: string }) {
+export function ContactForm({ className, onSuccess }: { className?: string; onSuccess?: () => void }) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
@@ -53,9 +53,18 @@ export function ContactForm({ className }: { className?: string }) {
       setIsSuccess(true);
       reset();
 
-      setTimeout(() => {
-        setIsSuccess(false);
-      }, 5000);
+      if (onSuccess) {
+        // Give a slight delay before triggering the callback so the user can see the success state
+        setTimeout(() => {
+          onSuccess();
+          // Reset the internal success state after the modal closes
+          setTimeout(() => setIsSuccess(false), 500); 
+        }, 3000);
+      } else {
+        setTimeout(() => {
+          setIsSuccess(false);
+        }, 5000);
+      }
     } catch (err) {
       setErrorMessage(
         err instanceof Error ? err.message : 'Failed to send message. Please try again.'

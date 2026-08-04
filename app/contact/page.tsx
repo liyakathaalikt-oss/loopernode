@@ -2,7 +2,7 @@
 import { Metadata } from "next";
 import { Mail, MapPin, Phone, Clock, MessageSquare, Zap } from "lucide-react";
 
-import { Hero } from "@/components/sections/hero";
+import { ContactHeroWithModal } from "@/components/sections/contact-hero-with-modal";
 import { ContactForm } from "@/components/sections/contact-form";
 import { FAQAccordion } from "@/components/sections/faq-accordion";
 import { CTABanner } from "@/components/sections/cta-banner";
@@ -30,12 +30,7 @@ const offices = [
 export default function ContactPage() {
   return (
     <main className="flex-1 bg-dark-950">
-      <Hero
-        headline="Get in Touch"
-        highlightedText=""
-        description="Ready to scale your AI initiatives with high-quality training data? Start a conversation with our global team of experts today."
-        primaryCTA={{ label: "Message Us", href: "#" }}
-      />
+      <ContactHeroWithModal />
 
       <section className="py-20 md:py-28 relative z-10">
         <div className="container-custom max-w-7xl mx-auto px-6">
