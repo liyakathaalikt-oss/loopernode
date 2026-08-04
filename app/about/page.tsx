@@ -94,7 +94,7 @@ export default function AboutPage() {
               highlightedWord="Impact" 
               align="left" 
             />
-            <div className="mt-8 space-y-6 text-slate-300 text-lg leading-relaxed">
+            <div className="mt-8 space-y-6 text-slate-300 text-lg leading-relaxed max-w-2xl">
               <p>
                 Founded in 2014, Loopernode began with a singular realization: the biggest bottleneck in machine learning wasn't algorithms or computing power, but the scarcity of high-quality, ethically sourced training data. What started in a cramped university research lab has rapidly grown into a global enterprise.
               </p>
@@ -119,7 +119,7 @@ export default function AboutPage() {
                 <div className="w-14 h-14 rounded-xl bg-indigo-500/20 flex items-center justify-center mb-8 border border-indigo-500/30">
                   <Target className="w-7 h-7 text-indigo-400" />
                 </div>
-                <h3 className="text-3xl font-bold text-white mb-6">Our Mission</h3>
+                <h3 className="text-3xl font-bold text-white tracking-tight leading-tight mb-6">Our Mission</h3>
                 <p className="text-xl text-slate-300 leading-relaxed font-light">
                   "To democratize access to high-quality AI training data, enabling organizations of all sizes to build robust, ethical, and intelligent systems that solve real-world problems."
                 </p>
@@ -135,7 +135,7 @@ export default function AboutPage() {
                 <div className="w-14 h-14 rounded-xl bg-cyan-500/20 flex items-center justify-center mb-8 border border-cyan-500/30">
                   <Eye className="w-7 h-7 text-cyan-400" />
                 </div>
-                <h3 className="text-3xl font-bold text-white mb-6">Our Vision</h3>
+                <h3 className="text-3xl font-bold text-white tracking-tight leading-tight mb-6">Our Vision</h3>
                 <p className="text-xl text-slate-300 leading-relaxed font-light">
                   "A world where every AI system is built on ethically sourced, unbiased data, fostering a future where artificial intelligence amplifies human potential responsibly and securely."
                 </p>
@@ -200,7 +200,7 @@ export default function AboutPage() {
                   )}
                 </div>
                 <div className="relative pt-2">
-                  <h4 className="text-xl font-bold text-white mb-1 px-8">{member.name}</h4>
+                  <h4 className="text-xl font-bold text-white tracking-tight leading-snug mb-1 px-8">{member.name}</h4>
                   <p className="text-indigo-400 font-medium text-sm mb-5">{member.role}</p>
                   <p className="text-slate-400 text-sm">{member.bio || 'Driving innovation and strategic growth at Loopernode with over a decade of industry experience.'}</p>
                   {/* LinkedIn Icon */}
@@ -226,7 +226,7 @@ export default function AboutPage() {
         <div className="container mx-auto px-4 relative z-10">
           <FadeUp>
             <div className="text-center max-w-3xl mx-auto mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">A Truly Global Workforce</h2>
+              <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight leading-tight mb-6">A Truly Global Workforce</h2>
               <p className="text-xl text-slate-300 font-light">
                 Our diversity is our strength. We employ subject matter experts across the globe to ensure cultural nuance and linguistic accuracy in every dataset.
               </p>
@@ -286,22 +286,22 @@ export default function AboutPage() {
           <StaggerItem>
             <div className="p-8 rounded-3xl bg-gradient-to-br from-indigo-900/40 to-transparent border border-white/10 h-full">
               <BrainCircuit className="w-10 h-10 text-indigo-400 mb-6" />
-              <h3 className="text-xl font-bold text-white mb-4">Continuous Learning</h3>
-              <p className="text-slate-400">In the fast-paced world of AI, standing still is falling behind. We provide extensive training budgets, host internal hackathons, and encourage our team to stay at the cutting edge of ML research.</p>
+              <h3 className="text-xl font-bold text-white tracking-tight leading-tight mb-4">Continuous Learning</h3>
+              <p className="text-slate-400 leading-relaxed">In the fast-paced world of AI, standing still is falling behind. We provide extensive training budgets, host internal hackathons, and encourage our team to stay at the cutting edge of ML research.</p>
             </div>
           </StaggerItem>
           <StaggerItem>
             <div className="p-8 rounded-3xl bg-gradient-to-br from-cyan-900/40 to-transparent border border-white/10 h-full">
               <Users className="w-10 h-10 text-cyan-400 mb-6" />
-              <h3 className="text-xl font-bold text-white mb-4">Diversity & Inclusion</h3>
-              <p className="text-slate-400">Unbiased AI requires unbiased creators. We are deeply committed to building a diverse workforce that reflects the global community our models ultimately serve.</p>
+              <h3 className="text-xl font-bold text-white tracking-tight leading-tight mb-4">Diversity & Inclusion</h3>
+              <p className="text-slate-400 leading-relaxed">Unbiased AI requires unbiased creators. We are deeply committed to building a diverse workforce that reflects the global community our models ultimately serve.</p>
             </div>
           </StaggerItem>
           <StaggerItem>
             <div className="p-8 rounded-3xl bg-gradient-to-br from-violet-900/40 to-transparent border border-white/10 h-full">
               <Heart className="w-10 h-10 text-violet-400 mb-6" />
-              <h3 className="text-xl font-bold text-white mb-4">Work-Life Harmony</h3>
-              <p className="text-slate-400">We believe sustainable innovation comes from rested, happy minds. We offer flexible working hours, remote-first options, and comprehensive wellness programs.</p>
+              <h3 className="text-xl font-bold text-white tracking-tight leading-tight mb-4">Work-Life Harmony</h3>
+              <p className="text-slate-400 leading-relaxed">We believe sustainable innovation comes from rested, happy minds. We offer flexible working hours, remote-first options, and comprehensive wellness programs.</p>
             </div>
           </StaggerItem>
         </StaggerContainer>
@@ -317,7 +317,7 @@ export default function AboutPage() {
               highlightedWord="Trust Us" 
               align="left" 
             />
-            <p className="text-lg text-slate-300 mt-6 mb-8">
+            <p className="text-lg text-slate-300 leading-relaxed max-w-2xl mt-6 mb-8">
               We don't just process data; we partner with you to ensure your AI initiatives succeed. Our enterprise-grade infrastructure and rigorous processes provide peace of mind for the world's most demanding technology teams.
             </p>
             <Link href="/contact" className="inline-flex items-center text-indigo-400 hover:text-indigo-300 font-semibold transition-colors">

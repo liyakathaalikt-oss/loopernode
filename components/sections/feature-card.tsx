@@ -23,7 +23,7 @@ export function FeatureCard({ icon, title, description, index = 0, className }: 
             {icon}
           </div>
           
-          <h3 className="text-xl font-bold text-slate-100 font-heading mb-3 group-hover:text-white transition-colors">
+          <h3 className="text-xl font-bold text-slate-100 font-heading mb-3 group-hover:text-white transition-colors leading-snug">
             {title}
           </h3>
           

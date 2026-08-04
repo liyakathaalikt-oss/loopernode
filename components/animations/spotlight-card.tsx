@@ -59,7 +59,7 @@ export function SpotlightCard({
       />
       
       {/* Content wrapper */}
-      <div className="relative h-full z-10 p-6 md:p-8">
+      <div className="relative h-full z-10 p-8">
         {children}
       </div>
     </div>

@@ -30,8 +30,8 @@ export function TestimonialCard({ testimonials, className }: TestimonialCardProp
   }, [testimonials.length]);
 
   return (
-    <div className={cn("relative w-full max-w-4xl mx-auto overflow-hidden rounded-3xl backdrop-blur-xl bg-white/[0.03] border border-white/[0.08] p-8 md:p-12", className)}>
-      <Quote className="absolute top-6 left-6 md:top-10 md:left-10 w-24 h-24 text-white/5 -z-10 rotate-180" />
+    <div className={cn("relative w-full max-w-4xl mx-auto overflow-hidden rounded-3xl backdrop-blur-xl bg-white/[0.03] border border-white/[0.08] p-8", className)}>
+      <Quote className="absolute top-6 left-6 md:top-8 md:left-8 w-24 h-24 text-white/5 -z-10 rotate-180" />
       
       <div className="relative min-h-[250px] flex items-center">
         <AnimatePresence mode="wait">

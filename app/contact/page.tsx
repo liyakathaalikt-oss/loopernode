@@ -49,11 +49,11 @@ export default function ContactPage() {
                   24-Hour Response Guarantee
                 </div>
                 
-                <h2 className="text-3xl md:text-4xl font-bold font-heading text-slate-50 mb-6">
+                <h2 className="text-3xl md:text-4xl font-bold font-heading text-slate-50 tracking-tight leading-tight mb-6">
                   Global Presence, Local Expertise
                 </h2>
                 
-                <p className="text-slate-300 text-lg mb-12">
+                <p className="text-slate-300 text-lg leading-relaxed max-w-2xl mb-12">
                   Whether you're looking for enterprise data solutions, have a question about our platform, or need technical support, our team is ready to help.
                 </p>
               </FadeUp>
@@ -62,7 +62,7 @@ export default function ContactPage() {
                 {offices.map((office, index) => (
                   <StaggerItem key={index}>
                     <div className="backdrop-blur-xl bg-white/[0.03] border border-white/[0.08] rounded-2xl p-6 hover:bg-white/[0.05] transition-colors">
-                      <h3 className="text-xl font-bold text-slate-50 mb-4">{office.city}</h3>
+                      <h3 className="text-xl font-bold text-slate-50 tracking-tight leading-snug mb-4">{office.city}</h3>
                       <ul className="space-y-3">
                         <li className="flex items-start gap-3 text-slate-300">
                           <MapPin className="w-5 h-5 text-primary-400 shrink-0 mt-0.5" />
@@ -118,7 +118,7 @@ export default function ContactPage() {
                   <div className="relative z-10">
                     <div className="flex items-center gap-3 mb-8">
                       <MessageSquare className="w-6 h-6 text-primary-400" />
-                      <h3 className="text-2xl font-bold text-slate-50">Send us a message</h3>
+                      <h3 className="text-2xl font-bold text-slate-50 tracking-tight leading-snug">Send us a message</h3>
                     </div>
                     <ContactForm />
                   </div>

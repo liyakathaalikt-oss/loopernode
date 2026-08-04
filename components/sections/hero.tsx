@@ -54,7 +54,7 @@ export function Hero({
 
       {/* Content Layer */}
       <div className="relative z-20 container mx-auto px-6 py-20 text-center max-w-5xl">
-        <h1 className="font-heading text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6 text-[#F8FAFC] flex flex-wrap justify-center gap-x-3 gap-y-2">
+        <h1 className="font-heading text-5xl md:text-6xl lg:text-7xl font-bold tracking-tighter leading-[1.1] mb-6 text-[#F8FAFC] flex flex-wrap justify-center gap-x-3 gap-y-2">
           <TextReveal text={headline} />
           <TextReveal 
             text={highlightedText} 

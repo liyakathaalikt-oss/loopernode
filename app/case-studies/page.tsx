@@ -61,7 +61,7 @@ export default function CaseStudiesPage() {
                   <span className="text-xs font-semibold uppercase tracking-wider text-indigo-400 mb-2">
                     {featuredStudy.industry}
                   </span>
-                  <h3 className="text-xl md:text-2xl font-bold text-white mb-2">{featuredStudy.client}</h3>
+                  <h3 className="text-xl md:text-2xl font-bold text-white tracking-tight leading-snug mb-2">{featuredStudy.client}</h3>
                   <p className="text-xs text-slate-400 max-w-xs">{featuredStudy.results[0]}</p>
                 </div>
                 <div className="absolute bottom-4 right-4 bg-black/60 backdrop-blur-md border border-white/10 text-slate-300 text-xs px-3 py-1.5 rounded-full">
@@ -78,7 +78,7 @@ export default function CaseStudiesPage() {
                   <span className="text-sm text-slate-400">• {featuredStudy.client}</span>
                 </div>
 
-                <h3 className="text-2xl md:text-3xl font-bold font-heading text-slate-50 mb-4 group-hover:text-indigo-300 transition-colors">
+                <h3 className="text-2xl md:text-3xl font-bold font-heading text-slate-50 tracking-tight leading-tight mb-4 group-hover:text-indigo-300 transition-colors">
                   {featuredStudy.title}
                 </h3>
 
@@ -139,7 +139,7 @@ export default function CaseStudiesPage() {
                   <p className="text-xs font-medium text-indigo-400 uppercase tracking-wider mb-2">
                     {study.client}
                   </p>
-                  <h3 className="text-xl font-bold font-heading text-slate-100 mb-4 group-hover:text-indigo-300 transition-colors line-clamp-2">
+                  <h3 className="text-xl font-bold font-heading text-slate-100 tracking-tight leading-snug mb-4 group-hover:text-indigo-300 transition-colors line-clamp-2">
                     {study.title}
                   </h3>
 

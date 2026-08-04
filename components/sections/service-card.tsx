@@ -31,18 +31,18 @@ export function ServiceCard({ title, description, icon, features, href, index = 
             <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-white/10 to-transparent flex items-center justify-center text-[#8B5CF6] border border-white/10">
               {icon}
             </div>
-            <h3 className="text-2xl font-bold font-heading text-slate-100 group-hover:text-[#6366F1] transition-colors duration-300">
+            <h3 className="text-2xl font-bold font-heading text-slate-100 tracking-tight leading-snug group-hover:text-[#6366F1] transition-colors duration-300">
               {title}
             </h3>
           </div>
 
-          <p className="text-slate-400 mb-8 flex-grow">
+          <p className="text-slate-400 mb-8 leading-relaxed flex-grow">
             {description}
           </p>
 
           <ul className="space-y-3 mb-8">
             {features.map((feature, idx) => (
-              <li key={idx} className="flex items-start gap-3 text-sm text-slate-300">
+              <li key={idx} className="flex items-start gap-3 text-sm text-slate-300 leading-relaxed">
                 <Check className="w-5 h-5 text-[#06B6D4] shrink-0 mt-0.5" />
                 <span>{feature}</span>
               </li>

@@ -69,11 +69,11 @@ export default function BlogPage() {
                     </span>
                   </div>
                   
-                  <h3 className="text-3xl lg:text-4xl font-bold text-slate-50 mb-4 leading-tight group-hover:text-primary-400 transition-colors">
+                  <h3 className="text-3xl lg:text-4xl font-bold text-slate-50 tracking-tight leading-tight mb-4 group-hover:text-primary-400 transition-colors">
                     {featuredPost.title}
                   </h3>
                   
-                  <p className="text-lg text-slate-300 mb-8 line-clamp-3">
+                  <p className="text-lg text-slate-300 leading-relaxed mb-8 line-clamp-3">
                     {featuredPost.excerpt}
                   </p>
 

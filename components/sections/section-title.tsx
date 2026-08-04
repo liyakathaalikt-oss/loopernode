@@ -28,7 +28,7 @@ export function SectionTitle({
           {eyebrow}
         </span>
       )}
-      <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold font-heading text-slate-100 mb-6">
+      <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold font-heading text-slate-100 tracking-tight leading-[1.1] mb-6">
         {title}{' '}
         {highlightedWord && (
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#6366F1] to-[#06B6D4]">

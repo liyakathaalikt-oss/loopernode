@@ -26,10 +26,10 @@ export function CTABanner({
       
       <div className="relative z-10 container mx-auto px-6 text-center max-w-4xl">
         <FadeUp>
-          <h2 className="text-4xl md:text-5xl font-bold font-heading text-white mb-6">
+          <h2 className="text-4xl md:text-5xl font-bold font-heading text-white tracking-tight leading-tight mb-6">
             {headline}
           </h2>
-          <p className="text-lg md:text-xl text-slate-300 mb-10 max-w-2xl mx-auto">
+          <p className="text-lg md:text-xl text-slate-300 leading-relaxed mb-10 max-w-2xl mx-auto">
             {description}
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">

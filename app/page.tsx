@@ -112,7 +112,7 @@ export default function HomePage() {
               highlightedWord="Precision" 
               align="left" 
             />
-            <p className="text-lg text-slate-300 leading-relaxed mt-6 mb-8">
+            <p className="text-lg text-slate-300 leading-relaxed max-w-2xl mt-6 mb-8">
               At Loopernode, we understand that the intelligence of your AI system is directly proportional to the quality of its training data. For over a decade, we have been at the forefront of the AI revolution, providing meticulous data services that form the foundational layer of state-of-the-art machine learning models. Our global workforce and proprietary infrastructure ensure that your models learn from the best data possible.
             </p>
             <Link href="/about" className="inline-flex items-center text-indigo-400 hover:text-indigo-300 font-semibold transition-colors">
@@ -279,8 +279,8 @@ export default function HomePage() {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-violet-500/5 blur-[150px] rounded-full pointer-events-none" />
         <FadeUp>
           <div className="text-center max-w-3xl mx-auto mb-12">
-            <h3 className="text-2xl font-bold text-white mb-4">Seamless Integration with Your Tech Stack</h3>
-            <p className="text-slate-400">We plug directly into your existing machine learning ecosystem, supporting all major frameworks and platforms.</p>
+            <h3 className="text-2xl font-bold text-white tracking-tight leading-tight mb-4">Seamless Integration with Your Tech Stack</h3>
+            <p className="text-slate-400 leading-relaxed">We plug directly into your existing machine learning ecosystem, supporting all major frameworks and platforms.</p>
           </div>
         </FadeUp>
         <StaggerContainer className="flex flex-wrap justify-center gap-4 max-w-5xl mx-auto relative z-10">
