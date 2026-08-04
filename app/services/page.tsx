@@ -27,6 +27,7 @@ export default function ServicesPage() {
       <Hero
         headline="Comprehensive AI Data Services"
         highlightedText=""
+        headlineClassName="lg:text-[3.5rem] xl:text-7xl lg:whitespace-nowrap"
         description="End-to-end data pipelines to fuel your most ambitious AI models. From raw collection to structured intelligence."
         primaryCTA={{ label: "Contact Us", href: "/contact" }}
       />

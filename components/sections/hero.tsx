@@ -12,6 +12,7 @@ export interface HeroProps {
   headline: string;
   highlightedText: string;
   titleLine2?: string;
+  headlineClassName?: string;
   description: string;
   primaryCTA: { label: string; href: string };
   secondaryCTA?: { label: string; href: string };
@@ -23,6 +24,7 @@ export function Hero({
   headline,
   highlightedText,
   titleLine2,
+  headlineClassName,
   description,
   primaryCTA,
   secondaryCTA,
@@ -55,7 +57,7 @@ export function Hero({
       )}
 
       {/* Content Layer */}
-      <div className="relative z-20 container mx-auto px-6 py-20 text-center max-w-5xl flex flex-col items-center justify-center">
+      <div className="relative z-20 container mx-auto px-6 py-20 text-center max-w-5xl lg:max-w-7xl flex flex-col items-center justify-center">
         {titleLine2 ? (
           <div className="mb-6 flex flex-col items-center justify-center gap-y-3 w-full">
             <h1 className="font-heading text-5xl md:text-7xl font-extrabold tracking-tighter leading-[1.1] text-[#F8FAFC]">
@@ -71,7 +73,7 @@ export function Hero({
             </div>
           </div>
         ) : (
-          <h1 className="font-heading text-5xl md:text-6xl lg:text-7xl font-bold tracking-tighter leading-[1.1] mb-6 text-[#F8FAFC] flex flex-wrap justify-center gap-x-3 gap-y-2">
+          <h1 className={cn("font-heading text-5xl md:text-6xl lg:text-7xl font-bold tracking-tighter leading-[1.1] mb-6 text-[#F8FAFC] flex flex-wrap justify-center gap-x-3 gap-y-2", headlineClassName)}>
             <TextReveal text={headline} />
             {highlightedText && (
               <TextReveal 
