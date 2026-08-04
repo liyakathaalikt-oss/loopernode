@@ -113,6 +113,9 @@ export default function HomePage() {
               highlightedWord="Precision" 
               align="left" 
             />
+            <p className="text-lg text-slate-300 leading-relaxed max-w-2xl mt-6 mb-8">
+              We understand that the intelligence of your AI system is directly proportional to the quality of its training data. For over a decade, we have been at the forefront of the AI revolution, providing meticulous data services that form the foundational layer of state-of-the-art machine learning models. Our global workforce and proprietary infrastructure ensure that your models learn from the best data possible.
+            </p>
             <Link href="/about" className="inline-flex items-center text-indigo-400 hover:text-indigo-300 font-semibold transition-colors">
               Learn more about our mission <ArrowRight className="ml-2 w-5 h-5" />
             </Link>
