@@ -67,7 +67,8 @@ export default function HomePage() {
       {/* SECTION 1: Hero */}
       <section className="pt-20 md:pt-28 pb-10 border-b border-white/5">
         <Hero 
-          headline="Enterprise AI Data Services That Power"
+          headline="Enterprise AI Data Services"
+          titleLine2="That Power"
           highlightedText="Intelligent Systems"
           description="From data collection to annotation and processing, we provide end-to-end AI data solutions trusted by leading technology companies worldwide."
           primaryCTA={{ label: 'Get Started', href: '/contact' }}
