@@ -124,13 +124,13 @@ export default function CareersPage() {
           headline="Join Our"
           highlightedText="Team"
           description="Help us build the next-generation AI data infrastructure. We are on a mission to empower machine learning teams around the world with pristine, high-impact datasets."
-          primaryCTA={{ label: 'Explore Positions', href: '#open-positions' }}
+          primaryCTA={{ label: 'Explore Positions', href: '/careers#open-positions' }}
           secondaryCTA={{ label: 'Why Loopernode', href: '#why-us' }}
         />
       </section>
 
       {/* SECTION 2: Why Loopernode */}
-      <section id="why-us" className="py-20 md:py-28 container mx-auto px-4 border-b border-white/5 relative">
+      <section id="why-us" className="scroll-mt-24 py-20 md:py-28 container mx-auto px-4 border-b border-white/5 relative">
         <div className="absolute top-1/2 left-0 w-96 h-96 bg-cyan-500/5 rounded-full blur-[150px] pointer-events-none -translate-y-1/2" />
         <FadeUp>
           <SectionTitle
@@ -189,7 +189,7 @@ export default function CareersPage() {
       </section>
 
       {/* SECTION 4: Open Positions */}
-      <section id="open-positions" className="py-20 md:py-28 container mx-auto px-4 border-b border-white/5 relative">
+      <section id="open-positions" className="scroll-mt-24 py-20 md:py-28 container mx-auto px-4 border-b border-white/5 relative">
         <div className="absolute bottom-0 right-0 w-96 h-96 bg-indigo-500/5 rounded-full blur-[150px] pointer-events-none" />
         <FadeUp>
           <SectionTitle
