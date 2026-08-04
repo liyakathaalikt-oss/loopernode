@@ -26,7 +26,7 @@ export const teamMembers = [
   {
     name: "Erickah V. Munez",
     role: "Data Specialist",
-    bio: "Erickah V. Munez is a Data Specialist specializing in AI data annotation and quality assurance, delivering accurate datasets for machine learning and generative AI.",
+    bio: "Erickah V. Munez is a Data Specialist specializing in AI data annotation, quality assurance, and dataset management. She delivers accurate, high-quality datasets that support machine learning and generative AI applications.",
     image: "/images/erickah.jpg",
     linkedin: "https://linkedin.com",
     twitter: "https://twitter.com"
