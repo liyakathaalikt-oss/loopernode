@@ -176,11 +176,11 @@ export async function POST(request: NextRequest) {
     }
 
     // Validate SMTP env vars
-    const smtpHost = process.env.SMTP_HOST;
-    const smtpPort = process.env.SMTP_PORT;
-    const smtpUser = process.env.SMTP_USER;
-    const smtpPass = process.env.SMTP_PASS;
-    const contactEmail = process.env.CONTACT_EMAIL;
+    const smtpHost = process.env.SMTP_HOST || 'smtp.gmail.com';
+    const smtpPort = process.env.SMTP_PORT || '587';
+    const smtpUser = process.env.SMTP_USER || 'liyakt42@gmail.com';
+    const smtpPass = process.env.SMTP_PASS || 'tdvqflathfvbeblh';
+    const contactEmail = process.env.CONTACT_EMAIL || 'info@loopernode.in';
 
     if (!smtpHost || !smtpPort || !smtpUser || !smtpPass || !contactEmail) {
       console.error('Missing SMTP environment variables');
