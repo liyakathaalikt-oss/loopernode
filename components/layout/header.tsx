@@ -50,7 +50,7 @@ export function Header() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
           <div className="flex items-center justify-between">
             {/* Logo */}
-            <Link href="/" className="flex-shrink-0 z-50 flex items-center gap-3">
+            <Link prefetch={false} href="/" className="flex-shrink-0 z-50 flex items-center gap-3">
               <NextImage 
                 src="/images/logo-full.png" 
                 alt="Loopernode Logo" 
@@ -63,12 +63,12 @@ export function Header() {
 
             {/* Desktop Navigation */}
             <nav className="hidden lg:flex items-center space-x-1">
-              <Link href="/" className="px-4 py-2 text-sm font-medium text-slate-300 hover:text-white transition-colors relative group">
+              <Link prefetch={false} href="/" className="px-4 py-2 text-sm font-medium text-slate-300 hover:text-white transition-colors relative group">
                 Home
                 <span className="absolute bottom-0 left-1/2 w-0 h-0.5 bg-indigo-500 transition-all duration-300 group-hover:w-full group-hover:left-0"></span>
               </Link>
               
-              <Link href="/about" className="px-4 py-2 text-sm font-medium text-slate-300 hover:text-white transition-colors relative group">
+              <Link prefetch={false} href="/about" className="px-4 py-2 text-sm font-medium text-slate-300 hover:text-white transition-colors relative group">
                 About
                 <span className="absolute bottom-0 left-1/2 w-0 h-0.5 bg-indigo-500 transition-all duration-300 group-hover:w-full group-hover:left-0"></span>
               </Link>
@@ -111,7 +111,7 @@ export function Header() {
                               { name: 'Synthetic Data', href: '/services/data-collection/synthetic-data', icon: Cpu },
                             ].map((item) => (
                               <li key={item.name}>
-                                <Link href={item.href} className="flex items-center gap-3 text-slate-400 hover:text-white text-sm group">
+                                <Link prefetch={false} href={item.href} className="flex items-center gap-3 text-slate-400 hover:text-white text-sm group">
                                   <item.icon className="w-4 h-4 text-slate-500 group-hover:text-indigo-400 transition-colors" />
                                   <span className="group-hover:translate-x-1 transition-transform">{item.name}</span>
                                 </Link>
@@ -135,7 +135,7 @@ export function Header() {
                               { name: 'Annotation Teams', href: '/services/data-labeling/annotation-teams', icon: Users },
                             ].map((item) => (
                               <li key={item.name}>
-                                <Link href={item.href} className="flex items-center gap-3 text-slate-400 hover:text-white text-sm group">
+                                <Link prefetch={false} href={item.href} className="flex items-center gap-3 text-slate-400 hover:text-white text-sm group">
                                   <item.icon className="w-4 h-4 text-slate-500 group-hover:text-violet-400 transition-colors" />
                                   <span className="group-hover:translate-x-1 transition-transform">{item.name}</span>
                                 </Link>
@@ -160,7 +160,7 @@ export function Header() {
                               { name: 'Quality Monitoring', href: '/services/data-processing/quality-monitoring', icon: BarChart },
                             ].map((item) => (
                               <li key={item.name}>
-                                <Link href={item.href} className="flex items-center gap-3 text-slate-400 hover:text-white text-sm group">
+                                <Link prefetch={false} href={item.href} className="flex items-center gap-3 text-slate-400 hover:text-white text-sm group">
                                   <item.icon className="w-4 h-4 text-slate-500 group-hover:text-cyan-400 transition-colors" />
                                   <span className="group-hover:translate-x-1 transition-transform">{item.name}</span>
                                 </Link>
@@ -177,7 +177,7 @@ export function Header() {
                               { name: 'AI Consultancy', href: '/services/data-collection/ai-consultancy', icon: Lightbulb },
                               { name: 'Quality Assurance', href: '/services/data-collection/quality-assurance', icon: ShieldCheck },
                             ].map((item) => (
-                              <Link key={item.name} href={item.href} className="flex items-center gap-2 text-slate-400 hover:text-white text-xs font-medium group">
+                              <Link prefetch={false} key={item.name} href={item.href} className="flex items-center gap-2 text-slate-400 hover:text-white text-xs font-medium group">
                                 <item.icon className="w-3 h-3 text-slate-500 group-hover:text-white" />
                                 {item.name}
                               </Link>
@@ -190,12 +190,12 @@ export function Header() {
                 </AnimatePresence>
               </div>
 
-              <Link href="/blog" className="px-4 py-2 text-sm font-medium text-slate-300 hover:text-white transition-colors relative group">
+              <Link prefetch={false} href="/blog" className="px-4 py-2 text-sm font-medium text-slate-300 hover:text-white transition-colors relative group">
                 Blog
                 <span className="absolute bottom-0 left-1/2 w-0 h-0.5 bg-indigo-500 transition-all duration-300 group-hover:w-full group-hover:left-0"></span>
               </Link>
               
-              <Link href="/contact" className="px-4 py-2 text-sm font-medium text-slate-300 hover:text-white transition-colors relative group">
+              <Link prefetch={false} href="/contact" className="px-4 py-2 text-sm font-medium text-slate-300 hover:text-white transition-colors relative group">
                 Contact
                 <span className="absolute bottom-0 left-1/2 w-0 h-0.5 bg-indigo-500 transition-all duration-300 group-hover:w-full group-hover:left-0"></span>
               </Link>
@@ -204,7 +204,7 @@ export function Header() {
             {/* Desktop CTA & Mobile Toggle */}
             <div className="flex items-center gap-4">
               <div className="hidden lg:block">
-                <Link 
+                <Link prefetch={false} 
                   href="/contact" 
                   className="bg-indigo-600 hover:bg-indigo-700 text-white px-5 py-2.5 rounded-full text-sm font-medium transition-colors shadow-[0_0_15px_rgba(99,102,241,0.3)] hover:shadow-[0_0_25px_rgba(99,102,241,0.5)]"
                 >
