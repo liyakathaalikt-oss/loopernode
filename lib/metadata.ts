@@ -14,7 +14,7 @@ export function generatePageMetadata({
   title,
   description,
   path,
-  image = '/images/og-default.jpg'
+  image = '/og-image.png'
 }: MetadataProps): Metadata {
   const url = `${baseUrl}${path}`;
   

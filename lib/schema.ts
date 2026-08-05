@@ -98,3 +98,21 @@ export function generateServiceSchema(service: {
     "url": `https://loopernode.in${service.url}`
   };
 }
+
+export function generateLocalBusinessSchema() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Loopernode",
+    "image": "https://loopernode.in/images/logo-new.png",
+    "telephone": "+91 7975265394",
+    "email": "info@loopernode.in",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Bengaluru",
+      "addressRegion": "Karnataka",
+      "addressCountry": "IN"
+    },
+    "url": "https://loopernode.in"
+  };
+}

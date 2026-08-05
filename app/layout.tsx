@@ -93,16 +93,31 @@ export const metadata: Metadata = {
 
 import { SmoothScroll } from "@/components/animations/smooth-scroll";
 
+import { generateOrganizationSchema, generateLocalBusinessSchema } from "@/lib/schema";
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const orgSchema = generateOrganizationSchema();
+  const localBusinessSchema = generateLocalBusinessSchema();
+
   return (
     <html
       lang="en"
       className={`${inter.variable} ${plusJakarta.variable} ${jetbrainsMono.variable} ${gabarito.variable}`}
     >
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
+        />
+      </head>
       <body className="min-h-screen flex flex-col bg-dark-950 text-slate-50 font-sans antialiased">
         <SmoothScroll>
           <a href="#main-content" className="skip-to-content">

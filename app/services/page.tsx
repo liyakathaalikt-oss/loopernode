@@ -5,6 +5,7 @@ import { StatCounter } from "@/components/sections/stat-counter";
 import { CTABanner } from "@/components/sections/cta-banner";
 import { FadeUp, StaggerContainer, StaggerItem } from "@/components/animations/motion-wrapper";
 import { generatePageMetadata } from "@/lib/metadata";
+import { generateServiceSchema } from "@/lib/schema";
 import { Database, Image as ImageIcon, Workflow, Search, Code, CheckCircle, BarChart, Layers } from "lucide-react";
 
 export const metadata = generatePageMetadata({
@@ -22,8 +23,18 @@ const PROCESS_STEPS = [
 ];
 
 export default function ServicesPage() {
+  const serviceSchema = generateServiceSchema({
+    name: "AI Data Services",
+    description: "Comprehensive AI data services including data collection, labeling, and processing for enterprise models.",
+    url: "/services",
+  });
+
   return (
     <main className="flex min-h-screen flex-col bg-dark-950 text-slate-50">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+      />
       <Hero
         headline="Comprehensive AI Data Services"
         highlightedText=""
