@@ -1,7 +1,65 @@
 'use client';
 
 import React, { useEffect, useRef } from 'react';
-import { motion, useScroll, useTransform, useSpring, useMotionValue } from 'framer-motion';
+import { motion, useScroll, useTransform, useSpring, useMotionValue, MotionValue } from 'framer-motion';
+
+interface RectProps {
+  id: number;
+  width: number;
+  height: number;
+  top: string;
+  left: string;
+  rotation: number;
+  delay: number;
+  duration: number;
+  depth: number;
+}
+
+function FloatingRect({ 
+  rect, 
+  smoothMouseX, 
+  smoothMouseY 
+}: { 
+  rect: RectProps, 
+  smoothMouseX: MotionValue<number>, 
+  smoothMouseY: MotionValue<number> 
+}) {
+  const xMove = useTransform(smoothMouseX, [-1, 1], [-80 * rect.depth, 80 * rect.depth]);
+  const yMove = useTransform(smoothMouseY, [-1, 1], [-80 * rect.depth, 80 * rect.depth]);
+  
+  return (
+    <motion.div
+      className="absolute"
+      style={{
+        top: rect.top,
+        left: rect.left,
+        x: xMove,
+        y: yMove,
+      }}
+    >
+      <motion.div
+        className="border border-[#1389DE] opacity-40 rounded-[10px]"
+        style={{
+          width: rect.width,
+          height: rect.height,
+          rotate: rect.rotation,
+        }}
+        animate={{
+          y: ["-15px", "15px", "-15px"],
+          x: ["-10px", "10px", "-10px"],
+          rotate: [rect.rotation - 5, rect.rotation + 5, rect.rotation - 5],
+          opacity: [0.3, 0.6, 0.3]
+        }}
+        transition={{
+          duration: rect.duration,
+          repeat: Infinity,
+          ease: "easeInOut",
+          delay: rect.delay,
+        }}
+      />
+    </motion.div>
+  );
+}
 
 export function FloatingRectangles() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -52,45 +110,14 @@ export function FloatingRectangles() {
   return (
     <div ref={containerRef} className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
       <motion.div style={{ y: scrollY }} className="absolute inset-0 w-full h-full">
-        {rectangles.map((rect) => {
-           // Mouse parallax for each rectangle based on its depth
-           const xMove = useTransform(smoothMouseX, [-1, 1], [-80 * rect.depth, 80 * rect.depth]);
-           const yMove = useTransform(smoothMouseY, [-1, 1], [-80 * rect.depth, 80 * rect.depth]);
-           
-           return (
-             <motion.div
-               key={rect.id}
-               className="absolute"
-               style={{
-                 top: rect.top,
-                 left: rect.left,
-                 x: xMove,
-                 y: yMove,
-               }}
-             >
-               <motion.div
-                 className="border border-[#1389DE] opacity-40 rounded-[10px]"
-                 style={{
-                   width: rect.width,
-                   height: rect.height,
-                   rotate: rect.rotation,
-                 }}
-                 animate={{
-                   y: ["-15px", "15px", "-15px"],
-                   x: ["-10px", "10px", "-10px"],
-                   rotate: [rect.rotation - 5, rect.rotation + 5, rect.rotation - 5],
-                   opacity: [0.3, 0.6, 0.3]
-                 }}
-                 transition={{
-                   duration: rect.duration,
-                   repeat: Infinity,
-                   ease: "easeInOut",
-                   delay: rect.delay,
-                 }}
-               />
-             </motion.div>
-           );
-        })}
+        {rectangles.map((rect) => (
+          <FloatingRect 
+            key={rect.id} 
+            rect={rect} 
+            smoothMouseX={smoothMouseX} 
+            smoothMouseY={smoothMouseY} 
+          />
+        ))}
       </motion.div>
       
       {/* Background radial gradient to give some depth if needed, but keeping original dark bg */}

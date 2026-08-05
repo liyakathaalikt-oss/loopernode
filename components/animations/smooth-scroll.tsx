@@ -8,12 +8,13 @@ interface SmoothScrollProps {
 }
 
 export function SmoothScroll({ children }: SmoothScrollProps) {
-  const [isReducedMotion, setIsReducedMotion] = useState(false);
+  const [isReducedMotion, setIsReducedMotion] = useState<boolean>(
+    typeof window !== 'undefined' ? window.matchMedia('(prefers-reduced-motion: reduce)').matches : false
+  );
 
   useEffect(() => {
     // Check user's motion preference
     const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-    setIsReducedMotion(mediaQuery.matches);
 
     const handleChange = (e: MediaQueryListEvent) => {
       setIsReducedMotion(e.matches);

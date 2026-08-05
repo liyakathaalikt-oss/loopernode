@@ -3,3 +3,4 @@
 applications.json
 .env.local
 .env
+.vercel
