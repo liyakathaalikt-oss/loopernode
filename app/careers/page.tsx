@@ -229,7 +229,7 @@ export default function CareersPage() {
                   </p>
                 </div>
 
-                <Link
+                <Link prefetch={false}
                   href={`/careers/${job.slug}`}
                   className="inline-flex items-center justify-between w-full pt-4 border-t border-white/10 text-sm font-semibold text-indigo-400 group-hover:text-indigo-300 transition-colors"
                 >

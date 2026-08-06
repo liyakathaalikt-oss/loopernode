@@ -101,7 +101,7 @@ export function Hero({
                 {primaryCTA.label}
               </button>
             ) : primaryCTA.href ? (
-              <Link
+              <Link prefetch={false}
                 href={primaryCTA.href}
                 className="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-[#6366F1] to-[#06B6D4] text-white font-semibold shadow-lg shadow-[#6366F1]/25 hover:shadow-[#6366F1]/40 hover:-translate-y-1 transition-all duration-300"
               >
@@ -118,7 +118,7 @@ export function Hero({
                   {secondaryCTA.label}
                 </button>
               ) : secondaryCTA.href ? (
-                <Link
+                <Link prefetch={false}
                   href={secondaryCTA.href}
                   className="w-full sm:w-auto px-8 py-4 rounded-xl backdrop-blur-xl bg-white/5 border border-white/10 text-slate-300 font-semibold hover:bg-white/10 hover:text-white transition-all duration-300"
                 >

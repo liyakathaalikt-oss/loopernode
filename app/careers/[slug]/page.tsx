@@ -92,9 +92,9 @@ export default async function JobDetailsPage({ params }: PageProps) {
         
         {/* Breadcrumb */}
         <div className="flex items-center text-sm text-slate-400 mb-8 gap-2">
-          <Link href="/" className="hover:text-indigo-400 transition-colors">Home</Link>
+          <Link prefetch={false} href="/" className="hover:text-indigo-400 transition-colors">Home</Link>
           <span>/</span>
-          <Link href="/careers" className="hover:text-indigo-400 transition-colors">Careers</Link>
+          <Link prefetch={false} href="/careers" className="hover:text-indigo-400 transition-colors">Careers</Link>
           <span>/</span>
           <span className="text-slate-200">{job.title}</span>
         </div>
@@ -137,7 +137,7 @@ export default async function JobDetailsPage({ params }: PageProps) {
             </div>
 
             <div className="md:w-64 flex-shrink-0">
-              <Link href="#application-form" className="w-full inline-flex items-center justify-center gap-2 px-8 py-4 bg-indigo-600 hover:bg-indigo-500 text-white rounded-full font-semibold transition-all duration-300 hover:shadow-[0_0_20px_rgba(79,70,229,0.4)]">
+              <Link prefetch={false} href="#application-form" className="w-full inline-flex items-center justify-center gap-2 px-8 py-4 bg-indigo-600 hover:bg-indigo-500 text-white rounded-full font-semibold transition-all duration-300 hover:shadow-[0_0_20px_rgba(79,70,229,0.4)]">
                 Apply Now <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
@@ -286,7 +286,7 @@ export default async function JobDetailsPage({ params }: PageProps) {
               <p className="text-slate-300 text-sm leading-relaxed mb-6">
                 Loopernode is a premier AI Data Services provider. We empower machine learning teams globally with pristine AI data collection, annotation, and processing solutions, accelerating the deployment of autonomous systems and GenAI models.
               </p>
-              <Link href="/about" className="text-indigo-400 hover:text-indigo-300 text-sm font-semibold inline-flex items-center gap-1">
+              <Link prefetch={false} href="/about" className="text-indigo-400 hover:text-indigo-300 text-sm font-semibold inline-flex items-center gap-1">
                 Learn more about us <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
@@ -315,7 +315,7 @@ export default async function JobDetailsPage({ params }: PageProps) {
                     <MapPin className="w-3 h-3" /> {rJob.location}
                   </div>
                 </div>
-                <Link href={`/careers/${rJob.slug}`} className="inline-flex items-center text-sm font-semibold text-indigo-400 hover:text-indigo-300 mt-4 pt-4 border-t border-white/5 w-full justify-between">
+                <Link prefetch={false} href={`/careers/${rJob.slug}`} className="inline-flex items-center text-sm font-semibold text-indigo-400 hover:text-indigo-300 mt-4 pt-4 border-t border-white/5 w-full justify-between">
                   View Details <ArrowRight className="w-4 h-4" />
                 </Link>
               </div>

@@ -197,7 +197,7 @@ export default function PrivacyPage() {
               </p>
               <div className="p-4 rounded-xl bg-white/[0.02] border border-white/[0.05] mb-4">
                 <p className="text-slate-300 text-sm">
-                  You can configure or adjust cookie consent options at any time via your browser settings or by visiting our dedicated <Link href="/cookie" className="text-cyan-400 hover:underline font-semibold">Cookie Policy Page</Link>.
+                  You can configure or adjust cookie consent options at any time via your browser settings or by visiting our dedicated <Link prefetch={false} href="/cookie" className="text-cyan-400 hover:underline font-semibold">Cookie Policy Page</Link>.
                 </p>
               </div>
             </div>

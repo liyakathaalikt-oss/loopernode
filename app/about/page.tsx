@@ -320,7 +320,7 @@ export default function AboutPage() {
             <p className="text-lg text-slate-300 leading-relaxed max-w-2xl mt-6 mb-8">
               We don't just process data; we partner with you to ensure your AI initiatives succeed. Our enterprise-grade infrastructure and rigorous processes provide peace of mind for the world's most demanding technology teams.
             </p>
-            <Link href="/contact" className="inline-flex items-center text-indigo-400 hover:text-indigo-300 font-semibold transition-colors">
+            <Link prefetch={false} href="/contact" className="inline-flex items-center text-indigo-400 hover:text-indigo-300 font-semibold transition-colors">
               Speak with a data expert <ArrowRight className="ml-2 w-5 h-5" />
             </Link>
           </FadeUp>

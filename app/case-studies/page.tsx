@@ -96,7 +96,7 @@ export default function CaseStudiesPage() {
                 </div>
 
                 <div>
-                  <Link
+                  <Link prefetch={false}
                     href={`/case-studies/${featuredStudy.slug}`}
                     className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-[#6366F1] to-[#8B5CF6] text-white font-semibold shadow-lg hover:brightness-110 transition-all duration-300 group/btn"
                   >
@@ -152,7 +152,7 @@ export default function CaseStudiesPage() {
                   <span className="text-xs text-slate-500 font-medium">
                     {study.results.length} Key Results
                   </span>
-                  <Link
+                  <Link prefetch={false}
                     href={`/case-studies/${study.slug}`}
                     className="inline-flex items-center gap-1.5 text-sm font-semibold text-indigo-400 hover:text-indigo-300 transition-colors group/link"
                   >

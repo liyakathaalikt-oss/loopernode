@@ -31,7 +31,7 @@ export default function NotFound() {
           </p>
           
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link 
+            <Link prefetch={false} 
               href="/"
               className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-white text-dark-950 font-semibold hover:bg-slate-200 transition-colors w-full sm:w-auto group"
             >
@@ -40,7 +40,7 @@ export default function NotFound() {
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Link>
             
-            <Link 
+            <Link prefetch={false} 
               href="/contact"
               className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-white/[0.05] border border-white/[0.1] text-slate-50 font-semibold hover:bg-white/[0.1] transition-colors w-full sm:w-auto"
             >

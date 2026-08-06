@@ -116,7 +116,7 @@ export default function HomePage() {
             <p className="text-lg text-slate-300 leading-relaxed max-w-2xl mt-6 mb-8">
               We understand that the intelligence of your AI system is directly proportional to the quality of its training data. For over a decade, we have been at the forefront of the AI revolution, providing meticulous data services that form the foundational layer of state-of-the-art machine learning models. Our global workforce and proprietary infrastructure ensure that your models learn from the best data possible.
             </p>
-            <Link href="/about" className="inline-flex items-center text-indigo-400 hover:text-indigo-300 font-semibold transition-colors">
+            <Link prefetch={false} href="/about" className="inline-flex items-center text-indigo-400 hover:text-indigo-300 font-semibold transition-colors">
               Learn more about our mission <ArrowRight className="ml-2 w-5 h-5" />
             </Link>
           </FadeUp>
@@ -324,7 +324,7 @@ export default function HomePage() {
               highlightedWord="Impact" 
               align="left" 
             />
-            <Link href="/case-studies" className="hidden md:inline-flex items-center text-cyan-400 hover:text-cyan-300 font-semibold transition-colors">
+            <Link prefetch={false} href="/case-studies" className="hidden md:inline-flex items-center text-cyan-400 hover:text-cyan-300 font-semibold transition-colors">
               View All Case Studies <ArrowRight className="ml-2 w-5 h-5" />
             </Link>
           </div>
@@ -341,7 +341,7 @@ export default function HomePage() {
                 <p className="text-slate-400 text-sm mb-8 flex-grow">
                   {study.challengeExcerpt || study.excerpt || 'Discover how we accelerated their AI pipeline with precision data services.'}
                 </p>
-                <Link href={`/case-studies/${study.slug || 'detail'}`} className="inline-flex items-center text-white text-sm font-semibold hover:text-indigo-400 transition-colors mt-auto">
+                <Link prefetch={false} href={`/case-studies/${study.slug || 'detail'}`} className="inline-flex items-center text-white text-sm font-semibold hover:text-indigo-400 transition-colors mt-auto">
                   Read More <ArrowRight className="ml-2 w-4 h-4" />
                 </Link>
               </div>
@@ -349,7 +349,7 @@ export default function HomePage() {
           ))}
         </StaggerContainer>
         <div className="mt-10 text-center md:hidden">
-          <Link href="/case-studies" className="inline-flex items-center text-cyan-400 hover:text-cyan-300 font-semibold transition-colors">
+          <Link prefetch={false} href="/case-studies" className="inline-flex items-center text-cyan-400 hover:text-cyan-300 font-semibold transition-colors">
             View All Case Studies <ArrowRight className="ml-2 w-5 h-5" />
           </Link>
         </div>

@@ -20,7 +20,7 @@ export interface BlogCardProps {
 export function BlogCard({ title, excerpt, date, readTime, category, slug, image, className }: BlogCardProps) {
   return (
     <FadeUp className={cn("h-full", className)}>
-      <Link href={`/blog/${slug}`} className="group block h-full">
+      <Link prefetch={false} href={`/blog/${slug}`} className="group block h-full">
         <div className="h-full flex flex-col rounded-2xl overflow-hidden backdrop-blur-xl bg-white/[0.03] border border-white/[0.08] transition-all duration-300 hover:shadow-[0_0_30px_rgba(99,102,241,0.1)] hover:-translate-y-2">
           {/* Image Area */}
           <div className="relative w-full h-48 overflow-hidden bg-gradient-to-br from-[#111128] to-[#1A1A3E]">

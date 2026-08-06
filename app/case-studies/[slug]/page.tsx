@@ -66,7 +66,7 @@ export default async function CaseStudyDetailPage({ params }: CaseStudyPageProps
           <Breadcrumb items={breadcrumbs} className="mb-8" />
 
           {/* Back link */}
-          <Link
+          <Link prefetch={false}
             href="/case-studies"
             className="inline-flex items-center gap-2 text-sm text-indigo-400 hover:text-indigo-300 font-medium mb-8 transition-colors"
           >

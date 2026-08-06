@@ -38,7 +38,7 @@ export default function BlogPage() {
           />
 
           <FadeUp>
-            <Link href={`/blog/${featuredPost.slug}`} className="block group mt-10">
+            <Link prefetch={false} href={`/blog/${featuredPost.slug}`} className="block group mt-10">
               <div className="backdrop-blur-xl bg-white/[0.03] border border-white/[0.08] rounded-2xl overflow-hidden grid md:grid-cols-2 gap-8 items-center transition-all duration-300 hover:border-primary-500/30 hover:bg-white/[0.05]">
                 <div className="relative aspect-video md:aspect-square w-full h-full bg-gradient-to-br from-primary-500/20 to-secondary-500/20 overflow-hidden">
                   {featuredPost.image ? (
