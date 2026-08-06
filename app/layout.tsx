@@ -6,6 +6,7 @@ import { Footer } from "@/components/layout/footer";
 import { BackToTop } from "@/components/ui/back-to-top";
 import { CookieConsent } from "@/components/ui/cookie-consent";
 import Script from "next/script";
+import { generateKeywords } from "@/app/config/seo-keywords";
 
 const inter = Inter({
   variable: "--font-sans",
@@ -39,17 +40,7 @@ export const metadata: Metadata = {
   },
   description:
     "Loopernode provides enterprise-grade AI data services including data collection, annotation, labeling, and processing for machine learning teams worldwide.",
-  keywords: [
-    "AI data services",
-    "data annotation",
-    "data labeling",
-    "machine learning",
-    "data collection",
-    "RLHF",
-    "computer vision",
-    "NLP",
-    "enterprise AI",
-  ],
+  keywords: generateKeywords('home'),
   authors: [{ name: "Loopernode" }],
   creator: "Loopernode",
   openGraph: {

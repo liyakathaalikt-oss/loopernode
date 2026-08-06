@@ -6,6 +6,7 @@ import { Calendar, Clock, ChevronRight, User } from "lucide-react";
 
 import { blogPosts } from "@/content/blog-posts";
 import { generateBlogPostSchema } from "@/lib/schema";
+import { generateKeywords } from "@/app/config/seo-keywords";
 import { Breadcrumb } from "@/components/layout/breadcrumb";
 import { Newsletter } from "@/components/sections/newsletter";
 import { BlogCard } from "@/components/sections/blog-card";
@@ -36,6 +37,7 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
   return {
     title: `${post.title} | Loopernode Blog`,
     description: post.excerpt,
+    keywords: generateKeywords('blog'),
     openGraph: {
       title: post.title,
       description: post.excerpt,

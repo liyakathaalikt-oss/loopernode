@@ -24,8 +24,14 @@ import { FadeUp, FadeIn, ScaleIn, StaggerContainer, StaggerItem } from '@/compon
 import { testimonials } from '@/content/testimonials';
 import { homeFAQs } from '@/content/faqs';
 import { caseStudies } from '@/content/case-studies';
+import { generateServiceSchema } from '@/lib/schema';
 
 export default function HomePage() {
+  const serviceSchema = generateServiceSchema({
+    name: "Enterprise AI Data Services",
+    description: "End-to-end data pipelines from data collection to annotation and processing for machine learning teams.",
+    url: "/services"
+  });
   const trustedCompanies = [
     'Meridian Autonomics', 'HealthBridge AI', 'Quantum Commerce', 
     'NeuralPath Labs', 'Apex Robotics', 'DataForge Systems', 
@@ -63,6 +69,10 @@ export default function HomePage() {
 
   return (
     <main className="flex min-h-screen flex-col bg-[#0A0A1B] text-slate-200">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+      />
       
       {/* SECTION 1: Hero */}
       <section className="pt-20 md:pt-28 pb-10 border-b border-white/5">

@@ -6,13 +6,17 @@ import { CTABanner } from "@/components/sections/cta-banner";
 import { FadeUp, StaggerContainer, StaggerItem } from "@/components/animations/motion-wrapper";
 import { generatePageMetadata } from "@/lib/metadata";
 import { generateServiceSchema } from "@/lib/schema";
+import { generateKeywords } from "@/app/config/seo-keywords";
 import { Database, Image as ImageIcon, Workflow, Search, Code, CheckCircle, BarChart, Layers } from "lucide-react";
 
-export const metadata = generatePageMetadata({
-  title: "AI Data Services | Loopernode",
-  description: "Comprehensive AI data services including data collection, labeling, and processing for enterprise models.",
-  path: "/services",
-});
+export const metadata = {
+  ...generatePageMetadata({
+    title: "AI Data Services | Loopernode",
+    description: "Comprehensive AI data services including data collection, labeling, and processing for enterprise models.",
+    path: "/services",
+  }),
+  keywords: generateKeywords('services'),
+};
 
 const PROCESS_STEPS = [
   { title: "Discovery", description: "Understand your model requirements and data needs." },
