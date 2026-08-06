@@ -88,9 +88,9 @@ export function ContactForm({ className, onSuccess }: { className?: string; onSu
             <div className="w-16 h-16 bg-green-500/20 text-green-400 rounded-full flex items-center justify-center mb-6">
               <CheckCircle2 className="w-8 h-8" />
             </div>
-            <h3 className="text-2xl font-bold text-white mb-2">Message Sent!</h3>
+            <h3 className="text-2xl font-bold text-white mb-2">Thank you!</h3>
             <p className="text-slate-400">
-              Thank you for reaching out. Our team will get back to you within 24 hours.
+              Your submission has been received successfully. Our team will contact you soon.
             </p>
           </motion.div>
         ) : (

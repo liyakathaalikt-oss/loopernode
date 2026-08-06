@@ -127,18 +127,28 @@ export async function POST(request: Request) {
             </div>
             <div style="padding:24px;background:#fff;color:#334155;border:1px solid #e2e8f0;border-top:0;border-radius:0 0 8px 8px">
               <table style="width:100%;border-collapse:collapse">
-                <tr><td style="padding:8px 0;border-bottom:1px solid #f1f5f9"><strong>Name</strong></td><td style="padding:8px 0;border-bottom:1px solid #f1f5f9">${fullName}</td></tr>
-                <tr><td style="padding:8px 0;border-bottom:1px solid #f1f5f9"><strong>Email</strong></td><td style="padding:8px 0;border-bottom:1px solid #f1f5f9"><a href="mailto:${email}">${email}</a></td></tr>
-                <tr><td style="padding:8px 0;border-bottom:1px solid #f1f5f9"><strong>Phone</strong></td><td style="padding:8px 0;border-bottom:1px solid #f1f5f9">${phone}</td></tr>
-                <tr><td style="padding:8px 0;border-bottom:1px solid #f1f5f9"><strong>Country</strong></td><td style="padding:8px 0;border-bottom:1px solid #f1f5f9">${country}</td></tr>
+                <tr><td style="padding:8px 0;border-bottom:1px solid #f1f5f9;width:140px;"><strong>Full Name</strong></td><td style="padding:8px 0;border-bottom:1px solid #f1f5f9">${fullName}</td></tr>
+                <tr><td style="padding:8px 0;border-bottom:1px solid #f1f5f9"><strong>Email Address</strong></td><td style="padding:8px 0;border-bottom:1px solid #f1f5f9"><a href="mailto:${email}">${email}</a></td></tr>
+                <tr><td style="padding:8px 0;border-bottom:1px solid #f1f5f9"><strong>Phone Number</strong></td><td style="padding:8px 0;border-bottom:1px solid #f1f5f9">${phone}</td></tr>
+                <tr><td style="padding:8px 0;border-bottom:1px solid #f1f5f9"><strong>Position Applied For</strong></td><td style="padding:8px 0;border-bottom:1px solid #f1f5f9">${position}</td></tr>
+                <tr><td style="padding:8px 0;border-bottom:1px solid #f1f5f9"><strong>Submission Date & Time</strong></td><td style="padding:8px 0;border-bottom:1px solid #f1f5f9">${new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata' })}</td></tr>
+              </table>
+              
+              <h3 style="margin:24px 0 8px;color:#0f172a">Additional Details</h3>
+              <table style="width:100%;border-collapse:collapse">
+                <tr><td style="padding:8px 0;border-bottom:1px solid #f1f5f9;width:140px;"><strong>Country</strong></td><td style="padding:8px 0;border-bottom:1px solid #f1f5f9">${country}</td></tr>
                 <tr><td style="padding:8px 0;border-bottom:1px solid #f1f5f9"><strong>Location</strong></td><td style="padding:8px 0;border-bottom:1px solid #f1f5f9">${currentLocation}</td></tr>
                 <tr><td style="padding:8px 0;border-bottom:1px solid #f1f5f9"><strong>Experience</strong></td><td style="padding:8px 0;border-bottom:1px solid #f1f5f9">${experience}</td></tr>
                 ${linkedin ? `<tr><td style="padding:8px 0;border-bottom:1px solid #f1f5f9"><strong>LinkedIn</strong></td><td style="padding:8px 0;border-bottom:1px solid #f1f5f9"><a href="${linkedin}">${linkedin}</a></td></tr>` : ''}
                 ${portfolio ? `<tr><td style="padding:8px 0;border-bottom:1px solid #f1f5f9"><strong>Portfolio</strong></td><td style="padding:8px 0;border-bottom:1px solid #f1f5f9"><a href="${portfolio}">${portfolio}</a></td></tr>` : ''}
               </table>
+
               ${coverLetter ? `<h3 style="margin:24px 0 8px;color:#0f172a">Cover Letter</h3><div style="background:#f8fafc;padding:12px;border-radius:6px;white-space:pre-wrap;font-size:14px">${coverLetter}</div>` : ''}
               ${message ? `<h3 style="margin:24px 0 8px;color:#0f172a">Additional Message</h3><div style="background:#f8fafc;padding:12px;border-radius:6px;white-space:pre-wrap;font-size:14px">${message}</div>` : ''}
-              <p style="margin:24px 0 0;font-size:13px;color:#94a3b8">Resume attached. Submitted ${new Date().toLocaleString()}.</p>
+              
+              <div style="margin-top:24px;padding:12px;background:#eef2ff;border-radius:6px;border:1px solid #c7d2fe;color:#4338ca;font-size:14px;">
+                <strong>Attachment:</strong> Resume/CV is attached to this email (${resumeFile.name}).
+              </div>
             </div>
           </div>
         `,

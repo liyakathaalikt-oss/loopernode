@@ -105,18 +105,12 @@ export function CareersForm({ defaultPosition }: CareersFormProps) {
           <CheckCircle className="w-10 h-10" />
         </div>
         <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
-          Thank you! Your application has been submitted successfully.
+          Thank you!
         </h3>
         
-        {status === 'partial_success' ? (
-          <p className="text-amber-300 text-lg mb-8">
-            Your application has been received, but we couldn&apos;t send the notification email. Our team will still review your application.
-          </p>
-        ) : (
-          <p className="text-slate-300 text-lg mb-8">
-            We have successfully received your application. A confirmation email has been sent to your inbox.
-          </p>
-        )}
+        <p className="text-slate-300 text-lg mb-8">
+          Your submission has been received successfully. Our team will contact you soon.
+        </p>
 
         <button 
           onClick={() => setStatus('idle')}
