@@ -1,4 +1,4 @@
-import { LucideIcon, Users, Network, Activity, Database, Shield, Zap, Workflow, Search, Code, CheckCircle } from 'lucide-react';
+import { LucideIcon, Users, Network } from 'lucide-react';
 
 export interface SolutionFeature {
   title: string;

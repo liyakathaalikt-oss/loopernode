@@ -176,7 +176,7 @@ export default async function IndustryDetailsPage({ params }: PageProps) {
             <div className="p-8 rounded-2xl backdrop-blur-xl bg-gradient-to-br from-indigo-900/40 to-black border border-indigo-500/20">
               <h3 className="text-xl font-bold text-white mb-4">Need a custom dataset?</h3>
               <p className="text-slate-400 text-sm leading-relaxed mb-6">
-                Our solutions architects can design a custom data pipeline tailored specifically to your model's requirements.
+                Our solutions architects can design a custom data pipeline tailored specifically to your model&apos;s requirements.
               </p>
               <Link prefetch={false} href="/contact" className="w-full inline-flex items-center justify-center gap-2 px-6 py-3 bg-white/10 hover:bg-white/20 text-white rounded-xl font-semibold transition-colors">
                 Contact Sales

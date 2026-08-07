@@ -8,7 +8,7 @@ export interface IndustryUseCase {
 export interface Industry {
   slug: string;
   name: string;
-  icon: any; // We will use strings or Lucide components, let's stick to the component names
+  icon: string; // We will use strings or Lucide components, let's stick to the component names
   iconComponent: LucideIcon;
   description: string;
   overview: string;
