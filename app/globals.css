@@ -122,6 +122,33 @@
 html {
   color-scheme: dark;
   scroll-padding-top: 100px;
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* Hero Background Blob Animations (GPU-accelerated CSS, replaces framer-motion) */
+@keyframes hero-blob-1 {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(100px, 50px) scale(1.2); }
+  100% { transform: translate(0, 0) scale(1); }
+}
+
+@keyframes hero-blob-2 {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-100px, -50px) scale(1.5); }
+  100% { transform: translate(0, 0) scale(1); }
+}
+
+@keyframes hero-blob-3 {
+  0% { transform: translate(0, 0); }
+  33% { transform: translate(50px, 100px); }
+  66% { transform: translate(-50px, 50px); }
+  100% { transform: translate(0, 0); }
 }
 
 body {

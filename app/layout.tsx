@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Plus_Jakarta_Sans, JetBrains_Mono, Gabarito } from "next/font/google";
+import { Inter, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
@@ -20,17 +20,7 @@ const plusJakarta = Plus_Jakarta_Sans({
   display: "swap",
 });
 
-const jetbrainsMono = JetBrains_Mono({
-  variable: "--font-mono",
-  subsets: ["latin"],
-  display: "swap",
-});
 
-const gabarito = Gabarito({
-  variable: "--font-gabarito",
-  subsets: ["latin"],
-  display: "swap",
-});
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://loopernode.in"),
@@ -83,7 +73,7 @@ export const metadata: Metadata = {
   },
 };
 
-import { SmoothScroll } from "@/components/animations/smooth-scroll";
+
 
 import { generateOrganizationSchema, generateLocalBusinessSchema } from "@/lib/schema";
 
@@ -98,7 +88,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${plusJakarta.variable} ${jetbrainsMono.variable} ${gabarito.variable}`}
+      className={`${inter.variable} ${plusJakarta.variable}`}
     >
       <head>
         {/* Google tag (gtag.js) */}
@@ -129,18 +119,16 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-screen flex flex-col bg-dark-950 text-slate-50 font-sans antialiased">
-        <SmoothScroll>
-          <a href="#main-content" className="skip-to-content">
-            Skip to main content
-          </a>
-          <Header />
-          <main id="main-content" className="flex-1">
-            {children}
-          </main>
-          <Footer />
-          <BackToTop />
-          <CookieConsent />
-        </SmoothScroll>
+        <a href="#main-content" className="skip-to-content">
+          Skip to main content
+        </a>
+        <Header />
+        <main id="main-content" className="flex-1">
+          {children}
+        </main>
+        <Footer />
+        <BackToTop />
+        <CookieConsent />
       </body>
     </html>
   );

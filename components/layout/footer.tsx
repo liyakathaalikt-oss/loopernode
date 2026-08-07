@@ -42,7 +42,7 @@ export function Footer() {
                 alt="Loopernode Logo" 
                 width={500} 
                 height={169} 
-                priority 
+                loading="lazy"
                 className="h-[72px] w-auto sm:h-[96px] object-contain" 
               />
             </Link>

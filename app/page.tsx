@@ -1,7 +1,4 @@
-/* eslint-disable react/no-unescaped-entities */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-"use client";
-
 import React from 'react';
 import Link from 'next/link';
 import { 
@@ -26,47 +23,48 @@ import { homeFAQs } from '@/content/faqs';
 import { caseStudies } from '@/content/case-studies';
 import { generateServiceSchema } from '@/lib/schema';
 
+const serviceSchema = generateServiceSchema({
+  name: "Enterprise AI Data Services",
+  description: "End-to-end data pipelines from data collection to annotation and processing for machine learning teams.",
+  url: "/services"
+});
+
+const trustedCompanies = [
+  'Meridian Autonomics', 'HealthBridge AI', 'Quantum Commerce', 
+  'NeuralPath Labs', 'Apex Robotics', 'DataForge Systems', 
+  'Prism Analytics', 'Vanguard ML'
+];
+
+const workflowSteps = [
+  { icon: Database, title: "Dataset Collection", desc: "Gathering raw, high-quality data from diverse sources." },
+  { icon: FileCheck, title: "Preparation", desc: "Cleaning, formatting, and structuring the raw data." },
+  { icon: PenTool, title: "Annotation", desc: "Expert human-in-the-loop labeling and tagging." },
+  { icon: CheckCircle, title: "Validation", desc: "Cross-checking annotations for maximum accuracy." },
+  { icon: Shield, title: "Quality Assurance", desc: "Rigorous multi-tier quality control reviews." },
+  { icon: Send, title: "Delivery", desc: "Secure export of training-ready AI datasets." }
+];
+
+const industries = [
+  { name: "Healthcare", icon: HeartPulse },
+  { name: "Retail", icon: ShoppingCart },
+  { name: "Automotive", icon: Car },
+  { name: "Agriculture", icon: Tractor },
+  { name: "Manufacturing", icon: Factory },
+  { name: "Legal", icon: Scale },
+  { name: "Finance", icon: DollarSign },
+  { name: "E-commerce", icon: Package },
+  { name: "Robotics", icon: Cpu },
+  { name: "Autonomous Vehicles", icon: Navigation },
+  { name: "Insurance", icon: Umbrella },
+  { name: "Education", icon: GraduationCap },
+];
+
+const technologies = [
+  "TensorFlow", "PyTorch", "AWS", "GCP", "Azure", "Kubernetes", 
+  "CVAT", "Label Studio", "Labelbox", "Hugging Face", "OpenCV", "scikit-learn"
+];
+
 export default function HomePage() {
-  const serviceSchema = generateServiceSchema({
-    name: "Enterprise AI Data Services",
-    description: "End-to-end data pipelines from data collection to annotation and processing for machine learning teams.",
-    url: "/services"
-  });
-  const trustedCompanies = [
-    'Meridian Autonomics', 'HealthBridge AI', 'Quantum Commerce', 
-    'NeuralPath Labs', 'Apex Robotics', 'DataForge Systems', 
-    'Prism Analytics', 'Vanguard ML'
-  ];
-
-  const workflowSteps = [
-    { icon: <Database className="w-6 h-6 text-indigo-400" />, title: "Dataset Collection", desc: "Gathering raw, high-quality data from diverse sources." },
-    { icon: <FileCheck className="w-6 h-6 text-indigo-400" />, title: "Preparation", desc: "Cleaning, formatting, and structuring the raw data." },
-    { icon: <PenTool className="w-6 h-6 text-indigo-400" />, title: "Annotation", desc: "Expert human-in-the-loop labeling and tagging." },
-    { icon: <CheckCircle className="w-6 h-6 text-indigo-400" />, title: "Validation", desc: "Cross-checking annotations for maximum accuracy." },
-    { icon: <Shield className="w-6 h-6 text-indigo-400" />, title: "Quality Assurance", desc: "Rigorous multi-tier quality control reviews." },
-    { icon: <Send className="w-6 h-6 text-indigo-400" />, title: "Delivery", desc: "Secure export of training-ready AI datasets." }
-  ];
-
-  const industries = [
-    { name: "Healthcare", icon: <HeartPulse className="w-6 h-6 text-cyan-400" /> },
-    { name: "Retail", icon: <ShoppingCart className="w-6 h-6 text-cyan-400" /> },
-    { name: "Automotive", icon: <Car className="w-6 h-6 text-cyan-400" /> },
-    { name: "Agriculture", icon: <Tractor className="w-6 h-6 text-cyan-400" /> },
-    { name: "Manufacturing", icon: <Factory className="w-6 h-6 text-cyan-400" /> },
-    { name: "Legal", icon: <Scale className="w-6 h-6 text-cyan-400" /> },
-    { name: "Finance", icon: <DollarSign className="w-6 h-6 text-cyan-400" /> },
-    { name: "E-commerce", icon: <Package className="w-6 h-6 text-cyan-400" /> },
-    { name: "Robotics", icon: <Cpu className="w-6 h-6 text-cyan-400" /> },
-    { name: "Autonomous Vehicles", icon: <Navigation className="w-6 h-6 text-cyan-400" /> },
-    { name: "Insurance", icon: <Umbrella className="w-6 h-6 text-cyan-400" /> },
-    { name: "Education", icon: <GraduationCap className="w-6 h-6 text-cyan-400" /> },
-  ];
-
-  const technologies = [
-    "TensorFlow", "PyTorch", "AWS", "GCP", "Azure", "Kubernetes", 
-    "CVAT", "Label Studio", "Labelbox", "Hugging Face", "OpenCV", "scikit-learn"
-  ];
-
   return (
     <main className="flex min-h-screen flex-col bg-[#0A0A1B] text-slate-200">
       <script
@@ -92,7 +90,7 @@ export default function HomePage() {
       </section>
 
       {/* SECTION 2: Trusted By */}
-      <section className="py-12 border-b border-white/5 overflow-hidden bg-white/5 backdrop-blur-sm">
+      <section className="py-12 border-b border-white/5 overflow-hidden bg-white/5">
         <FadeIn>
           <div className="container mx-auto px-4 mb-6 text-center text-[34px] font-semibold tracking-wider text-slate-400 uppercase">
             Trusted by innovative companies worldwide
@@ -108,7 +106,6 @@ export default function HomePage() {
                 </div>
               ))}
             </div>
-            {/* Note: The marquee animation needs to be defined in global CSS or tailwind config */}
           </div>
         </FadeIn>
       </section>
@@ -205,15 +202,18 @@ export default function HomePage() {
           <div className="hidden lg:block absolute top-1/2 left-0 w-full h-0.5 bg-gradient-to-r from-indigo-500/20 via-cyan-500/50 to-violet-500/20 -translate-y-1/2 z-0" />
           
           <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-6 relative z-10">
-            {workflowSteps.map((step, index) => (
-              <StaggerItem key={index} className="flex flex-col items-center text-center">
-                <div className="w-16 h-16 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 flex items-center justify-center mb-6 shadow-lg shadow-indigo-500/10 transform transition-transform hover:-translate-y-2">
-                  {step.icon}
-                </div>
-                <h3 className="text-lg font-bold text-white mb-2">{step.title}</h3>
-                <p className="text-sm text-slate-400 px-2">{step.desc}</p>
-              </StaggerItem>
-            ))}
+            {workflowSteps.map((step, index) => {
+              const IconComponent = step.icon;
+              return (
+                <StaggerItem key={index} className="flex flex-col items-center text-center">
+                  <div className="w-16 h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-6 shadow-lg shadow-indigo-500/10 transform transition-transform hover:-translate-y-2">
+                    <IconComponent className="w-6 h-6 text-indigo-400" />
+                  </div>
+                  <h3 className="text-lg font-bold text-white mb-2">{step.title}</h3>
+                  <p className="text-sm text-slate-400 px-2">{step.desc}</p>
+                </StaggerItem>
+              );
+            })}
           </StaggerContainer>
         </div>
       </section>
@@ -229,16 +229,19 @@ export default function HomePage() {
           />
         </FadeUp>
         <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-16">
-          {industries.map((industry, index) => (
-            <StaggerItem key={index}>
-              <div className="p-6 rounded-2xl bg-white/5 backdrop-blur-md border border-white/10 hover:border-cyan-500/50 hover:bg-white/10 transition-all duration-300 flex flex-col items-center justify-center text-center group cursor-pointer h-full">
-                <div className="p-3 rounded-xl bg-cyan-500/10 group-hover:bg-cyan-500/20 transition-colors mb-4">
-                  {industry.icon}
+          {industries.map((industry, index) => {
+            const IconComponent = industry.icon;
+            return (
+              <StaggerItem key={index}>
+                <div className="p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-cyan-500/50 hover:bg-white/10 transition-all duration-300 flex flex-col items-center justify-center text-center group cursor-pointer h-full">
+                  <div className="p-3 rounded-xl bg-cyan-500/10 group-hover:bg-cyan-500/20 transition-colors mb-4">
+                    <IconComponent className="w-6 h-6 text-cyan-400" />
+                  </div>
+                  <p className="font-semibold text-slate-200">{industry.name}</p>
                 </div>
-                <p className="font-semibold text-slate-200">{industry.name}</p>
-              </div>
-            </StaggerItem>
-          ))}
+              </StaggerItem>
+            );
+          })}
         </StaggerContainer>
       </section>
 
@@ -276,7 +279,7 @@ export default function HomePage() {
           <FeatureCard 
             icon={<Wrench className="w-6 h-6 text-indigo-400" />} 
             title="Custom Solutions" 
-            description="We don't believe in one-size-fits-all. Every pipeline is engineered specifically for your model's unique architecture." 
+            description="We don&apos;t believe in one-size-fits-all. Every pipeline is engineered specifically for your model&apos;s unique architecture." 
           />
           <FeatureCard 
             icon={<Headphones className="w-6 h-6 text-indigo-400" />} 
@@ -298,7 +301,7 @@ export default function HomePage() {
         <StaggerContainer className="flex flex-wrap justify-center gap-4 max-w-5xl mx-auto relative z-10">
           {technologies.map((tech, idx) => (
             <StaggerItem key={idx}>
-              <div className="px-6 py-3 rounded-full bg-white/5 backdrop-blur-xl border border-white/10 text-slate-300 font-medium hover:bg-white/10 hover:border-violet-500/50 hover:text-white transition-all duration-300 cursor-default shadow-sm shadow-black/50">
+              <div className="px-6 py-3 rounded-full bg-white/5 border border-white/10 text-slate-300 font-medium hover:bg-white/10 hover:border-violet-500/50 hover:text-white transition-all duration-300 cursor-default shadow-sm shadow-black/50">
                 {tech}
               </div>
             </StaggerItem>
@@ -342,7 +345,7 @@ export default function HomePage() {
         <StaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {caseStudies.slice(0, 3).map((study: any, index: number) => (
             <StaggerItem key={index}>
-              <div className="h-full flex flex-col p-8 rounded-3xl bg-white/5 backdrop-blur-lg border border-white/10 hover:border-indigo-500/40 transition-all duration-500 group">
+              <div className="h-full flex flex-col p-8 rounded-3xl bg-white/5 border border-white/10 hover:border-indigo-500/40 transition-all duration-500 group">
                 <span className="inline-block px-3 py-1 rounded-full bg-indigo-500/20 text-indigo-300 text-xs font-semibold uppercase tracking-wider mb-6 w-max">
                   {study.industry || 'AI Development'}
                 </span>

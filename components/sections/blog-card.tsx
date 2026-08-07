@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
+import NextImage from 'next/image';
 import { ArrowRight, Clock, Calendar } from 'lucide-react';
 import { FadeUp } from '@/components/animations/motion-wrapper';
 import { cn } from '@/lib/utils';
@@ -25,7 +26,7 @@ export function BlogCard({ title, excerpt, date, readTime, category, slug, image
           {/* Image Area */}
           <div className="relative w-full h-48 overflow-hidden bg-gradient-to-br from-[#111128] to-[#1A1A3E]">
             {image ? (
-              <img src={image} alt={title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+              <NextImage src={image} alt={title} width={400} height={192} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
             ) : (
               <div className="absolute inset-0 opacity-20 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#6366F1] via-[#111128] to-transparent group-hover:scale-110 transition-transform duration-700" />
             )}
