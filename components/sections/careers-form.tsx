@@ -72,9 +72,9 @@ export function CareersForm({ defaultPosition }: CareersFormProps) {
     if (e.target.files && e.target.files[0]) {
       const selectedFile = e.target.files[0];
       
-      // Limit size to 5 MB
-      if (selectedFile.size > 5 * 1024 * 1024) {
-        setErrorMessage('File size must be less than 5MB');
+      // Limit size to 4 MB
+      if (selectedFile.size > 4 * 1024 * 1024) {
+        setErrorMessage('File size must be less than 4MB');
         setStatus('error');
         e.target.value = '';
         return;
@@ -257,7 +257,7 @@ export function CareersForm({ defaultPosition }: CareersFormProps) {
 
         {/* Resume & Details */}
         <div className="space-y-2">
-          <label className="text-sm font-medium text-slate-300">Resume / CV (PDF or DOCX, max 10MB) *</label>
+          <label className="text-sm font-medium text-slate-300">Resume / CV (PDF or DOCX, max 4MB) *</label>
           <div className="relative">
             <input 
               type="file" 
@@ -276,7 +276,7 @@ export function CareersForm({ defaultPosition }: CareersFormProps) {
               ) : (
                 <div>
                   <p className="text-slate-300 font-medium mb-1">Click or drag file to this area to upload</p>
-                  <p className="text-slate-500 text-xs">Support for a single PDF or DOCX file (max 10MB).</p>
+                  <p className="text-slate-500 text-xs">Support for a single PDF or DOCX file (max 4MB).</p>
                 </div>
               )}
             </div>

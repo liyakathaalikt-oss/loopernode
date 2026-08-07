@@ -15,8 +15,7 @@ import {
   Code,
   Award,
   ArrowRight,
-  Quote,
-  Sparkles
+  Quote
 } from 'lucide-react';
 
 import { Hero } from '@/components/sections/hero';
@@ -202,10 +201,15 @@ export default function CareersPage() {
         </FadeUp>
 
         <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
-          {jobs.map((job, idx) => (
+          {jobs.map((job) => (
             <StaggerItem key={job.slug}>
               <div className="h-full p-8 rounded-2xl backdrop-blur-xl bg-white/[0.03] border border-white/[0.08] hover:border-indigo-500/40 hover:bg-white/[0.05] transition-all duration-300 flex flex-col justify-between group">
                 <div>
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                      {getJobIcon(job.title)}
+                    </div>
+                  </div>
                   <div className="flex items-center justify-between mb-4">
                     <span className="px-3 py-1 text-xs font-semibold rounded-full bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
                       {job.department}

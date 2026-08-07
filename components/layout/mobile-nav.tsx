@@ -68,6 +68,7 @@ export function MobileNav({ isOpen, onClose }: MobileNavProps) {
   const mainLinks = [
     { name: 'Home', href: '/' },
     { name: 'About', href: '/about' },
+    { name: 'Industries', href: '/industries' },
     { name: 'Blog', href: '/blog' },
     { name: 'Contact', href: '/contact' },
   ];

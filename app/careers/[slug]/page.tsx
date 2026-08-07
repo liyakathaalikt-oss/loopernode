@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 import { jobs } from '@/content/jobs';
 import { generatePageMetadata } from '@/lib/metadata';
-import { Briefcase, MapPin, Clock, Calendar, CheckCircle, Code, ArrowRight, Building, Award, Star, Users, BrainCircuit } from 'lucide-react';
+import { Briefcase, MapPin, Clock, Calendar, CheckCircle, Code, ArrowRight, Building, Award, Star, Users } from 'lucide-react';
 import Link from 'next/link';
 import { CareersForm } from '@/components/sections/careers-form';
 
