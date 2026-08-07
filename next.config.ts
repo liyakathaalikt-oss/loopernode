@@ -4,9 +4,6 @@ const nextConfig: NextConfig = {
   experimental: {
     optimizePackageImports: ['lucide-react'],
   },
-  images: {
-    unoptimized: true,
-  },
   async redirects() {
     return [
       {
