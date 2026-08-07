@@ -202,7 +202,7 @@ export default async function CaseStudyDetailPage({ params }: CaseStudyPageProps
               headline="Ready to achieve similar breakthroughs?"
               description="Partner with Loopernode to accelerate your AI datasets, custom annotation guidelines, and model performance."
               primaryCTA={{ label: 'Get Started', href: '/contact' }}
-              secondaryCTA={{ label: 'View All Case Studies', href: '/case-studies' }}
+              secondaryCTA={{ label: 'Explore Enterprise Case Studies', href: '/case-studies' }}
             />
           </FadeIn>
         </div>

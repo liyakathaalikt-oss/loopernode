@@ -82,7 +82,7 @@ export default function HomePage() {
           highlightedText="Intelligent Systems"
           description="From data collection to annotation and processing, we provide end-to-end AI data solutions trusted by leading technology companies worldwide."
           primaryCTA={{ label: 'Get Started', href: '/contact' }}
-          secondaryCTA={{ label: 'Explore Services', href: '/services' }}
+          secondaryCTA={{ label: 'Explore AI Data Services', href: '/services' }}
           stats={[
             { value: '500M+', label: 'Data Points Processed' },
             { value: '99.7%', label: 'Accuracy Rate' },
@@ -127,7 +127,7 @@ export default function HomePage() {
               We understand that the intelligence of your AI system is directly proportional to the quality of its training data. For over a decade, we have been at the forefront of the AI revolution, providing meticulous data services that form the foundational layer of state-of-the-art machine learning models. Our global workforce and proprietary infrastructure ensure that your models learn from the best data possible.
             </p>
             <Link prefetch={false} href="/about" className="inline-flex items-center text-indigo-400 hover:text-indigo-300 font-semibold transition-colors">
-              Learn more about our mission <ArrowRight className="ml-2 w-5 h-5" />
+              Explore our AI mission <ArrowRight className="ml-2 w-5 h-5" />
             </Link>
           </FadeUp>
           <StaggerContainer className="grid grid-cols-2 gap-6">
@@ -210,7 +210,7 @@ export default function HomePage() {
                 <div className="w-16 h-16 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 flex items-center justify-center mb-6 shadow-lg shadow-indigo-500/10 transform transition-transform hover:-translate-y-2">
                   {step.icon}
                 </div>
-                <h4 className="text-lg font-bold text-white mb-2">{step.title}</h4>
+                <h3 className="text-lg font-bold text-white mb-2">{step.title}</h3>
                 <p className="text-sm text-slate-400 px-2">{step.desc}</p>
               </StaggerItem>
             ))}
@@ -235,7 +235,7 @@ export default function HomePage() {
                 <div className="p-3 rounded-xl bg-cyan-500/10 group-hover:bg-cyan-500/20 transition-colors mb-4">
                   {industry.icon}
                 </div>
-                <h3 className="font-semibold text-slate-200">{industry.name}</h3>
+                <p className="font-semibold text-slate-200">{industry.name}</p>
               </div>
             </StaggerItem>
           ))}
@@ -335,7 +335,7 @@ export default function HomePage() {
               align="left" 
             />
             <Link prefetch={false} href="/case-studies" className="hidden md:inline-flex items-center text-cyan-400 hover:text-cyan-300 font-semibold transition-colors">
-              View All Case Studies <ArrowRight className="ml-2 w-5 h-5" />
+              Explore Client Success Stories <ArrowRight className="ml-2 w-5 h-5" />
             </Link>
           </div>
         </FadeUp>
@@ -352,7 +352,7 @@ export default function HomePage() {
                   {study.challengeExcerpt || study.excerpt || 'Discover how we accelerated their AI pipeline with precision data services.'}
                 </p>
                 <Link prefetch={false} href={`/case-studies/${study.slug || 'detail'}`} className="inline-flex items-center text-white text-sm font-semibold hover:text-indigo-400 transition-colors mt-auto">
-                  Read More <ArrowRight className="ml-2 w-4 h-4" />
+                  Read {study.client} Case Study <ArrowRight className="ml-2 w-4 h-4" />
                 </Link>
               </div>
             </StaggerItem>
@@ -360,7 +360,7 @@ export default function HomePage() {
         </StaggerContainer>
         <div className="mt-10 text-center md:hidden">
           <Link prefetch={false} href="/case-studies" className="inline-flex items-center text-cyan-400 hover:text-cyan-300 font-semibold transition-colors">
-            View All Case Studies <ArrowRight className="ml-2 w-5 h-5" />
+            Browse All Case Studies <ArrowRight className="ml-2 w-5 h-5" />
           </Link>
         </div>
       </section>
@@ -402,7 +402,7 @@ export default function HomePage() {
             headline="Ready to Accelerate Your AI Development?" 
             description="Join 200+ companies that trust Loopernode for their data needs. Get started with a free consultation today."
             primaryCTA={{ label: 'Start Your Project', href: '/contact' }}
-            secondaryCTA={{ label: 'View Our Services', href: '/services' }}
+            secondaryCTA={{ label: 'Explore AI Data Services', href: '/services' }}
           />
         </ScaleIn>
       </section>

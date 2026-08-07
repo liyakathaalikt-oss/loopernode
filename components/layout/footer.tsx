@@ -13,7 +13,7 @@ export function Footer() {
         {/* Newsletter Section */}
         <div className="mb-16 p-8 rounded-3xl backdrop-blur-xl bg-white/[0.03] border border-white/[0.08] flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="max-w-xl">
-            <h3 className="text-2xl font-bold text-white mb-2">Subscribe to our newsletter</h3>
+            <p className="text-2xl font-bold text-white mb-2">Subscribe to our newsletter</p>
             <p className="text-slate-400">Get the latest insights on AI data services, industry trends, and company updates delivered to your inbox.</p>
           </div>
           <form className="w-full md:w-auto flex flex-col sm:flex-row gap-3">
@@ -67,7 +67,7 @@ export function Footer() {
 
           {/* Column 2: Services */}
           <div>
-            <h4 className="text-white font-semibold mb-6">Services</h4>
+            <p className="text-white font-semibold mb-6">Services</p>
             <ul className="space-y-4">
               <li><Link prefetch={false} href="/services/data-collection" className="text-slate-400 hover:text-indigo-400 transition-colors text-sm">Data Collection</Link></li>
               <li><Link prefetch={false} href="/services/data-labeling" className="text-slate-400 hover:text-indigo-400 transition-colors text-sm">Data Labeling</Link></li>
@@ -79,7 +79,7 @@ export function Footer() {
 
           {/* Column 3: Company */}
           <div>
-            <h4 className="text-white font-semibold mb-6">Company</h4>
+            <p className="text-white font-semibold mb-6">Company</p>
             <ul className="space-y-4">
               <li><Link prefetch={false} href="/about" className="text-slate-400 hover:text-indigo-400 transition-colors text-sm">About Us</Link></li>
               <li><Link prefetch={false} href="/blog" className="text-slate-400 hover:text-indigo-400 transition-colors text-sm">Blog</Link></li>
@@ -91,7 +91,7 @@ export function Footer() {
 
           {/* Column 4: Resources */}
           <div>
-            <h4 className="text-white font-semibold mb-6">Resources</h4>
+            <p className="text-white font-semibold mb-6">Resources</p>
             <ul className="space-y-4">
               <li><Link prefetch={false} href="/docs" className="text-slate-400 hover:text-indigo-400 transition-colors text-sm">Documentation</Link></li>
               <li><Link prefetch={false} href="/case-studies" className="text-slate-400 hover:text-indigo-400 transition-colors text-sm">Case Studies</Link></li>

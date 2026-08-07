@@ -160,11 +160,11 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           <div className="prose prose-invert prose-lg max-w-3xl mx-auto mb-16">
             {contentParagraphs.map((paragraph, index) => {
               if (paragraph.startsWith("# ")) {
-                return <h1 key={index} className="text-3xl font-bold text-slate-50 mt-12 mb-6">{paragraph.replace("# ", "")}</h1>;
+                return <h2 key={index} className="text-3xl font-bold text-slate-50 mt-12 mb-6">{paragraph.replace("# ", "")}</h2>;
               } else if (paragraph.startsWith("## ")) {
-                return <h2 key={index} className="text-2xl font-bold text-slate-50 mt-10 mb-5">{paragraph.replace("## ", "")}</h2>;
+                return <h3 key={index} className="text-2xl font-bold text-slate-50 mt-10 mb-5">{paragraph.replace("## ", "")}</h3>;
               } else if (paragraph.startsWith("### ")) {
-                return <h3 key={index} className="text-xl font-bold text-slate-50 mt-8 mb-4">{paragraph.replace("### ", "")}</h3>;
+                return <h4 key={index} className="text-xl font-bold text-slate-50 mt-8 mb-4">{paragraph.replace("### ", "")}</h4>;
               }
               return (
                 <p key={index} className="text-lg leading-relaxed text-slate-300 mb-6">
@@ -213,7 +213,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             <div className="flex items-center justify-between mb-12">
               <h2 className="text-3xl font-bold font-heading text-slate-50">Related Articles</h2>
               <Link prefetch={false} href="/blog" className="text-primary-400 font-medium flex items-center gap-2 hover:gap-3 transition-all">
-                View All <ChevronRight className="w-4 h-4" />
+                Browse All AI Articles <ChevronRight className="w-4 h-4" />
               </Link>
             </div>
             

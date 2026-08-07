@@ -66,7 +66,7 @@ export function TestimonialCard({ testimonials, className }: TestimonialCardProp
                 {testimonials[currentIndex].author.charAt(0)}
               </div>
               <div>
-                <h4 className="text-slate-100 font-semibold">{testimonials[currentIndex].author}</h4>
+                <p className="text-slate-100 font-semibold">{testimonials[currentIndex].author}</p>
                 <p className="text-sm text-slate-400">
                   {testimonials[currentIndex].role} at <span className="text-[#8B5CF6]">{testimonials[currentIndex].company}</span>
                 </p>
