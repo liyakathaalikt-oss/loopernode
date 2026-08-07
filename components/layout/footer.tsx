@@ -83,6 +83,7 @@ export function Footer() {
             <ul className="space-y-4">
               <li><Link prefetch={false} href="/about" className="text-slate-400 hover:text-indigo-400 transition-colors text-sm">About Us</Link></li>
               <li><Link prefetch={false} href="/industries" className="text-slate-400 hover:text-indigo-400 transition-colors text-sm">Industries</Link></li>
+              <li><Link prefetch={false} href="/solutions" className="text-slate-400 hover:text-indigo-400 transition-colors text-sm">Solutions</Link></li>
               <li><Link prefetch={false} href="/blog" className="text-slate-400 hover:text-indigo-400 transition-colors text-sm">Blog</Link></li>
               <li><Link prefetch={false} href="/careers" className="text-slate-400 hover:text-indigo-400 transition-colors text-sm">Careers</Link></li>
               <li><Link prefetch={false} href="/contact" className="text-slate-400 hover:text-indigo-400 transition-colors text-sm">Contact</Link></li>

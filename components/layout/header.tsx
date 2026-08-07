@@ -195,6 +195,11 @@ export function Header() {
                 <span className="absolute bottom-0 left-1/2 w-0 h-0.5 bg-indigo-500 transition-all duration-300 group-hover:w-full group-hover:left-0"></span>
               </Link>
 
+              <Link prefetch={false} href="/solutions" className="px-4 py-2 text-sm font-medium text-slate-300 hover:text-white transition-colors relative group">
+                Solutions
+                <span className="absolute bottom-0 left-1/2 w-0 h-0.5 bg-indigo-500 transition-all duration-300 group-hover:w-full group-hover:left-0"></span>
+              </Link>
+
               <Link prefetch={false} href="/blog" className="px-4 py-2 text-sm font-medium text-slate-300 hover:text-white transition-colors relative group">
                 Blog
                 <span className="absolute bottom-0 left-1/2 w-0 h-0.5 bg-indigo-500 transition-all duration-300 group-hover:w-full group-hover:left-0"></span>

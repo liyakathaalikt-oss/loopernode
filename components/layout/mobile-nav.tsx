@@ -69,6 +69,7 @@ export function MobileNav({ isOpen, onClose }: MobileNavProps) {
     { name: 'Home', href: '/' },
     { name: 'About', href: '/about' },
     { name: 'Industries', href: '/industries' },
+    { name: 'Solutions', href: '/solutions' },
     { name: 'Blog', href: '/blog' },
     { name: 'Contact', href: '/contact' },
   ];
