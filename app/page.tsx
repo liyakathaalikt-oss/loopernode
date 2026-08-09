@@ -81,11 +81,6 @@ export default function HomePage() {
           description="From data collection to annotation and processing, we provide end-to-end AI data solutions trusted by leading technology companies worldwide."
           primaryCTA={{ label: 'Get Started', href: '/contact' }}
           secondaryCTA={{ label: 'Explore AI Data Services', href: '/services' }}
-          stats={[
-            { value: '500M+', label: 'Data Points Processed' },
-            { value: '99.7%', label: 'Accuracy Rate' },
-            { value: '200+', label: 'Enterprise Clients' }
-          ]}
         />
       </section>
 
