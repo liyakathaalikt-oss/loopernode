@@ -9,7 +9,9 @@ import { BlogCard } from "@/components/sections/blog-card";
 import { Newsletter } from "@/components/sections/newsletter";
 import { FadeUp, StaggerContainer, StaggerItem } from "@/components/animations/motion-wrapper";
 import { generatePageMetadata } from "@/lib/metadata";
-import { blogPosts } from "@/content/blog-posts";
+import { PrismaClient } from "@prisma/client";
+
+import prisma from '@/lib/prisma';
 
 export const metadata: Metadata = generatePageMetadata({
   title: "Insights & Resources | Loopernode",
@@ -17,8 +19,38 @@ export const metadata: Metadata = generatePageMetadata({
   path: '/blog'
 });
 
-export default function BlogPage() {
-  const featuredPost = blogPosts.find((post) => post.featured) || blogPosts[0];
+export default async function BlogPage() {
+  const dbPosts = await prisma.blogPost.findMany({
+    where: { published: true },
+    orderBy: { createdAt: "desc" }
+  });
+
+  const posts = dbPosts.map(post => ({
+    title: post.title,
+    excerpt: post.excerpt || "",
+    date: new Date(post.createdAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
+    readTime: "5 min read", 
+    category: post.category || "Technology",
+    slug: post.slug,
+    image: post.coverImage || "",
+    author: {
+      name: post.author || "Loopernode Team",
+      role: "Editor",
+      avatar: ""
+    },
+  }));
+
+  // Default to a fallback if no posts exist
+  const featuredPost = posts[0] || {
+    title: "Welcome to the Loopernode Blog",
+    excerpt: "Stay tuned for exciting insights and updates.",
+    date: new Date().toLocaleDateString(),
+    readTime: "1 min read",
+    category: "Announcements",
+    slug: "",
+    image: "",
+    author: { name: "Admin", role: "Editor", avatar: "" }
+  };
   
   return (
     <main className="flex-1 bg-dark-950">
@@ -116,7 +148,7 @@ export default function BlogPage() {
           </div>
 
           <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {blogPosts.map((post) => (
+            {posts.map((post) => (
               <StaggerItem key={post.slug}>
                 <BlogCard
                   title={post.title}

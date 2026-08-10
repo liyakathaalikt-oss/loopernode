@@ -4,6 +4,7 @@ const nextConfig: NextConfig = {
   experimental: {
     optimizePackageImports: ['lucide-react'],
   },
+  serverExternalPackages: ['better-sqlite3', '@prisma/adapter-better-sqlite3'],
   async redirects() {
     return [
       {

@@ -26,12 +26,35 @@ const PROCESS_STEPS = [
   { title: "Delivery", description: "Secure transfer of high-quality, formatted data." },
 ];
 
-export default function ServicesPage() {
+import { PrismaClient } from "@prisma/client";
+
+import prisma from '@/lib/prisma';
+
+const getServiceIcon = (iconName: string) => {
+  switch (iconName?.toLowerCase()) {
+    case 'database': return <Database className="w-8 h-8 text-indigo-500" />;
+    case 'image': return <ImageIcon className="w-8 h-8 text-cyan-500" />;
+    case 'workflow': return <Workflow className="w-8 h-8 text-violet-500" />;
+    case 'search': return <Search className="w-8 h-8 text-amber-500" />;
+    case 'code': return <Code className="w-8 h-8 text-emerald-500" />;
+    default: return <Layers className="w-8 h-8 text-indigo-500" />;
+  }
+};
+
+export default async function ServicesPage() {
   const serviceSchema = generateServiceSchema({
     name: "AI Data Services",
     description: "Comprehensive AI data services including data collection, labeling, and processing for enterprise models.",
     url: "/services",
   });
+
+  const dbServices = await prisma.service.findMany({
+    orderBy: { order: 'asc' }
+  });
+
+  const services = dbServices.length > 0 ? dbServices : [
+    { title: "Data Collection", slug: "data-collection", description: "Global, diverse, and ethically sourced data.", icon: "database", features: '["Text", "Audio"]' }
+  ];
 
   return (
     <main className="flex min-h-screen flex-col bg-dark-950 text-slate-50">
@@ -58,33 +81,20 @@ export default function ServicesPage() {
         </FadeUp>
 
         <StaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <StaggerItem>
-            <ServiceCard
-              title="Data Collection"
-              description="Global, diverse, and ethically sourced data to form the foundation of your AI."
-              icon={<Database className="w-8 h-8 text-indigo-500" />}
-              href="/services/data-collection"
-              features={["Text, Audio & Video", "Multilingual Sourcing", "Synthetic Data", "Custom Scraping"]}
-            />
-          </StaggerItem>
-          <StaggerItem>
-            <ServiceCard
-              title="Data Labeling"
-              description="High-precision human-in-the-loop annotations for complex computer vision and NLP tasks."
-              icon={<ImageIcon className="w-8 h-8 text-cyan-500" />}
-              href="/services/data-labeling"
-              features={["Bounding Boxes", "Semantic Segmentation", "RLHF for LLMs", "Sentiment Analysis"]}
-            />
-          </StaggerItem>
-          <StaggerItem>
-            <ServiceCard
-              title="Data Processing"
-              description="Cleansing, formatting, and structuring raw data into ready-to-train datasets."
-              icon={<Workflow className="w-8 h-8 text-violet-500" />}
-              href="/services/data-processing"
-              features={["Data Cleansing", "Normalization", "Format Conversion", "Entity Extraction"]}
-            />
-          </StaggerItem>
+          {services.map((service) => {
+            const featuresList = service.features ? JSON.parse(service.features as string) : [];
+            return (
+              <StaggerItem key={service.slug}>
+                <ServiceCard
+                  title={service.title}
+                  description={service.description}
+                  icon={getServiceIcon(service.icon || "")}
+                  href={`/services/${service.slug}`}
+                  features={featuresList}
+                />
+              </StaggerItem>
+            );
+          })}
         </StaggerContainer>
       </section>
 

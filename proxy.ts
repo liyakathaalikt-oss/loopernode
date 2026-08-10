@@ -1,12 +1,30 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
+import { auth } from '@/lib/auth';
 
-export function proxy(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   const ua = request.headers.get('user-agent') || '';
   const blocked = ['GPTBot', 'CCBot', 'FacebookBot', 'Googlebot', 'Bingbot', 'AhrefsBot'];
   
   if (blocked.some(bot => ua.includes(bot))) {
     return new NextResponse('Access Denied', { status: 403 });
+  }
+
+  // --- Auth logic for /admin routes ---
+  if (request.nextUrl.pathname.startsWith('/admin')) {
+    const session = await auth();
+    
+    // Protect all /admin routes except /admin/login
+    if (!request.nextUrl.pathname.startsWith('/admin/login')) {
+      if (!session) {
+        return NextResponse.redirect(new URL('/admin/login', request.url));
+      }
+    }
+
+    // Redirect authenticated users away from login page
+    if (request.nextUrl.pathname.startsWith('/admin/login') && session) {
+      return NextResponse.redirect(new URL('/admin', request.url));
+    }
   }
   
   return NextResponse.next();
@@ -14,13 +32,6 @@ export function proxy(request: NextRequest) {
 
 export const config = {
   matcher: [
-    /*
-     * Match all request paths except for the ones starting with:
-     * - _next/static (static files)
-     * - _next/image (image optimization files)
-     * - favicon.ico, sitemap.xml, robots.txt (metadata files)
-     * - images, css, and static assets
-     */
     '/((?!_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt|.*\\.(?:svg|png|jpg|jpeg|gif|webp|css|js|woff|woff2)$).*)',
   ],
 };

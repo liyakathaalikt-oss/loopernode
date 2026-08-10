@@ -30,9 +30,19 @@ export const metadata = generatePageMetadata({
   path: '/careers',
 });
 
-import { jobs } from '@/content/jobs';
 
-export default function CareersPage() {
+import prisma from '@/lib/prisma';
+
+export default async function CareersPage() {
+  const dbJobs = await prisma.jobPosting.findMany({
+    where: { status: 'OPEN' },
+    orderBy: { order: 'asc' }
+  });
+
+  // Fallback if no jobs exist yet
+  const jobs = dbJobs.length > 0 ? dbJobs : [
+    { title: "No Open Roles", slug: "", department: "General", type: "Full-Time", location: "Remote", description: "We currently don't have any open positions, but check back soon!" }
+  ];
   const whyUsItems = [
     {
       icon: <Rocket className="w-6 h-6 text-indigo-400" />,

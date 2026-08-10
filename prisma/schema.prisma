@@ -1,0 +1,131 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id        String   @id @default(cuid())
+  username  String   @unique
+  password  String
+  name      String?
+  role      String   @default("ADMIN")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// Collections
+model BlogPost {
+  id          String   @id @default(cuid())
+  title       String
+  slug        String   @unique
+  excerpt     String?
+  content     String   
+  coverImage  String?
+  author      String?
+  category    String?
+  tags        String   // Stored as JSON string
+  published   Boolean  @default(false)
+  seoTitle    String?
+  seoDesc     String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model JobPosting {
+  id          String   @id @default(cuid())
+  title       String
+  slug        String   @unique
+  department  String
+  location    String
+  type        String
+  description String   
+  status      String   @default("OPEN")
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model TeamMember {
+  id          String   @id @default(cuid())
+  name        String
+  role        String
+  bio         String?  
+  image       String?
+  linkedinUrl String?
+  twitterUrl  String?
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Testimonial {
+  id          String   @id @default(cuid())
+  clientName  String
+  clientRole  String?
+  company     String?
+  content     String   
+  image       String?
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model CaseStudy {
+  id          String   @id @default(cuid())
+  title       String
+  slug        String   @unique
+  client      String
+  industry    String
+  challenge   String   
+  solution    String   
+  results     String   // Stored as JSON string
+  image       String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Faq {
+  id          String   @id @default(cuid())
+  question    String
+  answer      String   
+  category    String?
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Service {
+  id          String   @id @default(cuid())
+  title       String
+  slug        String   @unique
+  description String   
+  icon        String?
+  features    String   // Stored as JSON string
+  content     String?  
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// Global Content (Singletons stored as key-value JSON)
+model GlobalContent {
+  id        String   @id @default(cuid())
+  key       String   @unique // e.g. "homepage", "about_us", "contact", "footer", "seo"
+  data      String   // Stored as JSON string
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Media {
+  id        String   @id @default(cuid())
+  url       String   @unique
+  filename  String
+  size      Int
+  mimeType  String
+  alt       String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}

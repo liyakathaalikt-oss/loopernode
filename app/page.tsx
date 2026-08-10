@@ -64,7 +64,41 @@ const technologies = [
   "CVAT", "Label Studio", "Labelbox", "Hugging Face", "OpenCV", "scikit-learn"
 ];
 
-export default function HomePage() {
+import { getGlobalContent } from '@/app/actions/content';
+
+import prisma from '@/lib/prisma';
+
+export default async function HomePage() {
+  // Fetch from database
+  const dbTestimonials = await prisma.testimonial.findMany();
+  const activeTestimonials = dbTestimonials.length > 0 ? dbTestimonials.map(t => ({
+    quote: t.content,
+    author: t.clientName,
+    role: t.clientRole || "Client",
+    company: t.company || "Company",
+    rating: 5,
+  })) : testimonials;
+
+  const dbCaseStudies = await prisma.caseStudy.findMany();
+  const activeCaseStudies = dbCaseStudies.length > 0 ? dbCaseStudies.map(cs => ({
+    title: cs.title,
+    client: cs.client,
+    industry: cs.industry || "AI Development",
+    challengeExcerpt: cs.challenge || "",
+    slug: cs.slug,
+  })) : caseStudies;
+
+  const dbFaqs = await prisma.faq.findMany({ orderBy: { order: 'asc' }});
+  const activeFaqs = dbFaqs.length > 0 ? dbFaqs.map(f => ({
+    question: f.question,
+    answer: f.answer,
+  })) : homeFAQs;
+
+  // Global Content overrides
+  const homepageContent = await getGlobalContent('homepage');
+  const heroHeadline = homepageContent?.heroHeadline || "Enterprise AI Data Services";
+  const heroHighlighted = homepageContent?.heroHighlighted || "Intelligent Systems";
+  
   return (
     <main className="flex min-h-screen flex-col bg-[#0A0A1B] text-slate-200">
       <script
@@ -75,9 +109,9 @@ export default function HomePage() {
       {/* SECTION 1: Hero */}
       <section className="pt-20 md:pt-28 pb-10 border-b border-white/5">
         <Hero 
-          headline="Enterprise AI Data Services"
+          headline={heroHeadline}
           titleLine2="That Power"
-          highlightedText="Intelligent Systems"
+          highlightedText={heroHighlighted}
           description="From data collection to annotation and processing, we provide end-to-end AI data solutions trusted by leading technology companies worldwide."
           primaryCTA={{ label: 'Get Started', href: '/contact' }}
           secondaryCTA={{ label: 'Explore AI Data Services', href: '/services' }}
@@ -338,7 +372,7 @@ export default function HomePage() {
           </div>
         </FadeUp>
         <StaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {caseStudies.slice(0, 3).map((study: any, index: number) => (
+          {activeCaseStudies.slice(0, 3).map((study: any, index: number) => (
             <StaggerItem key={index}>
               <div className="h-full flex flex-col p-8 rounded-3xl bg-white/5 border border-white/10 hover:border-indigo-500/40 transition-all duration-500 group">
                 <span className="inline-block px-3 py-1 rounded-full bg-indigo-500/20 text-indigo-300 text-xs font-semibold uppercase tracking-wider mb-6 w-max">
@@ -374,7 +408,7 @@ export default function HomePage() {
           />
         </FadeUp>
         <div className="mt-16">
-          <TestimonialCard testimonials={testimonials} />
+          <TestimonialCard testimonials={activeTestimonials} />
         </div>
       </section>
 
@@ -389,7 +423,7 @@ export default function HomePage() {
           />
         </FadeUp>
         <div className="mt-16">
-          <FAQAccordion faqs={homeFAQs} generateSchema={true} />
+          <FAQAccordion faqs={activeFaqs} generateSchema={true} />
         </div>
       </section>
 

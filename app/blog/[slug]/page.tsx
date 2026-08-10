@@ -3,8 +3,8 @@ import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import { Calendar, Clock, ChevronRight, User } from "lucide-react";
+import { PrismaClient } from "@prisma/client";
 
-import { blogPosts } from "@/content/blog-posts";
 import { generateBlogPostSchema } from "@/lib/schema";
 import { generateKeywords } from "@/app/config/seo-keywords";
 import { Breadcrumb } from "@/components/layout/breadcrumb";
@@ -12,26 +12,28 @@ import { Newsletter } from "@/components/sections/newsletter";
 import { BlogCard } from "@/components/sections/blog-card";
 import { ShareButtons } from "./share-buttons";
 
+import prisma from "@/lib/prisma";
 interface BlogPostPageProps {
   params: Promise<{
     slug: string;
   }>;
 }
 
-export function generateStaticParams() {
-  return blogPosts.map((post) => ({
+export async function generateStaticParams() {
+  const posts = await prisma.blogPost.findMany({
+    select: { slug: true }
+  });
+  return posts.map((post) => ({
     slug: post.slug,
   }));
 }
 
 export async function generateMetadata({ params }: BlogPostPageProps): Promise<Metadata> {
   const { slug } = await params;
-  const post = blogPosts.find((p) => p.slug === slug);
+  const post = await prisma.blogPost.findUnique({ where: { slug } });
 
   if (!post) {
-    return {
-      title: "Post Not Found",
-    };
+    return { title: "Post Not Found" };
   }
 
   return {
@@ -40,33 +42,48 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
     keywords: generateKeywords('blog'),
     openGraph: {
       title: post.title,
-      description: post.excerpt,
+      description: post.excerpt || "",
       type: "article",
-      publishedTime: post.date,
-      authors: [post.author.name],
-      tags: post.tags,
-      images: post.image ? [post.image] : undefined,
+      publishedTime: post.createdAt.toISOString(),
+      authors: [post.author || "Loopernode Team"],
+      tags: post.tags ? post.tags.split(',') : [],
+      images: post.coverImage ? [post.coverImage] : undefined,
     },
     twitter: {
       card: "summary_large_image",
       title: post.title,
-      description: post.excerpt,
-      images: post.image ? [post.image] : undefined,
+      description: post.excerpt || "",
+      images: post.coverImage ? [post.coverImage] : undefined,
     },
   };
 }
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const { slug } = await params;
-  const post = blogPosts.find((p) => p.slug === slug);
+  const post = await prisma.blogPost.findUnique({ where: { slug } });
 
   if (!post) {
     notFound();
   }
 
-  const relatedPosts = blogPosts
-    .filter((p) => p.slug !== post.slug)
-    .slice(0, 3);
+  const relatedDbPosts = await prisma.blogPost.findMany({
+    where: { 
+      slug: { not: slug },
+      published: true
+    },
+    take: 3,
+    orderBy: { createdAt: 'desc' }
+  });
+
+  const relatedPosts = relatedDbPosts.map(rp => ({
+    title: rp.title,
+    excerpt: rp.excerpt || "",
+    date: new Date(rp.createdAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
+    readTime: "5 min read",
+    category: rp.category || "General",
+    slug: rp.slug,
+    image: rp.coverImage || "",
+  }));
 
   const breadcrumbs = [
     { label: "Home", href: "/" },
@@ -74,7 +91,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     { label: post.title, href: `/blog/${post.slug}` },
   ];
 
-  const contentParagraphs = post.content.split("\n\n").filter(Boolean);
+  const tags = post.tags ? post.tags.split(',').map(t => t.trim()).filter(Boolean) : [];
 
   return (
     <main className="flex-1 bg-dark-950">
@@ -83,10 +100,10 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(generateBlogPostSchema({
             title: post.title,
-            description: post.excerpt,
-            image: post.image,
-            datePublished: post.date,
-            authorName: post.author.name,
+            description: post.excerpt || "",
+            image: post.coverImage || "",
+            datePublished: post.createdAt.toISOString(),
+            authorName: post.author || "Loopernode Team",
             url: '/blog/' + post.slug
           })),
         }}
@@ -99,7 +116,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           <header className="mb-12">
             <div className="flex items-center gap-4 mb-6">
               <span className="inline-flex items-center px-3 py-1 rounded-full bg-primary-500/10 text-primary-400 font-medium border border-primary-500/20 text-sm">
-                {post.category}
+                {post.category || "General"}
               </span>
             </div>
             
@@ -112,27 +129,19 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                 <div className="flex items-center gap-3">
                   <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary-500 to-secondary-500 p-[2px]">
                     <div className="w-full h-full rounded-full overflow-hidden bg-dark-950 flex items-center justify-center">
-                      {post.author.avatar ? (
-                        <Image src={post.author.avatar} alt={post.author.name} width={48} height={48} className="object-cover" />
-                      ) : (
-                        <User className="w-6 h-6 text-slate-300" />
-                      )}
+                      <User className="w-6 h-6 text-slate-300" />
                     </div>
                   </div>
                   <div>
-                    <p className="text-sm font-medium text-slate-50">{post.author.name}</p>
-                    <p className="text-xs text-slate-400">{post.author.role}</p>
+                    <p className="text-sm font-medium text-slate-50">{post.author || "Loopernode Team"}</p>
+                    <p className="text-xs text-slate-400">Author</p>
                   </div>
                 </div>
                 <div className="h-8 w-px bg-white/[0.08] hidden sm:block"></div>
                 <div className="flex items-center gap-4 text-sm text-slate-400 hidden sm:flex">
                   <span className="flex items-center gap-1.5">
                     <Calendar className="w-4 h-4" />
-                    {post.date}
-                  </span>
-                  <span className="flex items-center gap-1.5">
-                    <Clock className="w-4 h-4" />
-                    {post.readTime}
+                    {new Date(post.createdAt).toLocaleDateString()}
                   </span>
                 </div>
               </div>
@@ -141,10 +150,10 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             </div>
           </header>
 
-          {post.image ? (
+          {post.coverImage ? (
             <div className="relative aspect-[21/9] w-full rounded-2xl overflow-hidden mb-16 border border-white/[0.08]">
               <Image
-                src={post.image}
+                src={post.coverImage}
                 alt={post.title}
                 fill
                 className="object-cover"
@@ -157,51 +166,19 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             </div>
           )}
 
-          <div className="prose prose-invert prose-lg max-w-3xl mx-auto mb-16">
-            {contentParagraphs.map((paragraph, index) => {
-              if (paragraph.startsWith("# ")) {
-                return <h2 key={index} className="text-3xl font-bold text-slate-50 mt-12 mb-6">{paragraph.replace("# ", "")}</h2>;
-              } else if (paragraph.startsWith("## ")) {
-                return <h3 key={index} className="text-2xl font-bold text-slate-50 mt-10 mb-5">{paragraph.replace("## ", "")}</h3>;
-              } else if (paragraph.startsWith("### ")) {
-                return <h4 key={index} className="text-xl font-bold text-slate-50 mt-8 mb-4">{paragraph.replace("### ", "")}</h4>;
-              }
-              return (
-                <p key={index} className="text-lg leading-relaxed text-slate-300 mb-6">
-                  {paragraph}
-                </p>
-              );
-            })}
-          </div>
+          {/* Render TipTap HTML Content */}
+          <div 
+            className="prose prose-invert prose-lg prose-headings:font-bold prose-a:text-primary-400 max-w-3xl mx-auto mb-16"
+            dangerouslySetInnerHTML={{ __html: post.content }}
+          />
 
           <div className="max-w-3xl mx-auto mb-16">
             <div className="flex flex-wrap gap-2">
-              {post.tags.map((tag) => (
+              {tags.map((tag) => (
                 <span key={tag} className="px-3 py-1.5 rounded-full bg-white/[0.03] border border-white/[0.08] text-sm text-slate-300">
                   #{tag}
                 </span>
               ))}
-            </div>
-          </div>
-
-          <div className="max-w-3xl mx-auto backdrop-blur-xl bg-white/[0.03] border border-white/[0.08] rounded-2xl p-8 mb-20">
-            <div className="flex flex-col sm:flex-row gap-6 items-center sm:items-start">
-              <div className="w-20 h-20 rounded-full bg-gradient-to-br from-primary-500 to-secondary-500 p-[2px] shrink-0">
-                <div className="w-full h-full rounded-full overflow-hidden bg-dark-950 flex items-center justify-center">
-                  {post.author.avatar ? (
-                    <Image src={post.author.avatar} alt={post.author.name} width={80} height={80} className="object-cover" />
-                  ) : (
-                    <User className="w-8 h-8 text-slate-300" />
-                  )}
-                </div>
-              </div>
-              <div className="text-center sm:text-left">
-                <h3 className="text-xl font-bold text-slate-50 mb-1">{post.author.name}</h3>
-                <p className="text-sm text-primary-400 mb-4">{post.author.role}</p>
-                <p className="text-slate-300 text-sm leading-relaxed">
-                  {post.author.bio}
-                </p>
-              </div>
             </div>
           </div>
         </div>
@@ -213,7 +190,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             <div className="flex items-center justify-between mb-12">
               <h2 className="text-3xl font-bold font-heading text-slate-50">Related Articles</h2>
               <Link prefetch={false} href="/blog" className="text-primary-400 font-medium flex items-center gap-2 hover:gap-3 transition-all">
-                Browse All AI Articles <ChevronRight className="w-4 h-4" />
+                Browse All Articles <ChevronRight className="w-4 h-4" />
               </Link>
             </div>
             

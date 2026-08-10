@@ -34,7 +34,8 @@ import { Timeline } from '@/components/sections/timeline';
 import { CTABanner } from '@/components/sections/cta-banner';
 import { FadeUp, StaggerContainer, StaggerItem, FadeIn } from '@/components/animations/motion-wrapper';
 
-import { teamMembers } from '@/content/team';
+
+import prisma from '@/lib/prisma';
 
 export const metadata = generatePageMetadata({ 
   title: 'About Us | Loopernode', 
@@ -42,7 +43,14 @@ export const metadata = generatePageMetadata({
   path: '/about' 
 });
 
-export default function AboutPage() {
+export default async function AboutPage() {
+  const dbTeamMembers = await prisma.teamMember.findMany({
+    orderBy: { order: 'asc' }
+  });
+
+  const teamMembers = dbTeamMembers.length > 0 ? dbTeamMembers : [
+    { name: "Placeholder", role: "Please add team members in the Admin CMS", bio: "", image: "", linkedinUrl: "" }
+  ];
   const milestones = [
     { year: '2014', title: 'The Beginning', description: 'Loopernode was founded in a small university lab by researchers frustrated with the lack of quality training data.' },
     { year: '2016', title: 'First Enterprise Client', description: 'Secured our first Fortune 500 client, expanding our team to 50 dedicated data specialists.' },
