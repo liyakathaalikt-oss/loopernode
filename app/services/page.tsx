@@ -41,6 +41,10 @@ const getServiceIcon = (iconName: string) => {
   }
 };
 
+
+export const revalidate = 0;
+// Opt out of Next.js static caching to ensure CMS updates are instant
+
 export default async function ServicesPage() {
   const serviceSchema = generateServiceSchema({
     name: "AI Data Services",

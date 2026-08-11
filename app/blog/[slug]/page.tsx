@@ -58,6 +58,10 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
   };
 }
 
+
+export const revalidate = 0;
+// Opt out of Next.js static caching to ensure CMS updates are instant
+
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const { slug } = await params;
   const post = await prisma.blogPost.findUnique({ where: { slug } });

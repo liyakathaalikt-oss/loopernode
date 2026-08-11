@@ -68,6 +68,10 @@ import { getGlobalContent } from '@/app/actions/content';
 
 import prisma from '@/lib/prisma';
 
+
+export const revalidate = 0;
+// Opt out of Next.js static caching to ensure CMS updates are instant
+
 export default async function HomePage() {
   // Fetch from database
   const dbTestimonials = await prisma.testimonial.findMany();

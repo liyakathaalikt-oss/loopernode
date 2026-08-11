@@ -27,6 +27,10 @@ const offices = [
   },
 ];
 
+
+export const revalidate = 0;
+// Opt out of Next.js static caching to ensure CMS updates are instant
+
 export default function ContactPage() {
   return (
     <main className="flex-1 bg-dark-950">

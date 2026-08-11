@@ -30,6 +30,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   });
 }
 
+
+export const revalidate = 0;
+// Opt out of Next.js static caching to ensure CMS updates are instant
+
 export default async function JobDetailsPage({ params }: PageProps) {
   const { slug } = await params;
   const job = await prisma.jobPosting.findUnique({ where: { slug } });

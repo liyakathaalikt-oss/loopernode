@@ -14,6 +14,10 @@ export const metadata = generatePageMetadata({
   path: '/case-studies',
 });
 
+
+export const revalidate = 0;
+// Opt out of Next.js static caching to ensure CMS updates are instant
+
 export default function CaseStudiesPage() {
   const featuredStudy = caseStudies[0];
   const statsData = [

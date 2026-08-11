@@ -43,6 +43,10 @@ export const metadata = generatePageMetadata({
   path: '/about' 
 });
 
+
+export const revalidate = 0;
+// Opt out of Next.js static caching to ensure CMS updates are instant
+
 export default async function AboutPage() {
   const dbTeamMembers = await prisma.teamMember.findMany({
     orderBy: { order: 'asc' }

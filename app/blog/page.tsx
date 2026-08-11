@@ -19,6 +19,10 @@ export const metadata: Metadata = generatePageMetadata({
   path: '/blog'
 });
 
+
+export const revalidate = 0;
+// Opt out of Next.js static caching to ensure CMS updates are instant
+
 export default async function BlogPage() {
   const dbPosts = await prisma.blogPost.findMany({
     where: { published: true },

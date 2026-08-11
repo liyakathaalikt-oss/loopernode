@@ -33,6 +33,10 @@ export const metadata = generatePageMetadata({
 
 import prisma from '@/lib/prisma';
 
+
+export const revalidate = 0;
+// Opt out of Next.js static caching to ensure CMS updates are instant
+
 export default async function CareersPage() {
   const dbJobs = await prisma.jobPosting.findMany({
     where: { status: 'OPEN' },
