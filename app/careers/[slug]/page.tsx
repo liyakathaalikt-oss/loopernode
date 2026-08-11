@@ -12,10 +12,6 @@ interface PageProps {
   params: Promise<{ slug: string }>;
 }
 
-export async function generateStaticParams() {
-  const jobs = await prisma.jobPosting.findMany({ select: { slug: true }});
-  return jobs.map((job) => ({ slug: job.slug }));
-}
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
@@ -31,8 +27,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 }
 
 
-export const revalidate = 0;
-// Opt out of Next.js static caching to ensure CMS updates are instant
+export const dynamic = "force-dynamic";
 
 export default async function JobDetailsPage({ params }: PageProps) {
   const { slug } = await params;

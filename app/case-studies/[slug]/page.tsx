@@ -42,8 +42,7 @@ export async function generateMetadata({ params }: CaseStudyPageProps): Promise<
 }
 
 
-export const revalidate = 0;
-// Opt out of Next.js static caching to ensure CMS updates are instant
+export const dynamic = "force-dynamic";
 
 export default async function CaseStudyDetailPage({ params }: CaseStudyPageProps) {
   const { slug } = await params;

@@ -15,8 +15,7 @@ export const metadata = generatePageMetadata({
 });
 
 
-export const revalidate = 0;
-// Opt out of Next.js static caching to ensure CMS updates are instant
+export const dynamic = "force-dynamic";
 
 export default function CaseStudiesPage() {
   const featuredStudy = caseStudies[0];

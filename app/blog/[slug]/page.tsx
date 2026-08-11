@@ -19,14 +19,6 @@ interface BlogPostPageProps {
   }>;
 }
 
-export async function generateStaticParams() {
-  const posts = await prisma.blogPost.findMany({
-    select: { slug: true }
-  });
-  return posts.map((post) => ({
-    slug: post.slug,
-  }));
-}
 
 export async function generateMetadata({ params }: BlogPostPageProps): Promise<Metadata> {
   const { slug } = await params;
@@ -59,8 +51,7 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
 }
 
 
-export const revalidate = 0;
-// Opt out of Next.js static caching to ensure CMS updates are instant
+export const dynamic = "force-dynamic";
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const { slug } = await params;
