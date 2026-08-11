@@ -3,7 +3,6 @@
 import { PrismaClient } from "@prisma/client";
 import { revalidatePath } from "next/cache";
 import { auth } from "@/lib/auth";
-import { redirect } from "next/navigation";
 
 import prisma from '@/lib/prisma';
 
@@ -63,7 +62,7 @@ export async function saveJob(formData: FormData) {
   revalidatePath("/careers");
   revalidatePath(`/careers/${slug}`);
   
-  redirect("/admin/careers");
+  return { success: true };
 }
 
 export async function deleteJob(id: string) {

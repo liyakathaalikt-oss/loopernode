@@ -77,6 +77,8 @@ export const metadata: Metadata = {
 
 import { generateOrganizationSchema, generateLocalBusinessSchema } from "@/lib/schema";
 
+import { ConditionalLayout } from "@/components/layout/conditional-layout";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -119,16 +121,18 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-screen flex flex-col bg-dark-950 text-slate-50 font-sans antialiased">
-        <a href="#main-content" className="skip-to-content">
-          Skip to main content
-        </a>
-        <Header />
-        <main id="main-content" className="flex-1">
+        <ConditionalLayout
+          header={<Header />}
+          footer={<Footer />}
+          extras={
+            <>
+              <BackToTop />
+              <CookieConsent />
+            </>
+          }
+        >
           {children}
-        </main>
-        <Footer />
-        <BackToTop />
-        <CookieConsent />
+        </ConditionalLayout>
       </body>
     </html>
   );

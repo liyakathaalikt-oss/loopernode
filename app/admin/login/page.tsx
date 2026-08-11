@@ -1,6 +1,11 @@
-import { signIn } from "@/lib/auth";
+"use client";
+
+import { useState } from "react";
+import { signInAction } from "./actions";
 
 export default function AdminLoginPage() {
+  const [error, setError] = useState<string | null>(null);
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-dark-950 text-slate-200">
       <div className="w-full max-w-md p-8 glass rounded-2xl border border-white/10 shadow-2xl">
@@ -11,10 +16,18 @@ export default function AdminLoginPage() {
           <p className="text-slate-400 mt-2">Sign in to manage content</p>
         </div>
 
+        {error && (
+          <div className="mb-6 p-3 bg-red-500/10 border border-red-500/20 rounded-lg text-red-400 text-sm text-center">
+            {error}
+          </div>
+        )}
+
         <form
           action={async (formData) => {
-            "use server";
-            await signIn("credentials", formData);
+            const res = await signInAction(formData);
+            if (res?.error) {
+              setError(res.error);
+            }
           }}
           className="space-y-6"
         >

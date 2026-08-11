@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { saveJob } from "@/app/actions/careers";
 import { RichTextEditor } from "@/components/admin/rich-text-editor";
 import { Save, Loader2 } from "lucide-react";
@@ -8,6 +9,7 @@ import { Save, Loader2 } from "lucide-react";
 export function CareerForm({ initialData }: { initialData?: any }) {
   const [isSaving, setIsSaving] = useState(false);
   const [description, setDescription] = useState(initialData?.description || "");
+  const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -22,6 +24,8 @@ export function CareerForm({ initialData }: { initialData?: any }) {
 
     try {
       await saveJob(formData);
+      router.push("/admin/careers");
+      router.refresh();
     } catch (error) {
       console.error(error);
       alert("Failed to save job");

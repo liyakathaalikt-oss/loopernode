@@ -2,7 +2,6 @@
 
 import { revalidatePath } from "next/cache";
 import { auth } from "@/lib/auth";
-import { redirect } from "next/navigation";
 import prisma from "@/lib/prisma";
 
 export async function getCaseStudies() {
@@ -35,7 +34,7 @@ export async function saveCaseStudy(formData: FormData) {
   revalidatePath("/admin/case-studies");
   revalidatePath("/case-studies");
   revalidatePath(`/case-studies/${data.slug}`);
-  redirect("/admin/case-studies");
+  return { success: true };
 }
 
 export async function deleteCaseStudy(id: string) {

@@ -2,7 +2,6 @@
 
 import { revalidatePath } from "next/cache";
 import { auth } from "@/lib/auth";
-import { redirect } from "next/navigation";
 import prisma from "@/lib/prisma";
 
 export async function getFaqs() {
@@ -30,7 +29,7 @@ export async function saveFaq(formData: FormData) {
 
   revalidatePath("/admin/faqs");
   revalidatePath("/");
-  redirect("/admin/faqs");
+  return { success: true };
 }
 
 export async function deleteFaq(id: string) {

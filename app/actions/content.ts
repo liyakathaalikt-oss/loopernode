@@ -3,7 +3,6 @@
 import { PrismaClient } from "@prisma/client";
 import { revalidatePath } from "next/cache";
 import { auth } from "@/lib/auth";
-import { redirect } from "next/navigation";
 
 import prisma from '@/lib/prisma';
 
@@ -35,7 +34,7 @@ export async function saveService(formData: FormData) {
   revalidatePath("/admin/pages");
   revalidatePath("/services");
   revalidatePath(`/services/${data.slug}`);
-  redirect("/admin/pages");
+  return { success: true };
 }
 export async function deleteService(id: string) {
   const session = await auth();
@@ -71,7 +70,7 @@ export async function saveTeamMember(formData: FormData) {
 
   revalidatePath("/admin/team");
   revalidatePath("/about");
-  redirect("/admin/team");
+  return { success: true };
 }
 export async function deleteTeamMember(id: string) {
   const session = await auth();
