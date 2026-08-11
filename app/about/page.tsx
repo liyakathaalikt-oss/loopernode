@@ -84,18 +84,16 @@ export default async function AboutPage() {
       <section className="py-20 md:py-28 container mx-auto px-4 border-b border-white/5">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <FadeUp>
-            <div className="relative rounded-3xl overflow-hidden aspect-[4/3] border border-white/10 bg-slate-800/50">
+            <div className="relative rounded-3xl overflow-hidden aspect-[4/3] border border-white/10 bg-slate-800/50 flex items-center justify-center">
               {/* Team Image */}
-              <div className="absolute inset-0 bg-slate-900">
-                <Image
-                  src="/images/about-team-latest.png"
-                  alt="Loopernode Founding Team"
-                  fill
-                  style={{ objectFit: 'cover', objectPosition: 'center' }}
-                  sizes="(max-width: 1024px) 100vw, 50vw"
-                  priority
-                />
-              </div>
+              <Image
+                src="/images/about-team-latest.png"
+                alt="Loopernode Founding Team"
+                width={800}
+                height={600}
+                className="w-full h-full object-cover"
+                priority
+              />
             </div>
           </FadeUp>
           <FadeUp delay={0.2}>
