@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { getTeamMembers } from "@/app/actions/content";
 import { User, Plus, PenSquare } from "lucide-react";
 import { DeleteTeamMemberButton } from "./delete-button";
@@ -41,7 +40,7 @@ export default async function TeamManagerPage() {
                 <tr key={member.id} className="border-b border-white/5 hover:bg-white/5 transition-colors">
                   <td className="px-6 py-4 font-medium text-white flex items-center gap-3">
                     {member.image ? (
-                      <Image src={member.image} alt={member.name} width={40} height={40} className="rounded-full object-cover w-10 h-10 border border-white/10" />
+                      <img src={member.image} alt={member.name} className="rounded-full object-cover w-10 h-10 border border-white/10" />
                     ) : (
                       <div className="w-10 h-10 rounded-full bg-white/10 border border-white/10 flex items-center justify-center">
                         <User size={18} className="text-slate-400" />
