@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import prisma from '../lib/prisma';
 import { teamMembers } from '../content/team';
 import { blogPosts } from '../content/blog-posts';
