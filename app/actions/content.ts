@@ -3,6 +3,7 @@
 import { PrismaClient } from "@prisma/client";
 import { revalidatePath } from "next/cache";
 import { auth } from "@/lib/auth";
+import { put } from "@vercel/blob";
 
 import prisma from '@/lib/prisma';
 
@@ -56,11 +57,23 @@ export async function saveTeamMember(formData: FormData) {
   if (!session?.user) throw new Error("Unauthorized");
   
   const id = formData.get("id") as string | null;
+  const imageFile = formData.get("imageFile") as File | null;
+  const currentImage = formData.get("currentImage") as string | null;
+  
+  let imageUrl = currentImage || "";
+
+  if (imageFile && imageFile.size > 0) {
+    const blob = await put(`team/${Date.now()}-${imageFile.name}`, imageFile, {
+      access: 'public',
+    });
+    imageUrl = blob.url;
+  }
+
   const data = {
     name: formData.get("name") as string,
     role: formData.get("role") as string,
     bio: formData.get("bio") as string,
-    image: formData.get("image") as string,
+    image: imageUrl,
     linkedinUrl: formData.get("linkedinUrl") as string,
     order: parseInt(formData.get("order") as string || "0"),
   };

@@ -64,13 +64,19 @@ export function TeamForm({ member }: { member?: any }) {
 
         <div className="space-y-2 md:col-span-2">
           <label className="text-sm font-medium text-slate-300">Profile Image</label>
+          {member?.image && (
+            <div className="mb-2">
+              <img src={member.image} alt="Current profile" className="w-16 h-16 object-cover rounded-lg border border-white/10" />
+              <input type="hidden" name="currentImage" value={member.image} />
+            </div>
+          )}
           <input
-            type="text"
-            name="image"
-            defaultValue={member?.image}
-            className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-primary-500"
-            placeholder="Paste image URL here..."
+            type="file"
+            name="imageFile"
+            accept="image/*"
+            className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-primary-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-primary-500 file:text-white hover:file:bg-primary-600 cursor-pointer"
           />
+          <p className="text-xs text-slate-400 mt-1">Upload a new image to replace the current one.</p>
         </div>
 
         <div className="space-y-2 md:col-span-2">

@@ -59,6 +59,71 @@ async function main() {
   }
   console.log(`✅ Migrated ${testimonials.length} testimonials.`);
 
+  // --- TEAM MEMBERS ---
+  console.log('Migrating Team Members...');
+  for (let i = 0; i < teamMembers.length; i++) {
+    const member = teamMembers[i];
+    const existing = await prisma.teamMember.findFirst({ where: { name: member.name } });
+    if (!existing) {
+      await prisma.teamMember.create({
+        data: {
+          name: member.name,
+          role: member.role,
+          bio: member.bio,
+          image: member.image,
+          linkedinUrl: member.linkedin,
+          order: i,
+        }
+      });
+    }
+  }
+  console.log(`✅ Migrated ${teamMembers.length} team members.`);
+
+  // --- BLOG POSTS ---
+  console.log('Migrating Blog Posts...');
+  for (const post of blogPosts) {
+    const existing = await prisma.blogPost.findFirst({ where: { slug: post.slug } });
+    if (!existing) {
+      await prisma.blogPost.create({
+        data: {
+          title: post.title,
+          slug: post.slug,
+          excerpt: post.excerpt,
+          content: post.content || 'Placeholder content',
+          coverImage: post.image,
+          author: post.author?.name || 'Loopernode Team',
+          category: post.category,
+          tags: JSON.stringify(post.tags || []),
+          published: true,
+          seoTitle: post.title,
+          seoDesc: post.excerpt,
+        }
+      });
+    }
+  }
+  console.log(`✅ Migrated ${blogPosts.length} blog posts.`);
+
+  // --- CASE STUDIES ---
+  console.log('Migrating Case Studies...');
+  for (const study of caseStudies) {
+    const existing = await prisma.caseStudy.findFirst({ where: { slug: study.slug } });
+    if (!existing) {
+      await prisma.caseStudy.create({
+        data: {
+          title: study.title,
+          slug: study.slug,
+          client: study.client,
+          industry: study.industry,
+          challenge: study.challenge,
+          solution: study.solution,
+          results: JSON.stringify(study.results || []),
+          image: study.image,
+        }
+      });
+    }
+  }
+  console.log(`✅ Migrated ${caseStudies.length} case studies.`);
+
   console.log('Migration complete!');
 }
 
