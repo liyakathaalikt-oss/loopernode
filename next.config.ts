@@ -5,6 +5,15 @@ const nextConfig: NextConfig = {
     optimizePackageImports: ['lucide-react'],
   },
   serverExternalPackages: ['better-sqlite3', '@prisma/adapter-better-sqlite3'],
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '*.public.blob.vercel-storage.com',
+        port: '',
+      },
+    ],
+  },
   async redirects() {
     return [
       {
