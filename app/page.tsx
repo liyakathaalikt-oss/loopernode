@@ -181,7 +181,6 @@ export default async function HomePage() {
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-3/4 bg-indigo-500/10 blur-[120px] rounded-full pointer-events-none" />
         <FadeUp>
           <SectionTitle 
-            eyebrow="Our Services" 
             title="Comprehensive AI Data" 
             highlightedWord="Services" 
             align="center" 
