@@ -29,7 +29,7 @@ export default function CaseStudiesPage() {
   return (
     <main className="flex min-h-screen flex-col bg-[#0A0A1B] text-slate-200">
       {/* 1. Hero Section */}
-      <section className="pt-20 md:pt-28 pb-10 border-b border-white/5">
+      <section className="pb-10 border-b border-white/5">
         <Hero
           headline="Enterprise Case"
           highlightedText="Studies"
@@ -214,3 +214,4 @@ export default function CaseStudiesPage() {
     </main>
   );
 }
+
