@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useEffect, useState } from 'react';
-import { motion, useMotionValue, useSpring, useTransform, useReducedMotion, MotionValue } from 'framer-motion';
+import React, { useEffect, useState, useRef } from 'react';
+import { motion, useMotionValue, useSpring, useTransform, useReducedMotion, MotionValue, useInView } from 'framer-motion';
 
 // Configuration for the floating circles
 const CIRCLES = [
@@ -23,12 +23,14 @@ function Circle({
   circle, 
   smoothMouseX, 
   smoothMouseY, 
-  prefersReducedMotion 
+  prefersReducedMotion,
+  isInView
 }: { 
   circle: typeof CIRCLES[0], 
   smoothMouseX: MotionValue<number>, 
   smoothMouseY: MotionValue<number>,
-  prefersReducedMotion: boolean | null
+  prefersReducedMotion: boolean | null,
+  isInView: boolean
 }) {
   const translateX = useTransform(smoothMouseX, (v) => prefersReducedMotion ? 0 : v * circle.speedX);
   const translateY = useTransform(smoothMouseY, (v) => prefersReducedMotion ? 0 : v * circle.speedY);
@@ -42,16 +44,18 @@ function Circle({
         top: circle.top,
         left: circle.left,
         border: `5px solid ${circle.color}`,
-        opacity: 0.25,
+        opacity: 0.25, // Fallback base opacity
         x: translateX,
         y: translateY,
       }}
       animate={
-        prefersReducedMotion
+        prefersReducedMotion || !isInView
           ? {}
           : {
               y: [0, -15, 0],
               x: [0, 10, 0],
+              scale: [1, 1.03, 1],
+              opacity: [0.25, 0.35, 0.25]
             }
       }
       transition={{
@@ -67,13 +71,17 @@ function Circle({
 export function DynamicCircles() {
   const prefersReducedMotion = useReducedMotion();
   const [isMounted, setIsMounted] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+  
+  // Pause animations when hero is scrolled out of view for performance
+  const isInView = useInView(containerRef, { once: false, margin: "200px" });
 
   // Mouse position values
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
-  // Smooth springs for parallax effect
-  const springConfig = { damping: 30, stiffness: 100, mass: 2 };
+  // Smooth springs for parallax effect (low intensity, gentle response)
+  const springConfig = { damping: 40, stiffness: 80, mass: 2 };
   const smoothMouseX = useSpring(mouseX, springConfig);
   const smoothMouseY = useSpring(mouseY, springConfig);
 
@@ -83,22 +91,25 @@ export function DynamicCircles() {
     if (prefersReducedMotion) return;
 
     const handleMouseMove = (e: MouseEvent) => {
-      // Normalize mouse position between -1 and 1
+      // Disable parallax interaction on mobile/tablet (< 768px)
+      // or if component is out of view
+      if (window.innerWidth < 768 || !isInView) return;
+
       const normalizedX = (e.clientX / window.innerWidth) * 2 - 1;
       const normalizedY = (e.clientY / window.innerHeight) * 2 - 1;
       
-      mouseX.set(normalizedX * 100);
-      mouseY.set(normalizedY * 100);
+      mouseX.set(normalizedX * 60); // Reduced displacement intensity
+      mouseY.set(normalizedY * 60);
     };
 
     window.addEventListener('mousemove', handleMouseMove);
     return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, [mouseX, mouseY, prefersReducedMotion]);
+  }, [mouseX, mouseY, prefersReducedMotion, isInView]);
 
   if (!isMounted) return null;
 
   return (
-    <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+    <div ref={containerRef} className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
       {CIRCLES.map((circle) => (
         <Circle 
           key={circle.id} 
@@ -106,6 +117,7 @@ export function DynamicCircles() {
           smoothMouseX={smoothMouseX} 
           smoothMouseY={smoothMouseY} 
           prefersReducedMotion={prefersReducedMotion} 
+          isInView={isInView}
         />
       ))}
     </div>
