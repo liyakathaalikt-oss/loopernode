@@ -49,12 +49,13 @@ export function Header() {
       <header
         className={cn(
           "fixed top-0 left-0 right-0 z-40 transition-all duration-500 ease-in-out border-b",
-          isScrolled 
-            ? "backdrop-blur-xl bg-[#0a0a1b]/80 py-4" 
-            : "bg-transparent py-6"
+          isScrolled ? "py-4" : "py-6"
         )}
         style={{
-          borderBottomColor: isScrolled ? 'rgba(255,255,255,0.1)' : 'transparent'
+          borderBottomColor: isScrolled ? 'rgba(255,255,255,0.1)' : 'transparent',
+          backgroundColor: isScrolled ? 'rgba(10,10,27,0.8)' : 'transparent',
+          backdropFilter: isScrolled ? 'blur(24px)' : 'none',
+          WebkitBackdropFilter: isScrolled ? 'blur(24px)' : 'none',
         }}
       >
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
