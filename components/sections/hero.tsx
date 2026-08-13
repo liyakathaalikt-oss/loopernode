@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { FadeUp, ScaleIn } from '@/components/animations/motion-wrapper';
+import { StaggerContainer, StaggerItem, ScaleIn } from '@/components/animations/motion-wrapper';
 import { AnimatedGradientBg } from '@/components/ui/animated-gradient-bg';
 import { DynamicCircles } from '@/components/animations/dynamic-circles';
 import { FloatingBadge } from '@/components/ui/floating-badge';
@@ -57,78 +57,78 @@ export function Hero({
       )}
 
       {/* Content Layer */}
-      <div className="relative z-20 container mx-auto px-6 py-20 text-center max-w-5xl lg:max-w-7xl flex flex-col items-center justify-center">
+      <StaggerContainer className="relative z-20 container mx-auto px-6 py-20 text-center max-w-5xl lg:max-w-7xl flex flex-col items-center justify-center">
         {titleLine2 ? (
-          <div className="mb-6 flex flex-col items-center justify-center gap-y-3 w-full">
+          <StaggerItem className="mb-6 flex flex-col items-center justify-center gap-y-3 w-full">
             <h1 className="font-heading text-5xl md:text-7xl font-extrabold tracking-tighter leading-[1.1] text-[#F8FAFC]">
               <TextReveal text={headline} />
             </h1>
             <div className="font-heading text-3xl md:text-5xl font-bold tracking-tight leading-[1.2] text-[#F8FAFC] flex flex-wrap justify-center gap-x-3 gap-y-2">
-              <TextReveal text={titleLine2} delay={0.3} />
+              <TextReveal text={titleLine2} />
               <TextReveal 
                 text={highlightedText} 
-                delay={0.5} 
-                className="text-transparent bg-clip-text bg-gradient-to-r from-[#6366F1] via-[#8B5CF6] to-[#06B6D4] pb-2" 
+                className="text-transparent bg-clip-text bg-gradient-to-r from-[#6366F1] via-[#8B5CF6] to-[#06B6D4] pb-2 drop-shadow-[0_0_15px_rgba(99,102,241,0.5)]" 
               />
             </div>
-          </div>
+          </StaggerItem>
         ) : (
-          <h1 className={cn("font-heading text-5xl md:text-6xl lg:text-7xl font-bold tracking-tighter leading-[1.1] mb-6 text-[#F8FAFC] flex flex-wrap justify-center gap-x-3 gap-y-2", headlineClassName)}>
+          <StaggerItem className={cn("font-heading text-5xl md:text-6xl lg:text-7xl font-bold tracking-tighter leading-[1.1] mb-6 text-[#F8FAFC] flex flex-wrap justify-center gap-x-3 gap-y-2", headlineClassName)}>
             <TextReveal text={headline} />
             {highlightedText && (
               <TextReveal 
                 text={highlightedText} 
-                delay={0.5} 
-                className="text-transparent bg-clip-text bg-gradient-to-r from-[#6366F1] via-[#8B5CF6] to-[#06B6D4] pb-2" 
+                className="text-transparent bg-clip-text bg-gradient-to-r from-[#6366F1] via-[#8B5CF6] to-[#06B6D4] pb-2 drop-shadow-[0_0_15px_rgba(99,102,241,0.5)]" 
               />
             )}
-          </h1>
+          </StaggerItem>
         )}
         
-        <FadeUp delay={0.2}>
+        <StaggerItem>
           <p className="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto mb-10 leading-relaxed">
             {description}
           </p>
-        </FadeUp>
+        </StaggerItem>
 
-        <FadeUp delay={0.4}>
+        <StaggerItem>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             {primaryCTA.onClick ? (
               <button
                 onClick={primaryCTA.onClick}
-                className="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-[#6366F1] to-[#06B6D4] text-white font-semibold shadow-lg shadow-[#6366F1]/25 hover:shadow-[#6366F1]/40 hover:-translate-y-1 transition-all duration-300"
+                className="group relative overflow-hidden w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-[#6366F1] to-[#06B6D4] text-white font-semibold shadow-[0_0_20px_rgba(99,102,241,0.3)] hover:shadow-[0_0_40px_rgba(99,102,241,0.6)] hover:-translate-y-1 hover:scale-[1.02] transition-all duration-300"
               >
-                {primaryCTA.label}
+                <div className="absolute inset-0 bg-[linear-gradient(to_right,transparent,rgba(255,255,255,0.2),transparent)] -translate-x-[150%] group-hover:animate-shimmer" />
+                <span className="relative z-10">{primaryCTA.label}</span>
               </button>
             ) : primaryCTA.href ? (
               <Link prefetch={false}
                 href={primaryCTA.href}
-                className="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-[#6366F1] to-[#06B6D4] text-white font-semibold shadow-lg shadow-[#6366F1]/25 hover:shadow-[#6366F1]/40 hover:-translate-y-1 transition-all duration-300"
+                className="group relative overflow-hidden w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-[#6366F1] to-[#06B6D4] text-white font-semibold shadow-[0_0_20px_rgba(99,102,241,0.3)] hover:shadow-[0_0_40px_rgba(99,102,241,0.6)] hover:-translate-y-1 hover:scale-[1.02] transition-all duration-300 block text-center"
               >
-                {primaryCTA.label}
+                <div className="absolute inset-0 bg-[linear-gradient(to_right,transparent,rgba(255,255,255,0.2),transparent)] -translate-x-[150%] group-hover:animate-shimmer" />
+                <span className="relative z-10">{primaryCTA.label}</span>
               </Link>
             ) : null}
             
             {secondaryCTA && (
               secondaryCTA.onClick ? (
-                <button
+               <button
                   onClick={secondaryCTA.onClick}
-                  className="w-full sm:w-auto px-8 py-4 rounded-xl backdrop-blur-xl bg-white/5 border border-white/10 text-slate-300 font-semibold hover:bg-white/10 hover:text-white transition-all duration-300"
+                  className="w-full sm:w-auto px-8 py-4 rounded-xl backdrop-blur-xl bg-white/5 border border-white/10 text-slate-300 font-semibold hover:bg-white/10 hover:text-white hover:border-white/30 hover:-translate-y-1 hover:scale-[1.02] shadow-sm hover:shadow-[0_0_20px_rgba(255,255,255,0.1)] transition-all duration-300"
                 >
                   {secondaryCTA.label}
                 </button>
               ) : secondaryCTA.href ? (
                 <Link prefetch={false}
                   href={secondaryCTA.href}
-                  className="w-full sm:w-auto px-8 py-4 rounded-xl backdrop-blur-xl bg-white/5 border border-white/10 text-slate-300 font-semibold hover:bg-white/10 hover:text-white transition-all duration-300"
+                  className="w-full sm:w-auto px-8 py-4 rounded-xl backdrop-blur-xl bg-white/5 border border-white/10 text-slate-300 font-semibold hover:bg-white/10 hover:text-white hover:border-white/30 hover:-translate-y-1 hover:scale-[1.02] shadow-sm hover:shadow-[0_0_20px_rgba(255,255,255,0.1)] transition-all duration-300 block text-center"
                 >
                   {secondaryCTA.label}
                 </Link>
               ) : null
             )}
           </div>
-        </FadeUp>
-      </div>
+        </StaggerItem>
+      </StaggerContainer>
     </section>
   );
 }
