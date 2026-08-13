@@ -78,6 +78,7 @@ export const metadata: Metadata = {
 import { generateOrganizationSchema, generateLocalBusinessSchema } from "@/lib/schema";
 
 import { ConditionalLayout } from "@/components/layout/conditional-layout";
+import { SmoothScrollProvider } from "@/components/ui/smooth-scroll-provider";
 
 export default function RootLayout({
   children,
@@ -121,18 +122,20 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-screen flex flex-col bg-dark-950 text-slate-50 font-sans antialiased">
-        <ConditionalLayout
-          header={<Header />}
-          footer={<Footer />}
-          extras={
-            <>
-              <BackToTop />
-              <CookieConsent />
-            </>
-          }
-        >
-          {children}
-        </ConditionalLayout>
+        <SmoothScrollProvider>
+          <ConditionalLayout
+            header={<Header />}
+            footer={<Footer />}
+            extras={
+              <>
+                <BackToTop />
+                <CookieConsent />
+              </>
+            }
+          >
+            {children}
+          </ConditionalLayout>
+        </SmoothScrollProvider>
       </body>
     </html>
   );
