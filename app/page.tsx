@@ -222,7 +222,6 @@ export default async function HomePage() {
       <section className="py-20 md:py-28 container mx-auto px-4 border-b border-white/5">
         <FadeUp>
           <SectionTitle 
-            eyebrow="How We Work" 
             title="Our Proven Data" 
             highlightedWord="Workflow" 
             align="center" 
@@ -253,7 +252,6 @@ export default async function HomePage() {
       <section className="py-20 md:py-28 container mx-auto px-4 border-b border-white/5 bg-slate-900/30">
         <FadeUp>
           <SectionTitle 
-            eyebrow="Industries We Serve" 
             title="Powering Innovation Across" 
             highlightedWord="Sectors" 
             align="center" 
@@ -280,7 +278,6 @@ export default async function HomePage() {
       <section className="py-20 md:py-28 container mx-auto px-4 border-b border-white/5">
         <FadeUp>
           <SectionTitle 
-            eyebrow="The Loopernode Advantage" 
             title="Why Choose" 
             highlightedWord="Us" 
             align="center" 
