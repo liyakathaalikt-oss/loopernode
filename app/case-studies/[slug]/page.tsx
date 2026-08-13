@@ -159,7 +159,6 @@ export default async function CaseStudyDetailPage({ params }: CaseStudyPageProps
         <div className="pt-6">
           <FadeUp>
             <SectionTitle
-              eyebrow="MEASURABLE IMPACT"
               title="Key Business"
               highlightedWord="Results"
               description="Quantifiable breakthroughs achieved through Loopernode's dedicated data engineering pipeline."

@@ -100,7 +100,6 @@ export default async function AboutPage() {
           </FadeUp>
           <FadeUp delay={0.2}>
             <SectionTitle 
-              eyebrow="Our Story" 
               title="From a Small Lab to Global" 
               highlightedWord="Impact" 
               align="left" 
@@ -160,7 +159,6 @@ export default async function AboutPage() {
       <section className="py-20 md:py-28 container mx-auto px-4 border-b border-white/5">
         <FadeUp>
           <SectionTitle 
-            eyebrow="Core Principles" 
             title="The Values That" 
             highlightedWord="Drive Us" 
             align="center" 
@@ -180,7 +178,6 @@ export default async function AboutPage() {
       <section className="py-20 md:py-28 container mx-auto px-4 border-b border-white/5 bg-slate-900/30">
         <FadeUp>
           <SectionTitle 
-            eyebrow="Leadership" 
             title="Meet the" 
             highlightedWord="Experts" 
             align="center" 
@@ -270,7 +267,6 @@ export default async function AboutPage() {
       <section className="py-20 md:py-28 container mx-auto px-4 border-b border-white/5">
         <FadeUp>
           <SectionTitle 
-            eyebrow="Our Journey" 
             title="A Decade of" 
             highlightedWord="Innovation" 
             align="center" 
@@ -285,7 +281,6 @@ export default async function AboutPage() {
       <section className="py-20 md:py-28 container mx-auto px-4 border-b border-white/5">
         <FadeUp>
           <SectionTitle 
-            eyebrow="Life at Loopernode" 
             title="Our Corporate" 
             highlightedWord="Culture" 
             align="center" 
@@ -321,7 +316,6 @@ export default async function AboutPage() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <FadeUp>
             <SectionTitle 
-              eyebrow="The Loopernode Standard" 
               title="Why Industry Leaders" 
               highlightedWord="Trust Us" 
               align="left" 
@@ -397,4 +391,5 @@ export default async function AboutPage() {
     </main>
   );
 }
+
 

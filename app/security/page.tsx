@@ -182,7 +182,6 @@ export default function SecurityPage() {
       <section className="py-20 md:py-28 container mx-auto px-4 border-b border-white/5">
         <FadeUp>
           <SectionTitle
-            eyebrow="Security Overview"
             title="Unwavering Protection for Your"
             highlightedWord="AI Assets"
             description="At Loopernode, security is not an afterthought—it is embedded into every line of code, network configuration, and data labeling workflow. We understand that your dataset is your core competitive advantage."
@@ -249,7 +248,6 @@ export default function SecurityPage() {
         <section id="compliance" className="py-20 md:py-28 container mx-auto px-4 border-b border-white/5 scroll-mt-24">
           <FadeUp>
           <SectionTitle
-            eyebrow="Standards & Frameworks"
             title="Compliance &"
             highlightedWord="Certifications"
             description="We rigorously adhere to globally recognized security frameworks and privacy laws to satisfy even the most demanding enterprise compliance audits."
@@ -286,7 +284,6 @@ export default function SecurityPage() {
           <div className="lg:col-span-5">
             <FadeUp>
               <SectionTitle
-                eyebrow="Cloud Defense"
                 title="Infrastructure Security"
                 highlightedWord="Architecture"
                 align="left"
@@ -332,7 +329,6 @@ export default function SecurityPage() {
       <section className="py-20 md:py-28 container mx-auto px-4 border-b border-white/5 bg-slate-900/20">
         <FadeUp>
           <SectionTitle
-            eyebrow="Identity & Governance"
             title="Granular Access Control &"
             highlightedWord="Authentication"
             description="Ensure that only authorized users gain access to sensitive annotation projects through centralized authentication and strict least-privilege enforcement."
@@ -363,7 +359,6 @@ export default function SecurityPage() {
       <section className="py-20 md:py-28 container mx-auto px-4 border-b border-white/5">
         <FadeUp>
           <SectionTitle
-            eyebrow="Data Stewardship"
             title="Data Privacy &"
             highlightedWord="Anonymization"
             description="Protect personal privacy and maintain complete ownership over your intellectual property with automated masking and strict retention policies."
@@ -396,7 +391,6 @@ export default function SecurityPage() {
       <section className="py-20 md:py-28 container mx-auto px-4 border-b border-white/5 bg-slate-900/20">
         <FadeUp>
           <SectionTitle
-            eyebrow="DevSecOps Routine"
             title="Secure Development"
             highlightedWord="Lifecycle"
             description="Security is baked into our software delivery pipeline from code commit through continuous deployment and live production monitoring."

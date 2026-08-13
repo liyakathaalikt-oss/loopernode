@@ -153,7 +153,6 @@ export default function PartnersPage() {
         <div className="absolute top-1/2 left-0 w-96 h-96 bg-cyan-500/5 rounded-full blur-[150px] pointer-events-none -translate-y-1/2" />
         <FadeUp>
           <SectionTitle
-            eyebrow="PARTNERSHIP PROGRAMS"
             title="Tailored for Your"
             highlightedWord="Business"
             description="Whether you build software platforms, provide advisory services, or deliver enterprise solutions, we have a partnership model built for you."
@@ -196,7 +195,6 @@ export default function PartnersPage() {
       <section className="py-20 md:py-28 container mx-auto px-4 border-b border-white/5">
         <FadeUp>
           <SectionTitle
-            eyebrow="PARTNER ADVANTAGES"
             title="Why Partner with"
             highlightedWord="Loopernode"
             description="Unlock joint growth opportunities, dedicated technical support, and exclusive access to next-generation AI data capabilities."
@@ -222,7 +220,6 @@ export default function PartnersPage() {
         <div className="absolute bottom-0 right-0 w-96 h-96 bg-indigo-500/5 rounded-full blur-[150px] pointer-events-none" />
         <FadeUp>
           <SectionTitle
-            eyebrow="OUR ECOSYSTEM"
             title="Trusted by Industry"
             highlightedWord="Leaders"
             description="We partner with top-tier technology companies driving the next wave of artificial intelligence."
@@ -256,7 +253,6 @@ export default function PartnersPage() {
       <section id="become-a-partner" className="py-20 md:py-28 container mx-auto px-4 border-b border-white/5">
         <FadeUp>
           <SectionTitle
-            eyebrow="HOW IT WORKS"
             title="Three Simple Steps to"
             highlightedWord="Partner"
             description="Our streamlined onboarding process gets your organization up and running quickly."

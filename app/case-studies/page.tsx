@@ -43,7 +43,6 @@ export default function CaseStudiesPage() {
       <section className="py-20 md:py-28 container mx-auto px-4 border-b border-white/5">
         <FadeUp>
           <SectionTitle
-            eyebrow="FEATURED SUCCESS STORY"
             title="Setting New Benchmarks in"
             highlightedWord="AI Scale"
             description="Explore how our dedicated expert teams deliver transformative results for market leaders."
@@ -117,7 +116,6 @@ export default function CaseStudiesPage() {
       <section className="py-20 md:py-28 container mx-auto px-4 border-b border-white/5">
         <FadeUp>
           <SectionTitle
-            eyebrow="PORTFOLIO OF IMPACT"
             title="All Case"
             highlightedWord="Studies"
             description="Browse our complete archive of customer success stories across specialized domains."
@@ -173,7 +171,6 @@ export default function CaseStudiesPage() {
       <section className="py-20 md:py-28 container mx-auto px-4 border-b border-white/5">
         <FadeUp>
           <SectionTitle
-            eyebrow="PROVEN PERFORMANCE"
             title="Impact by the"
             highlightedWord="Numbers"
             description="Our quantitative track record speaks to our ability to deliver quality at global volume."

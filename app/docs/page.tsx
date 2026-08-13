@@ -190,7 +190,6 @@ export default function DocumentationPage() {
       {/* SECTION 2: Getting Started */}
       <section id="getting-started" className="py-20 md:py-28 container mx-auto px-4 border-b border-white/5">
         <SectionTitle
-          eyebrow="GETTING STARTED"
           title="Kickstart Your AI Data Pipeline in"
           highlightedWord="Minutes"
           description="Essential guides and walk-throughs to help your engineering and data science teams configure workspaces and launch annotation workflows."
@@ -232,7 +231,6 @@ export default function DocumentationPage() {
       {/* SECTION 3: Documentation Categories Grid */}
       <section id="categories" className="py-20 md:py-28 container mx-auto px-4 border-b border-white/5">
         <SectionTitle
-          eyebrow="DOCUMENTATION CATEGORIES"
           title="Explore In-Depth Guides &"
           highlightedWord="Technical Reference"
           description="Detailed documentation covering data operations, SDK usage, RESTful APIs, annotation guidelines, and enterprise security compliance."
@@ -282,7 +280,6 @@ export default function DocumentationPage() {
       {/* SECTION 4: FAQ Section */}
       <section className="py-20 md:py-28 container mx-auto px-4 border-b border-white/5">
         <SectionTitle
-          eyebrow="DOCUMENTATION FAQ"
           title="Frequently Asked"
           highlightedWord="Questions"
           description="Clear answers to common questions regarding API integration, sandbox security, rate limits, and cloud deployment."
@@ -313,7 +310,6 @@ export default function DocumentationPage() {
       {/* SECTION 5: Downloadable Resources */}
       <section className="py-20 md:py-28 container mx-auto px-4 border-b border-white/5">
         <SectionTitle
-          eyebrow="DOWNLOADABLE RESOURCES"
           title="Technical Specifications &"
           highlightedWord="Downloads"
           description="Access comprehensive offline documentation, OpenAPI specifications, and security whitepapers."

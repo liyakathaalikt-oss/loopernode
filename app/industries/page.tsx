@@ -36,7 +36,6 @@ export default function IndustriesPage() {
         
         <FadeUp>
           <SectionTitle
-            eyebrow="DOMAIN EXPERTISE"
             title="Tailored Solutions for Every"
             highlightedWord="Sector"
             description="From strictly regulated HIPAA compliance in healthcare to the massive scale of autonomous vehicle perception, we have the domain expertise to handle it."

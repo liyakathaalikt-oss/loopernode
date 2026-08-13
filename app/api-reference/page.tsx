@@ -169,7 +169,6 @@ res, err := client.Annotations.Submit(ctx, payload)`,
       <section className="py-20 md:py-28 container mx-auto px-4 border-b border-white/5">
         <FadeUp>
           <SectionTitle
-            eyebrow="DEVELOPER PORTAL"
             title="API"
             highlightedWord="Overview"
             description="The Loopernode API is built on RESTful principles, returning standard JSON payloads for all requests and using predictable HTTP response codes."
@@ -200,7 +199,6 @@ res, err := client.Annotations.Submit(ctx, payload)`,
       <section className="py-20 md:py-28 container mx-auto px-4 border-b border-white/5">
         <FadeUp>
           <SectionTitle
-            eyebrow="SECURITY & ACCESS"
             title="API Key"
             highlightedWord="Authentication"
             description="Authenticate your requests by passing your API secret key in the Authorization header as a Bearer token."
@@ -238,7 +236,6 @@ res, err := client.Annotations.Submit(ctx, payload)`,
       <section className="py-20 md:py-28 container mx-auto px-4 border-b border-white/5">
         <FadeUp>
           <SectionTitle
-            eyebrow="REST RESOURCES"
             title="Core API"
             highlightedWord="Endpoints"
             description="Explore the primary endpoints for managing dataset collections, submitting annotation jobs, and tracking project statuses."
@@ -289,7 +286,6 @@ res, err := client.Annotations.Submit(ctx, payload)`,
       <section className="py-20 md:py-28 container mx-auto px-4 border-b border-white/5">
         <FadeUp>
           <SectionTitle
-            eyebrow="USAGE TIERS"
             title="API Rate"
             highlightedWord="Limits"
             description="Rate limits safeguard API stability and availability across all enterprise teams and developer accounts."
@@ -335,7 +331,6 @@ res, err := client.Annotations.Submit(ctx, payload)`,
       <section className="py-20 md:py-28 container mx-auto px-4 border-b border-white/5">
         <FadeUp>
           <SectionTitle
-            eyebrow="STATUS & ERRORS"
             title="HTTP Error"
             highlightedWord="Codes"
             description="Our API returns conventional HTTP response status codes to indicate the success or failure of requests."
@@ -369,7 +364,6 @@ res, err := client.Annotations.Submit(ctx, payload)`,
       <section id="sdks" className="py-20 md:py-28 container mx-auto px-4 border-b border-white/5">
         <FadeUp>
           <SectionTitle
-            eyebrow="CLIENT LIBRARIES"
             title="Official"
             highlightedWord="SDKs"
             description="Get started quickly in your favorite programming language with native type safety and automated error handling."

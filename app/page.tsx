@@ -360,7 +360,7 @@ export default async function HomePage() {
         <FadeUp>
           <div className="flex justify-between items-end mb-16">
             <SectionTitle 
-              eyebrow="Success Stories" 
+
               title="Real-World" 
               highlightedWord="Impact" 
               align="left" 
@@ -400,7 +400,7 @@ export default async function HomePage() {
       <section className="py-20 md:py-28 container mx-auto px-4 border-b border-white/5 overflow-hidden">
         <FadeUp>
           <SectionTitle 
-            eyebrow="Client Feedback" 
+
             title="Trusted by Industry" 
             highlightedWord="Leaders" 
             align="center" 
@@ -415,7 +415,7 @@ export default async function HomePage() {
       <section className="py-20 md:py-28 container mx-auto px-4 max-w-4xl border-b border-white/5">
         <FadeUp>
           <SectionTitle 
-            eyebrow="Got Questions?" 
+
             title="Frequently Asked" 
             highlightedWord="Questions" 
             align="center" 

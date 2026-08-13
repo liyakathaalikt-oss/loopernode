@@ -79,7 +79,6 @@ export default function CookiePolicyPage() {
       <section id="types-of-cookies" className="py-20 md:py-28 container mx-auto px-4 border-b border-white/5 scroll-mt-20">
         <FadeUp>
           <SectionTitle
-            eyebrow="COOKIE CATEGORIES"
             title="Types of Cookies We"
             highlightedWord="Deploy"
             description="We categorize cookies based on their technical function and operational necessity."

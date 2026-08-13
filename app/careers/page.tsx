@@ -146,7 +146,6 @@ export default async function CareersPage() {
         <div className="absolute top-1/2 left-0 w-96 h-96 bg-cyan-500/5 rounded-full blur-[150px] pointer-events-none -translate-y-1/2" />
         <FadeUp>
           <SectionTitle
-            eyebrow="WHY LOOPERNODE"
             title="Empowering You to"
             highlightedWord="Excel"
             description="Discover what makes working at Loopernode a truly unique, collaborative, and fulfilling career experience."
@@ -179,7 +178,6 @@ export default async function CareersPage() {
       <section className="py-20 md:py-28 container mx-auto px-4 border-b border-white/5">
         <FadeUp>
           <SectionTitle
-            eyebrow="PERKS & BENEFITS"
             title="Everything You Need to"
             highlightedWord="Thrive"
             description="We offer competitive perks designed to support your work-life balance, health, financial future, and continuous professional growth."
@@ -205,7 +203,6 @@ export default async function CareersPage() {
         <div className="absolute bottom-0 right-0 w-96 h-96 bg-indigo-500/5 rounded-full blur-[150px] pointer-events-none" />
         <FadeUp>
           <SectionTitle
-            eyebrow="CAREER OPPORTUNITIES"
             title="Explore Open"
             highlightedWord="Positions"
             description="Find the role where you can make your biggest impact. We're actively hiring across engineering, operations, product, and growth."
@@ -263,7 +260,6 @@ export default async function CareersPage() {
       <section className="py-20 md:py-28 container mx-auto px-4 border-b border-white/5">
         <FadeUp>
           <SectionTitle
-            eyebrow="LIFE AT LOOPERNODE"
             title="Inside Our"
             highlightedWord="Culture"
             description="Hear directly from our team members about what drives our culture and day-to-day collaboration."

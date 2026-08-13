@@ -70,7 +70,6 @@ export default function TermsPage() {
       <section className="py-20 md:py-28 container mx-auto px-4 border-b border-white/5">
         <FadeUp>
           <SectionTitle
-            eyebrow="LEGAL AGREEMENT"
             title="Terms & Conditions of"
             highlightedWord="Operation"
             description="Clear and enforceable terms governing our service level agreements, intellectual property rights, and platform use."

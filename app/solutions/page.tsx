@@ -36,7 +36,6 @@ export default function SolutionsPage() {
         
         <FadeUp>
           <SectionTitle
-            eyebrow="STRUCTURAL CAPABILITIES"
             title="How We Power Your"
             highlightedWord="Pipelines"
             description="Whether you need to instantly scale a dedicated annotation team or integrate real-time human QA into your active learning loops, we provide the enterprise infrastructure."

@@ -70,7 +70,6 @@ export default function PrivacyPage() {
       <section className="py-20 md:py-28 container mx-auto px-4 border-b border-white/5">
         <FadeUp>
           <SectionTitle
-            eyebrow="LEGAL TRANSPARENCY"
             title="Comprehensive Privacy"
             highlightedWord="Framework"
             description="Our commitments to data protection, user autonomy, and compliance with GDPR, CCPA, and global privacy standards."
