@@ -20,7 +20,7 @@ export function Header() {
     const handleScroll = () => {
       if (!ticking) {
         window.requestAnimationFrame(() => {
-          setIsScrolled(window.scrollY > 20);
+          setIsScrolled(window.scrollY > 50);
           ticking = false;
         });
         ticking = true;
