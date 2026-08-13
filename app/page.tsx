@@ -110,7 +110,7 @@ export default async function HomePage() {
       />
       
       {/* SECTION 1: Hero */}
-      <section className="pt-20 md:pt-28 pb-10 border-b border-white/5">
+      <section className="pt-20 md:pt-28 pb-10 border-b border-transparent">
         <Hero 
           headline={heroHeadline}
           titleLine2="That Power"
