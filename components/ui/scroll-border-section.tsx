@@ -31,9 +31,12 @@ export function ScrollBorderSection({
     <section 
       className={cn(
         className,
-        "border-b transition-colors duration-500",
-        scrolled ? "border-white/5" : "border-transparent"
+        "border-b transition-colors duration-500"
       )}
+      style={{
+        borderBottomColor: scrolled ? 'rgba(255,255,255,0.05)' : 'transparent',
+        ...props.style
+      }}
       {...props}
     >
       {children}
