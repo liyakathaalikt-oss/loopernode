@@ -10,6 +10,13 @@ const CIRCLES = [
   { id: 3, size: 320, top: '40%', left: '75%', color: '#0A4BF1', speedX: 0.02, speedY: -0.05, floatDuration: 8 },
   { id: 4, size: 180, top: '80%', left: '85%', color: '#0DBED6', speedX: -0.04, speedY: 0.02, floatDuration: 7 },
   { id: 5, size: 80, top: '25%', left: '60%', color: '#0DBED6', speedX: 0.06, speedY: 0.05, floatDuration: 4 },
+  { id: 6, size: 150, top: '15%', left: '80%', color: '#0DBED6', speedX: -0.03, speedY: 0.06, floatDuration: 5.5 },
+  { id: 7, size: 280, top: '70%', left: '30%', color: '#0A4BF1', speedX: 0.04, speedY: -0.02, floatDuration: 7.5 },
+  { id: 8, size: 90, top: '50%', left: '12%', color: '#0DBED6', speedX: 0.05, speedY: 0.03, floatDuration: 4.5 },
+  { id: 9, size: 200, top: '85%', left: '55%', color: '#0A4BF1', speedX: -0.02, speedY: -0.06, floatDuration: 6.5 },
+  { id: 10, size: 110, top: '5%', left: '45%', color: '#0A4BF1', speedX: 0.06, speedY: -0.04, floatDuration: 5 },
+  { id: 11, size: 350, top: '20%', left: '-5%', color: '#0DBED6', speedX: 0.01, speedY: 0.02, floatDuration: 9 },
+  { id: 12, size: 140, top: '55%', left: '92%', color: '#0DBED6', speedX: -0.05, speedY: -0.05, floatDuration: 6 },
 ];
 
 function Circle({ 
