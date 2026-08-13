@@ -46,6 +46,17 @@ export const metadata = generatePageMetadata({
 
 export const dynamic = "force-dynamic";
 
+const parseImageUrl = (url: string) => {
+  if (!url) return url;
+  if (url.includes('drive.google.com/file/d/')) {
+    const match = url.match(/\/d\/([a-zA-Z0-9_-]+)/);
+    if (match && match[1]) {
+      return `https://drive.google.com/uc?export=view&id=${match[1]}`;
+    }
+  }
+  return url;
+};
+
 export default async function AboutPage() {
   const dbTeamMembers = await prisma.teamMember.findMany({
     orderBy: { order: 'asc' }
@@ -194,7 +205,7 @@ export default async function AboutPage() {
                   {member.image ? (
                     <div className="w-full h-full rounded-full overflow-hidden relative">
                       <img 
-                        src={member.image} 
+                        src={parseImageUrl(member.image)} 
                         alt={member.name} 
                         className="w-full h-full object-cover object-center"
                       />
