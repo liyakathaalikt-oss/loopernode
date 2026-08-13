@@ -2,6 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import { FadeUp, ScaleIn } from '@/components/animations/motion-wrapper';
 import { AnimatedGradientBg } from '@/components/ui/animated-gradient-bg';
+import { DynamicCircles } from '@/components/animations/dynamic-circles';
 import { FloatingBadge } from '@/components/ui/floating-badge';
 import { TextReveal } from '@/components/animations/text-reveal';
 import { cn } from '@/lib/utils';
@@ -33,6 +34,7 @@ export function Hero({
     <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-[#0A0A1B] text-slate-200">
       {/* Background Layer */}
       {showGradientBg && <AnimatedGradientBg />}
+      <DynamicCircles />
       <div className="absolute inset-0 z-0 bg-[url('/grid-pattern.svg')] opacity-10" style={{ backgroundSize: '40px 40px' }} />
 
       {/* Floating Badges */}
