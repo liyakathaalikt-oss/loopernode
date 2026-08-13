@@ -214,7 +214,7 @@ export default async function AboutPage() {
                   <p className="text-slate-400 text-sm">{member.bio || 'Driving innovation and strategic growth at Loopernode with over a decade of industry experience.'}</p>
                   {/* LinkedIn Icon */}
                   <a 
-                    href={member.linkedin || "#"} 
+                    href={member.linkedinUrl || "#"} 
                     target="_blank" 
                     rel="noopener noreferrer" 
                     className="absolute top-0 right-0 z-10 flex items-center justify-center w-8 h-8 md:w-10 md:h-10 rounded-full bg-white/5 border border-white/10 text-slate-400 hover:bg-[#0A66C2] hover:text-white hover:border-[#0A66C2] hover:-translate-y-1 transition-all duration-300 shadow-sm"
