@@ -57,7 +57,7 @@ export function Hero({
       )}
 
       {/* Content Layer */}
-      <StaggerContainer className="relative z-20 container mx-auto px-6 py-20 text-center max-w-5xl lg:max-w-7xl flex flex-col items-center justify-center">
+      <StaggerContainer className="relative z-20 container mx-auto px-6 pt-32 pb-20 text-center max-w-5xl lg:max-w-7xl flex flex-col items-center justify-center">
         {titleLine2 ? (
           <StaggerItem className="mb-6 flex flex-col items-center justify-center gap-y-3 w-full">
             <h1 className="font-heading text-5xl md:text-7xl font-extrabold tracking-tighter leading-[1.1] text-[#F8FAFC]">

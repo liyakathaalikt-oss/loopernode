@@ -111,7 +111,7 @@ export default async function HomePage() {
       />
       
       {/* SECTION 1: Hero */}
-      <ScrollBorderSection className="pt-20 md:pt-28 pb-10">
+      <ScrollBorderSection className="pb-10">
         <Hero 
           headline={heroHeadline}
           titleLine2="That Power"
