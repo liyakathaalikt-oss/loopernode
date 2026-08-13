@@ -57,7 +57,7 @@ export function TestimonialCard({ testimonials, className }: TestimonialCardProp
               ))}
             </div>
 
-            <p className="text-xl md:text-2xl text-slate-200 font-medium leading-relaxed mb-8">
+            <p className="text-lg md:text-2xl text-slate-200 font-medium leading-relaxed mb-8">
               &quot;{testimonials[currentIndex].quote}&quot;
             </p>
 
