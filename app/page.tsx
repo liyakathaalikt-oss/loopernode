@@ -17,6 +17,7 @@ import { TestimonialCard } from '@/components/sections/testimonial-card';
 import { FAQAccordion } from '@/components/sections/faq-accordion';
 import { CTABanner } from '@/components/sections/cta-banner';
 import { FadeUp, FadeIn, ScaleIn, StaggerContainer, StaggerItem } from '@/components/animations/motion-wrapper';
+import { ScrollBorderSection } from '@/components/ui/scroll-border-section';
 
 import { testimonials } from '@/content/testimonials';
 import { homeFAQs } from '@/content/faqs';
@@ -110,7 +111,7 @@ export default async function HomePage() {
       />
       
       {/* SECTION 1: Hero */}
-      <section className="pt-20 md:pt-28 pb-10 border-b border-transparent">
+      <ScrollBorderSection className="pt-20 md:pt-28 pb-10">
         <Hero 
           headline={heroHeadline}
           titleLine2="That Power"
@@ -119,7 +120,7 @@ export default async function HomePage() {
           primaryCTA={{ label: 'Get Started', href: '/contact' }}
           secondaryCTA={{ label: 'Explore AI Data Services', href: '/services' }}
         />
-      </section>
+      </ScrollBorderSection>
 
       {/* SECTION 2: Trusted By */}
       <section className="py-12 border-b border-white/5 overflow-hidden bg-white/5">
