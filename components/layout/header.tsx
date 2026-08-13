@@ -13,6 +13,7 @@ export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
+  const [isHovered, setIsHovered] = useState(false);
   const pathname = usePathname();
 
   useEffect(() => {
@@ -44,18 +45,22 @@ export function Header() {
     { name: 'Contact', href: '/contact' },
   ];
 
+  const showBackground = isScrolled || isHovered;
+
   return (
     <>
       <header
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
         className={cn(
           "fixed top-0 left-0 right-0 z-40 transition-all duration-500 ease-in-out border-b",
           isScrolled ? "py-4" : "py-6"
         )}
         style={{
-          borderBottomColor: isScrolled ? 'rgba(255,255,255,0.1)' : 'transparent',
-          backgroundColor: isScrolled ? 'rgba(10,10,27,0.8)' : 'transparent',
-          backdropFilter: isScrolled ? 'blur(24px)' : 'none',
-          WebkitBackdropFilter: isScrolled ? 'blur(24px)' : 'none',
+          borderBottomColor: showBackground ? 'rgba(255,255,255,0.1)' : 'transparent',
+          backgroundColor: showBackground ? 'rgba(10,10,27,0.8)' : 'transparent',
+          backdropFilter: showBackground ? 'blur(24px)' : 'none',
+          WebkitBackdropFilter: showBackground ? 'blur(24px)' : 'none',
         }}
       >
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
