@@ -14,6 +14,7 @@ export function Header() {
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
   const pathname = usePathname();
+  const isHomePage = pathname === '/';
 
   useEffect(() => {
     let ticking = false;
@@ -48,10 +49,13 @@ export function Header() {
     <>
       <header
         className={cn(
-          "fixed top-0 left-0 right-0 z-40 transition-all duration-300 ease-in-out border-b",
+          "fixed top-0 left-0 right-0 z-40 transition-all duration-500 ease-in-out border-b",
           isScrolled 
             ? "backdrop-blur-xl bg-[#0a0a1b]/80 py-4" 
-            : "bg-transparent py-6"
+            : "bg-transparent py-6",
+          isHomePage && !isScrolled
+            ? "-translate-y-full opacity-0 pointer-events-none"
+            : "translate-y-0 opacity-100 pointer-events-auto"
         )}
         style={{
           borderBottomColor: isScrolled ? 'rgba(255,255,255,0.1)' : 'transparent'
