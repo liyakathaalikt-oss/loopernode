@@ -19,7 +19,8 @@ export function ParticleConstellation() {
   const [isInView, setIsInView] = useState(true);
   
   // Mouse position for interactive parallax
-  const mouseRef = useRef({ x: 0, y: 0 });
+  const targetMouseRef = useRef({ x: 0, y: 0 });
+  const currentMouseRef = useRef({ x: 0, y: 0 });
   const isHoveringRef = useRef(false);
 
   useEffect(() => {
@@ -108,9 +109,20 @@ export function ParticleConstellation() {
       ctx.fillStyle = gradient;
       ctx.fillRect(0, 0, width, height);
 
-      // Apply mouse parallax offset
-      const mouseOffsetX = isHoveringRef.current ? (mouseRef.current.x - width / 2) * 0.05 : 0;
-      const mouseOffsetY = isHoveringRef.current ? (mouseRef.current.y - height / 2) * 0.05 : 0;
+      // Smoothly interpolate current mouse position towards target (LERP)
+      if (isHoveringRef.current) {
+        currentMouseRef.current.x += (targetMouseRef.current.x - currentMouseRef.current.x) * 0.05;
+        currentMouseRef.current.y += (targetMouseRef.current.y - currentMouseRef.current.y) * 0.05;
+      } else {
+        // Slowly return to center when not hovering
+        currentMouseRef.current.x += (0 - currentMouseRef.current.x) * 0.02;
+        currentMouseRef.current.y += (0 - currentMouseRef.current.y) * 0.02;
+      }
+
+      // Apply mouse parallax offset (much stronger multiplier for 3D depth)
+      // We multiply by radius later, so larger particles move much more than smaller ones
+      const mouseOffsetX = currentMouseRef.current.x * 0.15;
+      const mouseOffsetY = currentMouseRef.current.y * 0.15;
 
       // Update and draw particles
       for (let i = 0; i < particles.length; i++) {
@@ -138,8 +150,15 @@ export function ParticleConstellation() {
             const opacity = (1 - distance / connectionDistance) * 0.3;
             
             ctx.beginPath();
-            ctx.moveTo(p.x - mouseOffsetX * (p.radius * 0.5), p.y - mouseOffsetY * (p.radius * 0.5));
-            ctx.lineTo(p2.x - mouseOffsetX * (p2.radius * 0.5), p2.y - mouseOffsetY * (p2.radius * 0.5));
+            // Calculate parallax for both points
+            // p.radius is between 0.5 and 2.0. We multiply by 1.5 to exaggerate the depth difference
+            const p1DrawX = p.x - mouseOffsetX * (p.radius * 1.5);
+            const p1DrawY = p.y - mouseOffsetY * (p.radius * 1.5);
+            const p2DrawX = p2.x - mouseOffsetX * (p2.radius * 1.5);
+            const p2DrawY = p2.y - mouseOffsetY * (p2.radius * 1.5);
+
+            ctx.moveTo(p1DrawX, p1DrawY);
+            ctx.lineTo(p2DrawX, p2DrawY);
             ctx.strokeStyle = `rgba(13, 190, 214, ${opacity})`; // Using primary brand color for lines
             ctx.lineWidth = 0.8;
             ctx.stroke();
@@ -148,8 +167,8 @@ export function ParticleConstellation() {
 
         // Draw particle
         ctx.beginPath();
-        const drawX = p.x - mouseOffsetX * (p.radius * 0.5);
-        const drawY = p.y - mouseOffsetY * (p.radius * 0.5);
+        const drawX = p.x - mouseOffsetX * (p.radius * 1.5);
+        const drawY = p.y - mouseOffsetY * (p.radius * 1.5);
         ctx.arc(drawX, drawY, p.radius, 0, Math.PI * 2);
         ctx.fillStyle = p.color;
         
@@ -186,9 +205,10 @@ export function ParticleConstellation() {
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!containerRef.current) return;
     const rect = containerRef.current.getBoundingClientRect();
-    mouseRef.current = {
-      x: e.clientX - rect.left,
-      y: e.clientY - rect.top,
+    // Calculate distance from center of container
+    targetMouseRef.current = {
+      x: (e.clientX - rect.left) - rect.width / 2,
+      y: (e.clientY - rect.top) - rect.height / 2,
     };
     isHoveringRef.current = true;
   };
