@@ -8,6 +8,8 @@ interface Particle {
   y: number;
   vx: number;
   vy: number;
+  baseVx: number;
+  baseVy: number;
   radius: number;
   color: string;
 }
@@ -83,11 +85,15 @@ export function ParticleConstellation() {
       const height = canvas.parentElement?.clientHeight || window.innerHeight;
 
       for (let i = 0; i < count; i++) {
+        const vx = (Math.random() - 0.5) * 0.5;
+        const vy = (Math.random() - 0.5) * 0.5;
         particles.push({
           x: Math.random() * width,
           y: Math.random() * height,
-          vx: (Math.random() - 0.5) * 0.5, // Slow movement
-          vy: (Math.random() - 0.5) * 0.5,
+          vx,
+          vy,
+          baseVx: vx,
+          baseVy: vy,
           radius: Math.random() * 1.5 + 0.5,
           color: colors[Math.floor(Math.random() * colors.length)],
         });
@@ -127,6 +133,29 @@ export function ParticleConstellation() {
       // Update and draw particles
       for (let i = 0; i < particles.length; i++) {
         const p = particles[i];
+
+        // Mouse Repulsion Logic
+        if (isHoveringRef.current) {
+          // targetMouseRef is centered, so actual mouse position is:
+          const mouseAbsoluteX = targetMouseRef.current.x + width / 2;
+          const mouseAbsoluteY = targetMouseRef.current.y + height / 2;
+          
+          const dx = p.x - mouseAbsoluteX;
+          const dy = p.y - mouseAbsoluteY;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+          
+          const repulsionRadius = 180;
+          if (distance < repulsionRadius) {
+            const force = (repulsionRadius - distance) / repulsionRadius;
+            // Push away
+            p.vx += (dx / distance) * force * 0.4;
+            p.vy += (dy / distance) * force * 0.4;
+          }
+        }
+
+        // Apply friction to return to base velocity
+        p.vx += (p.baseVx - p.vx) * 0.02;
+        p.vy += (p.baseVy - p.vy) * 0.02;
 
         // Move
         p.x += p.vx;
