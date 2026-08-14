@@ -8,9 +8,9 @@ export const teamMembers = [
     twitter: "https://twitter.com"
   },
   {
-    name: "Marcus Chen",
-    role: "CTO & Co-Founder",
-    bio: "A former Google Brain engineer, Marcus is a distributed systems expert who architected Loopernode's scalable data processing infrastructure. He holds 12 patents in cloud computing and data orchestration.",
+    name: "Shadil Nalakath",
+    role: "Co-Founder",
+    bio: "A visionary leader and technology enthusiast driving Loopernode's mission forward. Shadil is dedicated to building scalable solutions and fostering a culture of continuous innovation and operational excellence.",
     image: "",
     linkedin: "https://linkedin.com",
     twitter: "https://twitter.com"
