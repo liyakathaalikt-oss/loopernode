@@ -51,7 +51,7 @@ const parseImageUrl = (url: string) => {
   if (url.includes('drive.google.com/file/d/')) {
     const match = url.match(/\/d\/([a-zA-Z0-9_-]+)/);
     if (match && match[1]) {
-      return `https://drive.google.com/uc?export=view&id=${match[1]}`;
+      return `https://drive.google.com/thumbnail?id=${match[1]}&sz=w800`;
     }
   }
   return url;
@@ -67,10 +67,7 @@ export default async function AboutPage() {
   ];
   const milestones = [
     { year: '2014', title: 'The Beginning', description: 'Loopernode was founded in a small university lab by researchers frustrated with the lack of quality training data.' },
-    { year: '2016', title: 'First Enterprise Client', description: 'Secured our first Fortune 500 client, expanding our team to 50 dedicated data specialists.' },
-    { year: '2018', title: 'Global Expansion', description: 'Opened offices in Europe and Asia to provide 24/7 localized support and multilingual datasets.' },
-    { year: '2020', title: 'Proprietary Platform', description: 'Launched our proprietary annotation platform with automated QA and ML-assisted labeling tools.' },
-    { year: '2021', title: 'ISO Certifications', description: 'Achieved ISO 27001 and SOC 2 Type II compliance, reinforcing our commitment to enterprise security.' },
+    { year: '2016', title: 'First Enterprise Client', description: 'Secured our first Fortune 150 client, expanding our team to 100 dedicated data specialists.' },
     { year: '2023', title: '100M Datasets Milestone', description: 'Successfully delivered over 100 million precisely annotated data points across 30+ industries.' },
     { year: '2024', title: 'Generative AI Integration', description: 'Pioneered new methodologies for fine-tuning and aligning Large Language Models (LLMs) safely.' },
     { year: '2025', title: 'The Future', description: 'Continuing to lead the industry in ethical AI development and uncompromising data precision.' }
@@ -345,8 +342,8 @@ export default async function AboutPage() {
                   <Lock className="w-6 h-6" />
                 </div>
                 <div>
-                  <h4 className="font-bold text-white mb-2">Data Security</h4>
-                  <p className="text-sm text-slate-400">SOC 2 & ISO 27001 certified facilities and platforms.</p>
+                  <h4 className="font-bold text-white mb-2">Data Security & Confidentiality</h4>
+                  <p className="text-sm text-slate-400">Strict NDAs and secure data handling protocols to protect your proprietary information.</p>
                 </div>
               </div>
             </StaggerItem>
@@ -357,7 +354,7 @@ export default async function AboutPage() {
                 </div>
                 <div>
                   <h4 className="font-bold text-white mb-2">Proven Track Record</h4>
-                  <p className="text-sm text-slate-400">Over 10,000 successful projects delivered on time.</p>
+                  <p className="text-sm text-slate-400">Over 100+ successful projects delivered on time.</p>
                 </div>
               </div>
             </StaggerItem>
