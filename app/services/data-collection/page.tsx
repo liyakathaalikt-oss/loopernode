@@ -69,7 +69,7 @@ export default function DataCollectionPage() {
                 description={service.description}
                 icon={getIcon(service.icon)}
                 href={`/services/data-collection/${service.slug}`}
-                features={service.features.slice(0, 3)}
+                features={service.features.slice(0, 3).map(f => f.title)}
               />
             </StaggerItem>
           ))}
