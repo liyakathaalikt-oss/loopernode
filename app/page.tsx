@@ -116,7 +116,7 @@ export default async function HomePage() {
           headline={heroHeadline}
           titleLine2="That Power"
           highlightedText={heroHighlighted}
-          description="Accelerate your machine learning initiatives with pristine, ethically sourced data. We deliver comprehensive, end-to-end pipelines—from raw collection to meticulous annotation—powering the next generation of intelligent systems for global technology leaders."
+          description="Accelerate your machine learning initiatives with pristine, ethically sourced data. We deliver comprehensive, end to end pipelines from raw collection to meticulous annotation powering the next generation of intelligent systems for global technology leaders."
           primaryCTA={{ label: 'Get Started', href: '/contact' }}
           secondaryCTA={{ label: 'Explore AI Data Services', href: '/services' }}
         />
