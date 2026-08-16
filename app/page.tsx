@@ -153,7 +153,7 @@ export default async function HomePage() {
               align="left" 
             />
             <p className="text-lg text-slate-300 leading-relaxed max-w-2xl mt-6 mb-8">
-              The intelligence of any AI system is inextricably linked to the quality of its training data. For over a decade, Loopernode has been architecting the data foundation for state-of-the-art machine learning models. By combining a highly skilled global workforce with rigorous, proprietary QA infrastructure, we ensure your algorithms learn from the most accurate and unbiased ground truth available.
+              The intelligence of any AI system is inextricably linked to the quality of its training data. For over a decade, Loopernode has been architecting the data foundation for state of the art machine learning models. By combining a highly skilled global workforce with rigorous, proprietary QA infrastructure, we ensure your algorithms learn from the most accurate and unbiased ground truth available.
             </p>
             <Link prefetch={false} href="/about" className="inline-flex items-center text-indigo-400 hover:text-indigo-300 font-semibold transition-colors">
               Explore our AI mission <ArrowRight className="ml-2 w-5 h-5" />
