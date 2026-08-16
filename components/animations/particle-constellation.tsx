@@ -176,7 +176,7 @@ export function ParticleConstellation() {
 
           if (distance < connectionDistance) {
             // Opacity scales based on how close they are
-            const opacity = (1 - distance / connectionDistance) * 0.3;
+            const opacity = (1 - distance / connectionDistance) * 0.2;
             
             ctx.beginPath();
             // Calculate parallax for both points
@@ -260,7 +260,7 @@ export function ParticleConstellation() {
       <div className="absolute inset-0 z-10 bg-[radial-gradient(ellipse_at_center,_transparent_20%,_#0A0A1B_100%)] pointer-events-none" />
       <canvas
         ref={canvasRef}
-        className="block w-full h-full opacity-70 transition-opacity duration-1000"
+        className="block w-full h-full opacity-50 transition-opacity duration-1000"
       />
     </div>
   );
