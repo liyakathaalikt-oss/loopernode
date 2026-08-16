@@ -37,12 +37,12 @@ const trustedCompanies = [
 ];
 
 const workflowSteps = [
-  { icon: Database, title: "Dataset Collection", desc: "Gathering raw, high-quality data from diverse sources." },
-  { icon: FileCheck, title: "Preparation", desc: "Cleaning, formatting, and structuring the raw data." },
-  { icon: PenTool, title: "Annotation", desc: "Expert human-in-the-loop labeling and tagging." },
-  { icon: CheckCircle, title: "Validation", desc: "Cross-checking annotations for maximum accuracy." },
-  { icon: Shield, title: "Quality Assurance", desc: "Rigorous multi-tier quality control reviews." },
-  { icon: Send, title: "Delivery", desc: "Secure export of training-ready AI datasets." }
+  { icon: Database, title: "Dataset Collection", desc: "Acquiring highly diverse, unbiased, and legally cleared raw data at a global scale." },
+  { icon: FileCheck, title: "Preparation", desc: "Aggressively sanitizing, normalizing, and structuring data to prevent model poisoning." },
+  { icon: PenTool, title: "Annotation", desc: "Applying pixel-perfect, highly specialized human-in-the-loop labeling methodologies." },
+  { icon: CheckCircle, title: "Validation", desc: "Running statistical consensus and double-blind checks to mathematically ensure accuracy." },
+  { icon: Shield, title: "Quality Assurance", desc: "Subjecting every batch to expert medical, legal, or domain-specific QA oversight." },
+  { icon: Send, title: "Delivery", desc: "Deploying secure, encrypted exports directly into your cloud training infrastructure." }
 ];
 
 const industries = [
@@ -116,7 +116,7 @@ export default async function HomePage() {
           headline={heroHeadline}
           titleLine2="That Power"
           highlightedText={heroHighlighted}
-          description="From data collection to annotation and processing, we provide end-to-end AI data solutions trusted by leading technology companies worldwide."
+          description="Accelerate your machine learning initiatives with pristine, ethically sourced data. We deliver comprehensive, end-to-end pipelines—from raw collection to meticulous annotation—powering the next generation of intelligent systems for global technology leaders."
           primaryCTA={{ label: 'Get Started', href: '/contact' }}
           secondaryCTA={{ label: 'Explore AI Data Services', href: '/services' }}
         />
@@ -153,7 +153,7 @@ export default async function HomePage() {
               align="left" 
             />
             <p className="text-lg text-slate-300 leading-relaxed max-w-2xl mt-6 mb-8">
-              We understand that the intelligence of your AI system is directly proportional to the quality of its training data. For over a decade, we have been at the forefront of the AI revolution, providing meticulous data services that form the foundational layer of state-of-the-art machine learning models. Our global workforce and proprietary infrastructure ensure that your models learn from the best data possible.
+              The intelligence of any AI system is inextricably linked to the quality of its training data. For over a decade, Loopernode has been architecting the data foundation for state-of-the-art machine learning models. By combining a highly skilled global workforce with rigorous, proprietary QA infrastructure, we ensure your algorithms learn from the most accurate and unbiased ground truth available.
             </p>
             <Link prefetch={false} href="/about" className="inline-flex items-center text-indigo-400 hover:text-indigo-300 font-semibold transition-colors">
               Explore our AI mission <ArrowRight className="ml-2 w-5 h-5" />
@@ -191,7 +191,7 @@ export default async function HomePage() {
           <FadeUp delay={0.1}>
             <ServiceCard 
               title="Data Collection" 
-              description="Ethically sourced, diverse, and unbiased datasets tailored for your specific machine learning requirements across text, image, audio, and video modalities."
+              description="Acquire highly diverse, legally compliant datasets custom-built for your domain. We capture text, image, audio, and sensor data designed to eliminate bias and robustly train your models."
               icon={<Database className="w-8 h-8" />} 
               features={["Custom Data Sourcing", "Multilingual Datasets", "Synthetic Data Generation", "Compliance & Privacy"]} 
               href="/services/data-collection" 
@@ -200,7 +200,7 @@ export default async function HomePage() {
           <FadeUp delay={0.2}>
             <ServiceCard 
               title="Data Labeling" 
-              description="High-precision human-in-the-loop annotation and tagging services that transform raw unstructured data into ground-truth training material."
+              description="Transform raw, unstructured inputs into flawless ground truth. Our specialized human-in-the-loop teams provide pixel-perfect annotation and complex RLHF tuning at enterprise scale."
               icon={<Tag className="w-8 h-8" />} 
               features={["Bounding Boxes & Polygons", "Semantic Segmentation", "NLP Text Annotation", "Audio Transcription"]} 
               href="/services/data-labeling" 
@@ -209,7 +209,7 @@ export default async function HomePage() {
           <FadeUp delay={0.3}>
             <ServiceCard 
               title="Data Processing" 
-              description="Advanced processing pipelines to clean, normalize, and structure your data, ensuring it is perfectly formatted for your model ingestion."
+              description="Bridge the gap between raw collection and model training. We engineer robust ETL pipelines to aggressively clean, normalize, and enrich your datasets for immediate, seamless ingestion."
               icon={<Settings className="w-8 h-8" />} 
               features={["Data Cleaning & De-duplication", "Format Conversion", "Anomaly Detection", "Automated Quality Scoring"]} 
               href="/services/data-processing" 
@@ -287,32 +287,32 @@ export default async function HomePage() {
           <FeatureCard 
             icon={<Shield className="w-6 h-6 text-indigo-400" />} 
             title="Enterprise Security" 
-            description="Your data is protected through secure infrastructure, encryption, and strict access controls following industry best practices." 
+            description="Military-grade encryption, SOC 2 Type II compliance, and isolated on-premise deployments to protect your most sensitive proprietary IP." 
           />
           <FeatureCard 
             icon={<Users className="w-6 h-6 text-indigo-400" />} 
             title="Scalable Workforce" 
-            description="Access our vetted network of 2000+ domain-expert annotators globally, ready to scale with your project demands." 
+            description="Instantly tap into our elite network of over 10,000 highly educated, domain-specific annotators capable of scaling to massive volumes." 
           />
           <FeatureCard 
             icon={<CheckCircle className="w-6 h-6 text-indigo-400" />} 
             title="Quality Assurance" 
-            description="Rigorous multi-tier review processes and automated consensus scoring guarantee industry-leading 99.7% accuracy." 
+            description="Statistically guaranteed 99.7% accuracy achieved through algorithmic anomaly detection and multi-tiered expert human review." 
           />
           <FeatureCard 
             icon={<Clock className="w-6 h-6 text-indigo-400" />} 
             title="Fast Turnaround" 
-            description="Agile project management enabling rapid 24-48 hour kickoffs and accelerated delivery without compromising quality." 
+            description="Bypass traditional onboarding friction. We launch complex labeling pipelines in under 48 hours to dramatically accelerate your training cycles." 
           />
           <FeatureCard 
             icon={<Wrench className="w-6 h-6 text-indigo-400" />} 
             title="Custom Solutions" 
-            description="We don&apos;t believe in one-size-fits-all. Every pipeline is engineered specifically for your model&apos;s unique architecture." 
+            description="No generic pipelines. We architect bespoke data workflows and custom annotation guidelines specifically optimized for your unique model." 
           />
           <FeatureCard 
             icon={<Headphones className="w-6 h-6 text-indigo-400" />} 
             title="24/7 Support" 
-            description="Dedicated project managers and technical support engineers available round-the-clock across all time zones." 
+            description="Seamless, around-the-clock collaboration with dedicated technical project managers aligned exactly to your team's time zones and workflows." 
           />
         </StaggerContainer>
       </section>
@@ -323,7 +323,7 @@ export default async function HomePage() {
         <FadeUp>
           <div className="text-center max-w-3xl mx-auto mb-12">
             <h3 className="text-2xl font-bold text-white tracking-tight leading-tight mb-4">Seamless Integration with Your Tech Stack</h3>
-            <p className="text-slate-400 leading-relaxed">We plug directly into your existing machine learning ecosystem, supporting all major frameworks and platforms.</p>
+            <p className="text-slate-400 leading-relaxed">Avoid the friction of proprietary formats. Our data pipelines export directly into the native formats required by every major machine learning framework and cloud provider.</p>
           </div>
         </FadeUp>
         <StaggerContainer className="flex flex-wrap justify-center gap-4 max-w-5xl mx-auto relative z-10">
@@ -431,7 +431,7 @@ export default async function HomePage() {
         <ScaleIn>
           <CTABanner 
             headline="Ready to Accelerate Your AI Development?" 
-            description="Join 200+ companies that trust Loopernode for their data needs. Get started with a free consultation today."
+            description="Partner with the data infrastructure experts trusted by the world's leading AI laboratories and Fortune 150 enterprises. Schedule a technical consultation today."
             primaryCTA={{ label: 'Start Your Project', href: '/contact' }}
             secondaryCTA={{ label: 'Explore AI Data Services', href: '/services' }}
           />

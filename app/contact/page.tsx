@@ -52,7 +52,7 @@ export default function ContactPage() {
                 </h2>
                 
                 <p className="text-slate-300 text-lg leading-relaxed max-w-2xl mb-12">
-                  Whether you're looking for enterprise data solutions, have a question about our platform, or need technical support, our team is ready to help.
+                  Whether you are architecting a massive new data collection pipeline, seeking to audit your existing ground truth, or require immediate technical support, our global engineering team is standing by.
                 </p>
               </FadeUp>
 
@@ -133,7 +133,7 @@ export default function ContactPage() {
         <div className="container-custom max-w-7xl mx-auto px-6">
           <SectionTitle
             title="Our Global Offices"
-            description="Strategically located to serve enterprise clients worldwide with around-the-clock support."
+            description="Strategically positioned across key international tech hubs to guarantee around-the-clock, localized support for our enterprise partners."
           />
           <FadeUp>
             <div className="w-full aspect-video md:aspect-[21/9] rounded-3xl overflow-hidden border border-white/[0.08] relative bg-dark-900 mt-12 flex items-center justify-center">
@@ -158,7 +158,7 @@ export default function ContactPage() {
         <div className="container-custom max-w-3xl mx-auto px-6">
           <SectionTitle
             title="Frequently Asked Questions"
-            description="Find quick answers to common questions about working with Loopernode."
+            description="Find definitive answers regarding our data operations, security protocols, and enterprise onboarding process."
           />
           <div className="mt-12">
              <FAQAccordion faqs={contactFAQs} />
@@ -168,7 +168,7 @@ export default function ContactPage() {
 
       <CTABanner 
         headline="Ready to build better AI?" 
-        description="Join companies that trust Loopernode for their data needs."
+        description="Join the world's most innovative technology companies that rely on Loopernode for mission-critical training data."
         primaryCTA={{ label: 'Start Your Project', href: '/services' }}
       />
     </main>

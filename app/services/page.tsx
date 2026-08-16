@@ -3,11 +3,13 @@ import { SectionTitle } from "@/components/sections/section-title";
 import { ServiceCard } from "@/components/sections/service-card";
 import { StatCounter } from "@/components/sections/stat-counter";
 import { CTABanner } from "@/components/sections/cta-banner";
+
 import { FadeUp, StaggerContainer, StaggerItem } from "@/components/animations/motion-wrapper";
 import { generatePageMetadata } from "@/lib/metadata";
 import { generateServiceSchema } from "@/lib/schema";
 import { generateKeywords } from "@/app/config/seo-keywords";
 import { Database, Image as ImageIcon, Workflow, Search, Code, CheckCircle, BarChart, Layers } from "lucide-react";
+import prisma from '@/lib/prisma';
 
 export const metadata = {
   ...generatePageMetadata({
@@ -19,16 +21,14 @@ export const metadata = {
 };
 
 const PROCESS_STEPS = [
-  { title: "Discovery", description: "Understand your model requirements and data needs." },
-  { title: "Scoping", description: "Define parameters, quality metrics, and timelines." },
-  { title: "Pilot", description: "Test execution with a small sample for alignment." },
-  { title: "Scale", description: "Full-scale production with continuous QA." },
-  { title: "Delivery", description: "Secure transfer of high-quality, formatted data." },
+  { title: "Discovery", description: "Deep architectural alignment on your model's exact data ingestion requirements." },
+  { title: "Scoping", description: "Rigorous definition of edge cases, labeling taxonomies, and statistical QA metrics." },
+  { title: "Pilot", description: "Rapid prototyping and calibration to lock in consensus before scaling." },
+  { title: "Scale", description: "Massive deployment via our global workforce under continuous automated review." },
+  { title: "Delivery", description: "Encrypted, direct-to-cloud handoff of flawlessly structured training data." },
 ];
 
 import { PrismaClient } from "@prisma/client";
-
-import prisma from '@/lib/prisma';
 
 const getServiceIcon = (iconName: string) => {
   switch (iconName?.toLowerCase()) {
@@ -69,7 +69,7 @@ export default async function ServicesPage() {
         headline="Comprehensive AI Data Services"
         highlightedText=""
         headlineClassName="lg:text-[3.5rem] xl:text-7xl lg:whitespace-nowrap"
-        description="End-to-end data pipelines to fuel your most ambitious AI models. From raw collection to structured intelligence."
+        description="Deploy enterprise-grade data pipelines built to fuel your most ambitious AI models. We transform raw, unstructured inputs into verified, structured intelligence."
         primaryCTA={{ label: "Contact Us", href: "/contact" }}
       />
 
@@ -78,7 +78,7 @@ export default async function ServicesPage() {
           <div className="max-w-3xl mx-auto text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold font-heading mb-6">Our Core Pillars</h2>
             <p className="text-lg text-slate-400">
-              Loopernode delivers across three critical phases of the data lifecycle. We collect diverse datasets, annotate them with expert precision, and process them into structured formats ready for machine learning.
+              Loopernode commands the entire data lifecycle. We dynamically source highly diverse datasets, annotate them using specialized human-in-the-loop workflows, and engineer them into immaculate formats ready for immediate ML ingestion.
             </p>
           </div>
         </FadeUp>
@@ -148,8 +148,8 @@ export default async function ServicesPage() {
       </section>
 
       <CTABanner
-        headline="Ready to build better AI?"
-        description="Let's discuss how our data services can accelerate your model development."
+        headline="Ready to deploy superior models?"
+        description="Schedule a technical consultation to discover how our custom data pipelines can dramatically accelerate your ML roadmap."
         primaryCTA={{ label: "Contact Us", href: "/contact" }}
         secondaryCTA={{ label: "Explore Our Work", href: "/case-studies" }}
       />

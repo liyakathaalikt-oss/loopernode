@@ -42,8 +42,7 @@ export default async function BlogPage() {
       avatar: ""
     },
   }));
-
-  // Default to a fallback if no posts exist
+  // Default to a fallback if no posts exist
   const featuredPost = posts[0] || {
     title: "Welcome to the Loopernode Blog",
     excerpt: "Stay tuned for exciting insights and updates.",
@@ -60,7 +59,7 @@ export default async function BlogPage() {
       <Hero
         headline="Insights &"
         highlightedText="Resources"
-        description="Discover the latest trends, best practices, and expert perspectives in AI data services, computer vision, and model training."
+        description="Dive into our engineering blog for the latest architectural trends, enterprise best practices, and technical perspectives on scaling AI data pipelines."
         primaryCTA={{ label: "Subscribe to Newsletter", href: "#newsletter" }}
       />
 

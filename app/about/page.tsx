@@ -51,7 +51,7 @@ const parseImageUrl = (url: string) => {
   if (url.includes('drive.google.com/file/d/')) {
     const match = url.match(/\/d\/([a-zA-Z0-9_-]+)/);
     if (match && match[1]) {
-      return `https://drive.google.com/thumbnail?id=${match[1]}&sz=w800`;
+      return `https://drive.google.com/uc?export=view&id=${match[1]}`;
     }
   }
   return url;
@@ -66,11 +66,11 @@ export default async function AboutPage() {
     { name: "Placeholder", role: "Please add team members in the Admin CMS", bio: "", image: "", linkedinUrl: "" }
   ];
   const milestones = [
-    { year: '2014', title: 'The Beginning', description: 'Loopernode was founded in a small university lab by researchers frustrated with the lack of quality training data.' },
-    { year: '2016', title: 'First Enterprise Client', description: 'Secured our first Fortune 150 client, expanding our team to 100 dedicated data specialists.' },
-    { year: '2023', title: '100M Datasets Milestone', description: 'Successfully delivered over 100 million precisely annotated data points across 30+ industries.' },
-    { year: '2024', title: 'Generative AI Integration', description: 'Pioneered new methodologies for fine-tuning and aligning Large Language Models (LLMs) safely.' },
-    { year: '2025', title: 'The Future', description: 'Continuing to lead the industry in ethical AI development and uncompromising data precision.' }
+    { year: '2014', title: 'The Beginning', description: 'Founded by AI researchers determined to solve the industry-wide bottleneck of low-fidelity training data.' },
+    { year: '2016', title: 'First Enterprise Client', description: 'Partnered with our first Fortune 150 client, scaling our operations to 100 specialized data experts.' },
+    { year: '2023', title: '100M Datasets Milestone', description: 'Crossed the threshold of delivering 100 million meticulously verified ground-truth data points globally.' },
+    { year: '2024', title: 'Generative AI Integration', description: 'Engineered proprietary RLHF pipelines to safely align and fine-tune next-generation Large Language Models.' },
+    { year: '2025', title: 'The Future', description: 'Aggressively expanding our multimodal capabilities to power the incoming wave of embodied AI and robotics.' }
   ];
 
   return (
@@ -82,7 +82,7 @@ export default async function AboutPage() {
         <Hero 
           headline="Building the Foundation of"
           highlightedText="Ethical AI"
-          description="We are a global team of data specialists, engineers, and researchers dedicated to democratizing access to high-quality AI training data."
+          description="We unite world-class data specialists, engineers, and researchers to construct the critical data infrastructure that powers the next generation of safe, reliable, and equitable AI systems."
           primaryCTA={{ label: 'Join Our Team', href: '/careers' }}
           secondaryCTA={{ label: 'Contact Us', href: '/contact' }}
         />
@@ -114,10 +114,10 @@ export default async function AboutPage() {
             />
             <div className="mt-8 space-y-6 text-slate-300 text-lg leading-relaxed max-w-2xl">
               <p>
-                Founded in 2014, Loopernode began with a singular realization: the biggest bottleneck in machine learning wasn't algorithms or computing power, but the scarcity of high-quality, ethically sourced training data. What started in a cramped university research lab has rapidly grown into a global enterprise.
+                Founded in 2014, Loopernode emerged from a critical realization within a small university research lab: the true bottleneck in modern machine learning wasn't a lack of computing power or sophisticated algorithms, but the severe scarcity of high-fidelity, ethically sourced training data.
               </p>
               <p>
-                Today, we partner with the world's most innovative technology companies, providing the critical data infrastructure necessary to train tomorrow's intelligent systems. We combine an expert global workforce with proprietary, secure annotation platforms to deliver unprecedented accuracy at massive scale.
+                Today, we operate as a global enterprise partnering with the world's most ambitious AI laboratories and Fortune 150 companies. By converging an elite global workforce with proprietary, bank-grade secure annotation platforms, we provide the foundational intelligence layer required to build safe and scalable AI models.
               </p>
             </div>
           </FadeUp>
@@ -139,7 +139,7 @@ export default async function AboutPage() {
                 </div>
                 <h3 className="text-3xl font-bold text-white tracking-tight leading-tight mb-6">Our Mission</h3>
                 <p className="text-xl text-slate-300 leading-relaxed font-light">
-                  "To democratize access to high-quality AI training data, enabling organizations of all sizes to build robust, ethical, and intelligent systems that solve real-world problems."
+                  "To engineer the world's most accurate and ethically sourced ground truth, accelerating the deployment of safe, robust, and transformative artificial intelligence across every major industry."
                 </p>
               </div>
             </div>
@@ -155,7 +155,7 @@ export default async function AboutPage() {
                 </div>
                 <h3 className="text-3xl font-bold text-white tracking-tight leading-tight mb-6">Our Vision</h3>
                 <p className="text-xl text-slate-300 leading-relaxed font-light">
-                  "A world where every AI system is built on ethically sourced, unbiased data, fostering a future where artificial intelligence amplifies human potential responsibly and securely."
+                  "A future where AI systems operate seamlessly and equitably, grounded in training data that authentically captures the full diversity, nuance, and complexity of human experience."
                 </p>
               </div>
             </div>
@@ -299,21 +299,21 @@ export default async function AboutPage() {
             <div className="p-8 rounded-3xl bg-gradient-to-br from-indigo-900/40 to-transparent border border-white/10 h-full">
               <BrainCircuit className="w-10 h-10 text-indigo-400 mb-6" />
               <h3 className="text-xl font-bold text-white tracking-tight leading-tight mb-4">Continuous Learning</h3>
-              <p className="text-slate-400 leading-relaxed">In the fast-paced world of AI, standing still is falling behind. We provide extensive training budgets, host internal hackathons, and encourage our team to stay at the cutting edge of ML research.</p>
+              <p className="text-slate-400 leading-relaxed">Stagnation is anathema in the AI sector. We actively sponsor advanced certifications, fund internal R&D incubators, and mandate dedicated time for our teams to explore bleeding-edge ML literature.</p>
             </div>
           </StaggerItem>
           <StaggerItem>
             <div className="p-8 rounded-3xl bg-gradient-to-br from-cyan-900/40 to-transparent border border-white/10 h-full">
               <Users className="w-10 h-10 text-cyan-400 mb-6" />
               <h3 className="text-xl font-bold text-white tracking-tight leading-tight mb-4">Diversity & Inclusion</h3>
-              <p className="text-slate-400 leading-relaxed">Unbiased AI requires unbiased creators. We are deeply committed to building a diverse workforce that reflects the global community our models ultimately serve.</p>
+              <p className="text-slate-400 leading-relaxed">Equitable algorithms demand equitable origins. We systematically recruit across underrepresented demographics to dismantle echo chambers and build a workforce as varied as the data we process.</p>
             </div>
           </StaggerItem>
           <StaggerItem>
             <div className="p-8 rounded-3xl bg-gradient-to-br from-violet-900/40 to-transparent border border-white/10 h-full">
               <Heart className="w-10 h-10 text-violet-400 mb-6" />
               <h3 className="text-xl font-bold text-white tracking-tight leading-tight mb-4">Work-Life Harmony</h3>
-              <p className="text-slate-400 leading-relaxed">We believe sustainable innovation comes from rested, happy minds. We offer flexible working hours, remote-first options, and comprehensive wellness programs.</p>
+              <p className="text-slate-400 leading-relaxed">Burnout destroys innovation. We enforce mandatory downtime, champion asynchronous remote-first collaboration, and provide aggressive wellness subsidies to keep our top-tier talent performing optimally.</p>
             </div>
           </StaggerItem>
         </StaggerContainer>
@@ -329,7 +329,7 @@ export default async function AboutPage() {
               align="left" 
             />
             <p className="text-lg text-slate-300 leading-relaxed max-w-2xl mt-6 mb-8">
-              We don't just process data; we partner with you to ensure your AI initiatives succeed. Our enterprise-grade infrastructure and rigorous processes provide peace of mind for the world's most demanding technology teams.
+              We transcend the role of a traditional data vendor to become an integrated extension of your MLOps team. By combining bank-grade infrastructure with transparent, highly agile workflows, we de-risk the data pipeline for the world's most ambitious technology organizations.
             </p>
             <Link prefetch={false} href="/contact" className="inline-flex items-center text-indigo-400 hover:text-indigo-300 font-semibold transition-colors">
               Speak with a data expert <ArrowRight className="ml-2 w-5 h-5" />
@@ -343,7 +343,7 @@ export default async function AboutPage() {
                 </div>
                 <div>
                   <h4 className="font-bold text-white mb-2">Data Security & Confidentiality</h4>
-                  <p className="text-sm text-slate-400">Strict NDAs and secure data handling protocols to protect your proprietary information.</p>
+                  <p className="text-sm text-slate-400">Air-gapped annotation environments and legally binding non-disclosures to secure your core intellectual property.</p>
                 </div>
               </div>
             </StaggerItem>
@@ -354,7 +354,7 @@ export default async function AboutPage() {
                 </div>
                 <div>
                   <h4 className="font-bold text-white mb-2">Proven Track Record</h4>
-                  <p className="text-sm text-slate-400">Over 100+ successful projects delivered on time.</p>
+                  <p className="text-sm text-slate-400">A flawless history of deploying over 100+ mission-critical enterprise datasets exactly on schedule.</p>
                 </div>
               </div>
             </StaggerItem>
@@ -365,7 +365,7 @@ export default async function AboutPage() {
                 </div>
                 <div>
                   <h4 className="font-bold text-white mb-2">Flexible Scaling</h4>
-                  <p className="text-sm text-slate-400">Rapidly scale your annotation workforce up or down.</p>
+                  <p className="text-sm text-slate-400">Instantly provision thousands of specialized annotators to absorb sudden spikes in data volume.</p>
                 </div>
               </div>
             </StaggerItem>
@@ -376,7 +376,7 @@ export default async function AboutPage() {
                 </div>
                 <div>
                   <h4 className="font-bold text-white mb-2">Dedicated Support</h4>
-                  <p className="text-sm text-slate-400">Assigned project managers ensure quality and communication.</p>
+                  <p className="text-sm text-slate-400">Direct integration with elite technical project managers who monitor KPIs and resolve edge-cases proactively.</p>
                 </div>
               </div>
             </StaggerItem>
