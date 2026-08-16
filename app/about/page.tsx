@@ -249,7 +249,7 @@ export default async function AboutPage() {
           <StaggerContainer className="grid grid-cols-2 md:grid-cols-4 gap-8">
             <StaggerItem className="text-center">
               <Users className="w-10 h-10 mx-auto text-cyan-400 mb-4" />
-              <div className="text-4xl font-bold text-white mb-2">2000+</div>
+              <div className="text-4xl font-bold text-white mb-2">500+</div>
               <div className="text-slate-400 font-medium">Team Members</div>
             </StaggerItem>
             <StaggerItem className="text-center">
