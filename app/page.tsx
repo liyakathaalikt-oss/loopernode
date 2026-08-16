@@ -164,7 +164,7 @@ export default async function HomePage() {
               <StatCounter value={10} suffix="+" label="Years of Excellence" icon={<Clock className="w-5 h-5 text-indigo-400" />} />
             </StaggerItem>
             <StaggerItem>
-              <StatCounter value={2000} suffix="+" label="Team Members" icon={<Users className="w-5 h-5 text-indigo-400" />} />
+              <StatCounter value={500} suffix="+" label="Team Members" icon={<Users className="w-5 h-5 text-indigo-400" />} />
             </StaggerItem>
             <StaggerItem>
               <StatCounter value={500} suffix="M+" label="Data Points" icon={<Database className="w-5 h-5 text-indigo-400" />} />
