@@ -57,9 +57,6 @@ export const metadata: Metadata = {
       "Enterprise-grade AI data services including data collection, annotation, labeling, and processing.",
     images: ["/og-image.png"],
   },
-  alternates: {
-    canonical: "/",
-  },
   robots: {
     index: true,
     follow: true,

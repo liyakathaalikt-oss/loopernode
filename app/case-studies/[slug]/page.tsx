@@ -32,6 +32,9 @@ export async function generateMetadata({ params }: CaseStudyPageProps): Promise<
   return {
     title: `${study.title} | Loopernode Case Study`,
     description: study.challenge,
+    alternates: {
+      canonical: "https://loopernode.in/case-studies/" + study.slug,
+    },
     openGraph: {
       title: `${study.title} - ${study.client}`,
       description: study.challenge,

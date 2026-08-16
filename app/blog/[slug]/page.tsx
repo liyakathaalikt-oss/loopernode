@@ -32,6 +32,9 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
     title: `${post.title} | Loopernode Blog`,
     description: post.excerpt,
     keywords: generateKeywords('blog'),
+    alternates: {
+      canonical: "https://loopernode.in/blog/" + post.slug,
+    },
     openGraph: {
       title: post.title,
       description: post.excerpt || "",
