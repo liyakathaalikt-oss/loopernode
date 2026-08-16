@@ -23,9 +23,19 @@ export function Newsletter({ variant = 'card', className }: NewsletterProps) {
     }
 
     setStatus('loading');
-    
-    // Simulate API call
-    setTimeout(() => {
+    try {
+      const response = await fetch('/api/subscribers', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Subscription failed');
+      }
+
       setStatus('success');
       setMessage('Thank you for subscribing!');
       setEmail('');
@@ -35,7 +45,10 @@ export function Newsletter({ variant = 'card', className }: NewsletterProps) {
         setStatus('idle');
         setMessage('');
       }, 3000);
-    }, 1000);
+    } catch (error) {
+      setStatus('error');
+      setMessage(error instanceof Error ? error.message : 'Subscription failed');
+    }
   };
 
   const containerClasses = variant === 'card' 

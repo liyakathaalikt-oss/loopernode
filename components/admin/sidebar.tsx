@@ -1,10 +1,12 @@
 import React from 'react';
 import Link from 'next/link';
-import { LayoutDashboard, FileText, Briefcase, Image as ImageIcon, Settings, Users, MessageSquare, BookOpen, MessageCircle, HelpCircle } from 'lucide-react';
+import { LayoutDashboard, FileText, Briefcase, Image as ImageIcon, Settings, Users, MessageSquare, BookOpen, MessageCircle, HelpCircle, UsersRound, LineChart } from 'lucide-react';
 import { SignOutButton } from '../sign-out-button';
 
 const navItems = [
   { href: '/admin', label: 'Dashboard', icon: LayoutDashboard },
+  { href: '/admin/leads', label: 'Leads CRM', icon: UsersRound },
+  { href: '/admin/seo', label: 'SEO Dashboard', icon: LineChart },
   { href: '/admin/pages', label: 'Global Pages', icon: FileText },
   { href: '/admin/blog', label: 'Blog Posts', icon: MessageSquare },
   { href: '/admin/case-studies', label: 'Case Studies', icon: BookOpen },

@@ -13,8 +13,12 @@ const contactSchema = z.object({
   email: z.string().email('Please enter a valid email address'),
   company: z.string().optional(),
   phone: z.string().optional(),
-  service: z.string().min(1, 'Please select a service'),
-  message: z.string().min(10, 'Message must be at least 10 characters'),
+  country: z.string().optional(),
+  serviceRequired: z.string().min(1, 'Please select a service'),
+  estimatedVolume: z.string().optional(),
+  timeline: z.string().optional(),
+  projectDesc: z.string().min(10, 'Message must be at least 10 characters'),
+  source: z.string().optional(),
 });
 
 type ContactFormValues = z.infer<typeof contactSchema>;
@@ -38,7 +42,7 @@ export function ContactForm({ className, onSuccess }: { className?: string; onSu
     setErrorMessage(null);
 
     try {
-      const response = await fetch('/api/contact', {
+      const response = await fetch('/api/leads', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data),
@@ -155,43 +159,89 @@ export function ContactForm({ className, onSuccess }: { className?: string; onSu
                   placeholder="+1 (555) 000-0000"
                 />
               </div>
+
+              {/* Country */}
+              <div className="space-y-2">
+                <label htmlFor="country" className="text-sm font-medium text-slate-300">Country (Optional)</label>
+                <input
+                  id="country"
+                  {...register('country')}
+                  className="w-full bg-[#111128] border border-white/10 rounded-lg px-4 py-3 text-white placeholder:text-slate-500 focus:outline-none focus:border-[#6366F1] focus:ring-2 focus:ring-[#6366F1]/50 transition-all"
+                  placeholder="United States"
+                />
+              </div>
             </div>
 
-            {/* Service */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {/* Service */}
+              <div className="space-y-2">
+                <label htmlFor="serviceRequired" className="text-sm font-medium text-slate-300">Service of Interest *</label>
+                <select
+                  id="serviceRequired"
+                  {...register('serviceRequired')}
+                  className={cn(
+                    "w-full bg-[#111128] border rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 transition-all appearance-none",
+                    errors.serviceRequired ? "border-red-500/50 focus:ring-red-500/50" : "border-white/10 focus:border-[#6366F1] focus:ring-[#6366F1]/50"
+                  )}
+                >
+                  <option value="">Select a service...</option>
+                  <option value="Data Collection">Data Collection</option>
+                  <option value="Data Labeling">Data Labeling</option>
+                  <option value="Data Processing">Data Processing</option>
+                  <option value="AI Consultancy">AI Consultancy</option>
+                  <option value="Other">Other</option>
+                </select>
+                {errors.serviceRequired && <p className="text-red-400 text-xs mt-1">{errors.serviceRequired.message}</p>}
+              </div>
+
+              {/* Estimated Volume */}
+              <div className="space-y-2">
+                <label htmlFor="estimatedVolume" className="text-sm font-medium text-slate-300">Estimated Volume (Optional)</label>
+                <select
+                  id="estimatedVolume"
+                  {...register('estimatedVolume')}
+                  className="w-full bg-[#111128] border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-[#6366F1] focus:ring-2 focus:ring-[#6366F1]/50 transition-all appearance-none"
+                >
+                  <option value="">Select volume...</option>
+                  <option value="< 10K units">Under 10K units</option>
+                  <option value="10K - 100K units">10K - 100K units</option>
+                  <option value="100K - 1M units">100K - 1M units</option>
+                  <option value="1M+ units">1M+ units</option>
+                  <option value="Not Sure">Not sure yet</option>
+                </select>
+              </div>
+            </div>
+
+            {/* Timeline */}
             <div className="space-y-2">
-              <label htmlFor="service" className="text-sm font-medium text-slate-300">Service of Interest *</label>
+              <label htmlFor="timeline" className="text-sm font-medium text-slate-300">Project Timeline (Optional)</label>
               <select
-                id="service"
-                {...register('service')}
-                className={cn(
-                  "w-full bg-[#111128] border rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 transition-all appearance-none",
-                  errors.service ? "border-red-500/50 focus:ring-red-500/50" : "border-white/10 focus:border-[#6366F1] focus:ring-[#6366F1]/50"
-                )}
+                id="timeline"
+                {...register('timeline')}
+                className="w-full bg-[#111128] border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-[#6366F1] focus:ring-2 focus:ring-[#6366F1]/50 transition-all appearance-none"
               >
-                <option value="">Select a service...</option>
-                <option value="Data Collection">Data Collection</option>
-                <option value="Data Labeling">Data Labeling</option>
-                <option value="Data Processing">Data Processing</option>
-                <option value="AI Consultancy">AI Consultancy</option>
-                <option value="Other">Other</option>
+                <option value="">Select timeline...</option>
+                <option value="Immediately">Immediately (ASAP)</option>
+                <option value="Within 1 month">Within 1 month</option>
+                <option value="1 - 3 months">1 - 3 months</option>
+                <option value="Planning phase">Just planning</option>
               </select>
-              {errors.service && <p className="text-red-400 text-xs mt-1">{errors.service.message}</p>}
             </div>
 
-            {/* Message */}
+            {/* Project Description */}
             <div className="space-y-2">
-              <label htmlFor="message" className="text-sm font-medium text-slate-300">Your Message *</label>
+              <label htmlFor="projectDesc" className="text-sm font-medium text-slate-300">Project Description *</label>
               <textarea
-                id="message"
-                {...register('message')}
-                rows={5}
+                id="projectDesc"
+                {...register('projectDesc')}
+                rows={4}
                 className={cn(
                   "w-full bg-[#111128] border rounded-lg px-4 py-3 text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 transition-all resize-none",
-                  errors.message ? "border-red-500/50 focus:ring-red-500/50" : "border-white/10 focus:border-[#6366F1] focus:ring-[#6366F1]/50"
+                  errors.projectDesc ? "border-red-500/50 focus:ring-red-500/50" : "border-white/10 focus:border-[#6366F1] focus:ring-[#6366F1]/50"
                 )}
-                placeholder="Tell us about your project requirements..."
+                placeholder="Tell us about your project requirements, goals, and any specific constraints..."
               />
-              {errors.message && <p className="text-red-400 text-xs mt-1">{errors.message.message}</p>}
+              {errors.projectDesc && <p className="text-red-400 text-xs mt-1">{errors.projectDesc.message}</p>}
             </div>
 
             {/* Honeypot – hidden from users, catches bots */}
