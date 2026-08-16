@@ -54,13 +54,13 @@ export function ParticleConstellation() {
     const colors = ['#0DBED6', '#0A4BF1', '#8B5CF6', '#22D3EE'];
     // Scale particle count based on screen width for performance
     const getParticleCount = () => {
-      if (window.innerWidth > 1200) return 120;
-      if (window.innerWidth > 768) return 80;
-      return 40;
+      if (window.innerWidth > 1200) return 80;
+      if (window.innerWidth > 768) return 50;
+      return 30;
     };
     
     // The maximum distance between two particles to draw a connecting line
-    const connectionDistance = 140;
+    const connectionDistance = 220;
 
     const resize = () => {
       if (!canvas.parentElement) return;
@@ -94,7 +94,7 @@ export function ParticleConstellation() {
           vy,
           baseVx: vx,
           baseVy: vy,
-          radius: Math.random() * 1.5 + 0.5,
+          radius: Math.random() * 5 + 2,
           color: colors[Math.floor(Math.random() * colors.length)],
         });
       }
@@ -189,7 +189,7 @@ export function ParticleConstellation() {
             ctx.moveTo(p1DrawX, p1DrawY);
             ctx.lineTo(p2DrawX, p2DrawY);
             ctx.strokeStyle = `rgba(13, 190, 214, ${opacity})`; // Using primary brand color for lines
-            ctx.lineWidth = 0.8;
+            ctx.lineWidth = 2.5;
             ctx.stroke();
           }
         }
