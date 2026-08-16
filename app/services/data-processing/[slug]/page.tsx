@@ -92,9 +92,9 @@ export default async function DataProcessingServicePage({ params }: { params: Pr
             {service.features.map((feature, idx) => (
               <StaggerItem key={idx}>
                 <FeatureCard
-                  title={feature}
-                  description="Engineered processing feature to ensure your datasets are clean, structured, and deployment-ready."
-                  icon={<CheckCircle2 className="w-6 h-6 text-cyan-400" />}
+                  title={feature.title}
+                  description={feature.description}
+                  icon={<CheckCircle2 className="w-6 h-6 text-violet-400" />}
                 />
               </StaggerItem>
             ))}

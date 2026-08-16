@@ -18,12 +18,12 @@ export const dataLabelingServices = [
     longDescription: "Our image annotation services provide pixel-perfect ground truth for all computer vision applications. Whether you need simple 2D bounding boxes for object detection, intricate polygons for complex shapes, or dense semantic segmentation for scene understanding, our expert annotators deliver. We specialize in challenging domains including medical imaging, satellite imagery analysis, and high-precision autonomous vehicle perception.",
     icon: "Image",
     features: [
-      "Bounding boxes, polygons, and keypoints",
-      "Semantic and instance segmentation",
-      "OCR and document transcription",
-      "Medical imaging (DICOM) annotation",
-      "Satellite and aerial imagery labeling",
-      "Multi-layered QA workflows"
+      { title: "Bounding boxes, polygons, and keypoints", description: "Meticulous outlining of objects with pinpoint accuracy to train highly reliable object detection models." },
+      { title: "Semantic and instance segmentation", description: "Pixel-perfect classification for complex visual parsing, ensuring distinct separation of background and foreground elements." },
+      { title: "OCR and document transcription", description: "Precise extraction of text from varied image formats to build robust optical character recognition capabilities." },
+      { title: "Medical imaging (DICOM) annotation", description: "HIPAA-compliant labeling by trained professionals to support advanced healthcare diagnostic algorithms." },
+      { title: "Satellite and aerial imagery labeling", description: "High-level spatial tagging for geographic mapping, agricultural monitoring, and urban planning applications." },
+      { title: "Multi-layered QA workflows", description: "Rigorous human and automated checks to guarantee industry-leading annotation accuracy before final delivery." }
     ],
     useCases: [
       "Autonomous driving perception systems",
@@ -46,12 +46,12 @@ export const dataLabelingServices = [
     longDescription: "Elevate your Large Language Models with our comprehensive text annotation and RLHF (Reinforcement Learning from Human Feedback) services. We provide Named Entity Recognition (NER), intent classification, and sentiment analysis for traditional NLP. For modern generative models, our highly educated annotators craft specialized prompt responses, rank model outputs for alignment, and conduct rigorous instruction tuning to ensure your LLMs are helpful, honest, and harmless.",
     icon: "FileText",
     features: [
-      "Named Entity Recognition (NER) & POS tagging",
-      "Sentiment and intent classification",
-      "RLHF and reward modeling",
-      "Instruction tuning and prompt generation",
-      "Text summarization and generation QA",
-      "Multilingual NLP support"
+      { title: "Named Entity Recognition (NER) & POS tagging", description: "Accurate categorization of people, places, and syntactic structures to empower natural language understanding." },
+      { title: "Sentiment and intent classification", description: "Nuanced tagging of emotional tone and user goals to refine customer service chatbots and analysis tools." },
+      { title: "RLHF and reward modeling", description: "Expert human feedback loops designed to align your generative AI with safe, helpful, and desired behaviors." },
+      { title: "Instruction tuning and prompt generation", description: "Crafting precise conversational pairs to dramatically improve your language model's zero-shot task execution." },
+      { title: "Text summarization and generation QA", description: "Evaluating generated content for factual accuracy, coherence, and stylistic consistency against source material." },
+      { title: "Multilingual NLP support", description: "Native-speaker level annotation across multiple dialects to ensure your models perform flawlessly on a global scale." }
     ],
     useCases: [
       "LLM alignment and fine-tuning",
@@ -74,12 +74,12 @@ export const dataLabelingServices = [
     longDescription: "Navigate the complexities of spatial data with our specialized 3D point cloud annotation. Essential for autonomous vehicles and robotics, our teams expertly label LiDAR and radar data using 3D cuboids, semantic segmentation, and instance tracking. We utilize advanced sensor fusion techniques, linking 3D point clouds with 2D camera data to provide comprehensive, multi-modal ground truth for dynamic physical environments.",
     icon: "Box",
     features: [
-      "3D cuboid tracking across frames",
-      "Semantic and instance segmentation of LiDAR",
-      "Sensor fusion (LiDAR + Camera)",
-      "Bird's Eye View (BEV) annotation",
-      "Lane and road boundary mapping",
-      "High-precision alignment QA"
+      { title: "3D cuboid tracking across frames", description: "Consistent spatial bounding and temporal tracking of objects to ensure smooth autonomous navigation training." },
+      { title: "Semantic and instance segmentation of LiDAR", description: "Detailed classification of individual points within point clouds to enable precise environmental understanding." },
+      { title: "Sensor fusion (LiDAR + Camera)", description: "Synchronized annotation bridging 2D imagery and 3D spatial data for robust, multi-modal model development." },
+      { title: "Bird's Eye View (BEV) annotation", description: "Top-down perspective labeling essential for holistic scene generation and vehicle path planning algorithms." },
+      { title: "Lane and road boundary mapping", description: "Accurate tracing of road infrastructure and drivable areas critical for autonomous driving safety." },
+      { title: "High-precision alignment QA", description: "Strict quality control utilizing specialized 3D visualization tools to prevent calibration and labeling drift." }
     ],
     useCases: [
       "Autonomous vehicle navigation and obstacle avoidance",
@@ -102,12 +102,12 @@ export const dataLabelingServices = [
     longDescription: "Transform raw audio into actionable data with our precision audio annotation services. We provide meticulous phonetic transcription, speaker diarization (identifying who spoke when), and precise timestamping. Beyond basic transcription, we annotate intent, emotion, and background acoustic events, enabling the development of nuanced conversational AI and sophisticated audio analysis tools across multiple languages and dialects.",
     icon: "Mic",
     features: [
-      "Verbatim and non-verbatim transcription",
-      "Speaker diarization and timestamping",
-      "Emotion and tone classification",
-      "Keyword spotting and wake word labeling",
-      "Acoustic event detection",
-      "Multilingual native-speaker annotators"
+      { title: "Verbatim and non-verbatim transcription", description: "Highly accurate text conversion of speech, capturing stutters and filler words or providing clean, readable text." },
+      { title: "Speaker diarization and timestamping", description: "Precise identification of distinct speakers mapped to exact timestamps for complex multi-party audio analysis." },
+      { title: "Emotion and tone classification", description: "Tagging subtle vocal inflections and acoustic cues to train empathetic and context-aware conversational AI." },
+      { title: "Keyword spotting and wake word labeling", description: "Targeted tagging of specific trigger phrases to optimize smart devices and hands-free control systems." },
+      { title: "Acoustic event detection", description: "Identifying and categorizing background noises like sirens, breaking glass, or machinery for safety applications." },
+      { title: "Multilingual native-speaker annotators", description: "Leveraging cultural and linguistic expertise to accurately transcribe complex regional accents and slang." }
     ],
     useCases: [
       "Training Automatic Speech Recognition (ASR) models",
@@ -130,12 +130,12 @@ export const dataLabelingServices = [
     longDescription: "Video data requires an understanding of motion and time. Our video annotation services track objects continuously across frames, interpolate movement, and classify complex temporal actions. Whether you are building skeletal pose estimation models for sports analytics, tracking vehicles in traffic footage, or analyzing human behavior in retail environments, we provide consistent, high-quality temporal ground truth.",
     icon: "Video",
     features: [
-      "Object tracking with temporal interpolation",
-      "Skeletal pose estimation and keypoints",
-      "Action and event recognition",
-      "Polygon tracking for moving boundaries",
-      "Multi-camera tracking integration",
-      "High-framerate video support"
+      { title: "Object tracking with temporal interpolation", description: "Seamless bounding box tracking that anticipates movement across missing frames to build reliable kinetic models." },
+      { title: "Skeletal pose estimation and keypoints", description: "Precise mapping of human joints and body language to support advanced biomechanical and sports analysis AI." },
+      { title: "Action and event recognition", description: "Tagging specific behaviors and milestones within a timeline to enable automated video summarization and alerting." },
+      { title: "Polygon tracking for moving boundaries", description: "Dynamic shape outlining that adjusts frame-by-frame for objects changing perspective or morphing in shape." },
+      { title: "Multi-camera tracking integration", description: "Linking identities of subjects as they move across different camera feeds to support security and retail tracking." },
+      { title: "High-framerate video support", description: "Specialized tools and workflows designed to handle the massive data load of 60fps+ slow-motion analysis." }
     ],
     useCases: [
       "Sports performance and biomechanical analysis",
@@ -158,12 +158,12 @@ export const dataLabelingServices = [
     longDescription: "For long-term or highly specialized projects, we provide dedicated Annotation Teams. These are managed, consistent groups of annotators and QA specialists trained exclusively on your guidelines and domain. We provide project managers to handle daily operations, ensure strict SLA adherence, and maintain rigorous security protocols (including secure facilities if required), acting as a seamless extension of your internal AI team.",
     icon: "Users",
     features: [
-      "Dedicated, consistent annotator pool",
-      "Expert project and QA management",
-      "Custom training and guideline development",
-      "Scalable resource allocation",
-      "Strict data security and NDA compliance",
-      "Custom SLA and KPI reporting"
+      { title: "Dedicated, consistent annotator pool", description: "Retaining the same highly trained individuals on your project to ensure labeling styles never drift or degrade." },
+      { title: "Expert project and QA management", description: "Oversight by experienced managers who proactively resolve edge cases and refine guidelines before errors scale." },
+      { title: "Custom training and guideline development", description: "Collaborative onboarding processes to translate your specific model requirements into actionable labeling rubrics." },
+      { title: "Scalable resource allocation", description: "The flexibility to instantly increase your team size during data surges without sacrificing annotation quality." },
+      { title: "Strict data security and NDA compliance", description: "Operating in locked-down environments with stringent access controls to protect your proprietary IP." },
+      { title: "Custom SLA and KPI reporting", description: "Transparent dashboards tracking throughput, consensus scores, and accuracy metrics in real-time." }
     ],
     useCases: [
       "Continuous learning models requiring daily data",

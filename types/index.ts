@@ -12,7 +12,7 @@ export interface Service {
   description: string;
   longDescription?: string;
   icon: string;
-  features: string[];
+  features: { title: string; description: string }[];
   useCases?: string[];
   benefits?: string[];
   process?: ProcessStep[];

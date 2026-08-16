@@ -92,8 +92,8 @@ export default async function DataCollectionServicePage({ params }: { params: Pr
             {service.features.map((feature, idx) => (
               <StaggerItem key={idx}>
                 <FeatureCard
-                  title={feature}
-                  description="Optimized feature tailored to accelerate your machine learning pipeline with uncompromising quality."
+                  title={feature.title}
+                  description={feature.description}
                   icon={<CheckCircle2 className="w-6 h-6 text-cyan-400" />}
                 />
               </StaggerItem>

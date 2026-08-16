@@ -92,8 +92,8 @@ export default async function DataLabelingServicePage({ params }: { params: Prom
             {service.features.map((feature, idx) => (
               <StaggerItem key={idx}>
                 <FeatureCard
-                  title={feature}
-                  description="High fidelity annotation capabilities designed to meet the rigorous demands of enterprise AI."
+                  title={feature.title}
+                  description={feature.description}
                   icon={<CheckCircle2 className="w-6 h-6 text-indigo-400" />}
                 />
               </StaggerItem>
