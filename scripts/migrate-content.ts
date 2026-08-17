@@ -71,7 +71,7 @@ async function main() {
           role: member.role,
           bio: member.bio,
           image: member.image,
-          linkedinUrl: member.linkedin,
+          linkedinUrl: member.linkedinUrl,
           order: i,
         }
       });
