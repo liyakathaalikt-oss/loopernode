@@ -3,17 +3,29 @@ export function generateOrganizationSchema() {
     "@context": "https://schema.org",
     "@type": "Organization",
     "name": "Loopernode",
+    "alternateName": "Loopernode AI Data Services",
     "url": "https://loopernode.in",
     "logo": "https://loopernode.in/images/logo-new.png",
-    "description": "Enterprise AI data services company providing data collection, labeling, and processing.",
+    "description": "Enterprise AI data services company providing global data collection, data labeling, and data processing for machine learning and generative AI models.",
+    "knowsAbout": [
+      "Artificial Intelligence",
+      "Machine Learning",
+      "Data Collection",
+      "Data Labeling",
+      "Data Processing",
+      "Generative AI",
+      "RLHF"
+    ],
+    "areaServed": "Worldwide",
     "sameAs": [
       "https://twitter.com/loopernode",
       "https://linkedin.com/company/loopernode"
     ],
     "contactPoint": {
       "@type": "ContactPoint",
-      "telephone": "+1-800-555-0199",
-      "contactType": "customer service"
+      "telephone": "+91-7975265394",
+      "contactType": "customer service",
+      "availableLanguage": ["English"]
     }
   };
 }
@@ -85,16 +97,20 @@ export function generateServiceSchema(service: {
   name: string;
   description: string;
   url: string;
+  serviceType?: string;
 }) {
   return {
     "@context": "https://schema.org",
     "@type": "Service",
     "name": service.name,
     "description": service.description,
+    "serviceType": service.serviceType || "AI Data Services",
     "provider": {
       "@type": "Organization",
-      "name": "Loopernode"
+      "name": "Loopernode",
+      "url": "https://loopernode.in"
     },
+    "areaServed": "Worldwide",
     "url": `https://loopernode.in${service.url}`
   };
 }

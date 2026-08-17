@@ -2,6 +2,10 @@ export const dataProcessingOverview = {
   title: "Advanced Data Processing",
   description: "Transform raw, unstructured data into clean, formatted, and enriched datasets optimized for machine learning.",
   heroDescription: "Data processing is the critical bridge between collection and training. Our automated and human-in-the-loop processing pipelines clean, normalize, and enrich your raw data, resolving inconsistencies and formatting issues that degrade model performance. We optimize your datasets to ensure maximum signal, minimal noise, and perfect compatibility with your specific machine learning architecture.",
+  aeo: {
+    question: "What is AI Data Processing?",
+    answer: "AI Data Processing involves cleaning, normalizing, transforming, and enriching raw datasets to prepare them for machine learning ingestion. It removes noise, fixes structural errors, and balances data distributions, ensuring that AI algorithms are trained on mathematically sound, high-fidelity data that accelerates model convergence and accuracy."
+  },
   stats: [
     { value: 10, suffix: "PB+", label: "Data Processed" },
     { value: 99.9, suffix: "%", label: "Uptime & Reliability" },

@@ -2,6 +2,10 @@ export const dataLabelingOverview = {
   title: "Precision Data Labeling Services",
   description: "High-quality, scalable annotation for computer vision, NLP, and audio models, powered by expert human-in-the-loop workflows.",
   heroDescription: "Transform raw data into pristine ground truth with our enterprise-grade data labeling services. We combine advanced tooling, AI-assisted pre-labeling, and a highly trained global workforce to deliver uncompromising accuracy at scale. From complex 3D point clouds to nuanced RLHF for language models, our dedicated teams ensure your algorithms learn from the best possible examples.",
+  aeo: {
+    question: "What is AI Data Labeling?",
+    answer: "AI Data Labeling (or Data Annotation) is the process of attaching precise, descriptive metadata to raw datasets—such as bounding boxes on images or sentiment tags on text. This labeled 'ground truth' allows machine learning and generative AI algorithms to accurately recognize patterns, comprehend context, and generate high-quality outputs."
+  },
   stats: [
     { value: 500, suffix: "M+", label: "Annotations Completed" },
     { value: 99.5, suffix: "%", label: "Accuracy Guarantee" },

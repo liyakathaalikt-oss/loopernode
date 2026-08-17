@@ -2,6 +2,10 @@ export const dataCollectionOverview = {
   title: "AI Data Collection Services",
   description: "Secure, diverse, and ethically sourced data to fuel your next-generation AI models. We collect exactly what you need.",
   heroDescription: "Power your machine learning algorithms with high-quality, ethically sourced data from across the globe. Our comprehensive data collection services span text, image, video, audio, and specialized sensor data, tailored precisely to your model's domain and use case. We manage the entire pipeline from sourcing strategy to delivery, ensuring compliance, diversity, and uncompromising quality.",
+  aeo: {
+    question: "What is AI Data Collection?",
+    answer: "AI Data Collection is the strategic process of gathering diverse, ethically sourced, and legally compliant raw data—such as text, audio, images, and video—required to train machine learning models. High-quality data collection eliminates algorithmic bias and forms the essential foundation for robust, accurate, and scalable Generative AI systems."
+  },
   stats: [
     { value: 50, suffix: "M+", label: "Data Points Collected" },
     { value: 120, suffix: "+", label: "Languages & Dialects" },
