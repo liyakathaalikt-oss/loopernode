@@ -61,9 +61,9 @@ export default async function SolutionDetailsPage({ params }: PageProps) {
         
         {/* Breadcrumbs */}
         <div className="flex items-center text-sm text-slate-400 mb-8 gap-2">
-          <Link prefetch={false} href="/" className="hover:text-violet-400 transition-colors">Home</Link>
+          <Link  href="/" className="hover:text-violet-400 transition-colors">Home</Link>
           <span>/</span>
-          <Link prefetch={false} href="/solutions" className="hover:text-violet-400 transition-colors">Solutions</Link>
+          <Link  href="/solutions" className="hover:text-violet-400 transition-colors">Solutions</Link>
           <span>/</span>
           <span className="text-slate-200">{solution.title}</span>
         </div>
@@ -87,7 +87,7 @@ export default async function SolutionDetailsPage({ params }: PageProps) {
               </p>
 
               <div className="flex flex-wrap gap-4">
-                <Link prefetch={false} href="/contact" className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-violet-600 hover:bg-violet-500 text-white rounded-full font-semibold transition-all duration-300 hover:shadow-[0_0_20px_rgba(139,92,246,0.4)]">
+                <Link  href="/contact" className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-violet-600 hover:bg-violet-500 text-white rounded-full font-semibold transition-all duration-300 hover:shadow-[0_0_20px_rgba(139,92,246,0.4)]">
                   Consult an Architect <ArrowRight className="w-4 h-4" />
                 </Link>
               </div>
@@ -142,7 +142,7 @@ export default async function SolutionDetailsPage({ params }: PageProps) {
               <p className="text-slate-400 text-sm leading-relaxed mb-6">
                 Our solutions architecture team is ready to analyze your ML pipeline and design a custom operational model.
               </p>
-              <Link prefetch={false} href="/contact" className="w-full inline-flex items-center justify-center gap-2 px-6 py-3 bg-white/10 hover:bg-white/20 text-white rounded-xl font-semibold transition-colors">
+              <Link  href="/contact" className="w-full inline-flex items-center justify-center gap-2 px-6 py-3 bg-white/10 hover:bg-white/20 text-white rounded-xl font-semibold transition-colors">
                 Contact Sales
               </Link>
             </div>

@@ -36,7 +36,7 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           {/* Column 1: Brand */}
           <div className="space-y-6">
-            <Link prefetch={false} href="/" className="inline-flex items-center gap-3">
+            <Link  href="/" className="inline-flex items-center gap-3">
               <NextImage 
                 src="/images/logo-full.png" 
                 alt="Loopernode Logo" 
@@ -69,11 +69,11 @@ export function Footer() {
           <div>
             <p className="text-white font-semibold mb-6">Services</p>
             <ul className="space-y-4">
-              <li><Link prefetch={false} href="/services/data-collection" className="text-slate-400 hover:text-indigo-400 transition-colors text-sm">Data Collection</Link></li>
-              <li><Link prefetch={false} href="/services/data-labeling" className="text-slate-400 hover:text-indigo-400 transition-colors text-sm">Data Labeling</Link></li>
-              <li><Link prefetch={false} href="/services/data-processing" className="text-slate-400 hover:text-indigo-400 transition-colors text-sm">Data Processing</Link></li>
-              <li><Link prefetch={false} href="/services/data-collection/ai-consultancy" className="text-slate-400 hover:text-indigo-400 transition-colors text-sm">AI Consultancy</Link></li>
-              <li><Link prefetch={false} href="/services/data-collection/quality-assurance" className="text-slate-400 hover:text-indigo-400 transition-colors text-sm">Quality Assurance</Link></li>
+              <li><Link  href="/services/data-collection" className="text-slate-400 hover:text-indigo-400 transition-colors text-sm">Data Collection</Link></li>
+              <li><Link  href="/services/data-labeling" className="text-slate-400 hover:text-indigo-400 transition-colors text-sm">Data Labeling</Link></li>
+              <li><Link  href="/services/data-processing" className="text-slate-400 hover:text-indigo-400 transition-colors text-sm">Data Processing</Link></li>
+              <li><Link  href="/services/data-collection/ai-consultancy" className="text-slate-400 hover:text-indigo-400 transition-colors text-sm">AI Consultancy</Link></li>
+              <li><Link  href="/services/data-collection/quality-assurance" className="text-slate-400 hover:text-indigo-400 transition-colors text-sm">Quality Assurance</Link></li>
             </ul>
           </div>
 
@@ -81,13 +81,13 @@ export function Footer() {
           <div>
             <p className="text-white font-semibold mb-6">Company</p>
             <ul className="space-y-4">
-              <li><Link prefetch={false} href="/about" className="text-slate-400 hover:text-indigo-400 transition-colors text-sm">About Us</Link></li>
-              <li><Link prefetch={false} href="/industries" className="text-slate-400 hover:text-indigo-400 transition-colors text-sm">Industries</Link></li>
-              <li><Link prefetch={false} href="/solutions" className="text-slate-400 hover:text-indigo-400 transition-colors text-sm">Solutions</Link></li>
-              <li><Link prefetch={false} href="/blog" className="text-slate-400 hover:text-indigo-400 transition-colors text-sm">Blog</Link></li>
-              <li><Link prefetch={false} href="/careers" className="text-slate-400 hover:text-indigo-400 transition-colors text-sm">Careers</Link></li>
-              <li><Link prefetch={false} href="/contact" className="text-slate-400 hover:text-indigo-400 transition-colors text-sm">Contact</Link></li>
-              <li><Link prefetch={false} href="/partners" className="text-slate-400 hover:text-indigo-400 transition-colors text-sm">Partners</Link></li>
+              <li><Link  href="/about" className="text-slate-400 hover:text-indigo-400 transition-colors text-sm">About Us</Link></li>
+              <li><Link  href="/industries" className="text-slate-400 hover:text-indigo-400 transition-colors text-sm">Industries</Link></li>
+              <li><Link  href="/solutions" className="text-slate-400 hover:text-indigo-400 transition-colors text-sm">Solutions</Link></li>
+              <li><Link  href="/blog" className="text-slate-400 hover:text-indigo-400 transition-colors text-sm">Blog</Link></li>
+              <li><Link  href="/careers" className="text-slate-400 hover:text-indigo-400 transition-colors text-sm">Careers</Link></li>
+              <li><Link  href="/contact" className="text-slate-400 hover:text-indigo-400 transition-colors text-sm">Contact</Link></li>
+              <li><Link  href="/partners" className="text-slate-400 hover:text-indigo-400 transition-colors text-sm">Partners</Link></li>
             </ul>
           </div>
 
@@ -95,11 +95,11 @@ export function Footer() {
           <div>
             <p className="text-white font-semibold mb-6">Resources</p>
             <ul className="space-y-4">
-              <li><Link prefetch={false} href="/docs" className="text-slate-400 hover:text-indigo-400 transition-colors text-sm">Documentation</Link></li>
-              <li><Link prefetch={false} href="/case-studies" className="text-slate-400 hover:text-indigo-400 transition-colors text-sm">Case Studies</Link></li>
-              <li><Link prefetch={false} href="/api-reference" className="text-slate-400 hover:text-indigo-400 transition-colors text-sm">API Reference</Link></li>
-              <li><Link prefetch={false} href="/security" className="text-slate-400 hover:text-indigo-400 transition-colors text-sm">Security</Link></li>
-              <li><Link prefetch={false} href="/privacy" className="text-slate-400 hover:text-indigo-400 transition-colors text-sm">Privacy Policy</Link></li>
+              <li><Link  href="/docs" className="text-slate-400 hover:text-indigo-400 transition-colors text-sm">Documentation</Link></li>
+              <li><Link  href="/case-studies" className="text-slate-400 hover:text-indigo-400 transition-colors text-sm">Case Studies</Link></li>
+              <li><Link  href="/api-reference" className="text-slate-400 hover:text-indigo-400 transition-colors text-sm">API Reference</Link></li>
+              <li><Link  href="/security" className="text-slate-400 hover:text-indigo-400 transition-colors text-sm">Security</Link></li>
+              <li><Link  href="/privacy" className="text-slate-400 hover:text-indigo-400 transition-colors text-sm">Privacy Policy</Link></li>
             </ul>
           </div>
         </div>
@@ -110,9 +110,9 @@ export function Footer() {
             © {new Date().getFullYear()} Loopernode, Inc. All rights reserved.
           </p>
           <div className="flex items-center gap-6 text-sm">
-            <Link prefetch={false} href="/terms" className="text-slate-500 hover:text-white transition-colors">Terms of Service</Link>
-            <Link prefetch={false} href="/privacy" className="text-slate-500 hover:text-white transition-colors">Privacy Policy</Link>
-            <Link prefetch={false} href="/cookie" className="text-slate-500 hover:text-white transition-colors">Cookie Policy</Link>
+            <Link  href="/terms" className="text-slate-500 hover:text-white transition-colors">Terms of Service</Link>
+            <Link  href="/privacy" className="text-slate-500 hover:text-white transition-colors">Privacy Policy</Link>
+            <Link  href="/cookie" className="text-slate-500 hover:text-white transition-colors">Cookie Policy</Link>
           </div>
         </div>
       </div>

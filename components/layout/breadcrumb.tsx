@@ -30,7 +30,7 @@ export function Breadcrumb({ items, className }: BreadcrumbProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
       />
-      <Link prefetch={false} href="/" className="hover:text-white transition-colors flex items-center">
+      <Link  href="/" className="hover:text-white transition-colors flex items-center">
         <Home className="w-4 h-4" />
         <span className="sr-only">Home</span>
       </Link>
@@ -46,7 +46,7 @@ export function Breadcrumb({ items, className }: BreadcrumbProps) {
                 {item.label}
               </span>
             ) : (
-              <Link prefetch={false} href={item.href} className="hover:text-white transition-colors">
+              <Link  href={item.href} className="hover:text-white transition-colors">
                 {item.label}
               </Link>
             )}

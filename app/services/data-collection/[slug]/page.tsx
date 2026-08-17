@@ -126,7 +126,7 @@ export default async function DataCollectionServicePage({ params }: { params: Pr
             </FadeUp>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
               {relatedServices.map((related) => (
-                <Link prefetch={false} key={related.slug} href={`/services/data-collection/${related.slug}`} className="group block">
+                <Link  key={related.slug} href={`/services/data-collection/${related.slug}`} className="group block">
                   <div className="glass-card backdrop-blur-xl bg-white/[0.03] border border-white/[0.08] p-6 rounded-2xl transition-all duration-300 hover:bg-white/[0.05] hover:border-indigo-500/50">
                     <h4 className="text-xl font-semibold mb-2 flex items-center justify-between">
                       {related.title}

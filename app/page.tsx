@@ -157,7 +157,7 @@ export default async function HomePage() {
             <p className="text-lg text-slate-300 leading-relaxed max-w-2xl mt-6 mb-8">
               The intelligence of any AI system is inextricably linked to the quality of its training data. For over a decade, Loopernode has been architecting the data foundation for state of the art machine learning models. By combining a highly skilled global workforce with rigorous, proprietary QA infrastructure, we ensure your algorithms learn from the most accurate and unbiased ground truth available.
             </p>
-            <Link prefetch={false} href="/about" className="inline-flex items-center text-indigo-400 hover:text-indigo-300 font-semibold transition-colors">
+            <Link  href="/about" className="inline-flex items-center text-indigo-400 hover:text-indigo-300 font-semibold transition-colors">
               Explore our AI mission <ArrowRight className="ml-2 w-5 h-5" />
             </Link>
           </FadeUp>
@@ -367,7 +367,7 @@ export default async function HomePage() {
               highlightedWord="Impact" 
               align="left" 
             />
-            <Link prefetch={false} href="/case-studies" className="hidden md:inline-flex items-center text-cyan-400 hover:text-cyan-300 font-semibold transition-colors">
+            <Link  href="/case-studies" className="hidden md:inline-flex items-center text-cyan-400 hover:text-cyan-300 font-semibold transition-colors">
               Explore Client Success Stories <ArrowRight className="ml-2 w-5 h-5" />
             </Link>
           </div>
@@ -384,7 +384,7 @@ export default async function HomePage() {
                 <p className="text-slate-400 text-sm mb-8 flex-grow">
                   {study.challengeExcerpt || study.excerpt || 'Discover how we accelerated their AI pipeline with precision data services.'}
                 </p>
-                <Link prefetch={false} href={`/case-studies/${study.slug || 'detail'}`} className="inline-flex items-center text-white text-sm font-semibold hover:text-indigo-400 transition-colors mt-auto">
+                <Link  href={`/case-studies/${study.slug || 'detail'}`} className="inline-flex items-center text-white text-sm font-semibold hover:text-indigo-400 transition-colors mt-auto">
                   Read {study.client} Case Study <ArrowRight className="ml-2 w-4 h-4" />
                 </Link>
               </div>
@@ -392,7 +392,7 @@ export default async function HomePage() {
           ))}
         </StaggerContainer>
         <div className="mt-10 text-center md:hidden">
-          <Link prefetch={false} href="/case-studies" className="inline-flex items-center text-cyan-400 hover:text-cyan-300 font-semibold transition-colors">
+          <Link  href="/case-studies" className="inline-flex items-center text-cyan-400 hover:text-cyan-300 font-semibold transition-colors">
             Browse All Case Studies <ArrowRight className="ml-2 w-5 h-5" />
           </Link>
         </div>

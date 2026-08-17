@@ -19,7 +19,7 @@ export interface ServiceCardProps {
 export function ServiceCard({ title, description, icon, features, href, index = 0, className }: ServiceCardProps) {
   return (
     <StaggerItem className={cn('h-full', className)}>
-      <Link prefetch={false} href={href} className="block h-full group">
+      <Link  href={href} className="block h-full group">
         <div className="relative h-full flex flex-col p-8 rounded-2xl backdrop-blur-xl bg-white/[0.03] border border-white/[0.08] transition-all duration-300 hover:scale-[1.02] hover:bg-white/[0.05]">
           {/* Subtle Glow */}
           <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-[#6366F1]/0 to-[#8B5CF6]/0 group-hover:from-[#6366F1]/10 group-hover:to-[#8B5CF6]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl -z-10" />

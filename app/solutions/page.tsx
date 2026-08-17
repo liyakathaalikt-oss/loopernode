@@ -73,7 +73,7 @@ export default function SolutionsPage() {
                     ))}
                   </div>
 
-                  <Link prefetch={false} 
+                  <Link  
                     href={`/solutions/${solution.slug}`}
                     className="inline-flex items-center justify-center gap-2 w-full py-4 bg-white/5 hover:bg-violet-600/20 border border-white/10 hover:border-violet-500/50 text-white rounded-xl font-semibold transition-all duration-300 group-hover:shadow-[0_0_20px_rgba(139,92,246,0.2)]"
                   >

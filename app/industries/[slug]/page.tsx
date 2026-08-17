@@ -64,9 +64,9 @@ export default async function IndustryDetailsPage({ params }: PageProps) {
         
         {/* Breadcrumbs */}
         <div className="flex items-center text-sm text-slate-400 mb-8 gap-2">
-          <Link prefetch={false} href="/" className="hover:text-indigo-400 transition-colors">Home</Link>
+          <Link  href="/" className="hover:text-indigo-400 transition-colors">Home</Link>
           <span>/</span>
-          <Link prefetch={false} href="/industries" className="hover:text-indigo-400 transition-colors">Industries</Link>
+          <Link  href="/industries" className="hover:text-indigo-400 transition-colors">Industries</Link>
           <span>/</span>
           <span className="text-slate-200">{industry.name}</span>
         </div>
@@ -90,7 +90,7 @@ export default async function IndustryDetailsPage({ params }: PageProps) {
               </p>
 
               <div className="flex flex-wrap gap-4">
-                <Link prefetch={false} href="/contact" className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-indigo-600 hover:bg-indigo-500 text-white rounded-full font-semibold transition-all duration-300 hover:shadow-[0_0_20px_rgba(79,70,229,0.4)]">
+                <Link  href="/contact" className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-indigo-600 hover:bg-indigo-500 text-white rounded-full font-semibold transition-all duration-300 hover:shadow-[0_0_20px_rgba(79,70,229,0.4)]">
                   Request {industry.name} Pilot <ArrowRight className="w-4 h-4" />
                 </Link>
               </div>
@@ -153,19 +153,19 @@ export default async function IndustryDetailsPage({ params }: PageProps) {
               <h3 className="text-xl font-bold text-white mb-6">Our Capabilities</h3>
               <ul className="space-y-4">
                 <li>
-                  <Link prefetch={false} href="/services/data-labeling" className="flex items-center justify-between text-slate-300 hover:text-indigo-400 transition-colors group">
+                  <Link  href="/services/data-labeling" className="flex items-center justify-between text-slate-300 hover:text-indigo-400 transition-colors group">
                     <span>Data Annotation</span>
                     <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                   </Link>
                 </li>
                 <li>
-                  <Link prefetch={false} href="/services/data-collection" className="flex items-center justify-between text-slate-300 hover:text-indigo-400 transition-colors group">
+                  <Link  href="/services/data-collection" className="flex items-center justify-between text-slate-300 hover:text-indigo-400 transition-colors group">
                     <span>Data Collection</span>
                     <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                   </Link>
                 </li>
                 <li>
-                  <Link prefetch={false} href="/services/data-processing" className="flex items-center justify-between text-slate-300 hover:text-indigo-400 transition-colors group">
+                  <Link  href="/services/data-processing" className="flex items-center justify-between text-slate-300 hover:text-indigo-400 transition-colors group">
                     <span>Data Processing</span>
                     <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                   </Link>
@@ -178,7 +178,7 @@ export default async function IndustryDetailsPage({ params }: PageProps) {
               <p className="text-slate-400 text-sm leading-relaxed mb-6">
                 Our solutions architects can design a custom data pipeline tailored specifically to your model&apos;s requirements.
               </p>
-              <Link prefetch={false} href="/contact" className="w-full inline-flex items-center justify-center gap-2 px-6 py-3 bg-white/10 hover:bg-white/20 text-white rounded-xl font-semibold transition-colors">
+              <Link  href="/contact" className="w-full inline-flex items-center justify-center gap-2 px-6 py-3 bg-white/10 hover:bg-white/20 text-white rounded-xl font-semibold transition-colors">
                 Contact Sales
               </Link>
             </div>
@@ -206,7 +206,7 @@ export default async function IndustryDetailsPage({ params }: PageProps) {
                   <h3 className="text-xl font-bold text-white mb-2">{rel.name}</h3>
                   <p className="text-sm text-slate-400 line-clamp-2">{rel.description}</p>
                 </div>
-                <Link prefetch={false} href={`/industries/${rel.slug}`} className="inline-flex items-center text-sm font-semibold text-indigo-400 hover:text-indigo-300 mt-6 pt-4 border-t border-white/5 w-full justify-between">
+                <Link  href={`/industries/${rel.slug}`} className="inline-flex items-center text-sm font-semibold text-indigo-400 hover:text-indigo-300 mt-6 pt-4 border-t border-white/5 w-full justify-between">
                   View Solutions <ArrowRight className="w-4 h-4" />
                 </Link>
               </div>

@@ -333,7 +333,7 @@ export default async function AboutPage() {
             <p className="text-lg text-slate-300 leading-relaxed max-w-2xl mt-6 mb-8">
               We transcend the role of a traditional data vendor to become an integrated extension of your MLOps team. By combining bank-grade infrastructure with transparent, highly agile workflows, we de-risk the data pipeline for the world's most ambitious technology organizations.
             </p>
-            <Link prefetch={false} href="/contact" className="inline-flex items-center text-indigo-400 hover:text-indigo-300 font-semibold transition-colors">
+            <Link  href="/contact" className="inline-flex items-center text-indigo-400 hover:text-indigo-300 font-semibold transition-colors">
               Speak with a data expert <ArrowRight className="ml-2 w-5 h-5" />
             </Link>
           </FadeUp>

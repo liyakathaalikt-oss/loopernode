@@ -187,7 +187,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           <div className="container-custom max-w-7xl mx-auto px-6">
             <div className="flex items-center justify-between mb-12">
               <h2 className="text-3xl font-bold font-heading text-slate-50">Related Articles</h2>
-              <Link prefetch={false} href="/blog" className="text-primary-400 font-medium flex items-center gap-2 hover:gap-3 transition-all">
+              <Link  href="/blog" className="text-primary-400 font-medium flex items-center gap-2 hover:gap-3 transition-all">
                 Browse All Articles <ChevronRight className="w-4 h-4" />
               </Link>
             </div>

@@ -86,7 +86,7 @@ export function MobileNav({ isOpen, onClose }: MobileNavProps) {
         >
           {/* Header */}
           <div className="flex items-center justify-between p-6 border-b border-white/10">
-            <Link prefetch={false} href="/" onClick={onClose} className="inline-flex items-center gap-3">
+            <Link  href="/" onClick={onClose} className="inline-flex items-center gap-3">
               <NextImage 
                 src="/images/logo-full.png" 
                 alt="Loopernode Logo" 
@@ -108,7 +108,7 @@ export function MobileNav({ isOpen, onClose }: MobileNavProps) {
           {/* Nav Content */}
           <div className="flex-1 overflow-y-auto py-6 px-6 space-y-2">
             {mainLinks.map((link) => (
-              <Link prefetch={false}
+              <Link 
                 key={link.name}
                 href={link.href}
                 onClick={onClose}
@@ -150,7 +150,7 @@ export function MobileNav({ isOpen, onClose }: MobileNavProps) {
                         >
                           <div className="flex flex-col space-y-3 py-2 pl-8">
                             {service.items.map((item) => (
-                              <Link prefetch={false}
+                              <Link 
                                 key={item.name}
                                 href={item.href}
                                 onClick={onClose}
@@ -168,11 +168,11 @@ export function MobileNav({ isOpen, onClose }: MobileNavProps) {
                 
                 {/* Additional Services */}
                 <div className="pt-2 mt-2 border-t border-white/5 space-y-3">
-                  <Link prefetch={false} href="/services/data-collection/data-engineering" onClick={onClose} className="text-slate-400 hover:text-indigo-400 text-sm block">Data Engineering</Link>
-                  <Link prefetch={false} href="/services/data-collection/data-curation" onClick={onClose} className="text-slate-400 hover:text-indigo-400 text-sm block">Data Curation</Link>
-                  <Link prefetch={false} href="/services/data-collection/data-anonymization" onClick={onClose} className="text-slate-400 hover:text-indigo-400 text-sm block">Data Anonymization</Link>
-                  <Link prefetch={false} href="/services/data-collection/ai-consultancy" onClick={onClose} className="text-slate-400 hover:text-indigo-400 text-sm block">AI Consultancy</Link>
-                  <Link prefetch={false} href="/services/data-collection/quality-assurance" onClick={onClose} className="text-slate-400 hover:text-indigo-400 text-sm block">Quality Assurance</Link>
+                  <Link  href="/services/data-collection/data-engineering" onClick={onClose} className="text-slate-400 hover:text-indigo-400 text-sm block">Data Engineering</Link>
+                  <Link  href="/services/data-collection/data-curation" onClick={onClose} className="text-slate-400 hover:text-indigo-400 text-sm block">Data Curation</Link>
+                  <Link  href="/services/data-collection/data-anonymization" onClick={onClose} className="text-slate-400 hover:text-indigo-400 text-sm block">Data Anonymization</Link>
+                  <Link  href="/services/data-collection/ai-consultancy" onClick={onClose} className="text-slate-400 hover:text-indigo-400 text-sm block">AI Consultancy</Link>
+                  <Link  href="/services/data-collection/quality-assurance" onClick={onClose} className="text-slate-400 hover:text-indigo-400 text-sm block">Quality Assurance</Link>
                 </div>
               </div>
             </div>
@@ -180,7 +180,7 @@ export function MobileNav({ isOpen, onClose }: MobileNavProps) {
 
           {/* Footer CTA */}
           <div className="p-6 border-t border-white/10 bg-[#0a0a1b]">
-            <Link prefetch={false}
+            <Link 
               href="/contact"
               onClick={onClose}
               className="flex items-center justify-center w-full py-4 px-6 text-white bg-indigo-600 hover:bg-indigo-700 rounded-xl font-medium transition-colors"

@@ -33,7 +33,7 @@ export function CTABanner({
             {description}
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link prefetch={false}
+            <Link 
               href={primaryCTA.href}
               className="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-[#6366F1] to-[#8B5CF6] text-white font-semibold shadow-[0_0_20px_rgba(99,102,241,0.4)] hover:shadow-[0_0_30px_rgba(99,102,241,0.6)] hover:-translate-y-1 transition-all duration-300"
             >
@@ -41,7 +41,7 @@ export function CTABanner({
             </Link>
             
             {secondaryCTA && (
-              <Link prefetch={false}
+              <Link 
                 href={secondaryCTA.href}
                 className="w-full sm:w-auto px-8 py-4 rounded-xl backdrop-blur-xl bg-white/5 border border-white/10 text-white font-semibold hover:bg-white/10 transition-all duration-300"
               >

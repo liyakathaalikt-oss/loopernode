@@ -70,7 +70,7 @@ export default function IndustriesPage() {
                   ))}
                 </div>
 
-                <Link prefetch={false} 
+                <Link  
                   href={`/industries/${industry.slug}`}
                   className="mt-auto inline-flex items-center justify-between w-full pt-4 border-t border-white/10 text-sm font-semibold text-indigo-400 group-hover:text-indigo-300 transition-colors"
                 >

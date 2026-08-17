@@ -96,7 +96,7 @@ export default async function SeoDashboardPage() {
                         Missing {(!blog.seoTitle && !blog.seoDesc) ? 'Title & Description' : !blog.seoTitle ? 'SEO Title' : 'Meta Description'}
                       </p>
                     </div>
-                    <Link prefetch={false} href={`/admin/blog/${blog.id}`} className="text-xs bg-white/5 hover:bg-white/10 border border-white/10 px-3 py-1.5 rounded-md transition-colors text-slate-300">
+                    <Link  href={`/admin/blog/${blog.id}`} className="text-xs bg-white/5 hover:bg-white/10 border border-white/10 px-3 py-1.5 rounded-md transition-colors text-slate-300">
                       Fix Now
                     </Link>
                   </li>
