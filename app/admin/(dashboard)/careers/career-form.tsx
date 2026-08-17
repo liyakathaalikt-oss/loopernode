@@ -130,6 +130,17 @@ export function CareerForm({ initialData }: { initialData?: any }) {
                 placeholder="senior-ml-engineer"
               />
             </div>
+
+            <div>
+              <label className="block text-xs font-medium text-slate-400 mb-1">Job ID (Optional)</label>
+              <input 
+                name="jobId" 
+                type="text" 
+                defaultValue={initialData?.jobId}
+                className="w-full px-3 py-2 text-sm bg-dark-900 border border-white/10 rounded-md focus:outline-none focus:border-primary-500 text-white"
+                placeholder="e.g. REQ-12345"
+              />
+            </div>
           </div>
         </div>
       </div>

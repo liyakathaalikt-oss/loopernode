@@ -38,6 +38,7 @@ model JobPosting {
   id          String   @id @default(cuid())
   title       String
   slug        String   @unique
+  jobId       String?
   department  String
   location    String
   type        String

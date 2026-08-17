@@ -31,6 +31,7 @@ export async function saveJob(formData: FormData) {
   const id = formData.get("id") as string | null;
   const title = formData.get("title") as string;
   const slug = formData.get("slug") as string;
+  const jobId = formData.get("jobId") as string | null;
   const department = formData.get("department") as string;
   const location = formData.get("location") as string;
   const type = formData.get("type") as string;
@@ -40,6 +41,7 @@ export async function saveJob(formData: FormData) {
   const data = {
     title,
     slug,
+    jobId,
     department,
     location,
     type,
