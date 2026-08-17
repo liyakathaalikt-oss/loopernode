@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import NextImage from 'next/image';
-import { Globe, Mail, MessageCircle, Rss, ArrowRight } from 'lucide-react';
+import { FaLinkedinIn, FaInstagram, FaFacebookF, FaXTwitter, FaYoutube } from 'react-icons/fa6';
+import { ArrowRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 export function Footer() {
@@ -50,17 +51,20 @@ export function Footer() {
               Global leader in AI data services, providing high-quality datasets, precise annotation, and comprehensive data processing for enterprise AI models.
             </p>
             <div className="flex items-center gap-4">
-              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-white transition-colors" aria-label="Twitter">
-                <MessageCircle className="w-5 h-5" />
+              <a href="https://linkedin.com/company/loopernode" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-indigo-400 transition-colors" aria-label="LinkedIn">
+                <FaLinkedinIn className="w-5 h-5" />
               </a>
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-white transition-colors" aria-label="LinkedIn">
-                <Globe className="w-5 h-5" />
+              <a href="https://instagram.com/loopernode" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-pink-400 transition-colors" aria-label="Instagram">
+                <FaInstagram className="w-5 h-5" />
               </a>
-              <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-white transition-colors" aria-label="GitHub">
-                <Mail className="w-5 h-5" />
+              <a href="https://facebook.com/loopernode" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-blue-400 transition-colors" aria-label="Facebook">
+                <FaFacebookF className="w-5 h-5" />
               </a>
-              <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-white transition-colors" aria-label="YouTube">
-                <Rss className="w-5 h-5" />
+              <a href="https://twitter.com/loopernode" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-sky-400 transition-colors" aria-label="X (Twitter)">
+                <FaXTwitter className="w-5 h-5" />
+              </a>
+              <a href="https://youtube.com/@loopernode" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-red-400 transition-colors" aria-label="YouTube">
+                <FaYoutube className="w-5 h-5" />
               </a>
             </div>
           </div>
