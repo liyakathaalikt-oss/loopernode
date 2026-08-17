@@ -46,13 +46,15 @@ export default async function SeoDashboardPage() {
 
         <div className="bg-dark-900 border border-white/10 rounded-2xl p-6">
           <div className="flex justify-between items-start mb-4">
-            <div className="w-10 h-10 rounded-lg bg-rose-500/10 flex items-center justify-center text-rose-400">
-              <AlertCircle className="w-5 h-5" />
+            <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${missingBlogMeta.length === 0 ? 'bg-green-500/10 text-green-400' : 'bg-rose-500/10 text-rose-400'}`}>
+              {missingBlogMeta.length === 0 ? <CheckCircle2 className="w-5 h-5" /> : <AlertCircle className="w-5 h-5" />}
             </div>
-            <span className="text-2xl font-bold text-rose-400">{missingBlogMeta.length}</span>
+            <span className={`text-2xl font-bold ${missingBlogMeta.length === 0 ? 'text-green-400' : 'text-rose-400'}`}>
+              {missingBlogMeta.length}
+            </span>
           </div>
-          <p className="text-sm font-medium text-slate-300">Missing Metadata</p>
-          <p className="text-xs text-slate-500 mt-1">Pages needing attention</p>
+          <p className="text-sm font-medium text-slate-300">{missingBlogMeta.length === 0 ? 'All Metadata Complete' : 'Missing Metadata'}</p>
+          <p className="text-xs text-slate-500 mt-1">{missingBlogMeta.length === 0 ? 'No pages need attention' : 'Pages needing attention'}</p>
         </div>
 
         <div className="bg-dark-900 border border-white/10 rounded-2xl p-6">
