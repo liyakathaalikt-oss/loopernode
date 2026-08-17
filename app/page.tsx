@@ -10,14 +10,16 @@ import {
 
 import { Hero } from '@/components/sections/hero';
 import { SectionTitle } from '@/components/sections/section-title';
-import { FeatureCard } from '@/components/sections/feature-card';
-import { ServiceCard } from '@/components/sections/service-card';
-import { StatCounter } from '@/components/sections/stat-counter';
-import { TestimonialCard } from '@/components/sections/testimonial-card';
-import { FAQAccordion } from '@/components/sections/faq-accordion';
 import { CTABanner } from '@/components/sections/cta-banner';
 import { FadeUp, FadeIn, ScaleIn, StaggerContainer, StaggerItem } from '@/components/animations/motion-wrapper';
 import { ScrollBorderSection } from '@/components/ui/scroll-border-section';
+import nextDynamic from 'next/dynamic';
+
+const FeatureCard = nextDynamic(() => import('@/components/sections/feature-card').then(mod => mod.FeatureCard));
+const ServiceCard = nextDynamic(() => import('@/components/sections/service-card').then(mod => mod.ServiceCard));
+const StatCounter = nextDynamic(() => import('@/components/sections/stat-counter').then(mod => mod.StatCounter));
+const TestimonialCard = nextDynamic(() => import('@/components/sections/testimonial-card').then(mod => mod.TestimonialCard));
+const FAQAccordion = nextDynamic(() => import('@/components/sections/faq-accordion').then(mod => mod.FAQAccordion));
 
 import { testimonials } from '@/content/testimonials';
 import { homeFAQs } from '@/content/faqs';
