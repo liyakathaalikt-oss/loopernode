@@ -1,9 +1,9 @@
 export const teamMembers = [
   {
-    name: "Liyakath Ali",
+    name: "Liyakathali K T",
     role: "Founder & CEO",
-    bio: "Liyakath Ali is a visionary technology entrepreneur with deep expertise in AI data solutions. As the Founder & CEO of Loopernode, he leads the mission to solve the industry's critical data bottlenecks and deliver high-fidelity training data.",
-    image: "/images/team/liya.jpeg",
+    bio: "Liyakathali K T is a visionary technology entrepreneur with deep expertise in AI data solutions. As the Founder & CEO of Loopernode, he leads the mission to solve the industry's critical data bottlenecks and deliver high-fidelity training data.",
+    image: "/images/team/liyakathali-kt.jpg",
     linkedinUrl: "https://linkedin.com/in/liyakathali",
     twitter: "https://twitter.com"
   },
