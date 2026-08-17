@@ -136,7 +136,7 @@ export default async function CareersPage() {
           headline="Join Our"
           highlightedText="Team"
           description="Help us build the next-generation AI data infrastructure. We are on a mission to empower machine learning teams around the world with pristine, high-impact datasets."
-          primaryCTA={{ label: 'Explore Positions', href: '/careers#open-positions' }}
+          primaryCTA={{ label: 'Explore Positions', href: '#open-positions' }}
           secondaryCTA={{ label: 'Why Loopernode', href: '#why-us' }}
         />
       </section>
