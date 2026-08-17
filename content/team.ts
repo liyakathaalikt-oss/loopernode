@@ -11,7 +11,7 @@ export const teamMembers = [
     name: "Shadil Nalakath",
     role: "Co-Founder",
     bio: "A visionary leader and technology enthusiast driving Loopernode's mission forward. Shadil is dedicated to building scalable solutions and fostering a culture of continuous innovation and operational excellence.",
-    image: "",
+    image: "/images/team/shadil-nalakath.jpg",
     linkedin: "https://linkedin.com",
     twitter: "https://twitter.com"
   },
