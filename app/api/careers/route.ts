@@ -30,10 +30,11 @@ export async function POST(request: Request) {
     const portfolio = (formData.get('portfolio') as string) || '';
     const experience = (formData.get('experience') as string) || '';
     const position = (formData.get('position') as string) || '';
+    const jobId = (formData.get('jobId') as string) || '';
     const coverLetter = (formData.get('coverLetter') as string) || '';
     const message = (formData.get('message') as string) || '';
 
-    console.log(`[Careers API] Applicant: ${fullName} <${email}> for ${position}`);
+    console.log(`[Careers API] Applicant: ${fullName} <${email}> for ${position} (${jobId})`);
 
     // ─── 3. Validate required fields ───
     const missing: string[] = [];
@@ -44,6 +45,7 @@ export async function POST(request: Request) {
     if (currentLocation.length < 2) missing.push('Current Location');
     if (!experience) missing.push('Experience');
     if (!position) missing.push('Position');
+    if (!jobId) missing.push('Job ID');
 
     if (missing.length > 0) {
       console.error('[Careers API] Validation failed. Missing:', missing);
@@ -131,6 +133,7 @@ export async function POST(request: Request) {
                 <tr><td style="padding:8px 0;border-bottom:1px solid #f1f5f9"><strong>Email Address</strong></td><td style="padding:8px 0;border-bottom:1px solid #f1f5f9"><a href="mailto:${email}">${email}</a></td></tr>
                 <tr><td style="padding:8px 0;border-bottom:1px solid #f1f5f9"><strong>Phone Number</strong></td><td style="padding:8px 0;border-bottom:1px solid #f1f5f9">${phone}</td></tr>
                 <tr><td style="padding:8px 0;border-bottom:1px solid #f1f5f9"><strong>Position Applied For</strong></td><td style="padding:8px 0;border-bottom:1px solid #f1f5f9">${position}</td></tr>
+                <tr><td style="padding:8px 0;border-bottom:1px solid #f1f5f9"><strong>Job ID</strong></td><td style="padding:8px 0;border-bottom:1px solid #f1f5f9">${jobId}</td></tr>
                 <tr><td style="padding:8px 0;border-bottom:1px solid #f1f5f9"><strong>Submission Date & Time</strong></td><td style="padding:8px 0;border-bottom:1px solid #f1f5f9">${new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata' })}</td></tr>
               </table>
               

@@ -200,7 +200,7 @@ export function CareersForm({ defaultPosition }: CareersFormProps) {
 
         {/* Professional Details */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="space-y-2 md:col-span-2">
+          <div className="space-y-2">
             <label className="text-sm font-medium text-slate-300">Position Applying For *</label>
             <select 
               name="position"
@@ -214,6 +214,17 @@ export function CareersForm({ defaultPosition }: CareersFormProps) {
               ))}
               <option value="Open Application">Open Application (Other)</option>
             </select>
+          </div>
+
+          <div className="space-y-2">
+            <label className="text-sm font-medium text-slate-300">Job ID *</label>
+            <input 
+              name="jobId"
+              type="text"
+              required
+              className="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all"
+              placeholder="e.g. REQ-12345"
+            />
           </div>
 
           <div className="space-y-2 md:col-span-2">
