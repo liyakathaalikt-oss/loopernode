@@ -1,9 +1,40 @@
 "use client";
 
-import { useEditor, EditorContent } from '@tiptap/react';
+import { useEditor, EditorContent, Extension } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import Image from '@tiptap/extension-image';
-import { Bold, Italic, List, ListOrdered, Heading2, Quote, Undo, Redo, ImageIcon } from 'lucide-react';
+import { TextStyle } from '@tiptap/extension-text-style';
+import { FontFamily } from '@tiptap/extension-font-family';
+import { Underline } from '@tiptap/extension-underline';
+import { Bold, Italic, Underline as UnderlineIcon, Strikethrough, List, ListOrdered, Heading1, Heading2, Heading3, Quote, Undo, Redo, ImageIcon } from 'lucide-react';
+
+const FontSize = Extension.create({
+  name: 'fontSize',
+  addOptions() { return { types: ['textStyle'] }; },
+  addGlobalAttributes() {
+    return [
+      {
+        types: this.options.types,
+        attributes: {
+          fontSize: {
+            default: null,
+            parseHTML: element => element.style.fontSize?.replace(/['"]+/g, ''),
+            renderHTML: attributes => {
+              if (!attributes.fontSize) return {};
+              return { style: `font-size: ${attributes.fontSize}` };
+            },
+          },
+        },
+      },
+    ];
+  },
+  addCommands() {
+    return {
+      setFontSize: fontSize => ({ chain }) => chain().setMark('textStyle', { fontSize }).run(),
+      unsetFontSize: () => ({ chain }) => chain().setMark('textStyle', { fontSize: null }).removeEmptyTextStyle().run(),
+    };
+  },
+});
 
 export function RichTextEditor({ 
   content, 
@@ -16,6 +47,10 @@ export function RichTextEditor({
     extensions: [
       StarterKit,
       Image,
+      TextStyle,
+      FontFamily,
+      FontSize,
+      Underline,
     ],
     content,
     onUpdate: ({ editor }) => {
@@ -57,6 +92,56 @@ export function RichTextEditor({
         >
           <Italic size={18} />
         </button>
+        <button
+          type="button"
+          onClick={() => editor.chain().focus().toggleUnderline().run()}
+          className={`p-2 rounded hover:bg-white/10 transition-colors ${editor.isActive('underline') ? 'bg-primary-500/20 text-primary-400' : 'text-slate-300'}`}
+          title="Underline"
+        >
+          <UnderlineIcon size={18} />
+        </button>
+        <button
+          type="button"
+          onClick={() => editor.chain().focus().toggleStrike().run()}
+          className={`p-2 rounded hover:bg-white/10 transition-colors ${editor.isActive('strike') ? 'bg-primary-500/20 text-primary-400' : 'text-slate-300'}`}
+          title="Strikethrough"
+        >
+          <Strikethrough size={18} />
+        </button>
+
+        <div className="w-px h-6 bg-white/10 mx-1" />
+
+        <select 
+          onChange={(e) => editor.chain().focus().setFontFamily(e.target.value).run()}
+          className="bg-white/5 border border-white/10 rounded px-2 py-1 text-sm text-slate-300 focus:outline-none"
+        >
+          <option value="">Default Font</option>
+          <option value="Inter, sans-serif">Inter</option>
+          <option value="Arial, sans-serif">Arial</option>
+          <option value="Courier New, monospace">Courier New</option>
+          <option value="Georgia, serif">Georgia</option>
+          <option value="Times New Roman, serif">Times New Roman</option>
+        </select>
+
+        <select 
+          onChange={(e) => {
+            const size = e.target.value;
+            if (size) (editor.chain().focus() as any).setFontSize(size).run();
+            else (editor.chain().focus() as any).unsetFontSize().run();
+          }}
+          className="bg-white/5 border border-white/10 rounded px-2 py-1 text-sm text-slate-300 focus:outline-none"
+        >
+          <option value="">Size</option>
+          <option value="12px">12px</option>
+          <option value="14px">14px</option>
+          <option value="16px">16px</option>
+          <option value="18px">18px</option>
+          <option value="20px">20px</option>
+          <option value="24px">24px</option>
+          <option value="30px">30px</option>
+        </select>
+
+        <div className="w-px h-6 bg-white/10 mx-1" />
         <div className="w-px h-6 bg-white/10 mx-1" />
         <button
           type="button"
