@@ -34,6 +34,7 @@ import { Timeline } from '@/components/sections/timeline';
 import { CTABanner } from '@/components/sections/cta-banner';
 import { FadeUp, StaggerContainer, StaggerItem, FadeIn } from '@/components/animations/motion-wrapper';
 
+import { teamMembers as hardcodedTeam } from '@/content/team';
 
 import prisma from '@/lib/prisma';
 
@@ -62,9 +63,7 @@ export default async function AboutPage() {
     orderBy: { order: 'asc' }
   });
 
-  const teamMembers = dbTeamMembers.length > 0 ? dbTeamMembers : [
-    { name: "Placeholder", role: "Please add team members in the Admin CMS", bio: "", image: "", linkedinUrl: "" }
-  ];
+  const teamMembers = dbTeamMembers.length > 0 ? dbTeamMembers : hardcodedTeam;
   const milestones = [
     { year: '2014', title: 'The Beginning', description: 'Founded by AI researchers determined to solve the industry-wide bottleneck of low-fidelity training data.' },
     { year: '2016', title: 'First Enterprise Client', description: 'Partnered with our first Fortune 150 client, scaling our operations to 100 specialized data experts.' },
