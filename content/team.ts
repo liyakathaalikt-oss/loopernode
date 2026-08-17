@@ -1,10 +1,10 @@
 export const teamMembers = [
   {
-    name: "Dr. Elena Vasquez",
-    role: "CEO & Co-Founder",
-    bio: "Dr. Vasquez is an AI researcher turned entrepreneur with over 15 years of experience in machine learning. Previously leading AI ethics at a top tech giant, she founded Loopernode to solve the industry's critical data bottleneck.",
-    image: "",
-    linkedinUrl: "https://linkedin.com",
+    name: "Liyakath Ali",
+    role: "Founder & CEO",
+    bio: "Liyakath Ali is a visionary technology entrepreneur with deep expertise in AI data solutions. As the Founder & CEO of Loopernode, he leads the mission to solve the industry's critical data bottlenecks and deliver high-fidelity training data.",
+    image: "/images/team/liya.jpeg",
+    linkedinUrl: "https://linkedin.com/in/liyakathali",
     twitter: "https://twitter.com"
   },
   {
