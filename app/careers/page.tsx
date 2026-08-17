@@ -238,8 +238,8 @@ export default async function CareersPage() {
                     <span>{job.location}</span>
                   </div>
 
-                  <p className="text-slate-400 text-sm leading-relaxed mb-6">
-                    {job.description}
+                  <p className="text-slate-400 text-sm leading-relaxed mb-6 line-clamp-3">
+                    {job.description.replace(/<[^>]*>?/gm, '')}
                   </p>
                 </div>
 
