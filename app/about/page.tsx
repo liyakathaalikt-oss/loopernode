@@ -201,10 +201,12 @@ export default async function AboutPage() {
                 <div className="w-28 h-28 sm:w-32 sm:h-32 md:w-40 md:h-40 mx-auto rounded-full bg-gradient-to-br from-indigo-500 to-cyan-500 p-1 mb-6 md:mb-8 transition-all duration-300">
                   {member.image ? (
                     <div className="w-full h-full rounded-full overflow-hidden relative">
-                      <img 
+                      <Image 
                         src={parseImageUrl(member.image)} 
                         alt={member.name} 
-                        className="w-full h-full object-cover object-center"
+                        fill
+                        sizes="(max-width: 768px) 160px, 160px"
+                        className="object-cover object-center"
                       />
                     </div>
                   ) : (

@@ -12,6 +12,11 @@ const nextConfig: NextConfig = {
         hostname: '*.public.blob.vercel-storage.com',
         port: '',
       },
+      {
+        protocol: 'https',
+        hostname: 'drive.google.com',
+        port: '',
+      }
     ],
   },
   async redirects() {
