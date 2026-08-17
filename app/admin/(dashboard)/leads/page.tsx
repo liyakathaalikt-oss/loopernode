@@ -83,9 +83,11 @@ export default async function LeadsPage() {
                 </div>
                 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm text-slate-300">
-                  <div className="flex items-center gap-2">
-                    <Mail className="w-4 h-4 text-slate-500" />
-                    <a href={`mailto:${lead.email}`} className="hover:text-indigo-400 transition-colors">{lead.email}</a>
+                  <div className="flex items-center gap-2 min-w-0" title={lead.email}>
+                    <Mail className="w-4 h-4 text-slate-500 shrink-0" />
+                    <a href={`mailto:${lead.email}`} className="hover:text-indigo-400 transition-colors truncate">
+                      {lead.email}
+                    </a>
                   </div>
                   {lead.phone && (
                     <div className="flex items-center gap-2">
