@@ -15,7 +15,8 @@ interface PageProps {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
-  const job = await prisma.jobPosting.findUnique({ where: { slug } });
+  const decodedSlug = decodeURIComponent(slug);
+  const job = await prisma.jobPosting.findUnique({ where: { slug: decodedSlug } });
   
   if (!job) return {};
 
@@ -31,7 +32,8 @@ export const dynamic = "force-dynamic";
 
 export default async function JobDetailsPage({ params }: PageProps) {
   const { slug } = await params;
-  const job = await prisma.jobPosting.findUnique({ where: { slug } });
+  const decodedSlug = decodeURIComponent(slug);
+  const job = await prisma.jobPosting.findUnique({ where: { slug: decodedSlug } });
 
   if (!job || job.status !== 'OPEN') {
     notFound();
@@ -40,7 +42,7 @@ export default async function JobDetailsPage({ params }: PageProps) {
   // Get 3 related jobs from same department, excluding current
   const relatedJobs = await prisma.jobPosting.findMany({
     where: { 
-      slug: { not: slug },
+      slug: { not: decodedSlug },
       status: 'OPEN',
       department: job.department
     },
