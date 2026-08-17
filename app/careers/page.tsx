@@ -220,13 +220,18 @@ export default async function CareersPage() {
                       {getJobIcon(job.title)}
                     </div>
                   </div>
-                  <div className="flex items-center justify-between mb-4">
+                  <div className="flex items-center gap-2 mb-4 flex-wrap">
                     <span className="px-3 py-1 text-xs font-semibold rounded-full bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
                       {job.department}
                     </span>
                     <span className="px-3 py-1 text-xs font-semibold rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">
                       {job.type}
                     </span>
+                    {job.jobId && (
+                      <span className="px-3 py-1 text-xs font-semibold rounded-full bg-white/5 text-slate-300 border border-white/10">
+                        ID: {job.jobId}
+                      </span>
+                    )}
                   </div>
 
                   <h3 className="text-xl font-bold text-slate-100 mb-2 group-hover:text-indigo-300 transition-colors">

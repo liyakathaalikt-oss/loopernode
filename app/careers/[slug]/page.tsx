@@ -109,6 +109,11 @@ export default async function JobDetailsPage({ params }: PageProps) {
                   <Clock className="w-3 h-3" />
                   {job.type}
                 </span>
+                {job.jobId && (
+                  <span className="px-3 py-1 text-xs font-semibold rounded-full bg-white/5 text-slate-300 border border-white/10 flex items-center gap-2">
+                    ID: {job.jobId}
+                  </span>
+                )}
               </div>
               
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
