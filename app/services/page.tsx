@@ -55,8 +55,10 @@ export default async function ServicesPage() {
     orderBy: { order: 'asc' }
   });
 
-  const services = dbServices.length > 0 ? dbServices : [
-    { title: "Data Collection", slug: "data-collection", description: "Global, diverse, and ethically sourced data.", icon: "database", features: '["Text", "Audio"]' }
+  const services = dbServices.length >= 3 ? dbServices : [
+    { title: "Data Collection", slug: "data-collection", description: "Global, diverse, and ethically sourced data at scale.", icon: "database", features: '["Text & Audio", "Video & Images", "Sensor Data"]' },
+    { title: "Data Labeling", slug: "data-labeling", description: "Precision human-in-the-loop annotation for complex ML models.", icon: "image", features: '["Bounding Boxes", "Polygons & Masks", "NLP & Text"]' },
+    { title: "Data Processing", slug: "data-processing", description: "Rigorous cleaning, validation, and structuring of raw datasets.", icon: "workflow", features: '["Data Cleaning", "Validation", "Normalization"]' }
   ];
 
   return (
