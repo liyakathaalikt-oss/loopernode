@@ -44,7 +44,7 @@ export default async function CareersPage() {
 
   // Fallback if no jobs exist yet
   const jobs = dbJobs.length > 0 ? dbJobs : [
-    { title: "No Open Roles", slug: "", jobId: null, department: "General", type: "Full-Time", location: "Remote", description: "We currently don't have any open positions, but check back soon!" }
+    { title: "No Open Roles", slug: "general-application", jobId: null, department: "General", type: "Full-Time", location: "Remote", description: "We currently don't have any open positions, but check back soon!" }
   ];
   const whyUsItems = [
     {

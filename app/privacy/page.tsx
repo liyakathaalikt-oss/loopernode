@@ -324,7 +324,7 @@ export default function PrivacyPage() {
                 </div>
                 <div className="flex items-start gap-3">
                   <Globe className="w-5 h-5 text-indigo-400 mt-0.5" />
-                  <span className="text-slate-300">Address: Loopernode Data Protection Team, Tech Hub Sector V, Kolkata, West Bengal 700091, India</span>
+                  <span className="text-slate-300">Address: Loopernode Data Protection Team, Tech Hub Sector V, Bengaluru, Karnataka 560001, India</span>
                 </div>
               </div>
             </div>

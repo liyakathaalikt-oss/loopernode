@@ -22,6 +22,7 @@ export function Footer() {
               type="email" 
               placeholder="Enter your email" 
               className="bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 min-w-[250px]"
+              aria-label="Email address"
               required
             />
             <button 
@@ -51,19 +52,19 @@ export function Footer() {
               Global leader in AI data services, providing high-quality datasets, precise annotation, and comprehensive data processing for enterprise AI models.
             </p>
             <div className="flex items-center gap-4">
-              <a href="https://linkedin.com/company/loopernode" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-indigo-400 transition-colors" aria-label="LinkedIn">
+              <a href="https://linkedin.com/company/loopernode" target="_blank" rel="noopener noreferrer" className="p-2 text-slate-400 hover:text-indigo-400 transition-colors" aria-label="LinkedIn">
                 <FaLinkedinIn className="w-5 h-5" />
               </a>
-              <a href="https://instagram.com/loopernode" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-pink-400 transition-colors" aria-label="Instagram">
+              <a href="https://instagram.com/loopernode" target="_blank" rel="noopener noreferrer" className="p-2 text-slate-400 hover:text-pink-400 transition-colors" aria-label="Instagram">
                 <FaInstagram className="w-5 h-5" />
               </a>
-              <a href="https://facebook.com/loopernode" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-blue-400 transition-colors" aria-label="Facebook">
+              <a href="https://facebook.com/loopernode" target="_blank" rel="noopener noreferrer" className="p-2 text-slate-400 hover:text-blue-400 transition-colors" aria-label="Facebook">
                 <FaFacebookF className="w-5 h-5" />
               </a>
-              <a href="https://twitter.com/loopernode" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-sky-400 transition-colors" aria-label="X (Twitter)">
+              <a href="https://twitter.com/loopernode" target="_blank" rel="noopener noreferrer" className="p-2 text-slate-400 hover:text-sky-400 transition-colors" aria-label="X (Twitter)">
                 <FaXTwitter className="w-5 h-5" />
               </a>
-              <a href="https://youtube.com/@loopernode" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-red-400 transition-colors" aria-label="YouTube">
+              <a href="https://youtube.com/@loopernode" target="_blank" rel="noopener noreferrer" className="p-2 text-slate-400 hover:text-red-400 transition-colors" aria-label="YouTube">
                 <FaYoutube className="w-5 h-5" />
               </a>
             </div>
@@ -71,7 +72,7 @@ export function Footer() {
 
           {/* Column 2: Services */}
           <div>
-            <p className="text-white font-semibold mb-6">Services</p>
+            <h3 className="text-white font-semibold mb-6">Services</h3>
             <ul className="space-y-4">
               <li><Link  href="/services/data-collection" className="text-slate-400 hover:text-indigo-400 transition-colors text-sm">Data Collection</Link></li>
               <li><Link  href="/services/data-labeling" className="text-slate-400 hover:text-indigo-400 transition-colors text-sm">Data Labeling</Link></li>
@@ -83,7 +84,7 @@ export function Footer() {
 
           {/* Column 3: Company */}
           <div>
-            <p className="text-white font-semibold mb-6">Company</p>
+            <h3 className="text-white font-semibold mb-6">Company</h3>
             <ul className="space-y-4">
               <li><Link  href="/about" className="text-slate-400 hover:text-indigo-400 transition-colors text-sm">About Us</Link></li>
               <li><Link  href="/industries" className="text-slate-400 hover:text-indigo-400 transition-colors text-sm">Industries</Link></li>
@@ -97,7 +98,7 @@ export function Footer() {
 
           {/* Column 4: Resources */}
           <div>
-            <p className="text-white font-semibold mb-6">Resources</p>
+            <h3 className="text-white font-semibold mb-6">Resources</h3>
             <ul className="space-y-4">
               <li><Link  href="/docs" className="text-slate-400 hover:text-indigo-400 transition-colors text-sm">Documentation</Link></li>
               <li><Link  href="/case-studies" className="text-slate-400 hover:text-indigo-400 transition-colors text-sm">Case Studies</Link></li>

@@ -1,9 +1,8 @@
 import React from 'react';
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
-import { PrismaClient } from '@prisma/client';
 import { generatePageMetadata } from '@/lib/metadata';
-import { Briefcase, MapPin, Clock, Calendar, ArrowRight, Building, Award } from 'lucide-react';
+import { Briefcase, MapPin, Clock, Calendar, ArrowRight, Building } from 'lucide-react';
 import Link from 'next/link';
 import { CareersForm } from '@/components/sections/careers-form';
 
@@ -61,8 +60,8 @@ export default async function JobDetailsPage({ params }: PageProps) {
     hiringOrganization: {
       '@type': 'Organization',
       name: 'Loopernode',
-      sameAs: 'https://loopernode.com',
-      logo: 'https://loopernode.com/icon.png'
+      sameAs: 'https://loopernode.in',
+      logo: 'https://loopernode.in/icon.png'
     },
     jobLocation: {
       '@type': 'Place',

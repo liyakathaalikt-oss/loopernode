@@ -95,7 +95,11 @@ export function Header() {
                 onMouseEnter={() => setActiveMenu('services')}
                 onMouseLeave={() => setActiveMenu(null)}
               >
-                <button className="flex items-center gap-1 px-4 py-2 text-sm font-medium text-slate-300 hover:text-white transition-colors">
+                <button 
+                  className="flex items-center gap-1 px-4 py-2 text-sm font-medium text-slate-300 hover:text-white transition-colors"
+                  aria-expanded={activeMenu === 'services'}
+                  aria-haspopup="true"
+                >
                   Services <ChevronDown className="w-4 h-4" />
                 </button>
 
@@ -242,6 +246,7 @@ export function Header() {
                 className="lg:hidden p-2 text-slate-300 hover:text-white bg-white/5 rounded-md"
                 onClick={() => setIsMobileNavOpen(true)}
                 aria-label="Open menu"
+                aria-expanded={isMobileNavOpen}
               >
                 <Menu className="w-6 h-6" />
               </button>

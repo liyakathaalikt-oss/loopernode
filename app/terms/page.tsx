@@ -263,7 +263,7 @@ export default function TermsPage() {
                 These Terms shall be governed by and construed in accordance with the laws of India, without regard to conflict of law principles.
               </p>
               <p className="text-slate-400 text-sm leading-relaxed">
-                Any dispute arising out of or in connection with these Terms shall first be submitted to good-faith executive negotiation. Unresolved disputes shall be finally settled by binding arbitration in Kolkata, West Bengal.
+                Any dispute arising out of or in connection with these Terms shall first be submitted to good-faith executive negotiation. Unresolved disputes shall be finally settled by binding arbitration in Bengaluru, Karnataka 560001, India.
               </p>
             </div>
           </StaggerItem>
@@ -287,7 +287,7 @@ export default function TermsPage() {
                 </div>
                 <div className="flex items-start gap-3">
                   <Globe className="w-5 h-5 text-indigo-400 mt-0.5" />
-                  <span className="text-slate-300">Corporate HQ: Loopernode Legal Dept, Tech Hub Sector V, Kolkata, West Bengal 700091, India</span>
+                  <span className="text-slate-300">Corporate HQ: Loopernode Legal Dept, Tech Hub Sector V, Bengaluru, Karnataka 560001, India</span>
                 </div>
               </div>
             </div>

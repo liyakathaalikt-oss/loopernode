@@ -57,15 +57,15 @@ export function FAQAccordion({ faqs, generateSchema = true, className }: FAQAcco
           key={index}
           className="backdrop-blur-xl bg-white/[0.03] border border-white/[0.08] rounded-2xl overflow-hidden transition-colors hover:bg-white/[0.05]"
         >
-          <div
-            role="button"
-            tabIndex={0}
+          <button
+            type="button"
             onClick={() => toggle(index)}
             onKeyDown={(e) => handleKeyDown(e, index)}
             className="w-full flex items-center justify-between p-6 cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#6366F1]/50"
             aria-expanded={openIndex === index}
+            aria-controls={`faq-panel-${index}`}
           >
-            <h3 className="text-lg font-medium text-slate-100 pr-8">{faq.question}</h3>
+            <h3 className="text-lg font-medium text-slate-100 pr-8 text-left">{faq.question}</h3>
             <div className="shrink-0 w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-[#6366F1]">
               {openIndex === index ? (
                 <Minus className="w-4 h-4" />
@@ -73,11 +73,13 @@ export function FAQAccordion({ faqs, generateSchema = true, className }: FAQAcco
                 <Plus className="w-4 h-4" />
               )}
             </div>
-          </div>
+          </button>
           
           <AnimatePresence>
             {openIndex === index && (
               <motion.div
+                id={`faq-panel-${index}`}
+                role="region"
                 initial={{ height: 0, opacity: 0 }}
                 animate={{ height: 'auto', opacity: 1 }}
                 exit={{ height: 0, opacity: 0 }}

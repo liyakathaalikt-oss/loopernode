@@ -32,14 +32,14 @@ export function AdminSidebar() {
         {navItems.map((item) => {
           const Icon = item.icon;
           return (
-            <a
+            <Link
               key={item.href}
               href={item.href}
               className="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-300 hover:text-white hover:bg-white/5 transition-colors"
             >
               <Icon size={18} />
               <span className="font-medium">{item.label}</span>
-            </a>
+            </Link>
           );
         })}
       </nav>

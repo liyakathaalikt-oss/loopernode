@@ -9,7 +9,6 @@ import { BlogCard } from "@/components/sections/blog-card";
 import { Newsletter } from "@/components/sections/newsletter";
 import { FadeUp, StaggerContainer, StaggerItem } from "@/components/animations/motion-wrapper";
 import { generatePageMetadata } from "@/lib/metadata";
-import { PrismaClient } from "@prisma/client";
 
 import prisma from '@/lib/prisma';
 
@@ -18,7 +17,6 @@ export const metadata: Metadata = generatePageMetadata({
   description: "Explore the latest insights, best practices, and trends in AI data services, computer vision, and machine learning.",
   path: '/blog'
 });
-
 
 export const dynamic = "force-dynamic";
 
@@ -42,14 +40,15 @@ export default async function BlogPage() {
       avatar: ""
     },
   }));
-  // Default to a fallback if no posts exist
+  
+  // Default to a fallback if no posts exist
   const featuredPost = posts[0] || {
     title: "Welcome to the Loopernode Blog",
     excerpt: "Stay tuned for exciting insights and updates.",
     date: new Date().toLocaleDateString(),
     readTime: "1 min read",
     category: "Announcements",
-    slug: "",
+    slug: "getting-started",
     image: "",
     author: { name: "Admin", role: "Editor", avatar: "" }
   };
@@ -72,7 +71,7 @@ export default async function BlogPage() {
           />
 
           <FadeUp>
-            <Link  href={`/blog/${featuredPost.slug}`} className="block group mt-10">
+            <Link href={`/blog/${featuredPost.slug}`} className="block group mt-10">
               <div className="backdrop-blur-xl bg-white/[0.03] border border-white/[0.08] rounded-2xl overflow-hidden grid md:grid-cols-2 gap-8 items-center transition-all duration-300 hover:border-primary-500/30 hover:bg-white/[0.05]">
                 <div className="relative aspect-video md:aspect-square w-full h-full bg-gradient-to-br from-primary-500/20 to-secondary-500/20 overflow-hidden">
                   {featuredPost.image ? (
@@ -80,6 +79,7 @@ export default async function BlogPage() {
                       src={featuredPost.image}
                       alt={featuredPost.title}
                       fill
+                      sizes="(max-width: 768px) 100vw, 50vw"
                       className="object-cover transition-transform duration-700 group-hover:scale-105"
                     />
                   ) : (

@@ -2,8 +2,7 @@ import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import { Calendar, Clock, ChevronRight, User } from "lucide-react";
-import { PrismaClient } from "@prisma/client";
+import { Calendar, ChevronRight, User } from "lucide-react";
 
 import { generateBlogPostSchema } from "@/lib/schema";
 import { generateKeywords } from "@/app/config/seo-keywords";
@@ -154,10 +153,12 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                 src={post.coverImage}
                 alt={post.title}
                 fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 className="object-cover"
                 priority
               />
             </div>
+
           ) : (
             <div className="relative aspect-[21/9] w-full rounded-2xl overflow-hidden mb-16 border border-white/[0.08] bg-gradient-to-br from-primary-500/20 to-secondary-500/20 flex items-center justify-center">
                <div className="w-64 h-64 rounded-full bg-white/10 blur-3xl mix-blend-screen" />

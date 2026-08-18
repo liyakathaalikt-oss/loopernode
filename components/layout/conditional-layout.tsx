@@ -17,18 +17,18 @@ export function ConditionalLayout({ header, footer, children, extras }: Conditio
 
   if (isAdmin) {
     return (
-      <main id="main-content" className="flex-1">
+      <div id="main-content" className="flex-1">
         {children}
-      </main>
+      </div>
     );
   }
 
   return (
     <>
       {header}
-      <main id="main-content" className="flex-1">
+      <div id="main-content" className="flex-1">
         {children}
-      </main>
+      </div>
       {footer}
       {extras}
     </>

@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { m, LazyMotion, domAnimation } from 'framer-motion';
+import { m, LazyMotion, domAnimation, useReducedMotion } from 'framer-motion';
 import { cn } from '@/lib/utils';
 
 interface MotionProps {
@@ -12,75 +12,90 @@ interface MotionProps {
 
 const viewportOptions = { once: true, margin: '-50px' };
 
-export const FadeUp: React.FC<MotionProps> = ({ children, className, delay = 0 }) => (
-  <LazyMotion features={domAnimation}>
-    <m.div
-      initial={{ y: 40, opacity: 0 }}
-      whileInView={{ y: 0, opacity: 1 }}
-      viewport={viewportOptions}
-      transition={{ duration: 0.7, delay, ease: 'easeOut' }}
-      className={className}
-    >
-      {children}
-    </m.div>
-  </LazyMotion>
-);
+export const FadeUp: React.FC<MotionProps> = ({ children, className, delay = 0 }) => {
+  const shouldReduceMotion = useReducedMotion();
+  return (
+    <LazyMotion features={domAnimation}>
+      <m.div
+        initial={shouldReduceMotion ? { y: 0, opacity: 1 } : { y: 40, opacity: 0 }}
+        whileInView={{ y: 0, opacity: 1 }}
+        viewport={viewportOptions}
+        transition={{ duration: 0.7, delay, ease: 'easeOut' }}
+        className={className}
+      >
+        {children}
+      </m.div>
+    </LazyMotion>
+  );
+};
 
-export const FadeIn: React.FC<MotionProps> = ({ children, className, delay = 0 }) => (
-  <LazyMotion features={domAnimation}>
-    <m.div
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      viewport={viewportOptions}
-      transition={{ duration: 0.7, delay, ease: 'easeOut' }}
-      className={className}
-    >
-      {children}
-    </m.div>
-  </LazyMotion>
-);
+export const FadeIn: React.FC<MotionProps> = ({ children, className, delay = 0 }) => {
+  const shouldReduceMotion = useReducedMotion();
+  return (
+    <LazyMotion features={domAnimation}>
+      <m.div
+        initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={viewportOptions}
+        transition={{ duration: 0.7, delay, ease: 'easeOut' }}
+        className={className}
+      >
+        {children}
+      </m.div>
+    </LazyMotion>
+  );
+};
 
-export const ScaleIn: React.FC<MotionProps> = ({ children, className, delay = 0 }) => (
-  <LazyMotion features={domAnimation}>
-    <m.div
-      initial={{ scale: 0.95, opacity: 0 }}
-      whileInView={{ scale: 1, opacity: 1 }}
-      viewport={viewportOptions}
-      transition={{ duration: 0.7, delay, ease: 'easeOut' }}
-      className={className}
-    >
-      {children}
-    </m.div>
-  </LazyMotion>
-);
+export const ScaleIn: React.FC<MotionProps> = ({ children, className, delay = 0 }) => {
+  const shouldReduceMotion = useReducedMotion();
+  return (
+    <LazyMotion features={domAnimation}>
+      <m.div
+        initial={shouldReduceMotion ? { scale: 1, opacity: 1 } : { scale: 0.95, opacity: 0 }}
+        whileInView={{ scale: 1, opacity: 1 }}
+        viewport={viewportOptions}
+        transition={{ duration: 0.7, delay, ease: 'easeOut' }}
+        className={className}
+      >
+        {children}
+      </m.div>
+    </LazyMotion>
+  );
+};
 
-export const SlideInLeft: React.FC<MotionProps> = ({ children, className, delay = 0 }) => (
-  <LazyMotion features={domAnimation}>
-    <m.div
-      initial={{ x: -40, opacity: 0 }}
-      whileInView={{ x: 0, opacity: 1 }}
-      viewport={viewportOptions}
-      transition={{ duration: 0.7, delay, ease: 'easeOut' }}
-      className={className}
-    >
-      {children}
-    </m.div>
-  </LazyMotion>
-);
+export const SlideInLeft: React.FC<MotionProps> = ({ children, className, delay = 0 }) => {
+  const shouldReduceMotion = useReducedMotion();
+  return (
+    <LazyMotion features={domAnimation}>
+      <m.div
+        initial={shouldReduceMotion ? { x: 0, opacity: 1 } : { x: -40, opacity: 0 }}
+        whileInView={{ x: 0, opacity: 1 }}
+        viewport={viewportOptions}
+        transition={{ duration: 0.7, delay, ease: 'easeOut' }}
+        className={className}
+      >
+        {children}
+      </m.div>
+    </LazyMotion>
+  );
+};
 
-export const SlideInRight: React.FC<MotionProps> = ({ children, className, delay = 0 }) => (
-  <LazyMotion features={domAnimation}>
-    <m.div
-      initial={{ x: 40, opacity: 0 }}
-      whileInView={{ x: 0, opacity: 1 }}
-      viewport={viewportOptions}
-      transition={{ duration: 0.7, delay, ease: 'easeOut' }}
-      className={className}
-    >
-      {children}
-    </m.div>
-  </LazyMotion>
-);
+export const SlideInRight: React.FC<MotionProps> = ({ children, className, delay = 0 }) => {
+  const shouldReduceMotion = useReducedMotion();
+  return (
+    <LazyMotion features={domAnimation}>
+      <m.div
+        initial={shouldReduceMotion ? { x: 0, opacity: 1 } : { x: 40, opacity: 0 }}
+        whileInView={{ x: 0, opacity: 1 }}
+        viewport={viewportOptions}
+        transition={{ duration: 0.7, delay, ease: 'easeOut' }}
+        className={className}
+      >
+        {children}
+      </m.div>
+    </LazyMotion>
+  );
+};
 
 export const StaggerContainer: React.FC<{
   children: React.ReactNode;

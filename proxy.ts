@@ -4,7 +4,7 @@ import { auth } from '@/lib/auth';
 
 export async function proxy(request: NextRequest) {
   const ua = request.headers.get('user-agent') || '';
-  const blocked = ['GPTBot', 'CCBot', 'FacebookBot', 'Googlebot', 'Bingbot', 'AhrefsBot'];
+  const blocked = ['GPTBot', 'CCBot'];
   
   if (blocked.some(bot => ua.includes(bot))) {
     return new NextResponse('Access Denied', { status: 403 });

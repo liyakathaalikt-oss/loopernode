@@ -19,7 +19,7 @@ export function generatePageMetadata({
   const url = `${baseUrl}${path}`;
   
   return {
-    title: `${title} | ${siteName}`,
+    title: title,
     description,
     alternates: {
       canonical: url,

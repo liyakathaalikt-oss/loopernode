@@ -13,7 +13,7 @@ import { contactFAQs } from "@/content/faqs";
 
 export const metadata: Metadata = generatePageMetadata({
   title: "Contact Us | Loopernode",
-  description: "Get in touch with Loopernode. We have global offices in San Francisco, London, and Singapore ready to help you with your AI data needs.",
+  description: "Get in touch with Loopernode. Reach out to discuss your AI data needs.",
   path: "/contact",
 });
 

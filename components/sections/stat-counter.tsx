@@ -15,10 +15,18 @@ export interface StatCounterProps {
 export function StatCounter({ value, suffix = '', label, icon, className }: StatCounterProps) {
   const [count, setCount] = useState(0);
   const ref = useRef<HTMLDivElement>(null);
+  const rafRef = useRef<number | null>(null);
   const isInView = useInView(ref, { once: true, margin: '-50px' });
 
   useEffect(() => {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    
     if (!isInView) return;
+
+    if (prefersReducedMotion) {
+      setCount(value);
+      return;
+    }
 
     let startTime: number;
     const duration = 2000; // 2 seconds
@@ -34,18 +42,23 @@ export function StatCounter({ value, suffix = '', label, icon, className }: Stat
       setCount(Math.floor(easeProgress * value));
 
       if (progress < duration) {
-        requestAnimationFrame(updateCounter);
+        rafRef.current = requestAnimationFrame(updateCounter);
       } else {
         setCount(value);
       }
     };
 
-    requestAnimationFrame(updateCounter);
+    rafRef.current = requestAnimationFrame(updateCounter);
+
+    return () => {
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+    };
   }, [isInView, value]);
 
   return (
     <div 
       ref={ref}
+      aria-label={`${value}${suffix} ${label}`}
       className={cn(
         "flex flex-col items-center justify-center p-6 rounded-2xl backdrop-blur-xl bg-white/[0.03] border border-white/[0.08] text-center",
         className

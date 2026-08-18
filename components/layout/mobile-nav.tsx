@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import NextImage from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -14,6 +14,24 @@ interface MobileNavProps {
 
 export function MobileNav({ isOpen, onClose }: MobileNavProps) {
   const [expandedSection, setExpandedSection] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+      const handleKeyDown = (e: KeyboardEvent) => {
+        if (e.key === 'Escape') {
+          onClose();
+        }
+      };
+      window.addEventListener('keydown', handleKeyDown);
+      return () => {
+        document.body.style.overflow = '';
+        window.removeEventListener('keydown', handleKeyDown);
+      };
+    } else {
+      document.body.style.overflow = '';
+    }
+  }, [isOpen, onClose]);
 
   const toggleSection = (section: string) => {
     setExpandedSection(expandedSection === section ? null : section);
@@ -83,6 +101,9 @@ export function MobileNav({ isOpen, onClose }: MobileNavProps) {
           exit={{ opacity: 0, x: '100%' }}
           transition={{ type: 'spring', damping: 25, stiffness: 200 }}
           className="fixed inset-0 z-50 flex flex-col bg-[#0a0a1b] lg:hidden"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Navigation menu"
         >
           {/* Header */}
           <div className="flex items-center justify-between p-6 border-b border-white/10">
@@ -127,6 +148,7 @@ export function MobileNav({ isOpen, onClose }: MobileNavProps) {
                     <button
                       onClick={() => toggleSection(service.id)}
                       className="flex items-center justify-between w-full text-left text-slate-300 py-2 font-medium"
+                      aria-expanded={expandedSection === service.id}
                     >
                       <div className="flex items-center gap-3">
                         <service.icon className="w-5 h-5 text-indigo-400" />

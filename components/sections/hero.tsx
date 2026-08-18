@@ -72,14 +72,16 @@ export function Hero({
             </div>
           </StaggerItem>
         ) : (
-          <StaggerItem className={cn("font-heading text-5xl md:text-6xl lg:text-7xl font-bold tracking-tighter leading-[1.1] mb-6 text-[#F8FAFC] flex flex-wrap justify-center gap-x-3 gap-y-2", headlineClassName)}>
-            <TextReveal text={headline} />
-            {highlightedText && (
-              <TextReveal 
-                text={highlightedText} 
-                className="text-transparent bg-clip-text bg-gradient-to-r from-[#6366F1] via-[#8B5CF6] to-[#06B6D4] pb-2 drop-shadow-[0_0_15px_rgba(99,102,241,0.5)]" 
-              />
-            )}
+          <StaggerItem>
+            <h1 className={cn("font-heading text-5xl md:text-6xl lg:text-7xl font-bold tracking-tighter leading-[1.1] mb-6 text-[#F8FAFC] flex flex-wrap justify-center gap-x-3 gap-y-2", headlineClassName)}>
+              <TextReveal text={headline} />
+              {highlightedText && (
+                <TextReveal 
+                  text={highlightedText} 
+                  className="text-transparent bg-clip-text bg-gradient-to-r from-[#6366F1] via-[#8B5CF6] to-[#06B6D4] pb-2 drop-shadow-[0_0_15px_rgba(99,102,241,0.5)]" 
+                />
+              )}
+            </h1>
           </StaggerItem>
         )}
         

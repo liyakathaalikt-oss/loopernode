@@ -28,7 +28,6 @@ const PROCESS_STEPS = [
   { title: "Delivery", description: "Encrypted, direct-to-cloud handoff of flawlessly structured training data." },
 ];
 
-import { PrismaClient } from "@prisma/client";
 
 const getServiceIcon = (iconName: string) => {
   switch (iconName?.toLowerCase()) {
