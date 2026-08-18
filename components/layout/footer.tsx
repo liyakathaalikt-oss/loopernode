@@ -58,7 +58,7 @@ export function Footer() {
               <a href="https://instagram.com/loopernode" target="_blank" rel="noopener noreferrer" className="p-2 text-slate-400 hover:text-pink-400 transition-colors" aria-label="Instagram">
                 <FaInstagram className="w-5 h-5" />
               </a>
-              <a href="https://facebook.com/loopernode" target="_blank" rel="noopener noreferrer" className="p-2 text-slate-400 hover:text-blue-400 transition-colors" aria-label="Facebook">
+              <a href="https://www.facebook.com/profile.php?id=61593403880383" target="_blank" rel="noopener noreferrer" className="p-2 text-slate-400 hover:text-blue-400 transition-colors" aria-label="Facebook">
                 <FaFacebookF className="w-5 h-5" />
               </a>
               <a href="https://twitter.com/loopernode" target="_blank" rel="noopener noreferrer" className="p-2 text-slate-400 hover:text-sky-400 transition-colors" aria-label="X (Twitter)">
