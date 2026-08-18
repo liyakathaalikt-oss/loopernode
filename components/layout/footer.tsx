@@ -52,7 +52,7 @@ export function Footer() {
               Global leader in AI data services, providing high-quality datasets, precise annotation, and comprehensive data processing for enterprise AI models.
             </p>
             <div className="flex items-center gap-4">
-              <a href="https://linkedin.com/company/loopernode" target="_blank" rel="noopener noreferrer" className="p-2 text-slate-400 hover:text-indigo-400 transition-colors" aria-label="LinkedIn">
+              <a href="https://www.linkedin.com/company/loopernode-technologies-llp/about/?viewAsMember=true" target="_blank" rel="noopener noreferrer" className="p-2 text-slate-400 hover:text-indigo-400 transition-colors" aria-label="LinkedIn">
                 <FaLinkedinIn className="w-5 h-5" />
               </a>
               <a href="https://instagram.com/loopernode" target="_blank" rel="noopener noreferrer" className="p-2 text-slate-400 hover:text-pink-400 transition-colors" aria-label="Instagram">
