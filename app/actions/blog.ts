@@ -37,6 +37,7 @@ export async function saveBlogPost(formData: FormData) {
   const published = formData.get("published") === "on";
   const author = formData.get("author") as string;
   const tagsStr = formData.get("tags") as string;
+  const coverImage = formData.get("coverImage") as string;
 
   const data = {
     title,
@@ -45,6 +46,7 @@ export async function saveBlogPost(formData: FormData) {
     excerpt,
     published,
     author,
+    coverImage,
     tags: tagsStr, // In SQLite version we mapped tags String[] to just String (storing as JSON or comma separated)
   };
 

@@ -109,6 +109,17 @@ export function BlogForm({ initialData }: { initialData?: any }) {
             </div>
             
             <div>
+              <label className="block text-xs font-medium text-slate-400 mb-1">Cover Image URL</label>
+              <input 
+                name="coverImage" 
+                type="text" 
+                defaultValue={initialData?.coverImage}
+                className="w-full px-3 py-2 text-sm bg-dark-900 border border-white/10 rounded-md focus:outline-none focus:border-primary-500 text-white"
+                placeholder="/images/blog/image.png"
+              />
+            </div>
+            
+            <div>
               <label className="block text-xs font-medium text-slate-400 mb-1">Author Name</label>
               <input 
                 name="author" 
