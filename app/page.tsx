@@ -251,7 +251,7 @@ export default async function HomePage() {
       </section>
 
       {/* SECTION 6: Industries */}
-      <section className="py-20 md:py-28 container mx-auto px-4 border-b border-white/5 bg-slate-900/30">
+      <section className="py-20 md:py-28 container mx-auto px-4 border-b border-white/5">
         <FadeUp>
           <SectionTitle 
             title="Powering Innovation Across" 
