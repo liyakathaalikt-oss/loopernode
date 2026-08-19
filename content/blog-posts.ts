@@ -20,7 +20,7 @@ By mastering this end-to-end pipeline, organizations can power specialized AI so
     readTime: "5 min read",
     category: "AI Data Services",
     tags: ["Data Collection", "Data Labeling", "Data Processing", "AI Pipeline"],
-    image: "/images/blog/ai-data-services.jpg",
+    image: "/images/blog/ai-data-services.png",
     featured: true
   },
   {
