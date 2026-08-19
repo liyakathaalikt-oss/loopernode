@@ -18,8 +18,8 @@ export function generateOrganizationSchema() {
     ],
     "areaServed": "Worldwide",
     "sameAs": [
-      "https://twitter.com/loopernode",
-      "https://linkedin.com/company/loopernode"
+      "https://www.linkedin.com/company/loopernode-technologies-llp/",
+      "https://www.facebook.com/profile.php?id=61593403880383"
     ],
     "contactPoint": {
       "@type": "ContactPoint",
