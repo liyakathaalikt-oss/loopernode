@@ -125,10 +125,12 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       />
 
       <article className="pt-32 pb-20 md:pb-28">
-        <div className="container-custom max-w-4xl mx-auto px-6">
-          <Breadcrumb items={breadcrumbs} className="mb-8" />
+        <div className="container-custom max-w-[1152px] mx-auto px-6">
+          <div className="max-w-4xl mx-auto mb-8">
+            <Breadcrumb items={breadcrumbs} />
+          </div>
 
-          <header className="mb-12">
+          <header className="mb-12 max-w-4xl mx-auto">
             <div className="flex items-center gap-4 mb-6">
               <span className="inline-flex items-center px-3 py-1 rounded-full bg-primary-500/10 text-primary-400 font-medium border border-primary-500/20 text-sm">
                 {post.category || "General"}
@@ -166,19 +168,19 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           </header>
 
           {post.coverImage ? (
-            <div className="relative aspect-[21/9] w-full rounded-2xl overflow-hidden mb-16 border border-white/[0.08]">
+            <div className="relative aspect-[1152/650] w-full max-w-[1152px] mx-auto rounded-2xl overflow-hidden mb-16 border border-white/[0.08]">
               <Image
                 src={post.coverImage}
                 alt={post.title}
                 fill
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                sizes="(max-width: 768px) 100vw, 1152px"
                 className="object-cover"
                 priority
               />
             </div>
 
           ) : (
-            <div className="relative aspect-[21/9] w-full rounded-2xl overflow-hidden mb-16 border border-white/[0.08] bg-gradient-to-br from-primary-500/20 to-secondary-500/20 flex items-center justify-center">
+            <div className="relative aspect-[1152/650] w-full max-w-[1152px] mx-auto rounded-2xl overflow-hidden mb-16 border border-white/[0.08] bg-gradient-to-br from-primary-500/20 to-secondary-500/20 flex items-center justify-center">
                <div className="w-64 h-64 rounded-full bg-white/10 blur-3xl mix-blend-screen" />
             </div>
           )}
