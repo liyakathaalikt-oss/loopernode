@@ -25,6 +25,7 @@ export async function saveService(formData: FormData) {
     icon: formData.get("icon") as string,
     features: formData.get("features") as string, // JSON string
     content: formData.get("content") as string,
+    coverImage: formData.get("coverImage") as string,
     order: parseInt(formData.get("order") as string || "0"),
   };
 

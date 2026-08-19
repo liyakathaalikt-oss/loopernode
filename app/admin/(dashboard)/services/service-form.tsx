@@ -94,6 +94,17 @@ export function ServiceForm({ service }: { service?: any }) {
         </div>
 
         <div className="space-y-2 md:col-span-2">
+          <label className="text-sm font-medium text-slate-300">Cover Image URL</label>
+          <input
+            type="text"
+            name="coverImage"
+            defaultValue={service?.coverImage}
+            className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-primary-500"
+            placeholder="e.g. /images/services/data-collection.jpg"
+          />
+        </div>
+
+        <div className="space-y-2 md:col-span-2">
           <label className="text-sm font-medium text-slate-300">Features (One per line)</label>
           <textarea
             name="featuresRaw"

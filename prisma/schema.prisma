@@ -105,7 +105,8 @@ model Service {
   description String   
   icon        String?
   features    String   // Stored as JSON string
-  content     String?  
+  content     String?
+  coverImage  String?  // Newly added cover image url
   order       Int      @default(0)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
