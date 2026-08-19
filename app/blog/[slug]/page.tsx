@@ -21,11 +21,18 @@ interface BlogPostPageProps {
 
 export async function generateMetadata({ params }: BlogPostPageProps): Promise<Metadata> {
   const { slug } = await params;
-  const post = await prisma.blogPost.findUnique({ where: { slug } });
+  const dbPost = await prisma.blogPost.findUnique({ where: { slug } });
 
-  if (!post) {
+  if (!dbPost) {
     return { title: "Post Not Found" };
   }
+
+  // Find fallback post to merge missing data like coverImage
+  const fallbackPost = fallbackPosts.find(p => p.slug === slug);
+  const post = {
+    ...dbPost,
+    coverImage: dbPost.coverImage || (fallbackPost ? fallbackPost.image : "")
+  };
 
   return {
     title: `${post.title} | Loopernode Blog`,
@@ -52,16 +59,24 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
   };
 }
 
+import { blogPosts as fallbackPosts } from "@/content/blog-posts";
 
 export const dynamic = "force-dynamic";
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const { slug } = await params;
-  const post = await prisma.blogPost.findUnique({ where: { slug } });
+  const dbPost = await prisma.blogPost.findUnique({ where: { slug } });
 
-  if (!post) {
+  if (!dbPost) {
     notFound();
   }
+
+  // Find fallback post to merge missing data like coverImage
+  const fallbackPost = fallbackPosts.find(p => p.slug === slug);
+  const post = {
+    ...dbPost,
+    coverImage: dbPost.coverImage || (fallbackPost ? fallbackPost.image : "")
+  };
 
   const relatedDbPosts = await prisma.blogPost.findMany({
     where: { 
@@ -72,15 +87,18 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     orderBy: { createdAt: 'desc' }
   });
 
-  const relatedPosts = relatedDbPosts.map(rp => ({
-    title: rp.title,
-    excerpt: rp.excerpt || "",
-    date: new Date(rp.createdAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
-    readTime: "5 min read",
-    category: rp.category || "General",
-    slug: rp.slug,
-    image: rp.coverImage || "",
-  }));
+  const relatedPosts = relatedDbPosts.map(rp => {
+    const fallbackRp = fallbackPosts.find(p => p.slug === rp.slug);
+    return {
+      title: rp.title,
+      excerpt: rp.excerpt || "",
+      date: new Date(rp.createdAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
+      readTime: "5 min read",
+      category: rp.category || "General",
+      slug: rp.slug,
+      image: rp.coverImage || (fallbackRp ? fallbackRp.image : ""),
+    };
+  });
 
   const breadcrumbs = [
     { label: "Home", href: "/" },

@@ -10,10 +10,11 @@ import { Newsletter } from "@/components/sections/newsletter";
 import { FadeUp, StaggerContainer, StaggerItem } from "@/components/animations/motion-wrapper";
 import { generatePageMetadata } from "@/lib/metadata";
 
+import { blogPosts as fallbackPosts } from "@/content/blog-posts";
 import prisma from '@/lib/prisma';
 
 export const metadata: Metadata = generatePageMetadata({
-  title: "Insights & Resources | Loopernode",
+  title: "Insights & Resources",
   description: "Explore the latest insights, best practices, and trends in AI data services, computer vision, and machine learning.",
   path: '/blog'
 });
@@ -26,7 +27,8 @@ export default async function BlogPage() {
     orderBy: { createdAt: "desc" }
   });
 
-  const posts = dbPosts.map(post => ({
+  // Map DB posts
+  const mappedDbPosts = dbPosts.map(post => ({
     title: post.title,
     excerpt: post.excerpt || "",
     date: new Date(post.createdAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
@@ -41,17 +43,20 @@ export default async function BlogPage() {
     },
   }));
   
-  // Default to a fallback if no posts exist
-  const featuredPost = posts[0] || {
-    title: "Welcome to the Loopernode Blog",
-    excerpt: "Stay tuned for exciting insights and updates.",
-    date: new Date().toLocaleDateString(),
-    readTime: "1 min read",
-    category: "Announcements",
-    slug: "getting-started",
-    image: "",
-    author: { name: "Admin", role: "Editor", avatar: "" }
-  };
+  // Use DB posts if available, but fallback to local data for missing fields (like images)
+  const posts = mappedDbPosts.length > 0 ? mappedDbPosts.map(dbPost => {
+    const fallback = fallbackPosts.find(p => p.slug === dbPost.slug);
+    return {
+      ...dbPost,
+      image: dbPost.image || (fallback ? fallback.image : "")
+    };
+  }) : fallbackPosts.map(post => ({
+    ...post,
+    date: new Date(post.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+  }));
+  
+  // Default to the first post as featured
+  const featuredPost = posts[0];
   
   return (
     <main className="flex-1 bg-dark-950">
