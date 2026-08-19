@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     template: "%s | Loopernode",
   },
   description:
-    "Loopernode provides enterprise-grade AI data services including data collection, annotation, labeling, and processing for machine learning teams worldwide.",
+    "The official website of Loopernode. We provide enterprise-grade AI data services including data collection, annotation, labeling, and processing for machine learning teams worldwide.",
   keywords: generateKeywords('home'),
   authors: [{ name: "Loopernode" }],
   creator: "Loopernode",
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     siteName: "Loopernode",
     title: "Loopernode — Enterprise AI Data Services",
     description:
-      "Enterprise-grade AI data services including data collection, annotation, labeling, and processing.",
+      "The official website of Loopernode. Enterprise-grade AI data services including data collection, annotation, labeling, and processing.",
     images: [
       {
         url: "/og-image.png",
@@ -54,7 +54,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Loopernode — Enterprise AI Data Services",
     description:
-      "Enterprise-grade AI data services including data collection, annotation, labeling, and processing.",
+      "The official website of Loopernode. Enterprise-grade AI data services including data collection, annotation, labeling, and processing.",
     images: ["/og-image.png"],
   },
   robots: {

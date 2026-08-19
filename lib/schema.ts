@@ -6,7 +6,7 @@ export function generateOrganizationSchema() {
     "alternateName": "Loopernode AI Data Services",
     "url": "https://loopernode.in",
     "logo": "https://loopernode.in/images/logo-new.png",
-    "description": "Enterprise AI data services company providing global data collection, data labeling, and data processing for machine learning and generative AI models.",
+    "description": "The official website of Loopernode. An enterprise AI data services company providing global data collection, data labeling, and data processing for machine learning and generative AI models.",
     "knowsAbout": [
       "Artificial Intelligence",
       "Machine Learning",
