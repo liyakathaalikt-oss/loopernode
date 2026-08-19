@@ -146,8 +146,9 @@ export function AiNeuralNetwork() {
         currentMouseRef.current.y += (0 - currentMouseRef.current.y) * 0.02;
       }
 
-      const mouseOffsetX = currentMouseRef.current.x * 0.1;
-      const mouseOffsetY = currentMouseRef.current.y * 0.1;
+      // Increase parallax depth
+      const mouseOffsetX = currentMouseRef.current.x * 0.25;
+      const mouseOffsetY = currentMouseRef.current.y * 0.25;
 
       ctx.lineWidth = 1;
       for (let i = 0; i < layers.length - 1; i++) {
@@ -160,8 +161,10 @@ export function AiNeuralNetwork() {
             const dy1 = node1.baseY - (height/2 + currentMouseRef.current.y);
             const dist1 = Math.sqrt(dx1*dx1 + dy1*dy1);
             
-            const p1X = node1.baseX + (dist1 < 200 ? (dx1/dist1)*20 : 0) - mouseOffsetX;
-            const p1Y = node1.baseY + (dist1 < 200 ? (dy1/dist1)*20 : 0) - mouseOffsetY;
+            // Stronger repulsion for lines
+            const lineRepulseForce = dist1 < 250 ? (250 - dist1) / 250 * 35 : 0;
+            const p1X = node1.baseX + (dist1 > 0 ? (dx1/dist1)*lineRepulseForce : 0) - mouseOffsetX;
+            const p1Y = node1.baseY + (dist1 > 0 ? (dy1/dist1)*lineRepulseForce : 0) - mouseOffsetY;
             
             const p2X = node2.baseX - mouseOffsetX;
             const p2Y = node2.baseY - mouseOffsetY;
@@ -228,12 +231,16 @@ export function AiNeuralNetwork() {
         const dy = node.baseY - (height/2 + currentMouseRef.current.y);
         const dist = Math.sqrt(dx*dx + dy*dy);
         
-        const repulseForce = dist < 200 ? (200 - dist) / 200 * 20 : 0;
+        // Stronger repulsion for nodes
+        const repulseForce = dist < 250 ? (250 - dist) / 250 * 35 : 0;
         const repulseX = dist > 0 ? (dx / dist) * repulseForce : 0;
         const repulseY = dist > 0 ? (dy / dist) * repulseForce : 0;
 
-        const drawX = node.baseX + repulseX - mouseOffsetX;
-        const drawY = node.baseY + repulseY - mouseOffsetY;
+        // Apply depth based on layer for a 3D effect!
+        // Closer layers move more with parallax
+        const depthMultiplier = 1 + (node.layerIndex * 0.15);
+        const drawX = node.baseX + repulseX - (mouseOffsetX * depthMultiplier);
+        const drawY = node.baseY + repulseY - (mouseOffsetY * depthMultiplier);
 
         ctx.beginPath();
         ctx.arc(drawX, drawY, node.radius + pulse * 1.5, 0, Math.PI * 2);
