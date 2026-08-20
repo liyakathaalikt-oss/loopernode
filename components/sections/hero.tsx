@@ -1,10 +1,8 @@
 import React from 'react';
 import Link from 'next/link';
-import { StaggerContainer, StaggerItem, ScaleIn } from '@/components/animations/motion-wrapper';
 import { AnimatedGradientBg } from '@/components/ui/animated-gradient-bg';
 import { DataWaveAnimation } from '@/components/animations/data-wave';
 import { FloatingBadge } from '@/components/ui/floating-badge';
-import { TextReveal } from '@/components/animations/text-reveal';
 import { cn } from '@/lib/utils';
 
 export interface HeroProps {
@@ -56,42 +54,40 @@ export function Hero({
         </div>
       )}
 
-      {/* Content Layer */}
-      <StaggerContainer className="relative z-20 container mx-auto px-6 pt-32 pb-20 text-center max-w-5xl lg:max-w-7xl flex flex-col items-center justify-center">
+      {/* Content Layer (Rendered Instantly for LCP) */}
+      <div className="relative z-20 container mx-auto px-6 pt-32 pb-20 text-center max-w-5xl lg:max-w-7xl flex flex-col items-center justify-center">
         {titleLine2 ? (
-          <StaggerItem className="mb-6 flex flex-col items-center justify-center gap-y-3 w-full">
+          <div className="mb-6 flex flex-col items-center justify-center gap-y-3 w-full animate-fade-up">
             <h1 className="font-heading text-5xl md:text-7xl font-extrabold tracking-tighter leading-[1.1] text-[#F8FAFC]">
-              <TextReveal text={headline} />
+              {headline}
             </h1>
             <div className="font-heading text-3xl md:text-5xl font-bold tracking-tight leading-[1.2] text-[#F8FAFC] flex flex-wrap justify-center gap-x-3 gap-y-2">
-              <TextReveal text={titleLine2} />
-              <TextReveal 
-                text={highlightedText} 
-                className="text-transparent bg-clip-text bg-gradient-to-r from-[#6366F1] via-[#8B5CF6] to-[#06B6D4] pb-2 drop-shadow-[0_0_15px_rgba(99,102,241,0.5)]" 
-              />
+              <span>{titleLine2}</span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#6366F1] via-[#8B5CF6] to-[#06B6D4] pb-2 drop-shadow-[0_0_15px_rgba(99,102,241,0.5)]">
+                {highlightedText}
+              </span>
             </div>
-          </StaggerItem>
+          </div>
         ) : (
-          <StaggerItem>
+          <div className="animate-fade-up">
             <h1 className={cn("font-heading text-5xl md:text-6xl lg:text-7xl font-bold tracking-tighter leading-[1.1] mb-6 text-[#F8FAFC] flex flex-wrap justify-center gap-x-3 gap-y-2", headlineClassName)}>
-              <TextReveal text={headline} />
+              <span>{headline}</span>
               {highlightedText && (
-                <TextReveal 
-                  text={highlightedText} 
-                  className="text-transparent bg-clip-text bg-gradient-to-r from-[#6366F1] via-[#8B5CF6] to-[#06B6D4] pb-2 drop-shadow-[0_0_15px_rgba(99,102,241,0.5)]" 
-                />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#6366F1] via-[#8B5CF6] to-[#06B6D4] pb-2 drop-shadow-[0_0_15px_rgba(99,102,241,0.5)]">
+                  {highlightedText}
+                </span>
               )}
             </h1>
-          </StaggerItem>
+          </div>
         )}
         
-        <StaggerItem>
+        <div className="animate-fade-up delay-100">
           <p className="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto mb-10 leading-relaxed">
             {description}
           </p>
-        </StaggerItem>
+        </div>
 
-        <StaggerItem>
+        <div className="animate-fade-up delay-200 w-full sm:w-auto">
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             {primaryCTA.onClick ? (
               <button
@@ -129,8 +125,8 @@ export function Hero({
               ) : null
             )}
           </div>
-        </StaggerItem>
-      </StaggerContainer>
+        </div>
+      </div>
     </section>
   );
 }
