@@ -57,7 +57,7 @@ export function Hero({
       {/* Content Layer (Rendered Instantly for LCP) */}
       <div className="relative z-20 container mx-auto px-6 pt-32 pb-20 text-center max-w-5xl lg:max-w-7xl flex flex-col items-center justify-center">
         {titleLine2 ? (
-          <div className="mb-6 flex flex-col items-center justify-center gap-y-3 w-full animate-fade-up">
+          <div className="mb-6 flex flex-col items-center justify-center gap-y-3 w-full">
             <h1 className="font-heading text-5xl md:text-7xl font-extrabold tracking-tighter leading-[1.1] text-[#F8FAFC]">
               {headline}
             </h1>
@@ -69,7 +69,7 @@ export function Hero({
             </div>
           </div>
         ) : (
-          <div className="animate-fade-up">
+          <div>
             <h1 className={cn("font-heading text-5xl md:text-6xl lg:text-7xl font-bold tracking-tighter leading-[1.1] mb-6 text-[#F8FAFC] flex flex-wrap justify-center gap-x-3 gap-y-2", headlineClassName)}>
               <span>{headline}</span>
               {highlightedText && (
@@ -81,13 +81,13 @@ export function Hero({
           </div>
         )}
         
-        <div className="animate-fade-up delay-100">
+        <div>
           <p className="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto mb-10 leading-relaxed">
             {description}
           </p>
         </div>
 
-        <div className="animate-fade-up delay-200 w-full sm:w-auto">
+        <div className="w-full sm:w-auto">
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             {primaryCTA.onClick ? (
               <button
