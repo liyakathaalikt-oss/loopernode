@@ -103,10 +103,14 @@ model Service {
   title       String
   slug        String   @unique
   description String   
+  longDescription String? // For sub-services
   icon        String?
   features    String   // Stored as JSON string
+  benefits    String?  // Stored as JSON string
+  useCases    String?  // Stored as JSON string
   content     String?
   coverImage  String?  // Newly added cover image url
+  category    String?  // e.g. 'main', 'data-collection', 'data-labeling'
   order       Int      @default(0)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt

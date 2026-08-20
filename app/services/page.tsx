@@ -51,6 +51,12 @@ export default async function ServicesPage() {
   });
 
   const dbServices = await prisma.service.findMany({
+    where: {
+      OR: [
+        { category: "main" },
+        { category: null }
+      ]
+    },
     orderBy: { order: 'asc' }
   });
 

@@ -6,20 +6,24 @@ import { CTABanner } from "@/components/sections/cta-banner";
 import { FadeUp, StaggerContainer, StaggerItem } from "@/components/animations/motion-wrapper";
 import { Breadcrumb } from "@/components/layout/breadcrumb";
 import { generatePageMetadata } from "@/lib/metadata";
-import { dataProcessingServices } from "@/content/services/data-processing";
 import { CheckCircle2, ChevronRight } from "lucide-react";
 import Link from "next/link";
+import prisma from "@/lib/prisma";
 
-export function generateStaticParams() {
-  return dataProcessingServices.map((service) => ({
+export async function generateStaticParams() {
+  const services = await prisma.service.findMany({
+    where: { category: "data-processing" },
+    select: { slug: true }
+  });
+  return services.map((service) => ({
     slug: service.slug,
   }));
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const service = dataProcessingServices.find((s) => s.slug === slug);
-  if (!service) return {};
+  const service = await prisma.service.findUnique({ where: { slug } });
+  if (!service || service.category !== "data-processing") return {};
 
   return generatePageMetadata({
     title: `${service.title} | Data Processing | Loopernode`,
@@ -30,15 +34,32 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 export default async function DataProcessingServicePage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const service = dataProcessingServices.find((s) => s.slug === slug);
-
-  if (!service) {
+  const dbService = await prisma.service.findUnique({ where: { slug } });
+  
+  if (!dbService || dbService.category !== "data-processing") {
     notFound();
   }
 
-  const relatedServices = dataProcessingServices
-    .filter((s) => s.slug !== service.slug && s.category === service.category)
-    .slice(0, 3);
+  // Parse JSON fields
+  const service = {
+    ...dbService,
+    features: dbService.features ? JSON.parse(dbService.features) : [],
+    benefits: dbService.benefits ? JSON.parse(dbService.benefits) : [],
+    useCases: dbService.useCases ? JSON.parse(dbService.useCases) : []
+  };
+
+  const relatedDbServices = await prisma.service.findMany({
+    where: { 
+      category: "data-processing",
+      slug: { not: slug }
+    },
+    take: 3
+  });
+
+  const relatedServices = relatedDbServices.map(s => ({
+    ...s,
+    features: s.features ? JSON.parse(s.features) : []
+  }));
 
   return (
     <main className="flex min-h-screen flex-col bg-dark-950 text-slate-50">
@@ -71,9 +92,9 @@ export default async function DataProcessingServicePage({ params }: { params: Pr
             <div className="glass-card backdrop-blur-xl bg-white/[0.03] border border-white/[0.08] p-8 rounded-3xl">
               <h3 className="text-2xl font-semibold mb-6 font-heading">Key Benefits</h3>
               <ul className="space-y-4">
-                {service.benefits.map((benefit, idx) => (
+                {service.benefits.map((benefit: string, idx: number) => (
                   <li key={idx} className="flex items-start gap-4">
-                    <CheckCircle2 className="w-6 h-6 text-violet-500 shrink-0 mt-0.5" />
+                    <CheckCircle2 className="w-6 h-6 text-indigo-500 shrink-0 mt-0.5" />
                     <span className="text-slate-300 leading-relaxed">{benefit}</span>
                   </li>
                 ))}
@@ -83,18 +104,19 @@ export default async function DataProcessingServicePage({ params }: { params: Pr
         </div>
       </section>
 
-      <section className="bg-white/[0.02] border-y border-white/5 py-20">
+      {/* Features */}
+      <section className="py-24 bg-dark-900 border-t border-white/[0.02]">
         <div className="container-custom max-w-7xl mx-auto px-6">
           <FadeUp>
             <SectionTitle title="Features" align="center" />
           </FadeUp>
           <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
-            {service.features.map((feature, idx) => (
+            {service.features.map((feature: any, idx: number) => (
               <StaggerItem key={idx}>
                 <FeatureCard
                   title={feature.title}
                   description={feature.description}
-                  icon={<CheckCircle2 className="w-6 h-6 text-violet-400" />}
+                  icon="check"
                 />
               </StaggerItem>
             ))}
@@ -102,19 +124,22 @@ export default async function DataProcessingServicePage({ params }: { params: Pr
         </div>
       </section>
 
-      <section className="container-custom max-w-7xl mx-auto px-6 py-20">
-        <FadeUp>
-          <SectionTitle title="Common Use Cases" />
-        </FadeUp>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12">
-          {service.useCases.map((useCase, idx) => (
-            <FadeUp key={idx} delay={idx * 0.1}>
-              <div className="flex items-center gap-4 p-6 glass-card backdrop-blur-xl bg-white/[0.02] border border-white/[0.05] rounded-2xl">
-                <div className="w-2 h-2 bg-violet-500 rounded-full" />
-                <span className="text-lg text-slate-200">{useCase}</span>
-              </div>
-            </FadeUp>
-          ))}
+      {/* Use Cases */}
+      <section className="py-24">
+        <div className="container-custom max-w-4xl mx-auto px-6">
+          <FadeUp>
+            <SectionTitle title="Common Use Cases" />
+          </FadeUp>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12">
+            {service.useCases.map((useCase: any, idx: number) => (
+              <FadeUp key={idx} delay={idx * 0.1}>
+                <div className="flex items-center gap-4 p-6 glass-card backdrop-blur-xl bg-white/[0.02] border border-white/[0.05] rounded-2xl">
+                  <div className="w-2 h-2 bg-indigo-500 rounded-full" />
+                  <span className="text-lg text-slate-200">{typeof useCase === 'string' ? useCase : useCase.title}</span>
+                </div>
+              </FadeUp>
+            ))}
+          </div>
         </div>
       </section>
 

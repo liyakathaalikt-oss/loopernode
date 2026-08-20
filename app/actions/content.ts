@@ -21,9 +21,13 @@ export async function saveService(formData: FormData) {
   const data = {
     title: formData.get("title") as string,
     slug: formData.get("slug") as string,
+    category: formData.get("category") as string || "main",
     description: formData.get("description") as string,
+    longDescription: formData.get("longDescription") as string || null,
     icon: formData.get("icon") as string,
     features: formData.get("features") as string, // JSON string
+    benefits: formData.get("benefits") as string || null, // JSON string
+    useCases: formData.get("useCases") as string || null, // JSON string
     content: formData.get("content") as string,
     coverImage: formData.get("coverImage") as string,
     order: parseInt(formData.get("order") as string || "0"),

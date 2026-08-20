@@ -15,11 +15,39 @@ export function ServiceForm({ service }: { service?: any }) {
     setError("");
     const formData = new FormData(e.currentTarget);
     
-    // Add features as JSON string
-    const featuresList = formData.get("featuresRaw") as string;
-    const featuresArray = featuresList.split('\n').filter(f => f.trim() !== '');
-    formData.append("features", JSON.stringify(featuresArray));
+    // Parse Features
+    const featuresRaw = formData.get("featuresRaw") as string;
+    if (featuresRaw.trim().startsWith("[")) {
+      formData.append("features", featuresRaw); // It's already JSON
+    } else {
+      const featuresArray = featuresRaw.split('\n').filter(f => f.trim() !== '');
+      formData.append("features", JSON.stringify(featuresArray));
+    }
     formData.delete("featuresRaw");
+
+    // Parse Benefits
+    const benefitsRaw = formData.get("benefitsRaw") as string;
+    if (benefitsRaw) {
+      if (benefitsRaw.trim().startsWith("[")) {
+        formData.append("benefits", benefitsRaw);
+      } else {
+        const benefitsArray = benefitsRaw.split('\n').filter(f => f.trim() !== '');
+        formData.append("benefits", JSON.stringify(benefitsArray));
+      }
+    }
+    formData.delete("benefitsRaw");
+
+    // Parse UseCases
+    const useCasesRaw = formData.get("useCasesRaw") as string;
+    if (useCasesRaw) {
+      if (useCasesRaw.trim().startsWith("[")) {
+        formData.append("useCases", useCasesRaw);
+      } else {
+        const useCasesArray = useCasesRaw.split('\n').filter(f => f.trim() !== '');
+        formData.append("useCases", JSON.stringify(useCasesArray));
+      }
+    }
+    formData.delete("useCasesRaw");
 
     startTransition(async () => {
       try {
@@ -32,7 +60,23 @@ export function ServiceForm({ service }: { service?: any }) {
     });
   }
 
-  const defaultFeatures = service?.features ? JSON.parse(service.features).join('\n') : "";
+  // Format default values for textareas
+  const formatJSONForTextarea = (val: string | null) => {
+    if (!val) return "";
+    try {
+      const parsed = JSON.parse(val);
+      if (Array.isArray(parsed) && typeof parsed[0] === 'string') {
+        return parsed.join('\n'); // Simple string array
+      }
+      return JSON.stringify(parsed, null, 2); // Complex object array
+    } catch {
+      return val;
+    }
+  };
+
+  const defaultFeatures = formatJSONForTextarea(service?.features);
+  const defaultBenefits = formatJSONForTextarea(service?.benefits);
+  const defaultUseCases = formatJSONForTextarea(service?.useCases);
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
@@ -70,6 +114,30 @@ export function ServiceForm({ service }: { service?: any }) {
           />
         </div>
 
+        <div className="space-y-2">
+          <label className="text-sm font-medium text-slate-300">Category</label>
+          <select
+            name="category"
+            defaultValue={service?.category || "main"}
+            className="w-full bg-slate-900 border border-white/10 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-primary-500"
+          >
+            <option value="main">Main Service Category</option>
+            <option value="data-collection">Data Collection Sub-Service</option>
+            <option value="data-labeling">Data Labeling Sub-Service</option>
+            <option value="data-processing">Data Processing Sub-Service</option>
+          </select>
+        </div>
+        
+        <div className="space-y-2">
+          <label className="text-sm font-medium text-slate-300">Display Order</label>
+          <input
+            type="number"
+            name="order"
+            defaultValue={service?.order ?? 0}
+            className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-primary-500"
+          />
+        </div>
+
         <div className="space-y-2 md:col-span-2">
           <label className="text-sm font-medium text-slate-300">Short Description</label>
           <textarea
@@ -79,6 +147,17 @@ export function ServiceForm({ service }: { service?: any }) {
             rows={3}
             className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-primary-500 resize-none"
             placeholder="A brief summary of the service..."
+          />
+        </div>
+
+        <div className="space-y-2 md:col-span-2">
+          <label className="text-sm font-medium text-slate-300">Long Description (For Sub-Services)</label>
+          <textarea
+            name="longDescription"
+            defaultValue={service?.longDescription || ""}
+            rows={4}
+            className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-primary-500 resize-none"
+            placeholder="Detailed description for the sub-service page..."
           />
         </div>
 
@@ -105,16 +184,38 @@ export function ServiceForm({ service }: { service?: any }) {
         </div>
 
         <div className="space-y-2 md:col-span-2">
-          <label className="text-sm font-medium text-slate-300">Features (One per line)</label>
+          <label className="text-sm font-medium text-slate-300">Features (One per line OR valid JSON array)</label>
           <textarea
             name="featuresRaw"
             defaultValue={defaultFeatures}
             rows={5}
-            className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-primary-500"
-            placeholder="Feature 1&#10;Feature 2&#10;Feature 3"
+            className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-primary-500 font-mono text-sm"
+            placeholder="Feature 1&#10;Feature 2&#10;OR [{'title': '...', 'description': '...'}]"
           />
         </div>
         
+        <div className="space-y-2 md:col-span-2">
+          <label className="text-sm font-medium text-slate-300">Benefits (One per line OR valid JSON array)</label>
+          <textarea
+            name="benefitsRaw"
+            defaultValue={defaultBenefits}
+            rows={5}
+            className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-primary-500 font-mono text-sm"
+            placeholder="Benefit 1&#10;Benefit 2..."
+          />
+        </div>
+        
+        <div className="space-y-2 md:col-span-2">
+          <label className="text-sm font-medium text-slate-300">Use Cases (One per line OR valid JSON array)</label>
+          <textarea
+            name="useCasesRaw"
+            defaultValue={defaultUseCases}
+            rows={5}
+            className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-primary-500 font-mono text-sm"
+            placeholder="Use Case 1&#10;Use Case 2..."
+          />
+        </div>
+
         <div className="space-y-2 md:col-span-2">
           <label className="text-sm font-medium text-slate-300">Rich HTML Content (Optional Detail Page)</label>
           <textarea
@@ -123,16 +224,6 @@ export function ServiceForm({ service }: { service?: any }) {
             rows={10}
             className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-primary-500 font-mono text-sm"
             placeholder="<p>Full detailed service description...</p>"
-          />
-        </div>
-
-        <div className="space-y-2">
-          <label className="text-sm font-medium text-slate-300">Display Order</label>
-          <input
-            type="number"
-            name="order"
-            defaultValue={service?.order ?? 0}
-            className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-primary-500"
           />
         </div>
       </div>
