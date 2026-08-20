@@ -124,7 +124,8 @@ export default async function HomePage() {
         />
       </ScrollBorderSection>
 
-      {/* SECTION 2: Trusted By */}
+      {/* SECTION 2: Trusted By (Hidden per user request) */}
+      {/* 
       <section className="py-12 border-b border-white/5 overflow-hidden bg-white/5">
         <FadeIn>
           <div className="container mx-auto px-4 mb-6 text-center text-sm md:text-base font-semibold tracking-wider text-slate-400 uppercase">
@@ -144,6 +145,7 @@ export default async function HomePage() {
           </div>
         </FadeIn>
       </section>
+      */}
 
       {/* SECTION 3: Company Overview */}
       <section className="py-20 md:py-28 container mx-auto px-4 border-b border-white/5">
