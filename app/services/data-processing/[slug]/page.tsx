@@ -7,6 +7,7 @@ import { FadeUp, StaggerContainer, StaggerItem } from "@/components/animations/m
 import { Breadcrumb } from "@/components/layout/breadcrumb";
 import { generatePageMetadata } from "@/lib/metadata";
 import { AiDatasetOptimizationAnimation } from "@/components/animations/ai-dataset-optimization";
+import { QualityMonitoringAnimation } from "@/components/animations/quality-monitoring-animation";
 import { CheckCircle2, ChevronRight } from "lucide-react";
 import Link from "next/link";
 import prisma from "@/lib/prisma";
@@ -78,7 +79,11 @@ export default async function DataProcessingServicePage({ params }: { params: Pr
         highlightedText=""
         description={service.description}
         primaryCTA={{ label: "Contact Sales", href: "/contact" }}
-        customAnimation={service.slug === 'ai-dataset-optimization' ? <AiDatasetOptimizationAnimation /> : undefined}
+        customAnimation={
+          service.slug === 'ai-dataset-optimization' ? <AiDatasetOptimizationAnimation /> : 
+          service.slug === 'quality-monitoring' ? <QualityMonitoringAnimation /> : 
+          undefined
+        }
       />
 
       <section className="container-custom max-w-7xl mx-auto px-6 py-20">
