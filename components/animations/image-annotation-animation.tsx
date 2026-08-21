@@ -78,10 +78,10 @@ export function ImageAnnotationAnimation() {
       }
 
       // 1. CAR (Autonomous Driving)
-      const carW = Math.min(w * 0.35, 300); // slightly smaller to be safe
+      const carW = Math.min(w * 0.4, 450); 
       const carH = carW * 0.4; // Maintain aspect ratio
-      const carX = w * 0.1; 
-      const carY = h * 0.8 - carH; 
+      const carX = w * 0.05; 
+      const carY = h * 0.85 - carH; 
       if (carImg.complete) {
         ctx.globalAlpha = 0.8;
         ctx.drawImage(carImg, carX, carY, carW, carH);
@@ -89,10 +89,10 @@ export function ImageAnnotationAnimation() {
       }
 
       // 2. PEDESTRIAN (Autonomous Driving / Retail CV)
-      const boxW = Math.min(w * 0.15, 120); 
+      const boxW = Math.min(w * 0.2, 200); 
       const boxH = boxW * 1.0; // Aspect ratio is roughly 1:1
-      const boxX = w * 0.9 - boxW; 
-      const boxY = h * 0.2;
+      const boxX = w * 0.95 - boxW; 
+      const boxY = h * 0.15;
       if (pedImg.complete) {
         ctx.globalAlpha = 0.8;
         ctx.drawImage(pedImg, boxX, boxY, boxW, boxH);
@@ -156,8 +156,8 @@ export function ImageAnnotationAnimation() {
         }
       };
 
-      renderAnnotBox(carProgress, c1_start, c1_end, '#06b6d4', 'VEHICLE');
-      renderAnnotBox(retProgress, c3_start, c3_end, '#3b82f6', 'PEDESTRIAN');
+      renderAnnotBox(carProgress, c1_start, c1_end, '#10b981', 'VEHICLE');
+      renderAnnotBox(retProgress, c3_start, c3_end, '#f43f5e', 'PEDESTRIAN');
 
       // Draw Cursor (Crosshair)
       ctx.strokeStyle = 'rgba(255, 255, 255, 0.8)';
