@@ -32,34 +32,39 @@ export function AiDatasetOptimizationAnimation() {
 
       const colors = ['#06b6d4', '#10b981', '#eab308', '#ef4444'];
       
-      const leftGridX = w * 0.25;
-      const leftGridY = h * 0.2;
-      const leftGridW = Math.min(w * 0.2, 200);
-      const leftGridH = h * 0.6;
+      // Calculate coordinates for the two structures (Scaled up for larger presence)
+      const leftGridX = w * 0.1;
+      const leftGridY = h * 0.15;
+      const leftGridW = Math.min(w * 0.3, 400);
+      const leftGridH = h * 0.7;
       
-      const rightGridX = w * 0.7;
-      const rightGridY = h * 0.3;
-      const rightGridW = Math.min(w * 0.25, 250);
-      const rightRowH = h * 0.1;
+      const rightGridX = w * 0.55;
+      const rightGridY = h * 0.15;
+      const rightGridW = Math.min(w * 0.35, 450);
+      const rightRowH = h * 0.15;
       
       const cols = 8;
       const rows = 12;
       const blockW = leftGridW / cols;
       const blockH = leftGridH / rows;
 
-      ctx.lineWidth = 1.5;
+      // DRAW FLOWING CONNECTION LINES (Rendered underneath blocks)
+      ctx.lineWidth = 2.5; // Thicker lines
       for (let r = 0; r < rows; r++) {
-        for (let c = cols - 1; c < cols; c++) {
-          const colorIdx = (r + c * 3 + Math.floor(time / 50)) % 4;
+        for (let c = cols - 1; c < cols; c++) { // Only from the rightmost column of the left grid
+          const colorIdx = (r + c * 3 + Math.floor(time / 50)) % 4; // Pseudo-random categorization
           const startX = leftGridX + c * blockW + blockW;
           const startY = leftGridY + r * blockH + blockH / 2;
           
+          // Destination row based on category/color
           const endX = rightGridX;
-          const endY = rightGridY + colorIdx * rightRowH * 1.2 + rightRowH / 2;
+          const endY = rightGridY + colorIdx * rightRowH * 1.1 + rightRowH / 2;
 
+          // Flowing bezier curve
           ctx.beginPath();
           ctx.moveTo(startX, startY);
           
+          // Animate control points slightly for flowing effect
           const cp1X = startX + (endX - startX) * 0.4;
           const cp1Y = startY + Math.sin(time * 0.05 + r) * 20;
           const cp2X = startX + (endX - startX) * 0.6;
@@ -70,43 +75,50 @@ export function AiDatasetOptimizationAnimation() {
           ctx.strokeStyle = `rgba(${hexToRgb(colors[colorIdx])}, 0.5)`;
           ctx.stroke();
 
+          // Animated particles moving along the line
           const particleProgress = (time * 0.01 + r * 0.1) % 1;
           const pX = calculateBezierPoint(particleProgress, startX, cp1X, cp2X, endX);
           const pY = calculateBezierPoint(particleProgress, startY, cp1Y, cp2Y, endY);
           
           ctx.beginPath();
-          ctx.arc(pX, pY, 2.5, 0, Math.PI * 2);
+          ctx.arc(pX, pY, 4, 0, Math.PI * 2); // Larger particles
           ctx.fillStyle = colors[colorIdx];
           ctx.shadowColor = colors[colorIdx];
-          ctx.shadowBlur = 10;
+          ctx.shadowBlur = 12;
           ctx.fill();
-          ctx.shadowBlur = 0;
+          ctx.shadowBlur = 0; // reset
         }
       }
 
+      // DRAW LEFT GRID (Raw / Disorganized Data)
       for (let c = 0; c < cols; c++) {
         for (let r = 0; r < rows; r++) {
+          // Add some gaps/missing blocks for "raw data" feel
           if ((c * r + 7) % 13 === 0) continue;
 
+          // Parallax and floating effect
           const floatY = Math.sin(time * 0.02 + c + r) * 3;
           const x = leftGridX + c * blockW;
           const y = leftGridY + r * blockH + floatY;
           
+          // Randomly assign colors but bias based on time to simulate "sorting"
           const colorIdx = (c * 7 + r * 11 + Math.floor(time / 100)) % 4;
           
           ctx.fillStyle = colors[colorIdx];
+          // Slight opacity variation for depth
           ctx.globalAlpha = 0.7 + Math.sin(time * 0.05 + c) * 0.3;
           ctx.fillRect(x + 2, y + 2, blockW - 4, blockH - 4);
           ctx.globalAlpha = 1.0;
         }
       }
 
+      // DRAW RIGHT GRID (Optimized / Balanced Data)
       const targetCols = 10;
       const targetBlockW = rightGridW / targetCols;
       const targetBlockH = rightRowH * 0.6;
 
-      for (let i = 0; i < 4; i++) {
-        const rowY = rightGridY + i * rightRowH * 1.2;
+      for (let i = 0; i < 4; i++) { // 4 categories (colors)
+        const rowY = rightGridY + i * rightRowH * 1.1; // Reduced spacing multiplier slightly to fit taller rows
         
         for (let c = 0; c < targetCols; c++) {
           const fillThreshold = (Math.sin(time * 0.02 + i) + 1) * targetCols / 2 + 2;
