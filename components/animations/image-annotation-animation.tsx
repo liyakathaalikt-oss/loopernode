@@ -114,21 +114,73 @@ export function ImageAnnotationAnimation() {
     };
 
     const drawBicycle = (cx: number, cy: number, w: number, h: number) => {
+      ctx.save();
       const r = w * 0.2;
-      ctx.lineWidth = 3;
-      // wheels
-      ctx.beginPath(); ctx.arc(cx + r, cy + h - r, r, 0, Math.PI * 2); ctx.stroke();
-      ctx.beginPath(); ctx.arc(cx + w - r, cy + h - r, r, 0, Math.PI * 2); ctx.stroke();
-      // frame
+
+      // Shadow
+      ctx.fillStyle = 'rgba(0,0,0,0.5)';
+      ctx.beginPath(); ctx.ellipse(cx + w * 0.5, cy + h - h * 0.02, w * 0.45, h * 0.02, 0, 0, Math.PI * 2); ctx.fill();
+
+      // Tires (Thick stroke)
+      ctx.lineWidth = 8;
+      ctx.strokeStyle = '#1e293b'; // dark rubber
+      ctx.beginPath(); ctx.arc(cx + r, cy + h - r, r, 0, Math.PI * 2); ctx.stroke(); // Back tire
+      ctx.beginPath(); ctx.arc(cx + w - r, cy + h - r, r, 0, Math.PI * 2); ctx.stroke(); // Front tire
+
+      // Rims / Spokes (Thin stroke)
+      ctx.lineWidth = 2;
+      ctx.strokeStyle = '#94a3b8'; // silver
       ctx.beginPath();
-      ctx.moveTo(cx + r, cy + h - r); // back wheel center
-      ctx.lineTo(cx + w * 0.4, cy + h * 0.4); // seat post top
-      ctx.lineTo(cx + w * 0.7, cy + h * 0.4); // handle bar joint
-      ctx.lineTo(cx + w - r, cy + h - r); // front wheel center
-      ctx.moveTo(cx + w * 0.4, cy + h * 0.4); 
-      ctx.lineTo(cx + w * 0.6, cy + h - r); // pedals
-      ctx.lineTo(cx + w * 0.7, cy + h * 0.4);
+      ctx.moveTo(cx + r, cy + h - r * 2); ctx.lineTo(cx + r, cy + h);
+      ctx.moveTo(cx, cy + h - r); ctx.lineTo(cx + r * 2, cy + h - r);
+      ctx.moveTo(cx + w - r, cy + h - r * 2); ctx.lineTo(cx + w - r, cy + h);
+      ctx.moveTo(cx + w - r * 2, cy + h - r); ctx.lineTo(cx + w, cy + h - r);
       ctx.stroke();
+
+      // Frame (Thick solid line)
+      ctx.lineWidth = 6;
+      ctx.strokeStyle = '#f97316'; // orange frame
+      ctx.lineJoin = 'round';
+      ctx.lineCap = 'round';
+      ctx.beginPath();
+      ctx.moveTo(cx + r, cy + h - r); // back wheel hub
+      ctx.lineTo(cx + w * 0.4, cy + h * 0.45); // seat post base
+      ctx.lineTo(cx + w * 0.75, cy + h * 0.45); // handlebar stem
+      ctx.lineTo(cx + w - r, cy + h - r); // front wheel hub
+      ctx.moveTo(cx + w * 0.4, cy + h * 0.45); 
+      ctx.lineTo(cx + w * 0.55, cy + h - r); // bottom bracket (pedals)
+      ctx.lineTo(cx + r, cy + h - r); // chainstay back to rear hub
+      ctx.moveTo(cx + w * 0.55, cy + h - r); // from bottom bracket
+      ctx.lineTo(cx + w * 0.75, cy + h * 0.45); // up to handlebar stem
+      ctx.stroke();
+
+      // Seat
+      ctx.fillStyle = '#0f172a'; // black seat
+      ctx.beginPath();
+      ctx.roundRect(cx + w * 0.3, cy + h * 0.35, w * 0.15, h * 0.08, 5);
+      ctx.fill();
+      // Seat post
+      ctx.lineWidth = 4;
+      ctx.strokeStyle = '#64748b'; // gray post
+      ctx.beginPath(); ctx.moveTo(cx + w * 0.38, cy + h * 0.43); ctx.lineTo(cx + w * 0.4, cy + h * 0.45); ctx.stroke();
+
+      // Handlebars
+      ctx.lineWidth = 5;
+      ctx.strokeStyle = '#0f172a'; // black grips
+      ctx.beginPath();
+      ctx.moveTo(cx + w * 0.7, cy + h * 0.38); // left grip
+      ctx.lineTo(cx + w * 0.8, cy + h * 0.35); // right grip
+      ctx.stroke();
+      // Handlebar stem
+      ctx.lineWidth = 4;
+      ctx.strokeStyle = '#64748b';
+      ctx.beginPath(); ctx.moveTo(cx + w * 0.75, cy + h * 0.37); ctx.lineTo(cx + w * 0.75, cy + h * 0.45); ctx.stroke();
+
+      // Pedals / Crank
+      ctx.fillStyle = '#64748b';
+      ctx.beginPath(); ctx.arc(cx + w * 0.55, cy + h - r, r * 0.25, 0, Math.PI * 2); ctx.fill(); // chainring
+
+      ctx.restore();
     };
 
     const drawRealisticCar = (cx: number, cy: number, w: number, h: number) => {
