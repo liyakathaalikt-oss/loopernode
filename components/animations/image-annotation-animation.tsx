@@ -51,18 +51,57 @@ export function ImageAnnotationAnimation() {
       return start + (end - start) * Math.max(0, Math.min(1, ease));
     };
 
-    const drawBoxShape = (cx: number, cy: number, w: number, h: number) => {
+    const drawRealisticWaterBottle = (cx: number, cy: number, w: number, h: number) => {
+      ctx.save();
+      
+      // Shadow
+      ctx.fillStyle = 'rgba(0,0,0,0.5)';
+      ctx.beginPath(); ctx.ellipse(cx + w * 0.5, cy + h - h * 0.03, w * 0.35, h * 0.02, 0, 0, Math.PI * 2); ctx.fill();
+
+      // Bottle Body (Light Blue/Cyan tint)
+      ctx.fillStyle = 'rgba(56, 189, 248, 0.2)'; // semi-transparent blue
+      ctx.strokeStyle = '#0ea5e9'; // darker blue outline
+      ctx.lineWidth = 3;
       ctx.beginPath();
-      ctx.rect(cx + w * 0.1, cy + h * 0.2, w * 0.8, h * 0.8);
-      ctx.moveTo(cx + w * 0.1, cy + h * 0.2);
-      ctx.lineTo(cx + w * 0.3, cy);
-      ctx.lineTo(cx + w * 0.9, cy);
-      ctx.lineTo(cx + w * 0.9, cy + h * 0.8);
-      ctx.lineTo(cx + w * 0.7, cy + h);
-      ctx.moveTo(cx + w * 0.9, cy);
-      ctx.lineTo(cx + w * 0.7, cy + h * 0.2);
-      ctx.stroke();
+      ctx.roundRect(cx + w * 0.2, cy + h * 0.15, w * 0.6, h * 0.8, w * 0.1);
       ctx.fill();
+      ctx.stroke();
+
+      // Bottle Neck & Cap
+      ctx.fillStyle = '#0f172a'; // dark cap
+      ctx.beginPath();
+      ctx.roundRect(cx + w * 0.35, cy + h * 0.02, w * 0.3, h * 0.08, 4);
+      ctx.fill();
+      
+      // Neck connecting cap to body
+      ctx.fillStyle = 'rgba(56, 189, 248, 0.4)';
+      ctx.beginPath();
+      ctx.moveTo(cx + w * 0.35, cy + h * 0.1);
+      ctx.lineTo(cx + w * 0.65, cy + h * 0.1);
+      ctx.lineTo(cx + w * 0.7, cy + h * 0.15);
+      ctx.lineTo(cx + w * 0.3, cy + h * 0.15);
+      ctx.fill();
+      ctx.stroke();
+
+      // Label (White band around middle)
+      ctx.fillStyle = '#f8fafc'; // white
+      ctx.beginPath();
+      ctx.fillRect(cx + w * 0.2 + 1.5, cy + h * 0.45, w * 0.6 - 3, h * 0.25); // +1.5 to stay inside stroke
+      
+      // Label text/design
+      ctx.fillStyle = '#0284c7';
+      ctx.font = `bold ${h * 0.06}px sans-serif`;
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText('AQUA', cx + w * 0.5, cy + h * 0.57);
+
+      // Highlight/Reflection (Sleek gloss line)
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.4)';
+      ctx.beginPath();
+      ctx.roundRect(cx + w * 0.25, cy + h * 0.2, w * 0.06, h * 0.7, w * 0.02);
+      ctx.fill();
+
+      ctx.restore();
     };
 
     const drawTrafficLight = (cx: number, cy: number, w: number, h: number) => {
@@ -304,15 +343,12 @@ export function ImageAnnotationAnimation() {
       ctx.strokeStyle = 'rgba(6, 182, 212, 0.4)';
       drawBicycle(bikeX, bikeY, bikeW, bikeH);
 
-      // 6. PACKAGE (Bottom Right)
+      // 6. WATER BOTTLE (Bottom Right)
       const pkgW = Math.min(w * 0.15, 120); 
-      const pkgH = pkgW * 1.1; 
+      const pkgH = pkgW * 1.5; // taller for a bottle
       const pkgX = w * 0.95 - pkgW; 
       const pkgY = h * 0.85 - pkgH;
-      ctx.fillStyle = 'rgba(168, 85, 247, 0.1)';
-      ctx.strokeStyle = 'rgba(168, 85, 247, 0.1)';
-      ctx.lineWidth = 1;
-      drawBoxShape(pkgX, pkgY, pkgW, pkgH);
+      drawRealisticWaterBottle(pkgX, pkgY, pkgW, pkgH);
 
       // Animation Timeline logic
       let cursorX = w / 2;
@@ -331,8 +367,9 @@ export function ImageAnnotationAnimation() {
       // Account for realistic bike's top (0.35) and tire stroke width (4px bleed)
       const c4_start = { x: bikeX - 4, y: bikeY + bikeH * 0.35 - 3 };
       const c4_end = { x: bikeX + bikeW + 4, y: bikeY + bikeH + 4 };
-      const c5_start = { x: pkgX + pkgW * 0.1, y: pkgY };
-      const c5_end = { x: pkgX + pkgW * 0.9, y: pkgY + pkgH };
+      // Water bottle tight box
+      const c5_start = { x: pkgX + pkgW * 0.2 - 2, y: pkgY + pkgH * 0.02 };
+      const c5_end = { x: pkgX + pkgW * 0.8 + 2, y: pkgY + pkgH * 0.99 };
 
       // Timings
       const seq = [
@@ -407,7 +444,7 @@ export function ImageAnnotationAnimation() {
       renderAnnotBox(carProgress, c2_start, c2_end, '#10b981', 'VEHICLE');
       renderAnnotBox(pedProgress, c3_start, c3_end, '#f43f5e', 'PEDESTRIAN');
       renderAnnotBox(bikeProgress, c4_start, c4_end, '#06b6d4', 'BICYCLE');
-      renderAnnotBox(pkgProgress, c5_start, c5_end, '#a855f7', 'PRODUCT');
+      renderAnnotBox(pkgProgress, c5_start, c5_end, '#38bdf8', 'WATER_BOTTLE');
 
       // Draw Cursor (Crosshair)
       ctx.strokeStyle = 'rgba(255, 255, 255, 0.8)';
