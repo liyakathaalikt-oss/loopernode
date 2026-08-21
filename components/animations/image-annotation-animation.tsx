@@ -58,9 +58,6 @@ export function ImageAnnotationAnimation() {
       ctx.fillStyle = '#050510'; 
       ctx.fillRect(0, 0, w, h);
 
-      time += 1; // logical frames
-      const cycle = time % 400; // loop every 400 frames
-
       // Draw subtle dot grid pattern
       ctx.fillStyle = 'rgba(99, 102, 241, 0.1)';
       for (let x = 0; x < w; x += 30) {
@@ -95,60 +92,51 @@ export function ImageAnnotationAnimation() {
       }
       ctx.globalAlpha = 1.0;
 
-      // Draw Bounding Boxes with animation
-      const drawBox = (cx: number, cy: number, bw: number, bh: number, label: string, color: string, startFrame: number) => {
-        if (cycle < startFrame) return; // not started yet
-        
-        const progress = Math.min(1, (cycle - startFrame) / 60); // 60 frames to draw
-        const currentW = bw * progress;
-        const currentH = bh * progress;
+      // Draw Static Bounding Boxes
+      const drawBox = (cx: number, cy: number, bw: number, bh: number, label: string, color: string) => {
         const startX = cx - bw/2;
         const startY = cy - bh/2;
 
         ctx.strokeStyle = color;
         ctx.lineWidth = 2;
         
-        // Draw the box expanding from top-left
-        if (progress > 0) {
-          ctx.strokeRect(startX, startY, currentW, currentH);
-        }
+        // Draw the full box
+        ctx.strokeRect(startX, startY, bw, bh);
 
-        // Draw label and connecting line if box is finished
-        if (progress >= 1) {
-          const lineY = startY - 40;
-          
-          ctx.beginPath();
-          ctx.moveTo(cx, startY);
-          ctx.lineTo(cx + 20, lineY);
-          ctx.lineTo(cx + 100, lineY);
-          ctx.setLineDash([2, 4]);
-          ctx.stroke();
-          ctx.setLineDash([]);
+        // Draw label and connecting line
+        const lineY = startY - 40;
+        
+        ctx.beginPath();
+        ctx.moveTo(cx, startY);
+        ctx.lineTo(cx + 20, lineY);
+        ctx.lineTo(cx + 100, lineY);
+        ctx.setLineDash([2, 4]);
+        ctx.stroke();
+        ctx.setLineDash([]);
 
-          ctx.fillStyle = color;
-          ctx.beginPath();
-          ctx.arc(cx, startY, 3, 0, Math.PI * 2);
-          ctx.fill();
+        ctx.fillStyle = color;
+        ctx.beginPath();
+        ctx.arc(cx, startY, 3, 0, Math.PI * 2);
+        ctx.fill();
 
-          ctx.font = '14px monospace';
-          ctx.fillText(label, cx + 30, lineY - 8);
-        }
+        ctx.font = '14px monospace';
+        ctx.fillText(label, cx + 30, lineY - 8);
       };
 
-      // Draw Pedestrian Box (starts at frame 50)
-      drawBox(pedX, pedY, pedW * 1.2, pedH * 1.1, 'pedestrian', '#06b6d4', 50);
+      // Draw Pedestrian Box
+      drawBox(pedX, pedY, pedW * 1.2, pedH * 1.1, 'pedestrian', '#06b6d4');
 
-      // Draw Car Box (starts at frame 150)
-      drawBox(carX, carY, carW * 1.1, carH * 1.1, 'car', '#3b82f6', 150);
-
-      animationFrameId = requestAnimationFrame(draw);
+      // Draw Car Box
+      drawBox(carX, carY, carW * 1.1, carH * 1.1, 'car', '#3b82f6');
     };
 
+    // Draw initially and when images load
     draw();
+    carImg.onload = draw;
+    pedImg.onload = draw;
 
     return () => {
       window.removeEventListener('resize', resize);
-      cancelAnimationFrame(animationFrameId);
     };
   }, [prefersReducedMotion, isInView]);
 
