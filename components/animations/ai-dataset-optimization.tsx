@@ -67,7 +67,7 @@ export function AiDatasetOptimizationAnimation() {
           
           ctx.bezierCurveTo(cp1X, cp1Y, cp2X, cp2Y, endX, endY);
           
-          ctx.strokeStyle = \gba(\, 0.5)\;
+          ctx.strokeStyle = `rgba(${hexToRgb(colors[colorIdx])}, 0.5)`;
           ctx.stroke();
 
           const particleProgress = (time * 0.01 + r * 0.1) % 1;
@@ -180,6 +180,6 @@ function calculateBezierPoint(t: number, p0: number, p1: number, p2: number, p3:
 function hexToRgb(hex: string) {
   const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
   return result ? 
-    \\, \, \\ 
+    `${parseInt(result[1], 16)}, ${parseInt(result[2], 16)}, ${parseInt(result[3], 16)}` 
     : '255, 255, 255';
 }
