@@ -86,9 +86,10 @@ export function ImageAnnotationAnimation() {
     };
 
     const drawStopSign = (cx: number, cy: number, w: number, h: number) => {
+      ctx.save();
       ctx.beginPath();
       const hw = w / 2; const hh = h / 2;
-      const s = 0.4;
+      const s = 0.414; // exact ratio for regular octagon
       ctx.moveTo(cx + hw - hw*s, cy);
       ctx.lineTo(cx + hw + hw*s, cy);
       ctx.lineTo(cx + w, cy + hh - hh*s);
@@ -98,7 +99,20 @@ export function ImageAnnotationAnimation() {
       ctx.lineTo(cx, cy + hh + hh*s);
       ctx.lineTo(cx, cy + hh - hh*s);
       ctx.closePath();
+      
+      ctx.fillStyle = '#dc2626'; // solid red
       ctx.fill();
+      
+      ctx.strokeStyle = '#ffffff';
+      ctx.lineWidth = 3;
+      ctx.stroke();
+
+      ctx.fillStyle = '#ffffff';
+      ctx.font = `bold ${w * 0.3}px sans-serif`;
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText('STOP', cx + hw, cy + hh);
+      ctx.restore();
     };
 
     const drawBicycle = (cx: number, cy: number, w: number, h: number) => {
@@ -156,7 +170,6 @@ export function ImageAnnotationAnimation() {
       const stopH = stopW;
       const stopX = w * 0.05; 
       const stopY = h * 0.45;
-      ctx.fillStyle = 'rgba(239, 68, 68, 0.1)';
       drawStopSign(stopX, stopY, stopW, stopH);
 
       // 3. CAR (Bottom Left)
