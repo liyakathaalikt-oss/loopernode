@@ -28,8 +28,6 @@ export function ImageAnnotationAnimation() {
     let animationFrameId: number;
     let time = 0;
 
-    const carImg = new Image();
-    carImg.src = '/car-icon-v2.png';
     const pedImg = new Image();
     pedImg.src = '/pedestrian-icon-v2.png';
 
@@ -133,6 +131,62 @@ export function ImageAnnotationAnimation() {
       ctx.stroke();
     };
 
+    const drawRealisticCar = (cx: number, cy: number, w: number, h: number) => {
+      ctx.save();
+      // Shadow
+      ctx.fillStyle = 'rgba(0,0,0,0.5)';
+      ctx.beginPath(); ctx.ellipse(cx + w * 0.5, cy + h * 0.85, w * 0.4, h * 0.05, 0, 0, Math.PI * 2); ctx.fill();
+      
+      // Car Body
+      ctx.fillStyle = '#0ea5e9'; // sleek blue
+      ctx.beginPath();
+      ctx.moveTo(cx + w * 0.1, cy + h * 0.7); // rear bottom
+      ctx.lineTo(cx + w * 0.1, cy + h * 0.4); // rear middle
+      ctx.lineTo(cx + w * 0.3, cy + h * 0.3); // rear window slope
+      ctx.lineTo(cx + w * 0.5, cy + h * 0.15); // roof back
+      ctx.lineTo(cx + w * 0.7, cy + h * 0.15); // roof front
+      ctx.lineTo(cx + w * 0.85, cy + h * 0.4); // windshield slope
+      ctx.lineTo(cx + w * 0.95, cy + h * 0.5); // hood front
+      ctx.lineTo(cx + w * 0.95, cy + h * 0.7); // front bottom
+      ctx.closePath();
+      ctx.fill();
+
+      // Windows
+      ctx.fillStyle = '#0f172a'; // dark tint
+      ctx.beginPath();
+      ctx.moveTo(cx + w * 0.35, cy + h * 0.35); // rear window bottom
+      ctx.lineTo(cx + w * 0.5, cy + h * 0.2); // roof back
+      ctx.lineTo(cx + w * 0.65, cy + h * 0.2); // roof front
+      ctx.lineTo(cx + w * 0.65, cy + h * 0.35); // b-pillar
+      ctx.fill();
+      
+      ctx.beginPath();
+      ctx.moveTo(cx + w * 0.68, cy + h * 0.35); // b-pillar
+      ctx.lineTo(cx + w * 0.68, cy + h * 0.2); // roof front
+      ctx.lineTo(cx + w * 0.8, cy + h * 0.35); // windshield bottom
+      ctx.fill();
+
+      // Tires
+      ctx.fillStyle = '#1e293b';
+      const r = h * 0.2;
+      ctx.beginPath(); ctx.arc(cx + w * 0.25, cy + h * 0.7, r, 0, Math.PI * 2); ctx.fill();
+      ctx.beginPath(); ctx.arc(cx + w * 0.75, cy + h * 0.7, r, 0, Math.PI * 2); ctx.fill();
+
+      // Rims
+      ctx.fillStyle = '#94a3b8';
+      ctx.beginPath(); ctx.arc(cx + w * 0.25, cy + h * 0.7, r * 0.5, 0, Math.PI * 2); ctx.fill();
+      ctx.beginPath(); ctx.arc(cx + w * 0.75, cy + h * 0.7, r * 0.5, 0, Math.PI * 2); ctx.fill();
+
+      // Headlight & Taillight
+      ctx.fillStyle = '#fbbf24'; // yellow headlight
+      ctx.beginPath(); ctx.rect(cx + w * 0.9, cy + h * 0.45, w * 0.05, h * 0.08); ctx.fill();
+      
+      ctx.fillStyle = '#ef4444'; // red taillight
+      ctx.beginPath(); ctx.rect(cx + w * 0.1, cy + h * 0.4, w * 0.02, h * 0.15); ctx.fill();
+
+      ctx.restore();
+    };
+
     const draw = () => {
       if (!canvas.parentElement) return;
       const rect = canvas.parentElement.getBoundingClientRect();
@@ -177,11 +231,7 @@ export function ImageAnnotationAnimation() {
       const carH = carW * 0.4; 
       const carX = w * 0.05; 
       const carY = h * 0.85 - carH; 
-      if (carImg.complete) {
-        ctx.globalAlpha = 0.8;
-        ctx.drawImage(carImg, carX, carY, carW, carH);
-        ctx.globalAlpha = 1.0;
-      }
+      drawRealisticCar(carX, carY, carW, carH);
 
       // 4. PEDESTRIAN (Top Right)
       const pedW = Math.min(w * 0.15, 150); 
