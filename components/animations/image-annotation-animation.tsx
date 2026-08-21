@@ -85,6 +85,40 @@ export function ImageAnnotationAnimation() {
       ctx.fill();
     };
 
+    const drawStopSign = (cx: number, cy: number, w: number, h: number) => {
+      ctx.beginPath();
+      const hw = w / 2; const hh = h / 2;
+      const s = 0.4;
+      ctx.moveTo(cx + hw - hw*s, cy);
+      ctx.lineTo(cx + hw + hw*s, cy);
+      ctx.lineTo(cx + w, cy + hh - hh*s);
+      ctx.lineTo(cx + w, cy + hh + hh*s);
+      ctx.lineTo(cx + hw + hw*s, cy + h);
+      ctx.lineTo(cx + hw - hw*s, cy + h);
+      ctx.lineTo(cx, cy + hh + hh*s);
+      ctx.lineTo(cx, cy + hh - hh*s);
+      ctx.closePath();
+      ctx.fill();
+    };
+
+    const drawBicycle = (cx: number, cy: number, w: number, h: number) => {
+      const r = w * 0.2;
+      ctx.lineWidth = 3;
+      // wheels
+      ctx.beginPath(); ctx.arc(cx + r, cy + h - r, r, 0, Math.PI * 2); ctx.stroke();
+      ctx.beginPath(); ctx.arc(cx + w - r, cy + h - r, r, 0, Math.PI * 2); ctx.stroke();
+      // frame
+      ctx.beginPath();
+      ctx.moveTo(cx + r, cy + h - r); // back wheel center
+      ctx.lineTo(cx + w * 0.4, cy + h * 0.4); // seat post top
+      ctx.lineTo(cx + w * 0.7, cy + h * 0.4); // handle bar joint
+      ctx.lineTo(cx + w - r, cy + h - r); // front wheel center
+      ctx.moveTo(cx + w * 0.4, cy + h * 0.4); 
+      ctx.lineTo(cx + w * 0.6, cy + h - r); // pedals
+      ctx.lineTo(cx + w * 0.7, cy + h * 0.4);
+      ctx.stroke();
+    };
+
     const draw = () => {
       if (!canvas.parentElement) return;
       const rect = canvas.parentElement.getBoundingClientRect();
@@ -110,15 +144,23 @@ export function ImageAnnotationAnimation() {
       }
 
       // 1. TRAFFIC LIGHT (Top Left)
-      const lightW = Math.min(w * 0.08, 70); 
+      const lightW = Math.min(w * 0.08, 60); 
       const lightH = lightW * 3;
       const lightX = w * 0.05; 
-      const lightY = h * 0.15;
+      const lightY = h * 0.1;
       ctx.fillStyle = 'rgba(234, 179, 8, 0.1)';
       drawTrafficLight(lightX, lightY, lightW, lightH);
 
-      // 2. CAR (Bottom Left)
-      const carW = Math.min(w * 0.4, 450); 
+      // 2. STOP SIGN (Mid Left)
+      const stopW = Math.min(w * 0.1, 90); 
+      const stopH = stopW;
+      const stopX = w * 0.05; 
+      const stopY = h * 0.45;
+      ctx.fillStyle = 'rgba(239, 68, 68, 0.1)';
+      drawStopSign(stopX, stopY, stopW, stopH);
+
+      // 3. CAR (Bottom Left)
+      const carW = Math.min(w * 0.35, 400); 
       const carH = carW * 0.4; 
       const carX = w * 0.05; 
       const carY = h * 0.85 - carH; 
@@ -128,19 +170,27 @@ export function ImageAnnotationAnimation() {
         ctx.globalAlpha = 1.0;
       }
 
-      // 3. PEDESTRIAN (Top Right)
-      const pedW = Math.min(w * 0.2, 200); 
+      // 4. PEDESTRIAN (Top Right)
+      const pedW = Math.min(w * 0.15, 150); 
       const pedH = pedW * 1.0; 
       const pedX = w * 0.95 - pedW; 
-      const pedY = h * 0.15;
+      const pedY = h * 0.1;
       if (pedImg.complete) {
         ctx.globalAlpha = 0.8;
         ctx.drawImage(pedImg, pedX, pedY, pedW, pedH);
         ctx.globalAlpha = 1.0;
       }
 
-      // 4. PACKAGE (Bottom Right)
-      const pkgW = Math.min(w * 0.15, 140); 
+      // 5. BICYCLE (Mid Right)
+      const bikeW = Math.min(w * 0.2, 180); 
+      const bikeH = bikeW * 0.6;
+      const bikeX = w * 0.95 - bikeW; 
+      const bikeY = h * 0.45;
+      ctx.strokeStyle = 'rgba(6, 182, 212, 0.4)';
+      drawBicycle(bikeX, bikeY, bikeW, bikeH);
+
+      // 6. PACKAGE (Bottom Right)
+      const pkgW = Math.min(w * 0.15, 120); 
       const pkgH = pkgW * 1.1; 
       const pkgX = w * 0.95 - pkgW; 
       const pkgY = h * 0.85 - pkgH;
@@ -152,40 +202,47 @@ export function ImageAnnotationAnimation() {
       // Animation Timeline logic
       let cursorX = w / 2;
       let cursorY = h / 2;
-      let lightProgress = 0, carProgress = 0, pedProgress = 0, pkgProgress = 0;
+      let lightProgress = 0, stopProgress = 0, carProgress = 0;
+      let pedProgress = 0, bikeProgress = 0, pkgProgress = 0;
 
-      const p = 0; // tight bounding boxes
-      
       const c0_start = { x: lightX, y: lightY };
       const c0_end = { x: lightX + lightW, y: lightY + lightH };
-
-      // Set padding to 0 so objects are completely inside the bounding box
-      const imgPadX = 0;
-      const imgPadY = 0;
-
-      const c1_start = { x: carX + imgPadX, y: carY + imgPadY };
-      const c1_end = { x: carX + carW - imgPadX, y: carY + carH - imgPadY };
-      
-      const c2_start = { x: pedX + imgPadX, y: pedY + imgPadY };
-      const c2_end = { x: pedX + pedW - imgPadX, y: pedY + pedH - imgPadY };
-
-      const c3_start = { x: pkgX, y: pkgY };
-      const c3_end = { x: pkgX + pkgW, y: pkgY + pkgH };
+      const c1_start = { x: stopX, y: stopY };
+      const c1_end = { x: stopX + stopW, y: stopY + stopH };
+      const c2_start = { x: carX, y: carY };
+      const c2_end = { x: carX + carW, y: carY + carH };
+      const c3_start = { x: pedX, y: pedY };
+      const c3_end = { x: pedX + pedW, y: pedY + pedH };
+      const c4_start = { x: bikeX, y: bikeY };
+      const c4_end = { x: bikeX + bikeW, y: bikeY + bikeH };
+      const c5_start = { x: pkgX, y: pkgY };
+      const c5_end = { x: pkgX + pkgW, y: pkgY + pkgH };
 
       // Timings
       const seq = [
-        { t: 0,   len: 30, action: 'move', start: { x: w * 0.5, y: h * 0.5 }, end: c0_start },
-        { t: 30,  len: 40, action: 'drag0', start: c0_start, end: c0_end },
-        { t: 70,  len: 20, action: 'hold0', start: c0_end, end: c0_end },
-        { t: 90,  len: 40, action: 'move', start: c0_end, end: c1_start },
-        { t: 130, len: 50, action: 'drag1', start: c1_start, end: c1_end },
-        { t: 180, len: 20, action: 'hold1', start: c1_end, end: c1_end },
-        { t: 200, len: 50, action: 'move', start: c1_end, end: c2_start },
-        { t: 250, len: 40, action: 'drag2', start: c2_start, end: c2_end },
-        { t: 290, len: 20, action: 'hold2', start: c2_end, end: c2_end },
-        { t: 310, len: 40, action: 'move', start: c2_end, end: c3_start },
-        { t: 350, len: 40, action: 'drag3', start: c3_start, end: c3_end },
-        { t: 390, len: 210, action: 'hold3', start: c3_end, end: c3_end }
+        { t: 0,   len: 20, action: 'move', start: { x: w * 0.5, y: h * 0.5 }, end: c0_start },
+        { t: 20,  len: 30, action: 'drag0', start: c0_start, end: c0_end },
+        { t: 50,  len: 10, action: 'hold0', start: c0_end, end: c0_end },
+        
+        { t: 60,  len: 30, action: 'move', start: c0_end, end: c1_start },
+        { t: 90,  len: 30, action: 'drag1', start: c1_start, end: c1_end },
+        { t: 120, len: 10, action: 'hold1', start: c1_end, end: c1_end },
+        
+        { t: 130, len: 30, action: 'move', start: c1_end, end: c2_start },
+        { t: 160, len: 40, action: 'drag2', start: c2_start, end: c2_end },
+        { t: 200, len: 10, action: 'hold2', start: c2_end, end: c2_end },
+        
+        { t: 210, len: 40, action: 'move', start: c2_end, end: c3_start },
+        { t: 250, len: 30, action: 'drag3', start: c3_start, end: c3_end },
+        { t: 280, len: 10, action: 'hold3', start: c3_end, end: c3_end },
+        
+        { t: 290, len: 30, action: 'move', start: c3_end, end: c4_start },
+        { t: 320, len: 30, action: 'drag4', start: c4_start, end: c4_end },
+        { t: 350, len: 10, action: 'hold4', start: c4_end, end: c4_end },
+        
+        { t: 360, len: 30, action: 'move', start: c4_end, end: c5_start },
+        { t: 390, len: 30, action: 'drag5', start: c5_start, end: c5_end },
+        { t: 420, len: 180, action: 'hold5', start: c5_end, end: c5_end } // Cycle is 600
       ];
 
       for (const step of seq) {
@@ -195,15 +252,19 @@ export function ImageAnnotationAnimation() {
           cursorY = lerp(step.start.y, step.end.y, t);
           
           if (step.action === 'drag0') lightProgress = t;
-          if (step.action === 'drag1') carProgress = t;
-          if (step.action === 'drag2') pedProgress = t;
-          if (step.action === 'drag3') pkgProgress = t;
+          if (step.action === 'drag1') stopProgress = t;
+          if (step.action === 'drag2') carProgress = t;
+          if (step.action === 'drag3') pedProgress = t;
+          if (step.action === 'drag4') bikeProgress = t;
+          if (step.action === 'drag5') pkgProgress = t;
         }
         if (cycle >= step.t + step.len) {
           if (step.action === 'drag0' || step.action === 'hold0') lightProgress = 1;
-          if (step.action === 'drag1' || step.action === 'hold1') carProgress = 1;
-          if (step.action === 'drag2' || step.action === 'hold2') pedProgress = 1;
-          if (step.action === 'drag3' || step.action === 'hold3') pkgProgress = 1;
+          if (step.action === 'drag1' || step.action === 'hold1') stopProgress = 1;
+          if (step.action === 'drag2' || step.action === 'hold2') carProgress = 1;
+          if (step.action === 'drag3' || step.action === 'hold3') pedProgress = 1;
+          if (step.action === 'drag4' || step.action === 'hold4') bikeProgress = 1;
+          if (step.action === 'drag5' || step.action === 'hold5') pkgProgress = 1;
         }
       }
 
@@ -226,9 +287,11 @@ export function ImageAnnotationAnimation() {
       };
 
       renderAnnotBox(lightProgress, c0_start, c0_end, '#eab308', 'TRAFFIC_LIGHT');
-      renderAnnotBox(carProgress, c1_start, c1_end, '#10b981', 'VEHICLE');
-      renderAnnotBox(pedProgress, c2_start, c2_end, '#f43f5e', 'PEDESTRIAN');
-      renderAnnotBox(pkgProgress, c3_start, c3_end, '#a855f7', 'PRODUCT');
+      renderAnnotBox(stopProgress, c1_start, c1_end, '#ef4444', 'STOP_SIGN');
+      renderAnnotBox(carProgress, c2_start, c2_end, '#10b981', 'VEHICLE');
+      renderAnnotBox(pedProgress, c3_start, c3_end, '#f43f5e', 'PEDESTRIAN');
+      renderAnnotBox(bikeProgress, c4_start, c4_end, '#06b6d4', 'BICYCLE');
+      renderAnnotBox(pkgProgress, c5_start, c5_end, '#a855f7', 'PRODUCT');
 
       // Draw Cursor (Crosshair)
       ctx.strokeStyle = 'rgba(255, 255, 255, 0.8)';
