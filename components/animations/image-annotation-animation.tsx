@@ -28,6 +28,9 @@ export function ImageAnnotationAnimation() {
     let animationFrameId: number;
     let time = 0;
 
+    const carImg = new Image();
+    carImg.src = '/car-icon-v2.png';
+
     const resize = () => {
       if (!canvas.parentElement) return;
       const dpr = window.devicePixelRatio || 1;
@@ -47,22 +50,6 @@ export function ImageAnnotationAnimation() {
       const ease = t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
       return start + (end - start) * Math.max(0, Math.min(1, ease));
     };
-
-    const drawCarShape = (cx: number, cy: number, w: number, h: number) => {
-      ctx.beginPath();
-      ctx.moveTo(cx, cy + h);
-      ctx.lineTo(cx, cy + h * 0.3);
-      ctx.lineTo(cx + w * 0.2, cy + h * 0.3);
-      ctx.lineTo(cx + w * 0.4, cy);
-      ctx.lineTo(cx + w * 0.7, cy);
-      ctx.lineTo(cx + w * 0.9, cy + h * 0.4);
-      ctx.lineTo(cx + w, cy + h * 0.4);
-      ctx.lineTo(cx + w, cy + h);
-      ctx.closePath();
-      ctx.fill();
-    };
-
-
 
     const drawBoxShape = (cx: number, cy: number, w: number, h: number) => {
       ctx.beginPath();
@@ -103,10 +90,13 @@ export function ImageAnnotationAnimation() {
       }
 
       // 1. CAR (Autonomous Driving)
-      const carW = 180; const carH = 70;
+      const carW = 200; const carH = 80;
       const carX = w * 0.3 - carW/2; const carY = h * 0.5 - carH/2;
-      ctx.fillStyle = 'rgba(6, 182, 212, 0.1)';
-      drawCarShape(carX, carY, carW, carH);
+      if (carImg.complete) {
+        ctx.globalAlpha = 0.8;
+        ctx.drawImage(carImg, carX, carY, carW, carH);
+        ctx.globalAlpha = 1.0;
+      }
 
       // 2. PACKAGE (Retail CV)
       const boxW = 80; const boxH = 90;
