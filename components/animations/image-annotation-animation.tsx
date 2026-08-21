@@ -28,12 +28,6 @@ export function ImageAnnotationAnimation() {
     let animationFrameId: number;
     let time = 0;
 
-    // Load images
-    const carImg = new Image();
-    carImg.src = '/car-icon.png';
-    const pedImg = new Image();
-    pedImg.src = '/pedestrian-icon.png';
-
     const resize = () => {
       if (!canvas.parentElement) return;
       const dpr = window.devicePixelRatio || 1;
@@ -48,6 +42,48 @@ export function ImageAnnotationAnimation() {
     window.addEventListener('resize', resize);
     resize();
 
+    // Helper for smooth interpolation
+    const lerp = (start: number, end: number, t: number) => {
+      const ease = t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+      return start + (end - start) * Math.max(0, Math.min(1, ease));
+    };
+
+    const drawCarShape = (cx: number, cy: number, w: number, h: number) => {
+      ctx.beginPath();
+      ctx.moveTo(cx, cy + h);
+      ctx.lineTo(cx, cy + h * 0.3);
+      ctx.lineTo(cx + w * 0.2, cy + h * 0.3);
+      ctx.lineTo(cx + w * 0.4, cy);
+      ctx.lineTo(cx + w * 0.7, cy);
+      ctx.lineTo(cx + w * 0.9, cy + h * 0.4);
+      ctx.lineTo(cx + w, cy + h * 0.4);
+      ctx.lineTo(cx + w, cy + h);
+      ctx.closePath();
+      ctx.fill();
+    };
+
+    const drawBrainShape = (cx: number, cy: number, w: number, h: number) => {
+      ctx.beginPath();
+      ctx.ellipse(cx + w/2, cy + h * 0.4, w * 0.4, h * 0.4, 0, 0, Math.PI * 2);
+      ctx.ellipse(cx + w * 0.4, cy + h * 0.8, w * 0.3, h * 0.2, 0, 0, Math.PI * 2);
+      ctx.ellipse(cx + w * 0.6, cy + h * 0.8, w * 0.3, h * 0.2, 0, 0, Math.PI * 2);
+      ctx.fill();
+    };
+
+    const drawBoxShape = (cx: number, cy: number, w: number, h: number) => {
+      ctx.beginPath();
+      ctx.rect(cx + w * 0.1, cy + h * 0.2, w * 0.8, h * 0.8);
+      ctx.moveTo(cx + w * 0.1, cy + h * 0.2);
+      ctx.lineTo(cx + w * 0.3, cy);
+      ctx.lineTo(cx + w * 0.9, cy);
+      ctx.lineTo(cx + w * 0.9, cy + h * 0.8);
+      ctx.lineTo(cx + w * 0.7, cy + h);
+      ctx.moveTo(cx + w * 0.9, cy);
+      ctx.lineTo(cx + w * 0.7, cy + h * 0.2);
+      ctx.stroke();
+      ctx.fill();
+    };
+
     const draw = () => {
       if (!canvas.parentElement) return;
       const rect = canvas.parentElement.getBoundingClientRect();
@@ -59,139 +95,107 @@ export function ImageAnnotationAnimation() {
       ctx.fillRect(0, 0, w, h);
 
       time += 1; // logical frames
-      const cycle = time % 300; // loop every 300 frames (about 5 seconds)
+      const cycleTime = 600; // total animation loop
+      const cycle = time % cycleTime;
 
-      // Draw subtle dot grid pattern
-      ctx.fillStyle = 'rgba(99, 102, 241, 0.1)';
-      for (let x = 0; x < w; x += 30) {
-        for (let y = 0; y < h; y += 30) {
+      // Subtle dot grid
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.03)';
+      for (let x = 0; x < w; x += 40) {
+        for (let y = 0; y < h; y += 40) {
           ctx.beginPath();
           ctx.arc(x, y, 1, 0, Math.PI * 2);
           ctx.fill();
         }
       }
 
-      // Positions and dimensions
-      // Pedestrian on left
-      const pedW = Math.min(w * 0.15, 120);
-      const pedH = pedW * 1.5;
-      const pedX = w * 0.2;
-      const pedY = h * 0.5 - pedH * 0.4;
+      // 1. CAR (Autonomous Driving)
+      const carW = 180; const carH = 70;
+      const carX = w * 0.2; const carY = h * 0.4;
+      ctx.fillStyle = 'rgba(6, 182, 212, 0.1)';
+      drawCarShape(carX, carY, carW, carH);
 
-      // Car on right
-      const carW = Math.min(w * 0.4, 400);
-      const carH = carW * 0.5;
-      const carX = w * 0.6;
-      const carY = h * 0.5 - carH * 0.2;
+      // 2. BRAIN SCAN (Medical Imaging)
+      const medW = 100; const medH = 110;
+      const medX = w * 0.5 - medW/2; const medY = h * 0.6 - medH/2;
+      ctx.fillStyle = 'rgba(239, 68, 68, 0.1)';
+      drawBrainShape(medX, medY, medW, medH);
 
-      // Draw Images
-      if (pedImg.complete) {
-        ctx.globalAlpha = 0.8;
-        ctx.drawImage(pedImg, pedX - pedW/2, pedY - pedH/2, pedW, pedH);
-      }
-      if (carImg.complete) {
-        ctx.globalAlpha = 0.8;
-        ctx.drawImage(carImg, carX - carW/2, carY - carH/2, carW, carH);
-      }
-      ctx.globalAlpha = 1.0;
-
-      // Helper for smooth interpolation
-      const lerp = (start: number, end: number, t: number) => {
-        // ease in out cubic
-        const ease = t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
-        return start + (end - start) * Math.max(0, Math.min(1, ease));
-      };
+      // 3. PACKAGE (Retail CV)
+      const boxW = 80; const boxH = 90;
+      const boxX = w * 0.8 - boxW; const boxY = h * 0.3;
+      ctx.fillStyle = 'rgba(234, 179, 8, 0.1)';
+      ctx.strokeStyle = 'rgba(234, 179, 8, 0.1)';
+      ctx.lineWidth = 1;
+      drawBoxShape(boxX, boxY, boxW, boxH);
 
       // Animation Timeline logic
       let cursorX = w / 2;
       let cursorY = h / 2;
-      let pedProgress = 0; // 0 to 1
-      let carProgress = 0; // 0 to 1
+      let carProgress = 0, medProgress = 0, retProgress = 0;
 
-      const pedStartX = pedX - (pedW * 1.2)/2;
-      const pedStartY = pedY - (pedH * 1.1)/2;
-      const pedEndX = pedStartX + (pedW * 1.2);
-      const pedEndY = pedStartY + (pedH * 1.1);
+      // Margins around the bounding box targets
+      const p = 15;
+      
+      const c1_start = { x: carX - p, y: carY - p };
+      const c1_end = { x: carX + carW + p, y: carY + carH + p };
+      
+      const c2_start = { x: medX - p, y: medY - p };
+      const c2_end = { x: medX + medW + p, y: medY + medH + p };
+      
+      const c3_start = { x: boxX - p, y: boxY - p };
+      const c3_end = { x: boxX + boxW + p, y: boxY + boxH + p };
 
-      const carStartX = carX - (carW * 1.1)/2;
-      const carStartY = carY - (carH * 1.1)/2;
-      const carEndX = carStartX + (carW * 1.1);
-      const carEndY = carStartY + (carH * 1.1);
+      // Timings
+      const seq = [
+        { t: 0,   len: 40, action: 'move', start: { x: w * 0.1, y: h * 0.1 }, end: c1_start },
+        { t: 40,  len: 50, action: 'drag1', start: c1_start, end: c1_end },
+        { t: 90,  len: 40, action: 'hold1', start: c1_end, end: c1_end },
+        { t: 130, len: 40, action: 'move', start: c1_end, end: c2_start },
+        { t: 170, len: 50, action: 'drag2', start: c2_start, end: c2_end },
+        { t: 220, len: 40, action: 'hold2', start: c2_end, end: c2_end },
+        { t: 260, len: 40, action: 'move', start: c2_end, end: c3_start },
+        { t: 300, len: 50, action: 'drag3', start: c3_start, end: c3_end },
+        { t: 350, len: 250, action: 'hold3', start: c3_end, end: c3_end }
+      ];
 
-      if (cycle < 30) {
-        // Move to ped start
-        const t = cycle / 30;
-        cursorX = lerp(w * 0.1, pedStartX, t);
-        cursorY = lerp(h * 0.1, pedStartY, t);
-      } else if (cycle < 80) {
-        // Drag ped box
-        const t = (cycle - 30) / 50;
-        cursorX = lerp(pedStartX, pedEndX, t);
-        cursorY = lerp(pedStartY, pedEndY, t);
-        pedProgress = t;
-      } else if (cycle < 100) {
-        // Hold at ped end
-        cursorX = pedEndX;
-        cursorY = pedEndY;
-        pedProgress = 1;
-      } else if (cycle < 130) {
-        // Move to car start
-        const t = (cycle - 100) / 30;
-        cursorX = lerp(pedEndX, carStartX, t);
-        cursorY = lerp(pedEndY, carStartY, t);
-        pedProgress = 1;
-      } else if (cycle < 180) {
-        // Drag car box
-        const t = (cycle - 130) / 50;
-        cursorX = lerp(carStartX, carEndX, t);
-        cursorY = lerp(carStartY, carEndY, t);
-        pedProgress = 1;
-        carProgress = t;
-      } else {
-        // Hold
-        cursorX = carEndX;
-        cursorY = carEndY;
-        pedProgress = 1;
-        carProgress = 1;
-      }
-
-      // Draw Pedestrian Box
-      if (pedProgress > 0) {
-        ctx.strokeStyle = '#06b6d4';
-        ctx.lineWidth = 2;
-        const currentW = (pedW * 1.2) * pedProgress;
-        const currentH = (pedH * 1.1) * pedProgress;
-        ctx.strokeRect(pedStartX, pedStartY, currentW, currentH);
-
-        if (pedProgress >= 1) {
-          const lineY = pedStartY - 40;
-          ctx.beginPath();
-          ctx.moveTo(pedX, pedStartY); ctx.lineTo(pedX + 20, lineY); ctx.lineTo(pedX + 100, lineY);
-          ctx.setLineDash([2, 4]); ctx.stroke(); ctx.setLineDash([]);
-          ctx.fillStyle = '#06b6d4';
-          ctx.beginPath(); ctx.arc(pedX, pedStartY, 3, 0, Math.PI * 2); ctx.fill();
-          ctx.font = '14px monospace'; ctx.fillText('pedestrian | 99%', pedX + 30, lineY - 8);
+      for (const step of seq) {
+        if (cycle >= step.t && cycle < step.t + step.len) {
+          const t = (cycle - step.t) / step.len;
+          cursorX = lerp(step.start.x, step.end.x, t);
+          cursorY = lerp(step.start.y, step.end.y, t);
+          
+          if (step.action === 'drag1') carProgress = t;
+          if (step.action === 'drag2') medProgress = t;
+          if (step.action === 'drag3') retProgress = t;
+        }
+        if (cycle >= step.t + step.len) {
+          if (step.action === 'drag1' || step.action === 'hold1') carProgress = 1;
+          if (step.action === 'drag2' || step.action === 'hold2') medProgress = 1;
+          if (step.action === 'drag3' || step.action === 'hold3') retProgress = 1;
         }
       }
 
-      // Draw Car Box
-      if (carProgress > 0) {
-        ctx.strokeStyle = '#3b82f6';
+      // Draw Animated Boxes function
+      const renderAnnotBox = (progress: number, start: {x: number, y: number}, end: {x: number, y: number}, color: string, label: string) => {
+        if (progress <= 0) return;
+        ctx.strokeStyle = color;
         ctx.lineWidth = 2;
-        const currentW = (carW * 1.1) * carProgress;
-        const currentH = (carH * 1.1) * carProgress;
-        ctx.strokeRect(carStartX, carStartY, currentW, currentH);
+        const currentW = (end.x - start.x) * progress;
+        const currentH = (end.y - start.y) * progress;
+        ctx.strokeRect(start.x, start.y, currentW, currentH);
 
-        if (carProgress >= 1) {
-          const lineY = carStartY - 40;
-          ctx.beginPath();
-          ctx.moveTo(carX, carStartY); ctx.lineTo(carX + 20, lineY); ctx.lineTo(carX + 100, lineY);
-          ctx.setLineDash([2, 4]); ctx.stroke(); ctx.setLineDash([]);
-          ctx.fillStyle = '#3b82f6';
-          ctx.beginPath(); ctx.arc(carX, carStartY, 3, 0, Math.PI * 2); ctx.fill();
-          ctx.font = '14px monospace'; ctx.fillText('car | 99%', carX + 30, lineY - 8);
+        if (progress >= 1) {
+          ctx.fillStyle = color;
+          ctx.fillRect(start.x, start.y - 22, 110, 22);
+          ctx.fillStyle = '#fff';
+          ctx.font = 'bold 11px monospace';
+          ctx.fillText(`${label} | 99%`, start.x + 6, start.y - 6);
         }
-      }
+      };
+
+      renderAnnotBox(carProgress, c1_start, c1_end, '#06b6d4', 'VEHICLE');
+      renderAnnotBox(medProgress, c2_start, c2_end, '#ef4444', 'TUMOR');
+      renderAnnotBox(retProgress, c3_start, c3_end, '#eab308', 'PRODUCT');
 
       // Draw Cursor (Crosshair)
       ctx.strokeStyle = 'rgba(255, 255, 255, 0.8)';
@@ -201,7 +205,7 @@ export function ImageAnnotationAnimation() {
       ctx.moveTo(cursorX, cursorY - 10); ctx.lineTo(cursorX, cursorY + 10);
       ctx.stroke();
 
-      // Draw tracking lines from cursor to edges (simulating a tool)
+      // Tool guide lines
       ctx.strokeStyle = 'rgba(255, 255, 255, 0.15)';
       ctx.setLineDash([4, 4]);
       ctx.beginPath();
@@ -210,7 +214,6 @@ export function ImageAnnotationAnimation() {
       ctx.stroke();
       ctx.setLineDash([]);
 
-      // Tool Label
       ctx.fillStyle = 'rgba(255, 255, 255, 0.4)';
       ctx.font = '12px monospace';
       ctx.fillText(`TOOL: BBOX_DRAW`, 20, h - 20);
@@ -230,10 +233,9 @@ export function ImageAnnotationAnimation() {
     <div ref={containerRef} className="absolute inset-0 overflow-hidden pointer-events-none z-0">
       <canvas
         ref={canvasRef}
-        className="block w-full h-full mix-blend-screen"
+        className="block w-full h-full mix-blend-screen opacity-80"
       />
-      {/* Soft gradient overlay so text is readable */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[#050510]/90 via-[#050510]/70 to-[#050510] z-10" />
+      <div className="absolute inset-0 bg-gradient-to-b from-[#050510]/80 via-[#050510]/40 to-[#050510] z-10" />
     </div>
   );
 }
