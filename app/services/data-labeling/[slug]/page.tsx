@@ -9,6 +9,7 @@ import { generatePageMetadata } from "@/lib/metadata";
 import { CheckCircle2, ChevronRight } from "lucide-react";
 import Link from "next/link";
 import prisma from "@/lib/prisma";
+import { PointCloudAnimation } from "@/components/animations/point-cloud-animation";
 
 export async function generateStaticParams() {
   const services = await prisma.service.findMany({
@@ -77,6 +78,7 @@ export default async function DataLabelingServicePage({ params }: { params: Prom
         highlightedText=""
         description={service.description}
         primaryCTA={{ label: "Contact Sales", href: "/contact" }}
+        customAnimation={slug === '3d-point-cloud' ? <PointCloudAnimation /> : undefined}
       />
 
       <section className="container-custom max-w-7xl mx-auto px-6 py-20">

@@ -15,6 +15,7 @@ export interface HeroProps {
   secondaryCTA?: { label: string; href?: string; onClick?: () => void };
   stats?: Array<{ value: string; label: string }>;
   showGradientBg?: boolean;
+  customAnimation?: React.ReactNode;
 }
 
 export function Hero({
@@ -27,12 +28,13 @@ export function Hero({
   secondaryCTA,
   stats,
   showGradientBg = true,
+  customAnimation,
 }: HeroProps) {
   return (
     <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-[#0A0A1B] text-slate-200">
       {/* Background Layer */}
       {showGradientBg && <AnimatedGradientBg />}
-      <DataWaveAnimation />
+      {customAnimation !== undefined ? customAnimation : <DataWaveAnimation />}
       <div className="absolute inset-0 z-0 bg-[url('/grid-pattern.svg')] opacity-10" style={{ backgroundSize: '40px 40px' }} />
 
       {/* Floating Badges */}
