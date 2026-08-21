@@ -306,7 +306,7 @@ export function ImageAnnotationAnimation() {
       const lightW = Math.min(w * 0.08, 60); 
       const lightH = lightW * 3;
       const lightX = w * 0.05; 
-      const lightY = h * 0.1;
+      const lightY = h * 0.05;
       ctx.fillStyle = 'rgba(234, 179, 8, 0.1)';
       drawTrafficLight(lightX, lightY, lightW, lightH);
 
@@ -314,21 +314,21 @@ export function ImageAnnotationAnimation() {
       const stopW = Math.min(w * 0.1, 90); 
       const stopH = stopW;
       const stopX = w * 0.05; 
-      const stopY = h * 0.45;
+      const stopY = h * 0.5 - stopH / 2;
       drawStopSign(stopX, stopY, stopW, stopH);
 
       // 3. CAR (Bottom Left)
       const carW = Math.min(w * 0.35, 400); 
       const carH = carW * 0.4; 
       const carX = w * 0.05; 
-      const carY = h * 0.85 - carH; 
+      const carY = h * 0.95 - carH; 
       drawRealisticCar(carX, carY, carW, carH);
 
       // 4. PEDESTRIAN (Top Right)
       const pedW = Math.min(w * 0.15, 150); 
       const pedH = pedW * 1.0; 
       const pedX = w * 0.95 - pedW; 
-      const pedY = h * 0.1;
+      const pedY = h * 0.05;
       if (pedImg.complete) {
         ctx.globalAlpha = 0.8;
         ctx.drawImage(pedImg, pedX, pedY, pedW, pedH);
@@ -339,7 +339,7 @@ export function ImageAnnotationAnimation() {
       const bikeW = Math.min(w * 0.2, 180); 
       const bikeH = bikeW * 0.6;
       const bikeX = w * 0.95 - bikeW; 
-      const bikeY = h * 0.45;
+      const bikeY = h * 0.5 - bikeH / 2;
       ctx.strokeStyle = 'rgba(6, 182, 212, 0.4)';
       drawBicycle(bikeX, bikeY, bikeW, bikeH);
 
@@ -347,7 +347,7 @@ export function ImageAnnotationAnimation() {
       const pkgW = Math.min(w * 0.15, 120); 
       const pkgH = pkgW * 1.5; // taller for a bottle
       const pkgX = w * 0.95 - pkgW; 
-      const pkgY = h * 0.85 - pkgH;
+      const pkgY = h * 0.95 - pkgH;
       drawRealisticWaterBottle(pkgX, pkgY, pkgW, pkgH);
 
       // Animation Timeline logic
