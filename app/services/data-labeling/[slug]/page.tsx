@@ -10,6 +10,7 @@ import { CheckCircle2, ChevronRight } from "lucide-react";
 import Link from "next/link";
 import prisma from "@/lib/prisma";
 import { PointCloudAnimation } from "@/components/animations/point-cloud-animation";
+import { VideoAnnotationAnimation } from "@/components/animations/video-annotation-animation";
 
 export async function generateStaticParams() {
   const services = await prisma.service.findMany({
@@ -62,6 +63,14 @@ export default async function DataLabelingServicePage({ params }: { params: Prom
     features: s.features ? JSON.parse(s.features) : []
   }));
 
+  // Determine custom hero animation based on slug
+  let customHeroAnimation;
+  if (slug === '3d-point-cloud') {
+    customHeroAnimation = <PointCloudAnimation />;
+  } else if (slug === 'video-annotation') {
+    customHeroAnimation = <VideoAnnotationAnimation />;
+  }
+
   return (
     <main className="flex min-h-screen flex-col bg-dark-950 text-slate-50">
       <div className="container-custom max-w-7xl mx-auto px-6 pt-24 pb-8">
@@ -78,7 +87,7 @@ export default async function DataLabelingServicePage({ params }: { params: Prom
         highlightedText=""
         description={service.description}
         primaryCTA={{ label: "Contact Sales", href: "/contact" }}
-        customAnimation={slug === '3d-point-cloud' ? <PointCloudAnimation /> : undefined}
+        customAnimation={customHeroAnimation}
       />
 
       <section className="container-custom max-w-7xl mx-auto px-6 py-20">
