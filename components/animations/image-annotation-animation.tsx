@@ -115,7 +115,7 @@ export function ImageAnnotationAnimation() {
 
         if (ann.type === 'polygon') {
           ctx.beginPath();
-          const pts = ann.points!;
+          const pts = ann.points as {x: number, y: number}[];
           const totalPts = pts.length;
           const drawCount = Math.floor(progress * totalPts);
           const remainder = (progress * totalPts) % 1;
@@ -195,7 +195,7 @@ export function ImageAnnotationAnimation() {
 
           if (progress > 0) {
             ctx.beginPath();
-            const pts = ann.points!;
+            const pts = ann.points as {dx: number, dy: number}[];
             pts.forEach((p, i) => {
               // Add slight organic breathing
               const breathe = 1 + Math.sin(time * 0.05 + i) * 0.05;
