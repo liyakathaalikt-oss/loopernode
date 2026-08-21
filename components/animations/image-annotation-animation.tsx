@@ -268,8 +268,8 @@ export function ImageAnnotationAnimation() {
       let lightProgress = 0, stopProgress = 0, carProgress = 0;
       let pedProgress = 0, bikeProgress = 0, pkgProgress = 0;
 
-      const c0_start = { x: lightX + lightW * 0.25, y: lightY + lightH * 0.1 };
-      const c0_end = { x: lightX + lightW * 0.75, y: lightY + lightH * 0.9 };
+      const c0_start = { x: lightX, y: lightY };
+      const c0_end = { x: lightX + lightW, y: lightY + lightH };
       const c1_start = { x: stopX, y: stopY };
       const c1_end = { x: stopX + stopW, y: stopY + stopH };
       const c2_start = { x: carX + carW * 0.1, y: carY + carH * 0.15 };
