@@ -328,8 +328,9 @@ export function ImageAnnotationAnimation() {
       const c2_end = { x: carX + carW * 0.95, y: carY + carH * 0.9 };
       const c3_start = { x: pedX, y: pedY };
       const c3_end = { x: pedX + pedW, y: pedY + pedH };
-      const c4_start = { x: bikeX, y: bikeY + bikeH * 0.4 };
-      const c4_end = { x: bikeX + bikeW, y: bikeY + bikeH };
+      // Account for realistic bike's top (0.35) and tire stroke width (4px bleed)
+      const c4_start = { x: bikeX - 4, y: bikeY + bikeH * 0.35 - 3 };
+      const c4_end = { x: bikeX + bikeW + 4, y: bikeY + bikeH + 4 };
       const c5_start = { x: pkgX + pkgW * 0.1, y: pkgY };
       const c5_end = { x: pkgX + pkgW * 0.9, y: pkgY + pkgH };
 
