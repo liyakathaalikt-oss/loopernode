@@ -159,9 +159,9 @@ export function ImageAnnotationAnimation() {
       const c0_start = { x: lightX, y: lightY };
       const c0_end = { x: lightX + lightW, y: lightY + lightH };
 
-      // Negative padding for images to cut through transparent PNG borders
-      const imgPadX = 15;
-      const imgPadY = 15;
+      // Set padding to 0 so objects are completely inside the bounding box
+      const imgPadX = 0;
+      const imgPadY = 0;
 
       const c1_start = { x: carX + imgPadX, y: carY + imgPadY };
       const c1_end = { x: carX + carW - imgPadX, y: carY + carH - imgPadY };
