@@ -154,19 +154,23 @@ export function ImageAnnotationAnimation() {
       let cursorY = h / 2;
       let lightProgress = 0, carProgress = 0, pedProgress = 0, pkgProgress = 0;
 
-      const p = 15; // padding
+      const p = 0; // tight bounding boxes
       
-      const c0_start = { x: lightX - p, y: lightY - p };
-      const c0_end = { x: lightX + lightW + p, y: lightY + lightH + p };
+      const c0_start = { x: lightX, y: lightY };
+      const c0_end = { x: lightX + lightW, y: lightY + lightH };
 
-      const c1_start = { x: carX - p, y: carY - p };
-      const c1_end = { x: carX + carW + p, y: carY + carH + p };
+      // Negative padding for images to cut through transparent PNG borders
+      const imgPadX = 15;
+      const imgPadY = 15;
+
+      const c1_start = { x: carX + imgPadX, y: carY + imgPadY };
+      const c1_end = { x: carX + carW - imgPadX, y: carY + carH - imgPadY };
       
-      const c2_start = { x: pedX - p, y: pedY - p };
-      const c2_end = { x: pedX + pedW + p, y: pedY + pedH + p };
+      const c2_start = { x: pedX + imgPadX, y: pedY + imgPadY };
+      const c2_end = { x: pedX + pedW - imgPadX, y: pedY + pedH - imgPadY };
 
-      const c3_start = { x: pkgX - p, y: pkgY - p };
-      const c3_end = { x: pkgX + pkgW + p, y: pkgY + pkgH + p };
+      const c3_start = { x: pkgX, y: pkgY };
+      const c3_end = { x: pkgX + pkgW, y: pkgY + pkgH };
 
       // Timings
       const seq = [
