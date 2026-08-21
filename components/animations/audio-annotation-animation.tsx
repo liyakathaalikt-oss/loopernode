@@ -206,7 +206,7 @@ export function AudioAnnotationAnimation() {
       <canvas
         ref={canvasRef}
         className="w-full h-full"
-        style={{ opacity: 0.6 }}
+        style={{ opacity: 0.3 }}
       />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,#030712_100%)]" />
     </div>
