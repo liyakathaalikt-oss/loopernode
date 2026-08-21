@@ -100,66 +100,24 @@ export function ImageAnnotationAnimation() {
         if (cycle < startFrame) return; // wait to appear
         
         const localTime = cycle - startFrame;
-        const progress = Math.min(1, localTime / 40); // 40 frames to draw full box
+        const progress = Math.min(1, localTime / 60); // 60 frames to draw full box
         
         const startX = cx - bw/2;
         const startY = cy - bh/2;
 
         ctx.strokeStyle = color;
-        ctx.lineWidth = 2;
+        ctx.lineWidth = 3;
         
-        // 1. Draw Corners
-        const cl = 15; // corner length
+        // Draw Box Edges expanding
         if (progress > 0) {
-          ctx.beginPath();
-          // Top Left
-          ctx.moveTo(startX, startY + cl); ctx.lineTo(startX, startY); ctx.lineTo(startX + cl, startY);
-          // Top Right
-          ctx.moveTo(startX + bw - cl, startY); ctx.lineTo(startX + bw, startY); ctx.lineTo(startX + bw, startY + cl);
-          // Bottom Left
-          ctx.moveTo(startX, startY + bh - cl); ctx.lineTo(startX, startY + bh); ctx.lineTo(startX + cl, startY + bh);
-          // Bottom Right
-          ctx.moveTo(startX + bw - cl, startY + bh); ctx.lineTo(startX + bw, startY + bh); ctx.lineTo(startX + bw, startY + bh - cl);
-          ctx.stroke();
-        }
-
-        // 2. Draw Box Edges expanding
-        if (progress > 0.3) {
-          const edgeProgress = Math.min(1, (progress - 0.3) / 0.7);
-          const drawW = bw * edgeProgress;
-          const drawH = bh * edgeProgress;
+          const drawW = bw * progress;
+          const drawH = bh * progress;
           
-          ctx.globalAlpha = 0.5;
           ctx.strokeRect(startX + bw/2 - drawW/2, startY + bh/2 - drawH/2, drawW, drawH);
-          ctx.globalAlpha = 1.0;
         }
 
-        // 3. Draw Scanning Line & Overlay when fully formed
+        // Draw label and connecting line when box is fully drawn
         if (progress >= 1) {
-          // Scanner moves down and up
-          const scanPhase = (localTime - 40) % 120; // 120 frames for one sweep
-          const scanY = startY + (Math.sin(scanPhase / 120 * Math.PI) * bh);
-          
-          // Scanner line
-          ctx.beginPath();
-          ctx.moveTo(startX, scanY);
-          ctx.lineTo(startX + bw, scanY);
-          ctx.strokeStyle = '#fff';
-          ctx.lineWidth = 1;
-          ctx.stroke();
-
-          // Scanner gradient overlay
-          const grad = ctx.createLinearGradient(0, scanY - 30, 0, scanY);
-          grad.addColorStop(0, 'rgba(255,255,255,0)');
-          grad.addColorStop(1, color === '#06b6d4' ? 'rgba(6, 182, 212, 0.2)' : 'rgba(59, 130, 246, 0.2)');
-          ctx.fillStyle = grad;
-          ctx.fillRect(startX, Math.max(startY, scanY - 30), bw, Math.min(bh, scanY - startY));
-
-          // Reset stroke for label
-          ctx.strokeStyle = color;
-          ctx.lineWidth = 2;
-          
-          // Draw label and connecting line
           const lineY = startY - 40;
           ctx.beginPath();
           ctx.moveTo(cx, startY);
