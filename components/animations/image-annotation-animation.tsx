@@ -104,6 +104,38 @@ export function ImageAnnotationAnimation() {
       }
       ctx.stroke();
 
+      // Draw faint underlying objects (Car silhouette for the polygon)
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.05)';
+      ctx.beginPath();
+      // Simple car silhouette relative to polygon coordinates
+      // polygon is roughly x: 0.2 to 0.4, y: 0.55 to 0.7
+      const cx1 = 0.21 * w; const cy1 = 0.69 * h;
+      const cw = 0.18 * w; const ch = 0.14 * h;
+      ctx.moveTo(cx1, cy1); // bottom left
+      ctx.lineTo(cx1, cy1 - ch * 0.3); // back bumper
+      ctx.lineTo(cx1 + cw * 0.2, cy1 - ch * 0.4); // trunk
+      ctx.lineTo(cx1 + cw * 0.3, cy1 - ch * 0.9); // back window
+      ctx.lineTo(cx1 + cw * 0.6, cy1 - ch * 0.95); // roof
+      ctx.lineTo(cx1 + cw * 0.8, cy1 - ch * 0.5); // windshield
+      ctx.lineTo(cx1 + cw, cy1 - ch * 0.4); // hood
+      ctx.lineTo(cx1 + cw, cy1); // front bumper
+      ctx.closePath();
+      ctx.fill();
+
+      // Draw underlying object (Person silhouette for the mask)
+      // mask is roughly cx: 0.75, cy: 0.7, r: 0.1
+      ctx.beginPath();
+      const px = 0.75 * w; const py = 0.7 * h; const pr = 0.1 * h;
+      ctx.arc(px, py - pr * 1.5, pr * 0.4, 0, Math.PI * 2); // head
+      ctx.fill();
+      ctx.beginPath();
+      ctx.moveTo(px - pr * 0.5, py - pr * 0.8); // shoulder left
+      ctx.lineTo(px + pr * 0.5, py - pr * 0.8); // shoulder right
+      ctx.lineTo(px + pr * 0.3, py + pr * 1.2); // hip right
+      ctx.lineTo(px - pr * 0.3, py + pr * 1.2); // hip left
+      ctx.closePath();
+      ctx.fill();
+
       // Render annotations
       annotations.forEach((ann) => {
         const localTime = Math.max(0, time - ann.offset);

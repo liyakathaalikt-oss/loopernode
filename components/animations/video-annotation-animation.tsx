@@ -44,9 +44,9 @@ export function VideoAnnotationAnimation() {
 
     // Setup tracks and pose data
     const players = [
-      { id: 'ID_084', action: 'SPRINTING', color: '#06b6d4', offset: 0, speed: 1.5, scale: 1 },
-      { id: 'ID_112', action: 'JUMPING', color: '#8b5cf6', offset: 2000, speed: 1.2, scale: 0.8 },
-      { id: 'ID_045', action: 'TRACKING', color: '#f59e0b', offset: 4000, speed: 1.8, scale: 1.2 },
+      { id: 'ID_084', type: 'person', action: 'SPRINTING', color: '#06b6d4', offset: 0, speed: 1.5, scale: 1 },
+      { id: 'ID_112', type: 'person', action: 'JUMPING', color: '#8b5cf6', offset: 2000, speed: 1.2, scale: 0.8 },
+      { id: 'VEH_045', type: 'car', action: 'CRUISING', color: '#f59e0b', offset: 4000, speed: 1.8, scale: 1.2 },
     ];
 
     // Helper to draw a pose (stick figure)
@@ -110,6 +110,47 @@ export function VideoAnnotationAnimation() {
       ctx.stroke();
     };
 
+    // Helper to draw a car
+    const drawCar = (ctx: CanvasRenderingContext2D, cx: number, cy: number, scale: number, color: string) => {
+      const s = scale * 1.5;
+      ctx.strokeStyle = color;
+      ctx.lineWidth = 2 * s;
+      
+      // Body
+      ctx.beginPath();
+      ctx.moveTo(cx - 50 * s, cy + 15 * s);
+      ctx.lineTo(cx - 50 * s, cy - 5 * s); // back
+      ctx.lineTo(cx - 40 * s, cy - 10 * s); // trunk
+      ctx.lineTo(cx - 20 * s, cy - 30 * s); // back window
+      ctx.lineTo(cx + 10 * s, cy - 30 * s); // roof
+      ctx.lineTo(cx + 30 * s, cy - 10 * s); // windshield
+      ctx.lineTo(cx + 50 * s, cy - 5 * s); // hood
+      ctx.lineTo(cx + 50 * s, cy + 15 * s); // front bumper
+      ctx.closePath();
+      ctx.stroke();
+
+      // Wheels
+      ctx.beginPath();
+      ctx.arc(cx - 30 * s, cy + 15 * s, 12 * s, 0, Math.PI * 2);
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.arc(cx + 30 * s, cy + 15 * s, 12 * s, 0, Math.PI * 2);
+      ctx.stroke();
+
+      // Windows
+      ctx.beginPath();
+      ctx.moveTo(cx - 15 * s, cy - 28 * s);
+      ctx.lineTo(cx + 5 * s, cy - 28 * s);
+      ctx.lineTo(cx + 20 * s, cy - 12 * s);
+      ctx.lineTo(cx - 30 * s, cy - 12 * s);
+      ctx.closePath();
+      ctx.stroke();
+      
+      ctx.moveTo(cx - 5 * s, cy - 28 * s);
+      ctx.lineTo(cx - 5 * s, cy - 12 * s);
+      ctx.stroke();
+    };
+
     const draw = () => {
       if (!canvas.parentElement) return;
       const rect = canvas.parentElement.getBoundingClientRect();
@@ -134,7 +175,7 @@ export function VideoAnnotationAnimation() {
       }
       ctx.stroke();
 
-      // Draw Players
+      // Draw Players/Objects
       players.forEach((player, i) => {
         // Calculate position based on sine wave path
         const t = (time * player.speed + player.offset) * 0.001;
@@ -144,10 +185,16 @@ export function VideoAnnotationAnimation() {
         const phase = t * 4; // Running phase
 
         // Draw Bounding Box
-        const bw = 100 * player.scale;
-        const bh = 180 * player.scale;
+        let bw = 100 * player.scale;
+        let bh = 180 * player.scale;
+        
+        if (player.type === 'car') {
+          bw = 180 * player.scale;
+          bh = 100 * player.scale;
+        }
+
         const bx = cx - bw/2;
-        const by = cy - bh/2 - 20 * player.scale;
+        const by = cy - bh/2 - (player.type === 'person' ? 20 * player.scale : 0);
 
         ctx.strokeStyle = player.color;
         ctx.lineWidth = 1.5;
@@ -169,8 +216,12 @@ export function VideoAnnotationAnimation() {
         ctx.moveTo(bx + bw - cl, by + bh); ctx.lineTo(bx + bw, by + bh); ctx.lineTo(bx + bw, by + bh - cl);
         ctx.stroke();
 
-        // Draw Pose Estimation
-        drawPose(ctx, cx, cy, player.scale, phase, player.color);
+        // Draw Pose Estimation or Vehicle
+        if (player.type === 'car') {
+          drawCar(ctx, cx, cy, player.scale, player.color);
+        } else {
+          drawPose(ctx, cx, cy, player.scale, phase, player.color);
+        }
 
         // Draw Tracking Label
         ctx.fillStyle = player.color;
