@@ -62,13 +62,7 @@ export function ImageAnnotationAnimation() {
       ctx.fill();
     };
 
-    const drawBrainShape = (cx: number, cy: number, w: number, h: number) => {
-      ctx.beginPath();
-      ctx.ellipse(cx + w/2, cy + h * 0.4, w * 0.4, h * 0.4, 0, 0, Math.PI * 2);
-      ctx.ellipse(cx + w * 0.4, cy + h * 0.8, w * 0.3, h * 0.2, 0, 0, Math.PI * 2);
-      ctx.ellipse(cx + w * 0.6, cy + h * 0.8, w * 0.3, h * 0.2, 0, 0, Math.PI * 2);
-      ctx.fill();
-    };
+
 
     const drawBoxShape = (cx: number, cy: number, w: number, h: number) => {
       ctx.beginPath();
@@ -110,19 +104,13 @@ export function ImageAnnotationAnimation() {
 
       // 1. CAR (Autonomous Driving)
       const carW = 180; const carH = 70;
-      const carX = w * 0.2; const carY = h * 0.4;
+      const carX = w * 0.3 - carW/2; const carY = h * 0.5 - carH/2;
       ctx.fillStyle = 'rgba(6, 182, 212, 0.1)';
       drawCarShape(carX, carY, carW, carH);
 
-      // 2. BRAIN SCAN (Medical Imaging)
-      const medW = 100; const medH = 110;
-      const medX = w * 0.5 - medW/2; const medY = h * 0.6 - medH/2;
-      ctx.fillStyle = 'rgba(239, 68, 68, 0.1)';
-      drawBrainShape(medX, medY, medW, medH);
-
-      // 3. PACKAGE (Retail CV)
+      // 2. PACKAGE (Retail CV)
       const boxW = 80; const boxH = 90;
-      const boxX = w * 0.8 - boxW; const boxY = h * 0.3;
+      const boxX = w * 0.7 - boxW/2; const boxY = h * 0.5 - boxH/2;
       ctx.fillStyle = 'rgba(234, 179, 8, 0.1)';
       ctx.strokeStyle = 'rgba(234, 179, 8, 0.1)';
       ctx.lineWidth = 1;
@@ -131,16 +119,13 @@ export function ImageAnnotationAnimation() {
       // Animation Timeline logic
       let cursorX = w / 2;
       let cursorY = h / 2;
-      let carProgress = 0, medProgress = 0, retProgress = 0;
+      let carProgress = 0, retProgress = 0;
 
       // Margins around the bounding box targets
       const p = 15;
       
       const c1_start = { x: carX - p, y: carY - p };
       const c1_end = { x: carX + carW + p, y: carY + carH + p };
-      
-      const c2_start = { x: medX - p, y: medY - p };
-      const c2_end = { x: medX + medW + p, y: medY + medH + p };
       
       const c3_start = { x: boxX - p, y: boxY - p };
       const c3_end = { x: boxX + boxW + p, y: boxY + boxH + p };
@@ -150,12 +135,9 @@ export function ImageAnnotationAnimation() {
         { t: 0,   len: 40, action: 'move', start: { x: w * 0.1, y: h * 0.1 }, end: c1_start },
         { t: 40,  len: 50, action: 'drag1', start: c1_start, end: c1_end },
         { t: 90,  len: 40, action: 'hold1', start: c1_end, end: c1_end },
-        { t: 130, len: 40, action: 'move', start: c1_end, end: c2_start },
-        { t: 170, len: 50, action: 'drag2', start: c2_start, end: c2_end },
-        { t: 220, len: 40, action: 'hold2', start: c2_end, end: c2_end },
-        { t: 260, len: 40, action: 'move', start: c2_end, end: c3_start },
-        { t: 300, len: 50, action: 'drag3', start: c3_start, end: c3_end },
-        { t: 350, len: 250, action: 'hold3', start: c3_end, end: c3_end }
+        { t: 130, len: 40, action: 'move', start: c1_end, end: c3_start },
+        { t: 170, len: 50, action: 'drag3', start: c3_start, end: c3_end },
+        { t: 220, len: 380, action: 'hold3', start: c3_end, end: c3_end }
       ];
 
       for (const step of seq) {
@@ -165,12 +147,10 @@ export function ImageAnnotationAnimation() {
           cursorY = lerp(step.start.y, step.end.y, t);
           
           if (step.action === 'drag1') carProgress = t;
-          if (step.action === 'drag2') medProgress = t;
           if (step.action === 'drag3') retProgress = t;
         }
         if (cycle >= step.t + step.len) {
           if (step.action === 'drag1' || step.action === 'hold1') carProgress = 1;
-          if (step.action === 'drag2' || step.action === 'hold2') medProgress = 1;
           if (step.action === 'drag3' || step.action === 'hold3') retProgress = 1;
         }
       }
@@ -194,7 +174,6 @@ export function ImageAnnotationAnimation() {
       };
 
       renderAnnotBox(carProgress, c1_start, c1_end, '#06b6d4', 'VEHICLE');
-      renderAnnotBox(medProgress, c2_start, c2_end, '#ef4444', 'TUMOR');
       renderAnnotBox(retProgress, c3_start, c3_end, '#eab308', 'PRODUCT');
 
       // Draw Cursor (Crosshair)
