@@ -13,6 +13,7 @@ import { PointCloudAnimation } from "@/components/animations/point-cloud-animati
 import { VideoAnnotationAnimation } from "@/components/animations/video-annotation-animation";
 import { ImageAnnotationAnimation } from "@/components/animations/image-annotation-animation";
 import { AudioAnnotationAnimation } from "@/components/animations/audio-annotation-animation";
+import { TextAnnotationAnimation } from "@/components/animations/text-annotation-animation";
 
 export async function generateStaticParams() {
   const services = await prisma.service.findMany({
@@ -75,6 +76,8 @@ export default async function DataLabelingServicePage({ params }: { params: Prom
     customHeroAnimation = <ImageAnnotationAnimation />;
   } else if (slug === 'audio-annotation') {
     customHeroAnimation = <AudioAnnotationAnimation />;
+  } else if (slug === 'text-annotation') {
+    customHeroAnimation = <TextAnnotationAnimation />;
   }
 
   return (
