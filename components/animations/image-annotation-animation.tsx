@@ -53,6 +53,38 @@ export function ImageAnnotationAnimation() {
       return start + (end - start) * Math.max(0, Math.min(1, ease));
     };
 
+    const drawBoxShape = (cx: number, cy: number, w: number, h: number) => {
+      ctx.beginPath();
+      ctx.rect(cx + w * 0.1, cy + h * 0.2, w * 0.8, h * 0.8);
+      ctx.moveTo(cx + w * 0.1, cy + h * 0.2);
+      ctx.lineTo(cx + w * 0.3, cy);
+      ctx.lineTo(cx + w * 0.9, cy);
+      ctx.lineTo(cx + w * 0.9, cy + h * 0.8);
+      ctx.lineTo(cx + w * 0.7, cy + h);
+      ctx.moveTo(cx + w * 0.9, cy);
+      ctx.lineTo(cx + w * 0.7, cy + h * 0.2);
+      ctx.stroke();
+      ctx.fill();
+    };
+
+    const drawTrafficLight = (cx: number, cy: number, w: number, h: number) => {
+      ctx.beginPath();
+      ctx.roundRect(cx + w * 0.25, cy + h * 0.1, w * 0.5, h * 0.8, 10);
+      ctx.fill();
+      ctx.beginPath();
+      ctx.arc(cx + w * 0.5, cy + h * 0.3, w * 0.15, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(239, 68, 68, 0.4)';
+      ctx.fill();
+      ctx.beginPath();
+      ctx.arc(cx + w * 0.5, cy + h * 0.5, w * 0.15, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(234, 179, 8, 0.4)';
+      ctx.fill();
+      ctx.beginPath();
+      ctx.arc(cx + w * 0.5, cy + h * 0.7, w * 0.15, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(34, 197, 94, 0.4)';
+      ctx.fill();
+    };
+
     const draw = () => {
       if (!canvas.parentElement) return;
       const rect = canvas.parentElement.getBoundingClientRect();
@@ -77,9 +109,17 @@ export function ImageAnnotationAnimation() {
         }
       }
 
-      // 1. CAR (Autonomous Driving)
+      // 1. TRAFFIC LIGHT (Top Left)
+      const lightW = Math.min(w * 0.08, 70); 
+      const lightH = lightW * 3;
+      const lightX = w * 0.05; 
+      const lightY = h * 0.15;
+      ctx.fillStyle = 'rgba(234, 179, 8, 0.1)';
+      drawTrafficLight(lightX, lightY, lightW, lightH);
+
+      // 2. CAR (Bottom Left)
       const carW = Math.min(w * 0.4, 450); 
-      const carH = carW * 0.4; // Maintain aspect ratio
+      const carH = carW * 0.4; 
       const carX = w * 0.05; 
       const carY = h * 0.85 - carH; 
       if (carImg.complete) {
@@ -88,39 +128,60 @@ export function ImageAnnotationAnimation() {
         ctx.globalAlpha = 1.0;
       }
 
-      // 2. PEDESTRIAN (Autonomous Driving / Retail CV)
-      const boxW = Math.min(w * 0.2, 200); 
-      const boxH = boxW * 1.0; // Aspect ratio is roughly 1:1
-      const boxX = w * 0.95 - boxW; 
-      const boxY = h * 0.15;
+      // 3. PEDESTRIAN (Top Right)
+      const pedW = Math.min(w * 0.2, 200); 
+      const pedH = pedW * 1.0; 
+      const pedX = w * 0.95 - pedW; 
+      const pedY = h * 0.15;
       if (pedImg.complete) {
         ctx.globalAlpha = 0.8;
-        ctx.drawImage(pedImg, boxX, boxY, boxW, boxH);
+        ctx.drawImage(pedImg, pedX, pedY, pedW, pedH);
         ctx.globalAlpha = 1.0;
       }
+
+      // 4. PACKAGE (Bottom Right)
+      const pkgW = Math.min(w * 0.15, 140); 
+      const pkgH = pkgW * 1.1; 
+      const pkgX = w * 0.95 - pkgW; 
+      const pkgY = h * 0.85 - pkgH;
+      ctx.fillStyle = 'rgba(168, 85, 247, 0.1)';
+      ctx.strokeStyle = 'rgba(168, 85, 247, 0.1)';
+      ctx.lineWidth = 1;
+      drawBoxShape(pkgX, pkgY, pkgW, pkgH);
 
       // Animation Timeline logic
       let cursorX = w / 2;
       let cursorY = h / 2;
-      let carProgress = 0, retProgress = 0;
+      let lightProgress = 0, carProgress = 0, pedProgress = 0, pkgProgress = 0;
 
-      // Margins around the bounding box targets
-      const p = 15;
+      const p = 15; // padding
       
+      const c0_start = { x: lightX - p, y: lightY - p };
+      const c0_end = { x: lightX + lightW + p, y: lightY + lightH + p };
+
       const c1_start = { x: carX - p, y: carY - p };
       const c1_end = { x: carX + carW + p, y: carY + carH + p };
       
-      const c3_start = { x: boxX - p, y: boxY - p };
-      const c3_end = { x: boxX + boxW + p, y: boxY + boxH + p };
+      const c2_start = { x: pedX - p, y: pedY - p };
+      const c2_end = { x: pedX + pedW + p, y: pedY + pedH + p };
+
+      const c3_start = { x: pkgX - p, y: pkgY - p };
+      const c3_end = { x: pkgX + pkgW + p, y: pkgY + pkgH + p };
 
       // Timings
       const seq = [
-        { t: 0,   len: 40, action: 'move', start: { x: w * 0.1, y: h * 0.1 }, end: c1_start },
-        { t: 40,  len: 50, action: 'drag1', start: c1_start, end: c1_end },
-        { t: 90,  len: 40, action: 'hold1', start: c1_end, end: c1_end },
-        { t: 130, len: 40, action: 'move', start: c1_end, end: c3_start },
-        { t: 170, len: 50, action: 'drag3', start: c3_start, end: c3_end },
-        { t: 220, len: 380, action: 'hold3', start: c3_end, end: c3_end }
+        { t: 0,   len: 30, action: 'move', start: { x: w * 0.5, y: h * 0.5 }, end: c0_start },
+        { t: 30,  len: 40, action: 'drag0', start: c0_start, end: c0_end },
+        { t: 70,  len: 20, action: 'hold0', start: c0_end, end: c0_end },
+        { t: 90,  len: 40, action: 'move', start: c0_end, end: c1_start },
+        { t: 130, len: 50, action: 'drag1', start: c1_start, end: c1_end },
+        { t: 180, len: 20, action: 'hold1', start: c1_end, end: c1_end },
+        { t: 200, len: 50, action: 'move', start: c1_end, end: c2_start },
+        { t: 250, len: 40, action: 'drag2', start: c2_start, end: c2_end },
+        { t: 290, len: 20, action: 'hold2', start: c2_end, end: c2_end },
+        { t: 310, len: 40, action: 'move', start: c2_end, end: c3_start },
+        { t: 350, len: 40, action: 'drag3', start: c3_start, end: c3_end },
+        { t: 390, len: 210, action: 'hold3', start: c3_end, end: c3_end }
       ];
 
       for (const step of seq) {
@@ -129,12 +190,16 @@ export function ImageAnnotationAnimation() {
           cursorX = lerp(step.start.x, step.end.x, t);
           cursorY = lerp(step.start.y, step.end.y, t);
           
+          if (step.action === 'drag0') lightProgress = t;
           if (step.action === 'drag1') carProgress = t;
-          if (step.action === 'drag3') retProgress = t;
+          if (step.action === 'drag2') pedProgress = t;
+          if (step.action === 'drag3') pkgProgress = t;
         }
         if (cycle >= step.t + step.len) {
+          if (step.action === 'drag0' || step.action === 'hold0') lightProgress = 1;
           if (step.action === 'drag1' || step.action === 'hold1') carProgress = 1;
-          if (step.action === 'drag3' || step.action === 'hold3') retProgress = 1;
+          if (step.action === 'drag2' || step.action === 'hold2') pedProgress = 1;
+          if (step.action === 'drag3' || step.action === 'hold3') pkgProgress = 1;
         }
       }
 
@@ -156,8 +221,10 @@ export function ImageAnnotationAnimation() {
         }
       };
 
+      renderAnnotBox(lightProgress, c0_start, c0_end, '#eab308', 'TRAFFIC_LIGHT');
       renderAnnotBox(carProgress, c1_start, c1_end, '#10b981', 'VEHICLE');
-      renderAnnotBox(retProgress, c3_start, c3_end, '#f43f5e', 'PEDESTRIAN');
+      renderAnnotBox(pedProgress, c2_start, c2_end, '#f43f5e', 'PEDESTRIAN');
+      renderAnnotBox(pkgProgress, c3_start, c3_end, '#a855f7', 'PRODUCT');
 
       // Draw Cursor (Crosshair)
       ctx.strokeStyle = 'rgba(255, 255, 255, 0.8)';
