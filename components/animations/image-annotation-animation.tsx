@@ -30,6 +30,8 @@ export function ImageAnnotationAnimation() {
 
     const carImg = new Image();
     carImg.src = '/car-icon-v2.png';
+    const pedImg = new Image();
+    pedImg.src = '/pedestrian-icon-v2.png';
 
     const resize = () => {
       if (!canvas.parentElement) return;
@@ -49,20 +51,6 @@ export function ImageAnnotationAnimation() {
     const lerp = (start: number, end: number, t: number) => {
       const ease = t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
       return start + (end - start) * Math.max(0, Math.min(1, ease));
-    };
-
-    const drawBoxShape = (cx: number, cy: number, w: number, h: number) => {
-      ctx.beginPath();
-      ctx.rect(cx + w * 0.1, cy + h * 0.2, w * 0.8, h * 0.8);
-      ctx.moveTo(cx + w * 0.1, cy + h * 0.2);
-      ctx.lineTo(cx + w * 0.3, cy);
-      ctx.lineTo(cx + w * 0.9, cy);
-      ctx.lineTo(cx + w * 0.9, cy + h * 0.8);
-      ctx.lineTo(cx + w * 0.7, cy + h);
-      ctx.moveTo(cx + w * 0.9, cy);
-      ctx.lineTo(cx + w * 0.7, cy + h * 0.2);
-      ctx.stroke();
-      ctx.fill();
     };
 
     const draw = () => {
@@ -100,15 +88,16 @@ export function ImageAnnotationAnimation() {
         ctx.globalAlpha = 1.0;
       }
 
-      // 2. PACKAGE (Retail CV)
+      // 2. PEDESTRIAN (Autonomous Driving / Retail CV)
       const boxW = Math.min(w * 0.15, 120); 
-      const boxH = boxW * 1.125; 
+      const boxH = boxW * 1.0; // Aspect ratio is roughly 1:1
       const boxX = w * 0.9 - boxW; 
       const boxY = h * 0.2;
-      ctx.fillStyle = 'rgba(234, 179, 8, 0.1)';
-      ctx.strokeStyle = 'rgba(234, 179, 8, 0.1)';
-      ctx.lineWidth = 1;
-      drawBoxShape(boxX, boxY, boxW, boxH);
+      if (pedImg.complete) {
+        ctx.globalAlpha = 0.8;
+        ctx.drawImage(pedImg, boxX, boxY, boxW, boxH);
+        ctx.globalAlpha = 1.0;
+      }
 
       // Animation Timeline logic
       let cursorX = w / 2;
@@ -168,7 +157,7 @@ export function ImageAnnotationAnimation() {
       };
 
       renderAnnotBox(carProgress, c1_start, c1_end, '#06b6d4', 'VEHICLE');
-      renderAnnotBox(retProgress, c3_start, c3_end, '#eab308', 'PRODUCT');
+      renderAnnotBox(retProgress, c3_start, c3_end, '#3b82f6', 'PEDESTRIAN');
 
       // Draw Cursor (Crosshair)
       ctx.strokeStyle = 'rgba(255, 255, 255, 0.8)';
