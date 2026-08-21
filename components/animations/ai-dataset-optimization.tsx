@@ -160,9 +160,9 @@ export function AiDatasetOptimizationAnimation() {
     <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
       <canvas
         ref={canvasRef}
-        className="w-full h-full opacity-60"
+        className="w-full h-full"
         style={{
-          filter: 'blur(0.5px)',
+          opacity: 0.6,
         }}
       />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,#030712_100%)]" />
