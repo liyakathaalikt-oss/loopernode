@@ -95,53 +95,125 @@ export function ImageAnnotationAnimation() {
       }
       ctx.globalAlpha = 1.0;
 
-      // Draw Animated Bounding Boxes
-      const drawBox = (cx: number, cy: number, bw: number, bh: number, label: string, color: string, startFrame: number) => {
-        if (cycle < startFrame) return; // wait to appear
-        
-        const localTime = cycle - startFrame;
-        const progress = Math.min(1, localTime / 60); // 60 frames to draw full box
-        
-        const startX = cx - bw/2;
-        const startY = cy - bh/2;
-
-        ctx.strokeStyle = color;
-        ctx.lineWidth = 3;
-        
-        // Draw Box Edges expanding
-        if (progress > 0) {
-          const drawW = bw * progress;
-          const drawH = bh * progress;
-          
-          ctx.strokeRect(startX + bw/2 - drawW/2, startY + bh/2 - drawH/2, drawW, drawH);
-        }
-
-        // Draw label and connecting line when box is fully drawn
-        if (progress >= 1) {
-          const lineY = startY - 40;
-          ctx.beginPath();
-          ctx.moveTo(cx, startY);
-          ctx.lineTo(cx + 20, lineY);
-          ctx.lineTo(cx + 100, lineY);
-          ctx.setLineDash([2, 4]);
-          ctx.stroke();
-          ctx.setLineDash([]);
-
-          ctx.fillStyle = color;
-          ctx.beginPath();
-          ctx.arc(cx, startY, 3, 0, Math.PI * 2);
-          ctx.fill();
-
-          ctx.font = '14px monospace';
-          ctx.fillText(`${label} | 99%`, cx + 30, lineY - 8);
-        }
+      // Helper for smooth interpolation
+      const lerp = (start: number, end: number, t: number) => {
+        // ease in out cubic
+        const ease = t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+        return start + (end - start) * Math.max(0, Math.min(1, ease));
       };
 
-      // Draw Pedestrian Box (starts at frame 10)
-      drawBox(pedX, pedY, pedW * 1.2, pedH * 1.1, 'pedestrian', '#06b6d4', 10);
+      // Animation Timeline logic
+      let cursorX = w / 2;
+      let cursorY = h / 2;
+      let pedProgress = 0; // 0 to 1
+      let carProgress = 0; // 0 to 1
 
-      // Draw Car Box (starts at frame 60)
-      drawBox(carX, carY, carW * 1.1, carH * 1.1, 'car', '#3b82f6', 60);
+      const pedStartX = pedX - (pedW * 1.2)/2;
+      const pedStartY = pedY - (pedH * 1.1)/2;
+      const pedEndX = pedStartX + (pedW * 1.2);
+      const pedEndY = pedStartY + (pedH * 1.1);
+
+      const carStartX = carX - (carW * 1.1)/2;
+      const carStartY = carY - (carH * 1.1)/2;
+      const carEndX = carStartX + (carW * 1.1);
+      const carEndY = carStartY + (carH * 1.1);
+
+      if (cycle < 30) {
+        // Move to ped start
+        const t = cycle / 30;
+        cursorX = lerp(w * 0.1, pedStartX, t);
+        cursorY = lerp(h * 0.1, pedStartY, t);
+      } else if (cycle < 80) {
+        // Drag ped box
+        const t = (cycle - 30) / 50;
+        cursorX = lerp(pedStartX, pedEndX, t);
+        cursorY = lerp(pedStartY, pedEndY, t);
+        pedProgress = t;
+      } else if (cycle < 100) {
+        // Hold at ped end
+        cursorX = pedEndX;
+        cursorY = pedEndY;
+        pedProgress = 1;
+      } else if (cycle < 130) {
+        // Move to car start
+        const t = (cycle - 100) / 30;
+        cursorX = lerp(pedEndX, carStartX, t);
+        cursorY = lerp(pedEndY, carStartY, t);
+        pedProgress = 1;
+      } else if (cycle < 180) {
+        // Drag car box
+        const t = (cycle - 130) / 50;
+        cursorX = lerp(carStartX, carEndX, t);
+        cursorY = lerp(carStartY, carEndY, t);
+        pedProgress = 1;
+        carProgress = t;
+      } else {
+        // Hold
+        cursorX = carEndX;
+        cursorY = carEndY;
+        pedProgress = 1;
+        carProgress = 1;
+      }
+
+      // Draw Pedestrian Box
+      if (pedProgress > 0) {
+        ctx.strokeStyle = '#06b6d4';
+        ctx.lineWidth = 2;
+        const currentW = (pedW * 1.2) * pedProgress;
+        const currentH = (pedH * 1.1) * pedProgress;
+        ctx.strokeRect(pedStartX, pedStartY, currentW, currentH);
+
+        if (pedProgress >= 1) {
+          const lineY = pedStartY - 40;
+          ctx.beginPath();
+          ctx.moveTo(pedX, pedStartY); ctx.lineTo(pedX + 20, lineY); ctx.lineTo(pedX + 100, lineY);
+          ctx.setLineDash([2, 4]); ctx.stroke(); ctx.setLineDash([]);
+          ctx.fillStyle = '#06b6d4';
+          ctx.beginPath(); ctx.arc(pedX, pedStartY, 3, 0, Math.PI * 2); ctx.fill();
+          ctx.font = '14px monospace'; ctx.fillText('pedestrian | 99%', pedX + 30, lineY - 8);
+        }
+      }
+
+      // Draw Car Box
+      if (carProgress > 0) {
+        ctx.strokeStyle = '#3b82f6';
+        ctx.lineWidth = 2;
+        const currentW = (carW * 1.1) * carProgress;
+        const currentH = (carH * 1.1) * carProgress;
+        ctx.strokeRect(carStartX, carStartY, currentW, currentH);
+
+        if (carProgress >= 1) {
+          const lineY = carStartY - 40;
+          ctx.beginPath();
+          ctx.moveTo(carX, carStartY); ctx.lineTo(carX + 20, lineY); ctx.lineTo(carX + 100, lineY);
+          ctx.setLineDash([2, 4]); ctx.stroke(); ctx.setLineDash([]);
+          ctx.fillStyle = '#3b82f6';
+          ctx.beginPath(); ctx.arc(carX, carStartY, 3, 0, Math.PI * 2); ctx.fill();
+          ctx.font = '14px monospace'; ctx.fillText('car | 99%', carX + 30, lineY - 8);
+        }
+      }
+
+      // Draw Cursor (Crosshair)
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.8)';
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(cursorX - 10, cursorY); ctx.lineTo(cursorX + 10, cursorY);
+      ctx.moveTo(cursorX, cursorY - 10); ctx.lineTo(cursorX, cursorY + 10);
+      ctx.stroke();
+
+      // Draw tracking lines from cursor to edges (simulating a tool)
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.15)';
+      ctx.setLineDash([4, 4]);
+      ctx.beginPath();
+      ctx.moveTo(cursorX, 0); ctx.lineTo(cursorX, h);
+      ctx.moveTo(0, cursorY); ctx.lineTo(w, cursorY);
+      ctx.stroke();
+      ctx.setLineDash([]);
+
+      // Tool Label
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.4)';
+      ctx.font = '12px monospace';
+      ctx.fillText(`TOOL: BBOX_DRAW`, 20, h - 20);
 
       animationFrameId = requestAnimationFrame(draw);
     };
