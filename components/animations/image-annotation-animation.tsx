@@ -268,18 +268,18 @@ export function ImageAnnotationAnimation() {
       let lightProgress = 0, stopProgress = 0, carProgress = 0;
       let pedProgress = 0, bikeProgress = 0, pkgProgress = 0;
 
-      const c0_start = { x: lightX, y: lightY };
-      const c0_end = { x: lightX + lightW, y: lightY + lightH };
+      const c0_start = { x: lightX + lightW * 0.25, y: lightY + lightH * 0.1 };
+      const c0_end = { x: lightX + lightW * 0.75, y: lightY + lightH * 0.9 };
       const c1_start = { x: stopX, y: stopY };
       const c1_end = { x: stopX + stopW, y: stopY + stopH };
-      const c2_start = { x: carX, y: carY };
-      const c2_end = { x: carX + carW, y: carY + carH };
+      const c2_start = { x: carX + carW * 0.1, y: carY + carH * 0.15 };
+      const c2_end = { x: carX + carW * 0.95, y: carY + carH * 0.9 };
       const c3_start = { x: pedX, y: pedY };
       const c3_end = { x: pedX + pedW, y: pedY + pedH };
-      const c4_start = { x: bikeX, y: bikeY };
+      const c4_start = { x: bikeX, y: bikeY + bikeH * 0.4 };
       const c4_end = { x: bikeX + bikeW, y: bikeY + bikeH };
-      const c5_start = { x: pkgX, y: pkgY };
-      const c5_end = { x: pkgX + pkgW, y: pkgY + pkgH };
+      const c5_start = { x: pkgX + pkgW * 0.1, y: pkgY };
+      const c5_end = { x: pkgX + pkgW * 0.9, y: pkgY + pkgH };
 
       // Timings
       const seq = [
