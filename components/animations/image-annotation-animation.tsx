@@ -90,9 +90,10 @@ export function ImageAnnotationAnimation() {
       }
 
       // 1. CAR (Autonomous Driving)
-      const carW = Math.min(w * 0.4, 350); 
+      const carW = Math.min(w * 0.35, 300); // slightly smaller to be safe
       const carH = carW * 0.4; // Maintain aspect ratio
-      const carX = w * 0.3 - carW/2; const carY = h * 0.5 - carH/2;
+      const carX = w * 0.1; 
+      const carY = h * 0.8 - carH; 
       if (carImg.complete) {
         ctx.globalAlpha = 0.8;
         ctx.drawImage(carImg, carX, carY, carW, carH);
@@ -100,9 +101,10 @@ export function ImageAnnotationAnimation() {
       }
 
       // 2. PACKAGE (Retail CV)
-      const boxW = Math.min(w * 0.2, 150); 
+      const boxW = Math.min(w * 0.15, 120); 
       const boxH = boxW * 1.125; 
-      const boxX = w * 0.7 - boxW/2; const boxY = h * 0.5 - boxH/2;
+      const boxX = w * 0.9 - boxW; 
+      const boxY = h * 0.2;
       ctx.fillStyle = 'rgba(234, 179, 8, 0.1)';
       ctx.strokeStyle = 'rgba(234, 179, 8, 0.1)';
       ctx.lineWidth = 1;
