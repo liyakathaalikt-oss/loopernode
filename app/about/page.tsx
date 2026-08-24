@@ -247,7 +247,7 @@ export default async function AboutPage() {
               </p>
             </div>
           </FadeUp>
-          <StaggerContainer className="grid grid-cols-2 md:grid-cols-4 gap-8">
+          <StaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <StaggerItem className="text-center">
               <Users className="w-10 h-10 mx-auto text-cyan-400 mb-4" />
               <div className="text-4xl font-bold text-white mb-2">500+</div>
@@ -258,11 +258,13 @@ export default async function AboutPage() {
               <div className="text-4xl font-bold text-white mb-2">50+</div>
               <div className="text-slate-400 font-medium">Countries Represented</div>
             </StaggerItem>
+            {/* 
             <StaggerItem className="text-center">
               <Building2 className="w-10 h-10 mx-auto text-cyan-400 mb-4" />
               <div className="text-4xl font-bold text-white mb-2">8</div>
               <div className="text-slate-400 font-medium">Global Offices</div>
             </StaggerItem>
+            */}
             <StaggerItem className="text-center">
               <Languages className="w-10 h-10 mx-auto text-cyan-400 mb-4" />
               <div className="text-4xl font-bold text-white mb-2">30+</div>
