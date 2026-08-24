@@ -1,7 +1,12 @@
 "use client";
 
-import { ReactLenis } from "lenis/react";
 import React from "react";
+import dynamic from "next/dynamic";
+
+const ReactLenis = dynamic(
+  () => import("lenis/react").then((mod) => mod.ReactLenis),
+  { ssr: false }
+);
 
 export function SmoothScrollProvider({ children }: { children: React.ReactNode }) {
   return (

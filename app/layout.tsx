@@ -2,11 +2,13 @@ import type { Metadata } from "next";
 import { Inter, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/header";
-import { Footer } from "@/components/layout/footer";
-import { BackToTop } from "@/components/ui/back-to-top";
-import { CookieConsent } from "@/components/ui/cookie-consent";
 import Script from "next/script";
 import { generateKeywords } from "@/app/config/seo-keywords";
+import dynamic from "next/dynamic";
+
+const Footer = dynamic(() => import("@/components/layout/footer").then(mod => mod.Footer));
+const BackToTop = dynamic(() => import("@/components/ui/back-to-top").then(mod => mod.BackToTop), { ssr: false });
+const CookieConsent = dynamic(() => import("@/components/ui/cookie-consent").then(mod => mod.CookieConsent), { ssr: false });
 
 const inter = Inter({
   variable: "--font-sans",
@@ -91,6 +93,8 @@ export default function RootLayout({
       className={`${inter.variable} ${plusJakarta.variable}`}
     >
       <head>
+        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+        <link rel="preconnect" href="https://www.googletagmanager.com" crossOrigin="anonymous" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }}

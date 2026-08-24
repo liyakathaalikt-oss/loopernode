@@ -1,9 +1,11 @@
 import React from 'react';
 import Link from 'next/link';
-import { AnimatedGradientBg } from '@/components/ui/animated-gradient-bg';
-import { DataWaveAnimation } from '@/components/animations/data-wave';
+import dynamic from 'next/dynamic';
 import { FloatingBadge } from '@/components/ui/floating-badge';
 import { cn } from '@/lib/utils';
+
+const AnimatedGradientBg = dynamic(() => import('@/components/ui/animated-gradient-bg').then(mod => mod.AnimatedGradientBg), { ssr: false });
+const DataWaveAnimation = dynamic(() => import('@/components/animations/data-wave').then(mod => mod.DataWaveAnimation), { ssr: false });
 
 export interface HeroProps {
   headline: string;
