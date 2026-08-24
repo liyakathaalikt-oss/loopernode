@@ -1,6 +1,10 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 import { auth } from '@/lib/auth';
+import createIntlMiddleware from 'next-intl/middleware';
+import { routing } from './i18n/routing';
+
+const intlMiddleware = createIntlMiddleware(routing);
 
 export async function proxy(request: NextRequest) {
   const ua = request.headers.get('user-agent') || '';
@@ -25,6 +29,13 @@ export async function proxy(request: NextRequest) {
     if (request.nextUrl.pathname.startsWith('/admin/login') && session) {
       return NextResponse.redirect(new URL('/admin', request.url));
     }
+  }
+
+  // --- i18n locale handling for /de, /fr, /it, /es, /nl routes ---
+  const pathname = request.nextUrl.pathname;
+  const localeMatch = pathname.match(/^\/(de|fr|it|es|nl)(\/|$)/);
+  if (localeMatch) {
+    return intlMiddleware(request);
   }
   
   return NextResponse.next();
