@@ -68,6 +68,25 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
+  // Localized European SEO pages
+  const localizedRoutes = [
+    // German (de)
+    '/de/datenannotation', '/de/datenerfassung', '/de/datenverarbeitung',
+    // French (fr)
+    '/fr/annotation-donnees', '/fr/collecte-donnees', '/fr/traitement-donnees',
+    // Italian (it)
+    '/it/annotazione-dati', '/it/raccolta-dati', '/it/elaborazione-dati',
+    // Spanish (es)
+    '/es/anotacion-datos', '/es/recopilacion-datos', '/es/procesamiento-datos',
+    // Dutch (nl)
+    '/nl/data-annotatie', '/nl/dataverzameling', '/nl/dataverwerking',
+  ].map((route) => ({
+    url: `${baseUrl}${route}`,
+    lastModified: new Date().toISOString(),
+    changeFrequency: 'monthly' as const,
+    priority: 0.7,
+  }));
+
   return [
     ...staticRoutes,
     ...collectionRoutes,
@@ -75,5 +94,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...processingRoutes,
     ...blogRoutes,
     ...caseStudyRoutes,
+    ...localizedRoutes,
   ];
 }
