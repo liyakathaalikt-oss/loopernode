@@ -4,8 +4,8 @@ import dynamic from 'next/dynamic';
 import { FloatingBadge } from '@/components/ui/floating-badge';
 import { cn } from '@/lib/utils';
 
-const AnimatedGradientBg = dynamic(() => import('@/components/ui/animated-gradient-bg').then(mod => mod.AnimatedGradientBg), { ssr: false });
-const DataWaveAnimation = dynamic(() => import('@/components/animations/data-wave').then(mod => mod.DataWaveAnimation), { ssr: false });
+const AnimatedGradientBg = dynamic(() => import('@/components/ui/animated-gradient-bg').then(mod => mod.AnimatedGradientBg));
+const DataWaveAnimation = dynamic(() => import('@/components/animations/data-wave').then(mod => mod.DataWaveAnimation));
 
 export interface HeroProps {
   headline: string;

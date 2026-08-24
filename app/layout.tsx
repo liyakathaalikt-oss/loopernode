@@ -7,8 +7,8 @@ import { generateKeywords } from "@/app/config/seo-keywords";
 import dynamic from "next/dynamic";
 
 const Footer = dynamic(() => import("@/components/layout/footer").then(mod => mod.Footer));
-const BackToTop = dynamic(() => import("@/components/ui/back-to-top").then(mod => mod.BackToTop), { ssr: false });
-const CookieConsent = dynamic(() => import("@/components/ui/cookie-consent").then(mod => mod.CookieConsent), { ssr: false });
+const BackToTop = dynamic(() => import("@/components/ui/back-to-top").then(mod => mod.BackToTop));
+const CookieConsent = dynamic(() => import("@/components/ui/cookie-consent").then(mod => mod.CookieConsent));
 
 const inter = Inter({
   variable: "--font-sans",
