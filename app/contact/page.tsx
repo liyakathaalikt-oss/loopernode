@@ -128,7 +128,7 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* Global Map Placeholder */}
+      {/* Global Map Placeholder - Hidden as requested
       <section className="py-20 bg-white/[0.02] border-y border-white/[0.05]">
         <div className="container-custom max-w-7xl mx-auto px-6">
           <SectionTitle
@@ -145,7 +145,6 @@ export default function ContactPage() {
                 <p className="text-sm text-slate-500 mt-2">Global Data Centers & Offices</p>
               </div>
               
-              {/* Decorative map points */}
               <div className="absolute top-[30%] left-[20%] w-3 h-3 rounded-full bg-primary-400 shadow-[0_0_15px_rgba(99,102,241,0.8)]" />
               <div className="absolute top-[25%] left-[45%] w-3 h-3 rounded-full bg-secondary-400 shadow-[0_0_15px_rgba(139,92,246,0.8)]" />
               <div className="absolute top-[50%] left-[75%] w-3 h-3 rounded-full bg-cyan-400 shadow-[0_0_15px_rgba(6,182,212,0.8)]" />
@@ -153,6 +152,7 @@ export default function ContactPage() {
           </FadeUp>
         </div>
       </section>
+      */}
 
       <section className="py-20 md:py-28">
         <div className="container-custom max-w-3xl mx-auto px-6">
