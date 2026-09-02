@@ -1,6 +1,6 @@
 import { revalidatePath } from 'next/cache';
 import prisma from '@/lib/prisma';
-import { Mail, Phone, Building2, Calendar, Globe, Briefcase, FileText } from 'lucide-react';
+import { Mail, Phone, Building2, Calendar, Globe, Briefcase, FileText, Trash2 } from 'lucide-react';
 import { LeadStatusForm } from '@/components/admin/lead-status-form';
 
 export const dynamic = 'force-dynamic';
@@ -14,6 +14,17 @@ async function updateLeadStatus(formData: FormData) {
     await prisma.lead.update({
       where: { id },
       data: { status }
+    });
+    revalidatePath('/admin/leads');
+  }
+}
+
+async function deleteLead(formData: FormData) {
+  'use server';
+  const id = formData.get('id') as string;
+  if (id) {
+    await prisma.lead.delete({
+      where: { id }
     });
     revalidatePath('/admin/leads');
   }
@@ -143,7 +154,19 @@ export default async function LeadsPage() {
                   />
                 </div>
                 <div className="mt-4 pt-4 border-t border-white/5">
-                   <span className="text-xs text-slate-500 block text-center">Source: {lead.source}</span>
+                   <div className="flex items-center justify-between">
+                     <span className="text-xs text-slate-500">Source: {lead.source}</span>
+                     <form action={deleteLead}>
+                       <input type="hidden" name="id" value={lead.id} />
+                       <button 
+                         type="submit" 
+                         className="p-1.5 text-slate-500 hover:text-rose-400 hover:bg-rose-500/10 rounded-md transition-colors"
+                         title="Delete Lead"
+                       >
+                         <Trash2 className="w-4 h-4" />
+                       </button>
+                     </form>
+                   </div>
                 </div>
               </div>
 
