@@ -35,6 +35,16 @@ export const metadata: Metadata = {
   keywords: generateKeywords('home'),
   authors: [{ name: "Loopernode" }],
   creator: "Loopernode",
+  icons: {
+    icon: [
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/icon.png', sizes: '48x48', type: 'image/png' },
+      { url: '/favicon.png', sizes: '192x192', type: 'image/png' },
+    ],
+    apple: [
+      { url: '/icon.png', sizes: '180x180', type: 'image/png' },
+    ],
+  },
   openGraph: {
     type: "website",
     locale: "en_US",
