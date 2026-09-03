@@ -74,6 +74,26 @@ export default async function DataProcessingServicePage({ params }: { params: Pr
         ]} />
       </div>
 
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Service",
+            "name": service.title,
+            "description": service.description,
+            "serviceType": "Data Processing",
+            "provider": {
+              "@type": "Organization",
+              "name": "Loopernode",
+              "url": "https://loopernode.in"
+            },
+            "areaServed": "Worldwide",
+            "url": `https://loopernode.in/services/data-processing/${service.slug}`
+          })
+        }}
+      />
+
       <Hero
         headline={service.title}
         highlightedText=""

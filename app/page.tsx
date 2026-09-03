@@ -74,6 +74,16 @@ import prisma from '@/lib/prisma';
 
 export const dynamic = "force-dynamic";
 
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: "Loopernode | Enterprise AI Data Services & Annotation",
+  description: "Loopernode delivers premium AI data services, including data collection, data labeling, and data processing for global enterprise machine learning teams.",
+  alternates: {
+    canonical: '/',
+  }
+};
+
 export default async function HomePage() {
   // Fetch from database
   const dbTestimonials = await prisma.testimonial.findMany();

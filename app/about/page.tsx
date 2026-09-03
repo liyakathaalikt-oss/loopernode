@@ -75,6 +75,28 @@ export default async function AboutPage() {
   return (
     <main className="flex min-h-screen flex-col bg-[#0A0A1B] text-slate-200">
       
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "AboutPage",
+            "name": "About Loopernode",
+            "description": "Learn about Loopernode, our mission, vision, and the global team dedicated to providing high-quality AI training data for intelligent systems.",
+            "url": "https://loopernode.in/about",
+            "mainEntity": {
+              "@type": "Organization",
+              "name": "Loopernode",
+              "url": "https://loopernode.in",
+              "logo": "https://loopernode.in/icon.png",
+              "sameAs": [
+                "https://www.linkedin.com/company/loopernode",
+                "https://twitter.com/loopernode"
+              ]
+            }
+          })
+        }}
+      />
       {/* SECTION 1: Hero */}
       <section className="pb-10 border-b border-white/5 relative overflow-hidden">
         <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-indigo-600/10 rounded-full blur-[120px] -z-10 translate-x-1/3 -translate-y-1/3" />
@@ -160,6 +182,52 @@ export default async function AboutPage() {
             </div>
           </StaggerItem>
         </StaggerContainer>
+      </section>
+
+      {/* SECTION 3.5: Core Expertise & Capabilities (SEO) */}
+      <section className="py-20 md:py-28 container mx-auto px-4 border-b border-white/5 bg-slate-900/20">
+        <FadeUp>
+          <SectionTitle 
+            title="Our Core AI Data" 
+            highlightedWord="Expertise" 
+            align="center" 
+          />
+          <p className="text-center text-slate-400 max-w-3xl mx-auto mt-6 text-lg leading-relaxed">
+            As a premier provider of <strong>AI data services</strong>, Loopernode bridges the gap between raw information and intelligent systems. We specialize in comprehensive <strong>data processing</strong> and <strong>human-in-the-loop AI</strong> workflows designed for scale, security, and precision.
+          </p>
+        </FadeUp>
+        
+        <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-16 max-w-5xl mx-auto">
+          <StaggerItem>
+            <div className="p-8 rounded-2xl bg-white/5 border border-white/10 hover:border-indigo-500/50 transition-colors h-full">
+              <h3 className="text-xl font-bold text-white mb-4">Precision Data Annotation Services</h3>
+              <p className="text-slate-300 leading-relaxed">
+                High-quality <strong>AI training data</strong> is the bedrock of machine learning. Our expert teams deliver pixel-perfect <strong>data annotation</strong> and <strong>data labeling</strong> across modalities. From bounding boxes for <strong>computer vision data</strong> to complex semantic segmentation and LiDAR point cloud tagging, we ensure your models learn from the most accurate ground truth available.
+              </p>
+            </div>
+          </StaggerItem>
+          
+          <StaggerItem>
+            <div className="p-8 rounded-2xl bg-white/5 border border-white/10 hover:border-cyan-500/50 transition-colors h-full">
+              <h3 className="text-xl font-bold text-white mb-4">NLP & LLM Data Solutions</h3>
+              <p className="text-slate-300 leading-relaxed">
+                Powering the next generation of generative AI requires nuanced language understanding. Our <strong>NLP data services</strong> encompass text classification, named entity recognition (NER), sentiment analysis, and RLHF (Reinforcement Learning from Human Feedback). We process complex <strong>machine learning data</strong> to help foundation models understand context, tone, and intent globally.
+              </p>
+            </div>
+          </StaggerItem>
+        </StaggerContainer>
+        
+        <FadeUp delay={0.4}>
+          <div className="mt-16 text-center">
+            <Link 
+              href="/services" 
+              className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-white/5 border border-white/10 text-slate-200 hover:bg-white/10 hover:text-white transition-all font-semibold"
+            >
+              Explore All AI Data Services
+              <ArrowRight className="w-5 h-5" />
+            </Link>
+          </div>
+        </FadeUp>
       </section>
 
       {/* SECTION 4: Values */}
@@ -272,6 +340,49 @@ export default async function AboutPage() {
             </StaggerItem>
           </StaggerContainer>
         </div>
+      </section>
+
+      {/* SECTION 6.5: Why Clients Choose Us (SEO) */}
+      <section className="py-20 md:py-28 container mx-auto px-4 border-b border-white/5 bg-slate-900/10">
+        <FadeUp>
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight leading-tight mb-6">Why Enterprises Choose Loopernode</h2>
+            <p className="text-xl text-slate-300 font-light">
+              Delivering secure, scalable, and highly accurate AI data services that drive tangible business value for Fortune 500 companies and cutting-edge research labs.
+            </p>
+          </div>
+        </FadeUp>
+        
+        <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <StaggerItem>
+            <div className="p-6 bg-white/5 rounded-xl border border-white/10 h-full">
+              <ShieldCheck className="w-8 h-8 text-indigo-400 mb-4" />
+              <h4 className="text-lg font-bold text-white mb-2">Uncompromising Data Security</h4>
+              <p className="text-sm text-slate-400">Strict access controls, SOC2-compliant facilities, and secure VPNs ensure your proprietary data never leaves safe environments.</p>
+            </div>
+          </StaggerItem>
+          <StaggerItem>
+            <div className="p-6 bg-white/5 rounded-xl border border-white/10 h-full">
+              <CheckCircle className="w-8 h-8 text-indigo-400 mb-4" />
+              <h4 className="text-lg font-bold text-white mb-2">Rigorous Quality Processes</h4>
+              <p className="text-sm text-slate-400">Multi-stage QA, consensus algorithms, and expert validation guarantee 99.9%+ accuracy across all data labeling tasks.</p>
+            </div>
+          </StaggerItem>
+          <StaggerItem>
+            <div className="p-6 bg-white/5 rounded-xl border border-white/10 h-full">
+              <Building2 className="w-8 h-8 text-indigo-400 mb-4" />
+              <h4 className="text-lg font-bold text-white mb-2">Deep Industry Expertise</h4>
+              <p className="text-sm text-slate-400">Subject matter experts serving Healthcare, Automotive, Finance, Retail, and autonomous systems with domain-specific knowledge.</p>
+            </div>
+          </StaggerItem>
+          <StaggerItem>
+            <div className="p-6 bg-white/5 rounded-xl border border-white/10 h-full">
+              <TrendingUp className="w-8 h-8 text-indigo-400 mb-4" />
+              <h4 className="text-lg font-bold text-white mb-2">Rapid Scalability</h4>
+              <p className="text-sm text-slate-400">Our global workforce structure allows us to seamlessly scale from pilot projects to millions of annotations without sacrificing quality.</p>
+            </div>
+          </StaggerItem>
+        </StaggerContainer>
       </section>
 
       {/* SECTION 7: Timeline */}

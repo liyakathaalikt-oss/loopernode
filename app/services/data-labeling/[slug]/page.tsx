@@ -91,6 +91,26 @@ export default async function DataLabelingServicePage({ params }: { params: Prom
         ]} />
       </div>
 
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Service",
+            "name": service.title,
+            "description": service.description,
+            "serviceType": "Data Labeling",
+            "provider": {
+              "@type": "Organization",
+              "name": "Loopernode",
+              "url": "https://loopernode.in"
+            },
+            "areaServed": "Worldwide",
+            "url": `https://loopernode.in/services/data-labeling/${service.slug}`
+          })
+        }}
+      />
+
       <Hero
         headline={service.title}
         highlightedText=""

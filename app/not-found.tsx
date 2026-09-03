@@ -30,7 +30,7 @@ export default function NotFound() {
             The page you&apos;re looking for doesn&apos;t exist, has been moved, or is temporarily unavailable. Let's get you back on track.
           </p>
           
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-4">
             <Link  
               href="/"
               className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-white text-dark-950 font-semibold hover:bg-slate-200 transition-colors w-full sm:w-auto group"
@@ -39,13 +39,27 @@ export default function NotFound() {
               Go Home
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Link>
+
+            <Link  
+              href="/services"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-white/[0.05] border border-white/[0.1] text-slate-50 font-semibold hover:bg-white/[0.1] transition-colors w-full sm:w-auto"
+            >
+              Services
+            </Link>
+            
+            <Link  
+              href="/about"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-white/[0.05] border border-white/[0.1] text-slate-50 font-semibold hover:bg-white/[0.1] transition-colors w-full sm:w-auto"
+            >
+              About
+            </Link>
             
             <Link  
               href="/contact"
               className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-white/[0.05] border border-white/[0.1] text-slate-50 font-semibold hover:bg-white/[0.1] transition-colors w-full sm:w-auto"
             >
               <Mail className="w-5 h-5" />
-              Contact Us
+              Contact
             </Link>
           </div>
         </motion.div>
