@@ -25,7 +25,7 @@ export function DataWaveAnimation() {
     const canvas = canvasRef.current;
     if (!canvas || prefersReducedMotion || !isInView) return;
 
-    const ctx = canvas.getContext('2d', { alpha: false });
+    const ctx = canvas.getContext('2d', { alpha: true });
     if (!ctx) return;
 
     let animationFrameId: number;
@@ -55,9 +55,8 @@ export function DataWaveAnimation() {
       const width = canvas.parentElement?.clientWidth || window.innerWidth;
       const height = canvas.parentElement?.clientHeight || window.innerHeight;
 
-      // Deep space background
-      ctx.fillStyle = '#0A0A1B';
-      ctx.fillRect(0, 0, width, height);
+      // Clear canvas
+      ctx.clearRect(0, 0, width, height);
 
       // Smooth mouse interpolation for parallax camera
       currentMouseRef.current.x += (targetMouseRef.current.x - currentMouseRef.current.x) * 0.05;
@@ -229,7 +228,7 @@ export function DataWaveAnimation() {
   return (
     <div 
       ref={containerRef} 
-      className="absolute inset-0 z-0 overflow-hidden bg-[#0A0A1B]"
+      className="absolute inset-0 z-0 overflow-hidden"
       onMouseMove={handleMouseMove}
     >
       <div className="absolute inset-0 z-10 bg-[radial-gradient(ellipse_at_center,_transparent_10%,_#0A0A1B_90%)] pointer-events-none" />
