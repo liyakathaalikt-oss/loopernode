@@ -1,0 +1,126 @@
+import Link from 'next/link';
+import NextImage from 'next/image';
+import { FaLinkedinIn, FaInstagram, FaFacebookF, FaXTwitter, FaYoutube } from 'react-icons/fa6';
+import { ArrowRight } from 'lucide-react';
+import { cn } from '@/lib/utils';
+
+export function Footer() {
+  return (
+    <footer className="relative bg-[#0a0a1b] border-t border-white/5 pt-16 pb-8 overflow-hidden">
+      {/* Subtle top gradient line */}
+      <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-indigo-500/50 to-transparent" />
+      
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+        {/* Newsletter Section */}
+        <div className="mb-16 p-8 rounded-3xl backdrop-blur-xl bg-white/[0.03] border border-white/[0.08] flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="max-w-xl">
+            <p className="text-2xl font-bold text-white mb-2">Subscribe to our newsletter</p>
+            <p className="text-slate-400">Get the latest insights on AI data services, industry trends, and company updates delivered to your inbox.</p>
+          </div>
+          <form className="w-full md:w-auto flex flex-col sm:flex-row gap-3">
+            <input 
+              type="email" 
+              placeholder="Enter your email" 
+              className="bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 min-w-[250px]"
+              aria-label="Email address"
+              required
+            />
+            <button 
+              type="submit"
+              className="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-xl font-medium transition-colors flex items-center justify-center gap-2 whitespace-nowrap"
+            >
+              Subscribe <ArrowRight className="w-4 h-4" />
+            </button>
+          </form>
+        </div>
+
+        {/* 4-Column Footer */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+          {/* Column 1: Brand */}
+          <div className="space-y-6">
+            <Link  href="/" className="inline-flex items-center gap-3">
+              <NextImage 
+                src="/images/logo-full.png" 
+                alt="Loopernode Logo" 
+                width={500} 
+                height={169} 
+                loading="lazy"
+                className="h-[72px] w-auto sm:h-[96px] object-contain" 
+              />
+            </Link>
+            <p className="text-slate-400 leading-relaxed text-sm">
+              Global leader in AI data services, providing high-quality datasets, precise annotation, and comprehensive data processing for enterprise AI models.
+            </p>
+            <div className="flex items-center gap-4">
+              <a href="https://www.linkedin.com/company/loopernode-technologies-llp/about/?viewAsMember=true" target="_blank" rel="noopener noreferrer" className="p-2 text-slate-400 hover:text-indigo-400 transition-colors" aria-label="LinkedIn">
+                <FaLinkedinIn className="w-5 h-5" />
+              </a>
+              <a href="https://instagram.com/loopernode" target="_blank" rel="noopener noreferrer" className="p-2 text-slate-400 hover:text-pink-400 transition-colors" aria-label="Instagram">
+                <FaInstagram className="w-5 h-5" />
+              </a>
+              <a href="https://www.facebook.com/profile.php?id=61593403880383" target="_blank" rel="noopener noreferrer" className="p-2 text-slate-400 hover:text-blue-400 transition-colors" aria-label="Facebook">
+                <FaFacebookF className="w-5 h-5" />
+              </a>
+              <a href="https://twitter.com/loopernode" target="_blank" rel="noopener noreferrer" className="p-2 text-slate-400 hover:text-sky-400 transition-colors" aria-label="X (Twitter)">
+                <FaXTwitter className="w-5 h-5" />
+              </a>
+              <a href="https://youtube.com/@loopernode" target="_blank" rel="noopener noreferrer" className="p-2 text-slate-400 hover:text-red-400 transition-colors" aria-label="YouTube">
+                <FaYoutube className="w-5 h-5" />
+              </a>
+            </div>
+          </div>
+
+          {/* Column 2: Services */}
+          <div>
+            <h3 className="text-white font-semibold mb-6">Services</h3>
+            <ul className="space-y-4">
+              <li><Link  href="/services/data-collection" className="text-slate-400 hover:text-indigo-400 transition-colors text-sm">Data Collection</Link></li>
+              <li><Link  href="/services/data-labeling" className="text-slate-400 hover:text-indigo-400 transition-colors text-sm">Data Labeling</Link></li>
+              <li><Link  href="/services/data-processing" className="text-slate-400 hover:text-indigo-400 transition-colors text-sm">Data Processing</Link></li>
+              <li><Link  href="/services/data-collection/ai-consultancy" className="text-slate-400 hover:text-indigo-400 transition-colors text-sm">AI Consultancy</Link></li>
+              <li><Link  href="/services/data-collection/quality-assurance" className="text-slate-400 hover:text-indigo-400 transition-colors text-sm">Quality Assurance</Link></li>
+            </ul>
+          </div>
+
+          {/* Column 3: Company */}
+          <div>
+            <h3 className="text-white font-semibold mb-6">Company</h3>
+            <ul className="space-y-4">
+              <li><Link  href="/about" className="text-slate-400 hover:text-indigo-400 transition-colors text-sm">About Us</Link></li>
+              <li><Link  href="/industries" className="text-slate-400 hover:text-indigo-400 transition-colors text-sm">Industries</Link></li>
+              <li><Link  href="/solutions" className="text-slate-400 hover:text-indigo-400 transition-colors text-sm">Solutions</Link></li>
+              <li><Link  href="/blog" className="text-slate-400 hover:text-indigo-400 transition-colors text-sm">Blog</Link></li>
+              <li><Link  href="/careers" className="text-slate-400 hover:text-indigo-400 transition-colors text-sm">Careers</Link></li>
+              <li><Link  href="/contact" className="text-slate-400 hover:text-indigo-400 transition-colors text-sm">Contact</Link></li>
+              <li><Link  href="/partners" className="text-slate-400 hover:text-indigo-400 transition-colors text-sm">Partners</Link></li>
+            </ul>
+          </div>
+
+          {/* Column 4: Resources */}
+          <div>
+            <h3 className="text-white font-semibold mb-6">Resources</h3>
+            <ul className="space-y-4">
+              <li><Link  href="/docs" className="text-slate-400 hover:text-indigo-400 transition-colors text-sm">Documentation</Link></li>
+              <li><Link  href="/case-studies" className="text-slate-400 hover:text-indigo-400 transition-colors text-sm">Case Studies</Link></li>
+              <li><Link  href="/api-reference" className="text-slate-400 hover:text-indigo-400 transition-colors text-sm">API Reference</Link></li>
+              <li><Link  href="/security" className="text-slate-400 hover:text-indigo-400 transition-colors text-sm">Security</Link></li>
+              <li><Link  href="/privacy" className="text-slate-400 hover:text-indigo-400 transition-colors text-sm">Privacy Policy</Link></li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Bottom Bar */}
+        <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+          <p className="text-slate-500 text-sm">
+            © {new Date().getFullYear()} Loopernode, Inc. All rights reserved.
+          </p>
+          <div className="flex items-center gap-6 text-sm">
+            <Link  href="/terms" className="text-slate-500 hover:text-white transition-colors">Terms of Service</Link>
+            <Link  href="/privacy" className="text-slate-500 hover:text-white transition-colors">Privacy Policy</Link>
+            <Link  href="/cookie" className="text-slate-500 hover:text-white transition-colors">Cookie Policy</Link>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+}

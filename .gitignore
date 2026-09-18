@@ -1,0 +1,18 @@
+node_modules/
+.next/
+applications.json
+.env.local
+.env
+.vercel
+
+/lib/generated/prisma
+
+# Local DB
+*.db
+
+# Agent Folders
+.agents/
+.claude/
+.windsurf/
+scratch/
+tsconfig.tsbuildinfo

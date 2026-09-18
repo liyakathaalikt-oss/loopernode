@@ -1,0 +1,154 @@
+import type { Metadata } from "next";
+import { Inter, Plus_Jakarta_Sans } from "next/font/google";
+import "./globals.css";
+import { Header } from "@/components/layout/header";
+import Script from "next/script";
+import { generateKeywords } from "@/app/config/seo-keywords";
+import dynamic from "next/dynamic";
+
+const Footer = dynamic(() => import("@/components/layout/footer").then(mod => mod.Footer));
+const BackToTop = dynamic(() => import("@/components/ui/back-to-top").then(mod => mod.BackToTop));
+const CookieConsent = dynamic(() => import("@/components/ui/cookie-consent").then(mod => mod.CookieConsent));
+
+const inter = Inter({
+  variable: "--font-sans",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+const plusJakarta = Plus_Jakarta_Sans({
+  variable: "--font-heading",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+
+
+export const metadata: Metadata = {
+  metadataBase: new URL("https://loopernode.in"),
+  title: {
+    default: "Loopernode — Enterprise AI Data Services",
+    template: "%s | Loopernode",
+  },
+  description:
+    "The official website of Loopernode. We provide enterprise-grade AI data services including data collection, annotation, labeling, and processing for machine learning teams worldwide.",
+  keywords: generateKeywords('home'),
+  authors: [{ name: "Loopernode" }],
+  creator: "Loopernode",
+  icons: {
+    icon: [
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/icon.png', sizes: '48x48', type: 'image/png' },
+      { url: '/favicon.png', sizes: '192x192', type: 'image/png' },
+    ],
+    apple: [
+      { url: '/icon.png', sizes: '180x180', type: 'image/png' },
+    ],
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://loopernode.in",
+    siteName: "Loopernode",
+    title: "Loopernode — Enterprise AI Data Services",
+    description:
+      "The official website of Loopernode. Enterprise-grade AI data services including data collection, annotation, labeling, and processing.",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Loopernode",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Loopernode — Enterprise AI Data Services",
+    description:
+      "The official website of Loopernode. Enterprise-grade AI data services including data collection, annotation, labeling, and processing.",
+    images: ["/og-image.png"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+};
+
+
+
+import { generateOrganizationSchema, generateLocalBusinessSchema } from "@/lib/schema";
+
+import { ConditionalLayout } from "@/components/layout/conditional-layout";
+import { SmoothScrollProvider } from "@/components/ui/smooth-scroll-provider";
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  const orgSchema = generateOrganizationSchema();
+  const localBusinessSchema = generateLocalBusinessSchema();
+
+  return (
+    <html
+      lang="en"
+      className={`${inter.variable} ${plusJakarta.variable}`}
+    >
+      <head>
+        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+        <link rel="preconnect" href="https://www.googletagmanager.com" crossOrigin="anonymous" />
+        <link rel="preload" href="/grid-pattern.svg" as="image" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
+        />
+      </head>
+      <body className="min-h-screen flex flex-col bg-dark-950 text-slate-50 font-sans antialiased">
+        <SmoothScrollProvider>
+          <ConditionalLayout
+            header={<Header />}
+            footer={<Footer />}
+            extras={
+              <>
+                <BackToTop />
+                <CookieConsent />
+              </>
+            }
+          >
+            {children}
+          </ConditionalLayout>
+        </SmoothScrollProvider>
+        {/* Google tag (gtag.js) */}
+        <Script
+          strategy="lazyOnload"
+          src="https://www.googletagmanager.com/gtag/js?id=G-DMJ9QJNEEG"
+        />
+        <Script
+          id="google-analytics"
+          strategy="lazyOnload"
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+
+              gtag('config', 'G-DMJ9QJNEEG');
+            `,
+          }}
+        />
+      </body>
+    </html>
+  );
+}

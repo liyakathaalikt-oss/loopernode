@@ -1,0 +1,51 @@
+export const teamMembers = [
+  {
+    name: "Liyakathali K T",
+    role: "Founder & CEO",
+    bio: "Liyakathali K T is a visionary technology entrepreneur with deep expertise in AI data solutions. As the Founder & CEO of Loopernode, he leads the mission to solve the industry's critical data bottlenecks and deliver high-fidelity training data.",
+    image: "/images/team/liyakathali-kt.jpg",
+    linkedinUrl: "https://linkedin.com/in/liyakathali",
+    twitter: "https://twitter.com"
+  },
+  {
+    name: "Shadil Nalakath",
+    role: "Co-Founder",
+    bio: "A visionary leader and technology enthusiast driving Loopernode's mission forward. Shadil is dedicated to building scalable solutions and fostering a culture of continuous innovation and operational excellence.",
+    image: "/images/team/shadil-nalakath.jpg",
+    linkedinUrl: "https://linkedin.com",
+    twitter: "https://twitter.com"
+  },
+  {
+    name: "Sophia Williams",
+    role: "VP of Engineering",
+    bio: "Sophia specializes in ML infrastructure and data pipelines. With previous leadership roles at Scale AI and autonomous driving startups, she ensures Loopernode's technical delivery is flawless and infinitely scalable.",
+    image: "",
+    linkedinUrl: "https://linkedin.com",
+    twitter: "https://twitter.com"
+  },
+  {
+    name: "Erickah V. Munez",
+    role: "Data Specialist",
+    bio: "Erickah V. Munez is a Data Specialist specializing in AI data annotation, quality assurance, and dataset management. She delivers accurate, high-quality datasets that support machine learning and generative AI applications.",
+    image: "/images/erickah.jpg",
+    linkedinUrl: "https://linkedin.com",
+    twitter: "https://twitter.com"
+  },
+  {
+    name: "Kira Mae P. Munez",
+    role: "Project Manager",
+    bio: "Kira Mae P. Munez specializes in AI data annotation and quality assurance. She contributes to building accurate, high-quality datasets that support machine learning and generative AI development.",
+    image: "/images/kira2.jpg",
+    linkedinUrl: "https://www.linkedin.com/in/kira-mae-munez-85bb80253/",
+    twitter: "https://twitter.com"
+  },
+  {
+    name: "Megan E. Rendal",
+    role: "Business Development Manager",
+    bio: "Megan E. Rendal is a Business Development Manager specializing in client relations, strategic partnerships, and delivering tailored AI data solutions that drive long-term business growth.",
+    image: "/images/megan.jpg",
+    linkedinUrl: "https://www.linkedin.com/in/megan-rendal-1257b8228/?skipRedirect=true",
+    twitter: "https://twitter.com"
+  }
+];
+
