@@ -4,11 +4,28 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { generatePageMetadata } from '@/lib/metadata';
-import { 
-  BrainCircuit, Eye, Lightbulb, ShieldCheck, Star, Users, 
+import {
+  BrainCircuit, Eye, Lightbulb, ShieldCheck, Star, Users,
   Zap, CheckCircle, Lock, TrendingUp, HeadphonesIcon, Target,
   Globe2, Building2, Languages, ArrowRight, Heart
 } from 'lucide-react';
+
+const LinkedinIcon = ({ className }: { className?: string }) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className={className}
+  >
+    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+    <rect width="4" height="12" x="2" y="9" />
+    <circle cx="4" cy="4" r="2" />
+  </svg>
+);
 
 import { Hero } from '@/components/sections/hero';
 import { SectionTitle } from '@/components/sections/section-title';
@@ -21,27 +38,10 @@ import { teamMembers as hardcodedTeam } from '@/content/team';
 
 import prisma from '@/lib/prisma';
 
-const LinkedinIcon = ({ className }: { className?: string }) => (
-  <svg 
-    xmlns="http://www.w3.org/2000/svg" 
-    viewBox="0 0 24 24" 
-    fill="none" 
-    stroke="currentColor" 
-    strokeWidth="2" 
-    strokeLinecap="round" 
-    strokeLinejoin="round" 
-    className={className}
-  >
-    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
-    <rect width="4" height="12" x="2" y="9" />
-    <circle cx="4" cy="4" r="2" />
-  </svg>
-);
-
-export const metadata = generatePageMetadata({ 
-  title: 'About Us | Loopernode', 
-  description: 'Learn about Loopernode, our mission, vision, and the global team dedicated to providing high-quality AI training data for intelligent systems.', 
-  path: '/about' 
+export const metadata = generatePageMetadata({
+  title: 'About Us | Loopernode',
+  description: 'Learn about Loopernode, our mission, vision, and the global team dedicated to providing high-quality AI training data for intelligent systems.',
+  path: '/about'
 });
 
 
@@ -49,7 +49,7 @@ export const dynamic = "force-dynamic";
 
 const parseImageUrl = (url: string) => {
   if (!url) return url;
-  
+
   // Clean up any accidental whitespace
   url = url.trim();
 
@@ -85,7 +85,7 @@ export default async function AboutPage() {
 
   return (
     <main className="flex min-h-screen flex-col bg-[#0A0A1B] text-slate-200">
-      
+
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -111,7 +111,7 @@ export default async function AboutPage() {
       {/* SECTION 1: Hero */}
       <section className="pb-10 border-b border-white/5 relative overflow-hidden">
         <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-indigo-600/10 rounded-full blur-[120px] -z-10 translate-x-1/3 -translate-y-1/3" />
-        <Hero 
+        <Hero
           headline="Building the Foundation of"
           highlightedText="Ethical AI"
           description="We unite world-class data specialists, engineers, and researchers to construct the critical data infrastructure that powers the next generation of safe, reliable, and equitable AI systems."
@@ -139,10 +139,10 @@ export default async function AboutPage() {
             </div>
           </FadeUp>
           <FadeUp delay={0.2}>
-            <SectionTitle 
-              title="From a Small Lab to Global" 
-              highlightedWord="Impact" 
-              align="left" 
+            <SectionTitle
+              title="From a Small Lab to Global"
+              highlightedWord="Impact"
+              align="left"
             />
             <div className="mt-8 space-y-6 text-slate-300 text-lg leading-relaxed max-w-2xl">
               <p>
@@ -198,16 +198,16 @@ export default async function AboutPage() {
       {/* SECTION 3.5: Core Expertise & Capabilities (SEO) */}
       <section className="py-20 md:py-28 container mx-auto px-4 border-b border-white/5 bg-slate-900/20">
         <FadeUp>
-          <SectionTitle 
-            title="Our Core AI Data" 
-            highlightedWord="Expertise" 
-            align="center" 
+          <SectionTitle
+            title="Our Core AI Data"
+            highlightedWord="Expertise"
+            align="center"
           />
           <p className="text-center text-slate-400 max-w-3xl mx-auto mt-6 text-lg leading-relaxed">
             As a premier provider of <strong>AI data services</strong>, Loopernode bridges the gap between raw information and intelligent systems. We specialize in comprehensive <strong>data processing</strong> and <strong>human-in-the-loop AI</strong> workflows designed for scale, security, and precision.
           </p>
         </FadeUp>
-        
+
         <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-16 max-w-5xl mx-auto">
           <StaggerItem>
             <div className="p-8 rounded-2xl bg-white/5 border border-white/10 hover:border-indigo-500/50 transition-colors h-full">
@@ -217,7 +217,7 @@ export default async function AboutPage() {
               </p>
             </div>
           </StaggerItem>
-          
+
           <StaggerItem>
             <div className="p-8 rounded-2xl bg-white/5 border border-white/10 hover:border-cyan-500/50 transition-colors h-full">
               <h3 className="text-xl font-bold text-white mb-4">NLP & LLM Data Solutions</h3>
@@ -227,11 +227,11 @@ export default async function AboutPage() {
             </div>
           </StaggerItem>
         </StaggerContainer>
-        
+
         <FadeUp delay={0.4}>
           <div className="mt-16 text-center">
-            <Link 
-              href="/services" 
+            <Link
+              href="/services"
               className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-white/5 border border-white/10 text-slate-200 hover:bg-white/10 hover:text-white transition-all font-semibold"
             >
               Explore All AI Data Services
@@ -244,10 +244,10 @@ export default async function AboutPage() {
       {/* SECTION 4: Values */}
       <section className="py-20 md:py-28 container mx-auto px-4 border-b border-white/5">
         <FadeUp>
-          <SectionTitle 
-            title="The Values That" 
-            highlightedWord="Drive Us" 
-            align="center" 
+          <SectionTitle
+            title="The Values That"
+            highlightedWord="Drive Us"
+            align="center"
           />
         </FadeUp>
         <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-16">
@@ -263,10 +263,10 @@ export default async function AboutPage() {
       {/* SECTION 5: Leadership Team */}
       <section className="py-20 md:py-28 container mx-auto px-4 border-b border-white/5 bg-slate-900/30">
         <FadeUp>
-          <SectionTitle 
-            title="Meet the" 
-            highlightedWord="Experts" 
-            align="center" 
+          <SectionTitle
+            title="Meet the"
+            highlightedWord="Experts"
+            align="center"
           />
           <p className="text-center text-slate-400 max-w-2xl mx-auto mt-4 text-lg">
             Guided by industry veterans with deep expertise in machine learning, data science, and enterprise operations.
@@ -279,9 +279,9 @@ export default async function AboutPage() {
                 <div className="w-28 h-28 sm:w-32 sm:h-32 md:w-40 md:h-40 mx-auto rounded-full bg-gradient-to-br from-indigo-500 to-cyan-500 p-1 mb-6 md:mb-8 transition-all duration-300">
                   {parseImageUrl(member.image) ? (
                     <div className="w-full h-full rounded-full overflow-hidden relative">
-                      <Image 
-                        src={parseImageUrl(member.image)} 
-                        alt={member.name} 
+                      <Image
+                        src={parseImageUrl(member.image)}
+                        alt={member.name}
                         fill
                         sizes="(max-width: 768px) 160px, 160px"
                         className="object-cover object-center"
@@ -298,10 +298,10 @@ export default async function AboutPage() {
                   <p className="text-indigo-400 font-medium text-sm mb-5">{member.role}</p>
                   <p className="text-slate-400 text-sm">{member.bio || 'Driving innovation and strategic growth at Loopernode with over a decade of industry experience.'}</p>
                   {/* LinkedIn Icon */}
-                  <a 
+                  <a
                     href={member.linkedinUrl ? (member.linkedinUrl.startsWith('http') ? member.linkedinUrl : `https://${member.linkedinUrl}`) : "#"}
-                    target="_blank" 
-                    rel="noopener noreferrer" 
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="absolute top-0 right-0 z-10 flex items-center justify-center w-8 h-8 md:w-10 md:h-10 rounded-full bg-white/5 border border-white/10 text-slate-400 hover:bg-[#0A66C2] hover:text-white hover:border-[#0A66C2] hover:-translate-y-1 transition-all duration-300 shadow-sm"
                     aria-label={`LinkedIn profile of ${member.name}`}
                   >
@@ -363,7 +363,7 @@ export default async function AboutPage() {
             </p>
           </div>
         </FadeUp>
-        
+
         <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           <StaggerItem>
             <div className="p-6 bg-white/5 rounded-xl border border-white/10 h-full">
@@ -399,10 +399,10 @@ export default async function AboutPage() {
       {/* SECTION 7: Timeline */}
       <section className="py-20 md:py-28 container mx-auto px-4 border-b border-white/5">
         <FadeUp>
-          <SectionTitle 
-            title="A Decade of" 
-            highlightedWord="Innovation" 
-            align="center" 
+          <SectionTitle
+            title="A Decade of"
+            highlightedWord="Innovation"
+            align="center"
           />
         </FadeUp>
         <div className="mt-20">
@@ -413,10 +413,10 @@ export default async function AboutPage() {
       {/* SECTION 8: Corporate Culture */}
       <section className="py-20 md:py-28 container mx-auto px-4 border-b border-white/5">
         <FadeUp>
-          <SectionTitle 
-            title="Our Corporate" 
-            highlightedWord="Culture" 
-            align="center" 
+          <SectionTitle
+            title="Our Corporate"
+            highlightedWord="Culture"
+            align="center"
           />
         </FadeUp>
         <StaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
@@ -448,15 +448,15 @@ export default async function AboutPage() {
       <section className="py-20 md:py-28 container mx-auto px-4 border-b border-white/5">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <FadeUp>
-            <SectionTitle 
-              title="Why Industry Leaders" 
-              highlightedWord="Trust Us" 
-              align="left" 
+            <SectionTitle
+              title="Why Industry Leaders"
+              highlightedWord="Trust Us"
+              align="left"
             />
             <p className="text-lg text-slate-300 leading-relaxed max-w-2xl mt-6 mb-8">
               We transcend the role of a traditional data vendor to become an integrated extension of your MLOps team. By combining bank-grade infrastructure with transparent, highly agile workflows, we de-risk the data pipeline for the world's most ambitious technology organizations.
             </p>
-            <Link  href="/contact" className="inline-flex items-center text-indigo-400 hover:text-indigo-300 font-semibold transition-colors">
+            <Link href="/contact" className="inline-flex items-center text-indigo-400 hover:text-indigo-300 font-semibold transition-colors">
               Speak with a data expert <ArrowRight className="ml-2 w-5 h-5" />
             </Link>
           </FadeUp>
@@ -512,8 +512,8 @@ export default async function AboutPage() {
       {/* SECTION 10: CTA */}
       <section className="py-20 md:py-28 container mx-auto px-4">
         <FadeIn>
-          <CTABanner 
-            headline="Partner with Loopernode" 
+          <CTABanner
+            headline="Partner with Loopernode"
             description="Ready to build the next generation of intelligent systems? Let's discuss how our data solutions can accelerate your AI roadmap."
             primaryCTA={{ label: 'Contact Sales', href: '/contact' }}
             secondaryCTA={{ label: 'Explore Careers', href: '/careers' }}
