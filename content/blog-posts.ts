@@ -1,5 +1,37 @@
 export const blogPosts = [
   {
+    slug: "ots-datasets-custom-egocentric-video-collection",
+    title: "Off-the-Shelf (OTS) Datasets & Custom Egocentric Video Data Collection",
+    excerpt: "The right data for your next AI breakthrough. Discover how pre-built OTS datasets and custom first-person egocentric video pipelines accelerate physical AI, robotics, and multimodal models.",
+    content: `Physical AI, embodied robotics, and next-generation multimodal foundation models demand unprecedented data diversity. From pre-packaged, enterprise-ready off-the-shelf (OTS) datasets to specialized first-person egocentric video collections, building cutting-edge artificial intelligence requires the right training foundation.
+
+### 1. Off-the-Shelf (OTS) Datasets
+Developing state-of-the-art models from scratch often faces the bottleneck of data acquisition time. Loopernode provides comprehensive, pre-annotated OTS datasets across key modalities:
+- **Text & Multimodal:** High-quality instructional datasets, prompt-response pairs, and domain-specific transcripts.
+- **Image & Video:** Rich visual corpora covering diverse geographies, lighting conditions, and object classifications.
+- **Audio & Speech:** Multi-speaker, accented, and multi-lingual audio corpora tailored for ASR and conversational AI.
+- **Code & Technical:** Syntax-validated code snippets and problem-solution pairs for coding assistants.
+
+### 2. Custom Egocentric Video Data Collection
+Embodied AI and robotics require seeing the world through human eyes. Egocentric (first-person) video captures realistic human-object interactions, micro-movements, and sensory data:
+- **4K High-Resolution Recording:** Crystal-clear visual feeds capturing subtle hand-eye coordination.
+- **Sensors & IMU Tracking:** Synchronized accelerometer, gyroscope, and positional metadata for spatial computing.
+- **First-Person Tool & Object Manipulation:** Ground-truth demonstration data for training autonomous agents and humanoid robots.
+- **Comprehensive Annotation:** Granular temporal bounding boxes, action segmentation, and affordance labeling.
+
+### 3. AI / ML Ready Deliverables
+Every dataset is rigorously vetted through our human-in-the-loop quality assurance pipeline, ensuring ethical sourcing, strict GDPR/privacy compliance, and immediate readiness for model training and fine-tuning.
+
+Partner with Loopernode to source custom training datasets engineered specifically for your technical roadmap.`,
+    author: { name: 'Liyakathali K T', avatar: '/images/team/liyakathali-kt.jpg', role: 'Founder & CEO', bio: 'Visionary technology entrepreneur with deep expertise in AI data solutions.' },
+    date: new Date().toISOString(),
+    readTime: "6 min read",
+    category: "AI Data Services",
+    tags: ["OTS Datasets", "Egocentric Video", "Robotics", "Physical AI", "Data Collection"],
+    image: "/images/blog/media_123.jpg",
+    featured: true
+  },
+  {
     slug: "ai-data-services-collection-labeling-processing",
     title: "AI Data Services: From Data Collection and Labeling to Processing",
     excerpt: "Discover the end-to-end pipeline of enterprise AI data services. Learn how high-quality data collection, precise annotation, and rigorous processing are powering intelligent models across industries.",

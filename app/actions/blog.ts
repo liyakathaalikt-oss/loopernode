@@ -31,7 +31,8 @@ export async function saveBlogPost(formData: FormData) {
 
   const id = formData.get("id") as string | null;
   const title = formData.get("title") as string;
-  const slug = formData.get("slug") as string;
+  const rawSlug = (formData.get("slug") as string) || "";
+  const slug = rawSlug.trim().replace(/^\/?(blog\/)?/, '').replace(/^\/+/, '');
   const content = formData.get("content") as string;
   const excerpt = formData.get("excerpt") as string;
   const published = formData.get("published") === "on";

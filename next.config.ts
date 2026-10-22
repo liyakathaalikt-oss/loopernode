@@ -28,6 +28,11 @@ const nextConfig: NextConfig = {
         destination: '/services',
         permanent: true, // Returns 301 redirect
       },
+      {
+        source: '/blog/blog/:slug*',
+        destination: '/blog/:slug*',
+        permanent: true,
+      },
     ];
   },
 };

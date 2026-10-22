@@ -28,20 +28,23 @@ export default async function BlogPage() {
   });
 
   // Map DB posts
-  const mappedDbPosts = dbPosts.map(post => ({
-    title: post.title,
-    excerpt: post.excerpt || "",
-    date: new Date(post.createdAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
-    readTime: "5 min read", 
-    category: post.category || "Technology",
-    slug: post.slug,
-    image: post.coverImage || "",
-    author: {
-      name: post.author || "Loopernode Team",
-      role: "Editor",
-      avatar: ""
-    },
-  }));
+  const mappedDbPosts = dbPosts.map(post => {
+    const cleanSlug = post.slug.replace(/^\/?(blog\/)?/, '').replace(/^\/+/, '');
+    return {
+      title: post.title,
+      excerpt: post.excerpt || "",
+      date: new Date(post.createdAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
+      readTime: "5 min read", 
+      category: post.category || "Technology",
+      slug: cleanSlug,
+      image: post.coverImage || "",
+      author: {
+        name: post.author || "Loopernode Team",
+        role: "Editor",
+        avatar: ""
+      },
+    };
+  });
   
   // Use DB posts if available, but fallback to local data for missing fields (like images)
   const posts = mappedDbPosts.length > 0 ? mappedDbPosts.map(dbPost => {

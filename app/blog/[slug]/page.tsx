@@ -21,17 +21,36 @@ interface BlogPostPageProps {
 
 export async function generateMetadata({ params }: BlogPostPageProps): Promise<Metadata> {
   const { slug } = await params;
-  const dbPost = await prisma.blogPost.findUnique({ where: { slug } });
+  const cleanSlug = slug.replace(/^\/?(blog\/)?/, '').replace(/^\/+/, '');
+  const dbPost = await prisma.blogPost.findFirst({
+    where: {
+      OR: [
+        { slug: cleanSlug },
+        { slug: `/blog/${cleanSlug}` },
+        { slug: `blog/${cleanSlug}` },
+        { slug: `/${cleanSlug}` },
+      ]
+    }
+  });
 
-  if (!dbPost) {
+  const fallbackPost = fallbackPosts.find(p => p.slug === cleanSlug || p.slug === slug);
+
+  if (!dbPost && !fallbackPost) {
     return { title: "Post Not Found" };
   }
 
-  // Find fallback post to merge missing data like coverImage
-  const fallbackPost = fallbackPosts.find(p => p.slug === slug);
-  const post = {
+  const post = dbPost ? {
     ...dbPost,
-    coverImage: dbPost.coverImage || (fallbackPost ? fallbackPost.image : "")
+    slug: cleanSlug,
+    coverImage: dbPost.coverImage || (fallbackPost ? fallbackPost.image : ""),
+  } : {
+    title: fallbackPost!.title,
+    excerpt: fallbackPost!.excerpt,
+    slug: cleanSlug,
+    coverImage: fallbackPost!.image,
+    createdAt: new Date(fallbackPost!.date),
+    author: fallbackPost!.author.name,
+    tags: fallbackPost!.tags.join(','),
   };
 
   return {
@@ -39,7 +58,7 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
     description: post.excerpt,
     keywords: generateKeywords('blog'),
     alternates: {
-      canonical: "https://loopernode.in/blog/" + post.slug,
+      canonical: "https://loopernode.in/blog/" + cleanSlug,
     },
     openGraph: {
       title: post.title,
@@ -65,22 +84,51 @@ export const dynamic = "force-dynamic";
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const { slug } = await params;
-  const dbPost = await prisma.blogPost.findUnique({ where: { slug } });
+  const cleanSlug = slug.replace(/^\/?(blog\/)?/, '').replace(/^\/+/, '');
+  const dbPost = await prisma.blogPost.findFirst({
+    where: {
+      OR: [
+        { slug: cleanSlug },
+        { slug: `/blog/${cleanSlug}` },
+        { slug: `blog/${cleanSlug}` },
+        { slug: `/${cleanSlug}` },
+      ]
+    }
+  });
 
-  if (!dbPost) {
+  const fallbackPost = fallbackPosts.find(p => p.slug === cleanSlug || p.slug === slug);
+
+  if (!dbPost && !fallbackPost) {
     notFound();
   }
 
-  // Find fallback post to merge missing data like coverImage
-  const fallbackPost = fallbackPosts.find(p => p.slug === slug);
-  const post = {
+  const post = dbPost ? {
     ...dbPost,
-    coverImage: dbPost.coverImage || (fallbackPost ? fallbackPost.image : "")
+    slug: cleanSlug,
+    coverImage: dbPost.coverImage || (fallbackPost ? fallbackPost.image : ""),
+    createdAt: dbPost.createdAt,
+    tags: dbPost.tags,
+    category: dbPost.category,
+    author: dbPost.author,
+    content: dbPost.content,
+  } : {
+    id: fallbackPost!.slug,
+    title: fallbackPost!.title,
+    slug: cleanSlug,
+    content: fallbackPost!.content,
+    excerpt: fallbackPost!.excerpt,
+    coverImage: fallbackPost!.image,
+    published: true,
+    author: fallbackPost!.author.name,
+    category: fallbackPost!.category,
+    tags: fallbackPost!.tags.join(','),
+    createdAt: new Date(fallbackPost!.date),
+    updatedAt: new Date(fallbackPost!.date),
   };
 
   const relatedDbPosts = await prisma.blogPost.findMany({
     where: { 
-      slug: { not: slug },
+      slug: { notIn: [cleanSlug, `/blog/${cleanSlug}`, `blog/${cleanSlug}`, `/${cleanSlug}`] },
       published: true
     },
     take: 3,
@@ -88,14 +136,15 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   });
 
   const relatedPosts = relatedDbPosts.map(rp => {
-    const fallbackRp = fallbackPosts.find(p => p.slug === rp.slug);
+    const cleanRpSlug = rp.slug.replace(/^\/?(blog\/)?/, '').replace(/^\/+/, '');
+    const fallbackRp = fallbackPosts.find(p => p.slug === cleanRpSlug);
     return {
       title: rp.title,
       excerpt: rp.excerpt || "",
       date: new Date(rp.createdAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
       readTime: "5 min read",
       category: rp.category || "General",
-      slug: rp.slug,
+      slug: cleanRpSlug,
       image: rp.coverImage || (fallbackRp ? fallbackRp.image : ""),
     };
   });
@@ -103,7 +152,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const breadcrumbs = [
     { label: "Home", href: "/" },
     { label: "Blog", href: "/blog" },
-    { label: post.title, href: `/blog/${post.slug}` },
+    { label: post.title, href: `/blog/${cleanSlug}` },
   ];
 
   const tags = post.tags ? post.tags.split(',').map(t => t.trim()).filter(Boolean) : [];
@@ -119,7 +168,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             image: post.coverImage || "",
             datePublished: post.createdAt.toISOString(),
             authorName: post.author || "Loopernode Team",
-            url: '/blog/' + post.slug
+            url: '/blog/' + cleanSlug
           })),
         }}
       />
@@ -163,7 +212,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                 </div>
               </div>
 
-              <ShareButtons title={post.title} slug={post.slug} />
+              <ShareButtons title={post.title} slug={cleanSlug} />
             </div>
           </header>
 
